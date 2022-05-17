@@ -2,6 +2,7 @@ import DefaultHeader from './components/DefaultLayout';
 import 'antd/dist/antd.css';
 import Index from './pages/Index.jsx';
 import Mypage from './pages/Mypage.jsx';
+import Login from './pages/login.jsx'
 import Rank from './pages/Rank.jsx';
 import Flavor from './pages/rank/Flavor.jsx';
 import Atmosphere from './pages/rank/Atmosphere.jsx';
@@ -12,6 +13,7 @@ import AdminMenu from './pages/admin/AdminMenu.jsx';
 import Join from './pages/register/Join.jsx';
 import Check from './pages/register/Check.jsx';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import axios from 'axios'
 
 const App = () => {
   return (
