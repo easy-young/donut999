@@ -1,6 +1,5 @@
 import { useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import { BrowserRouter } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Menu, Layout } from 'antd';
 import { show, hidden } from '../reducers/display.js';
@@ -29,9 +28,9 @@ const DefaultHeader = ({children}) => {
     const onShow = useCallback(()=>{ dispatch(show()) }, [dispatch]);
     const onHidden = useCallback(()=>{ dispatch(hidden()) }, [dispatch]);
     return (
-        <BrowserRouter>
+        <>
             <header>
-                <Link to='/'>도넛철도 999</Link>
+                <Link to="/">도넛철도 999</Link>
             </header>
             {
                 header.display === 'block' &&
@@ -44,8 +43,8 @@ const DefaultHeader = ({children}) => {
                             style={{ height: '100vh' }}
                         >
                             <StyledButton onClick={onHidden}>X</StyledButton>
-                            <Menu.Item key='1'><Link to='/mypage'>마이 페이지</Link></Menu.Item>
-                            <Menu.Item key='2'><Link to='/rank'>랭킹</Link></Menu.Item>
+                            <Menu.Item key='1'><Link to="/mypage">마이 페이지</Link></Menu.Item>
+                            <Menu.Item key='2'><Link to="/rank">랭킹</Link></Menu.Item>
                             <Menu.SubMenu key='3' title='테마'>
                                 <Menu.Item key='protein'>프로틴 도넛</Menu.Item>
                                 <Menu.Item key='photo'>포토존</Menu.Item>
@@ -61,7 +60,7 @@ const DefaultHeader = ({children}) => {
                 </Layout>
             }
             <img onClick={onShow} src="http://localhost:3000/menu.png" width={30} height={30} alt=''/>
-        </BrowserRouter>
+        </>
     )
 };
 

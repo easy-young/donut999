@@ -1,25 +1,24 @@
 import DefaultHeader from './components/DefaultLayout';
 import 'antd/dist/antd.css';
-import Index from './pages/Index';
-import Mypage from './pages/Mypage';
-import Rank from './pages/Rank';
+import Index from './pages/Index.jsx';
+import Mypage from './pages/Mypage.jsx';
+import Rank from './pages/Rank.jsx';
+import Admin from './pages/Admin.jsx';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import { store } from './store/useStore';
 
 const App = () => {
   return (
-    <Provider store={store}>
-      <DefaultHeader>
-      </DefaultHeader>
+    <>
       <BrowserRouter>
+      <DefaultHeader />
         <Routes>
-          <Route path='/' element={<Index />} />
-          <Route path='/mypage' element={<Mypage />} />
-          <Route path='/rank' element={<Rank />} />
+          <Route path="/" index element={<Index />} />
+          <Route path="/mypage" element={<Mypage />} />
+          <Route path="/rank" element={<Rank />} />
+          <Route path="/dt/admin" element={<Admin />} />
         </Routes>
       </BrowserRouter>
-    </Provider>
+    </>
   )
 };
 
