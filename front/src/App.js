@@ -1,5 +1,5 @@
 import DefaultHeader from './components/DefaultLayout';
-import 'antd/dist/antd.css';
+import 'antd/dist/antd.min.css';
 import Index from './pages/Index';
 import Mypage from './pages/Mypage';
 import Rank from './pages/Rank';
