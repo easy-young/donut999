@@ -1,5 +1,44 @@
-
+import styled from 'styled-components';
+import { BrowserView, MobileView, isMobile } from 'react-device-detect'
+// import MapImg from '../../public/img/route_map.png'
 const Index = () => {
+
+    const MapBox = styled.div `
+    
+    width:1000px;
+    background:black;
+    height:400px;
+    position:relative;
+    margin:0 auto;
+    z-index:3;
+    overflow:hidden;
+    @media (max-width: 600px) {
+        width: 340px;
+        height: 200px;
+    }
+
+    `
+
+
+ // 부모
+    const RouteMap = styled.img`
+
+    width:1200px;
+    height:756px;
+    margin: 0 auto;
+    position: absolute;
+    z-index:1;
+    cursor:pointer;
+    top:0;
+    left:0;
+    @media (max-width: 600px) {
+        width: 400px;
+        height: 250px;
+    }
+    
+    `
+
+ //자식
 
     let isdragging = null
     let originX = null
@@ -8,6 +47,7 @@ const Index = () => {
     let originTop = null
 
     const mouseDownHandler = (e) =>{
+        // console.log('여기는 웹',isMobile)
         isdragging = true   
         originX = e.clientX
         originY = e.clientY
@@ -25,20 +65,22 @@ const Index = () => {
             // console.log("이동위치",e.clientX, e.clientY)
             const diffX = e.clientX - originX
             const diffY = e.clientY - originY
-            console.log("얼마나 이동했나요?",diffX, diffY)
+            // console.log("얼마나 이동했나요?",diffX, diffY)
             // e.target.parentNode.style = originLeft + diffX + "px"
             // e.target.parentNode.style = originTop + diffY + "px"
-            const containerWidth = e.target.parentNode.style.width.replace("px", "")
-            const containerHeigt = e.target.parentNode.style.height.replace("px", "")
-            const imgBoxWidth = e.target.style.width.replace("px", "")
-            const imgBoxHeight = e.target.style.height.replace("px", "")
-            // console.log(containerWidth,containerHeigt,imgBoxWidth,imgBoxHeight)
+            const containerWidth = e.target.parentNode.offsetWidth
+            const containerHeigt = e.target.parentNode.offsetHeight
+            const imgBoxWidth = e.target.width
+            const imgBoxHeight = e.target.height
+            // console.log("길이들",containerWidth, containerHeigt,imgBoxWidth,imgBoxHeight)
             const endOfXPoint = containerWidth - imgBoxWidth //200px
             const endOfYPoint = containerHeigt - imgBoxHeight //444px
-            console.log(endOfXPoint, endOfYPoint)
+            // console.log("최대",endOfXPoint, endOfYPoint)
+
             e.target.style.left = `${Math.max(Math.min(0, originLeft + diffX),endOfXPoint)}px`
             e.target.style.top = `${Math.max(Math.min(0, originTop+ diffY),endOfYPoint)}px`
-            console.log(e.target.style.left,e.target.style.top)
+            // console.log(" asdfasdf", e.target.style.left)
+            // console.log("스타일...",e.target.style.left,e.target.style.top)
         }
     }
 
@@ -46,33 +88,73 @@ const Index = () => {
         isdragging = false
     }
 
-    const mapBoxStyle = {
-        width:"1000px",
-        background:"black",
-        height:"400px",
-        position:"relative",
-        margin:"0 auto",
-        zIndex:"3",
-        overflow:"hidden",
-    } // 부모
-    const routeMapStyle = {
-        width:"1200px",
-        height:"756px",
-        margin:"0 auto",
-        position:"absolute",
-        zIndex:"1",
-        cursor:"pointer",
-        top:"0",
-        left:"0"
+    const touchStartHandler = (e) =>{
+        // console.log('여기는 모바일',isMobile)
+        isdragging = true   
+        originX = e.touches[0].clientX
+        originY = e.touches[0].clientY
+        // console.log(originX,originY)//브라우저 좌표
+        originLeft = e.target.offsetLeft
+        originTop = e.target.offsetTop
+        // console.log("부모기준",originLeft, originTop) // 부모 div기준 좌표
+        // console.log("시작위치",originX, originY)
+    }
 
+    const touchMoveHandler = (e) =>{
+        // console.log('되긴하니?')
+        if(isdragging){
+            
+            
+            // console.log('현재마우스좌표', originLeft,originTop)
+            // console.log("이동위치",e.touches[0].clientX, e.touches[0].clientY)
+            const diffX = e.touches[0].clientX - originX
+            const diffY = e.touches[0].clientY - originY
+            // console.log("얼마나 이동했나요?",diffX, diffY)
+            // e.target.parentNode.style = originLeft + diffX + "px"
+            // e.target.parentNode.style = originTop + diffY + "px"
+            const containerWidth = e.target.parentNode.offsetWidth
+            const containerHeigt = e.target.parentNode.offsetHeight
+            const imgBoxWidth = e.target.width
+            const imgBoxHeight = e.target.height
+            // console.log("길이들",containerWidth, containerHeigt,imgBoxWidth,imgBoxHeight)
+            const endOfXPoint = containerWidth - imgBoxWidth //200px
+            const endOfYPoint = containerHeigt - imgBoxHeight //444px
+            // console.log("최대",endOfXPoint, endOfYPoint)
 
-    } //자식
+            e.target.style.left = `${Math.max(Math.min(0, originLeft + diffX),endOfXPoint)}px`
+            e.target.style.top = `${Math.max(Math.min(0, originTop+ diffY),endOfYPoint)}px`
+            // console.log(" asdfasdf", e.target.style.left)
+            // console.log("스타일...",e.target.style.left,e.target.style.top)
+        }
+    }
+
+    const touchEndHandler = ()=>{
+        isdragging = false
+    }
+
     return (
-        <div style={mapBoxStyle}>
-            <img style={routeMapStyle} alt="route_map" src="img/route_map.png"
-            onMouseDown={mouseDownHandler} onMouseMove={mouseMoveHandler}
-            onMouseUp={mouseUpHandler}/>
-        </div>
+        <>
+            <BrowserView>
+                <MapBox>
+                    <RouteMap alt="route_map" src="img/route_map.png"
+                        onMouseDown={mouseDownHandler} onMouseMove={mouseMoveHandler}
+                        onMouseUp={mouseUpHandler}
+                        >
+                    </RouteMap>
+                </MapBox>
+            </BrowserView>
+            <MobileView>
+                <MapBox>
+                    <RouteMap alt="route_map" src="img/route_map.png"
+                        onTouchStart={touchStartHandler}
+                        onTouchMove={touchMoveHandler}
+                        onTouchEnd={touchEndHandler}
+                        >
+                    </RouteMap>
+                </MapBox>
+            </MobileView>
+        </>
+
     )
 };
 

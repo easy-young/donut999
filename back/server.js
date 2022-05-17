@@ -22,7 +22,7 @@ app.use(cors({
     credentials: true,
 }));
 
-// app.use('/user', userRouter);
+app.use('/user', userRouter);
 // app.use('/comment', commentRouter);
 app.use('/shop', shopRouter)
 app.use('/dt/admin/menu', adminRouter)
