@@ -11,19 +11,21 @@ const Index = () => {
         isdragging = true   
         originX = e.clientX
         originY = e.clientY
-        console.log(originX,originY)//브라우저 좌표
-        originLeft = e.target.parentNode.offsetLeft
-        originTop = e.target.parentNode.offsetTop
-        console.log("부모기준",originLeft, originTop) // 부모 div기준 좌표
-        console.log(e.target.parentNode)
+        // console.log(originX,originY)//브라우저 좌표
+        originLeft = e.target.offsetLeft
+        originTop = e.target.offsetTop
+        // console.log("부모기준",originLeft, originTop) // 부모 div기준 좌표
+        // console.log("시작위치",originX, originY)
 
     }
 
     const mouseMoveHandler = (e) => {
         if(isdragging){
+            // console.log('현재마우스좌표', originLeft,originTop)
+            // console.log("이동위치",e.clientX, e.clientY)
             const diffX = e.clientX - originX
             const diffY = e.clientY - originY
-            console.log("븽브이",diffX, diffY)
+            console.log("얼마나 이동했나요?",diffX, diffY)
             // e.target.parentNode.style = originLeft + diffX + "px"
             // e.target.parentNode.style = originTop + diffY + "px"
             const containerWidth = e.target.parentNode.style.width.replace("px", "")
@@ -34,8 +36,8 @@ const Index = () => {
             const endOfXPoint = containerWidth - imgBoxWidth //200px
             const endOfYPoint = containerHeigt - imgBoxHeight //444px
             console.log(endOfXPoint, endOfYPoint)
-            e.target.style.left = `${Math.min(Math.max(0, originLeft + diffX),endOfXPoint)}px`
-            e.target.style.top = `${Math.min(Math.max(0, originTop+ diffY),endOfYPoint)}px`
+            e.target.style.left = `${Math.max(Math.min(0, originLeft + diffX),endOfXPoint)}px`
+            e.target.style.top = `${Math.max(Math.min(0, originTop+ diffY),endOfYPoint)}px`
             console.log(e.target.style.left,e.target.style.top)
         }
     }
