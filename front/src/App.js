@@ -5,6 +5,8 @@ import Mypage from './pages/Mypage.jsx';
 import Rank from './pages/Rank.jsx';
 import Admin from './pages/admin/Admin.jsx';
 import AdminMenu from './pages/admin/AdminMenu.jsx';
+import Join from './pages/register/Join.jsx';
+import Check from './pages/register/Check.jsx';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 const App = () => {
@@ -16,6 +18,8 @@ const App = () => {
           <Route path="/" index element={<Index />} />
           <Route path="/mypage" element={<Mypage />} />
           <Route path="/rank" element={<Rank />} />
+          <Route path='/register/join' element={<Join/>} />
+          <Route path='/register/check' element={<Check />} />
           <Route path="/dt/admin" element={<Admin />} />
           <Route path="/dt/admin/menu" element={<AdminMenu />} />
 
