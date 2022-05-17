@@ -1,7 +1,7 @@
 
 const Index = () => {
 
-    let isdragging = true
+    let isdragging = null
     let originX = null
     let originY = null
     let originLeft = null
@@ -11,10 +11,10 @@ const Index = () => {
         isdragging = true   
         originX = e.clientX
         originY = e.clientY
-        console.log(originX,originY)
+        console.log(originX,originY)//브라우저 좌표
         originLeft = e.target.parentNode.offsetLeft
         originTop = e.target.parentNode.offsetTop
-        console.log(originLeft, originTop)
+        console.log("부모기준",originLeft, originTop) // 부모 div기준 좌표
         console.log(e.target.parentNode)
 
     }
@@ -23,11 +23,25 @@ const Index = () => {
         if(isdragging){
             const diffX = e.clientX - originX
             const diffY = e.clientY - originY
-            // console.log(diffX, diffY)
+            console.log("븽브이",diffX, diffY)
             // e.target.parentNode.style = originLeft + diffX + "px"
             // e.target.parentNode.style = originTop + diffY + "px"
-            console.log(e.target.parentNode.style.width)
+            const containerWidth = e.target.parentNode.style.width.replace("px", "")
+            const containerHeigt = e.target.parentNode.style.height.replace("px", "")
+            const imgBoxWidth = e.target.style.width.replace("px", "")
+            const imgBoxHeight = e.target.style.height.replace("px", "")
+            // console.log(containerWidth,containerHeigt,imgBoxWidth,imgBoxHeight)
+            const endOfXPoint = containerWidth - imgBoxWidth //200px
+            const endOfYPoint = containerHeigt - imgBoxHeight //444px
+            console.log(endOfXPoint, endOfYPoint)
+            e.target.style.left = `${Math.min(Math.max(0, originLeft + diffX),endOfXPoint)}px`
+            e.target.style.top = `${Math.min(Math.max(0, originTop+ diffY),endOfYPoint)}px`
+            console.log(e.target.style.left,e.target.style.top)
         }
+    }
+
+    const mouseUpHandler = (e) => {
+        isdragging = false
     }
 
     const mapBoxStyle = {
@@ -41,17 +55,21 @@ const Index = () => {
     } // 부모
     const routeMapStyle = {
         width:"1200px",
-        height:"auto",
+        height:"756px",
         margin:"0 auto",
         position:"absolute",
-        zIndex:"1"
+        zIndex:"1",
+        cursor:"pointer",
+        top:"0",
+        left:"0"
 
 
     } //자식
     return (
         <div style={mapBoxStyle}>
             <img style={routeMapStyle} alt="route_map" src="img/route_map.png"
-            onMouseDown={mouseDownHandler} onMouseMove={mouseMoveHandler}/>
+            onMouseDown={mouseDownHandler} onMouseMove={mouseMoveHandler}
+            onMouseUp={mouseUpHandler}/>
         </div>
     )
 };
