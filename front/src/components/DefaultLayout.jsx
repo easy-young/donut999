@@ -46,14 +46,14 @@ const DefaultHeader = ({children}) => {
                             <Menu.Item key='1'><Link to="/mypage">마이 페이지</Link></Menu.Item>
                             <Menu.Item key='2'><Link to="/rank">랭킹</Link></Menu.Item>
                             <Menu.SubMenu key='3' title='테마'>
-                                <Menu.Item key='protein'>프로틴 도넛</Menu.Item>
-                                <Menu.Item key='photo'>포토존</Menu.Item>
-                                <Menu.Item key='unique'>이색 도넛</Menu.Item>
-                                <Menu.Item key='parking'>주차 가능</Menu.Item>
+                                <Menu.Item key='protein'><Link to="/theme/protein">프로틴 도넛</Link></Menu.Item>
+                                <Menu.Item key='photo'><Link to="/theme/photo">포토존</Link></Menu.Item>
+                                <Menu.Item key='unique'><Link to="/theme/unique">이색 도넛</Link></Menu.Item>
+                                <Menu.Item key='parking'><Link to="/theme/parking">주차 가능</Link></Menu.Item>
                             </Menu.SubMenu>
                             <Menu.SubMenu key='4' title='맛집 등록'>
-                                <Menu.Item key='join'>등록 신청</Menu.Item>
-                                <Menu.Item key='check'>등록 확인</Menu.Item>
+                                <Menu.Item key='join'><Link to="/register/join">등록 신청</Link></Menu.Item>
+                                <Menu.Item key='check'><Link to="/register/check">등록 확인</Link></Menu.Item>
                             </Menu.SubMenu>
                         </Menu>
                     </StyledSider>
