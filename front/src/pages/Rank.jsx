@@ -1,7 +1,7 @@
 const Rank = () => {
     return (
         <>
-            Rank Page
+            rank 페이지
         </>
     )
 };
