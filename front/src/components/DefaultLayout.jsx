@@ -43,7 +43,8 @@ const DefaultHeader = ({children}) => {
                             style={{ height: '100vh' }}
                         >
                             <StyledButton onClick={onHidden}>X</StyledButton>
-                            <Menu.Item key='1'><Link to="/mypage">마이 페이지</Link></Menu.Item>
+                            <Menu.Item key='0'><Link to="/mypage">마이 페이지</Link></Menu.Item>
+                            <Menu.Item key='1'><Link to="/login">로그인</Link></Menu.Item>
                             <Menu.Item key='2'><Link to="/rank">랭킹</Link></Menu.Item>
                             <Menu.SubMenu key='3' title='테마'>
                                 <Menu.Item key='protein'><Link to="/theme/protein">프로틴 도넛</Link></Menu.Item>
