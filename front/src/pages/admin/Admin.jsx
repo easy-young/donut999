@@ -1,5 +1,5 @@
 
-import {AuthForm, AuthTable, AuthDiv, AuthInputBox, AuthButton} from '../../components/styles/AdminStyles.jsx'
+import {AuthForm, AuthTable, AuthDiv, AuthInputBox, AuthButton} from '../../components/styles/AdminStyles'
 
 
 const Admin = () => {
