@@ -1,10 +1,10 @@
-import { Link } from 'react-router-dom';
+import { Link,useParams,Routes, Route  } from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {admin_store_request} from '../../../reducers/admin';
 import { useEffect } from 'react';
 import styled from 'styled-components';
 
-const Background = styled.body`
+const Background = styled.div`
     display: flex;
     position: fixed;
     z-index: 2000;
@@ -76,29 +76,37 @@ const Edit = () => {
         dispatch({type:admin_store_request.toString()})
     },[dispatch])
     //dispatch({type:admin_store_request.toString()})
+    
     const stores = useSelector(state=>state.admin.store)
+    let params = useParams()
+    let store_id = params.store_id;
+    console.log(stores)
 
     return (
         <Background>
             <Form>
                 
-                    <H1>{stores.name}</H1>
-                    <H3>menu</H3>
-                    <Input type='textarea' style={{ marginRight: '16px' }} name='menu' />
-                    <H3>주소</H3>
-                    <Input type='text' style={{ width: '100%' }} name='address'/>
-                    <H3>연락처</H3>
-                    <Span>02</Span> - <Input type='text' name='call1'/> - <Input type='text' name='call2'/>
-                    <H3>SNS 계정</H3>
-                    <Input type='text' style={{ width: '100%' }} name='sns' />
-                    <BottomDiv>
-                        <Submit type='submit' value='수정' />
-                        <Back><Link to='/'>뒤로 가기</Link></Back>
-                    </BottomDiv>
+                <H1>name</H1>
+                <H3>menu</H3>
+                <Input type='textarea' style={{ marginRight: '16px' }} name='menu' />
+                <H3>주소</H3>
+                <Input type='text' style={{ width: '100%' }} name='address'/>
+                <H3>연락처</H3>
+                <Span>02</Span> - <Input type='text' name='call1'/> - <Input type='text' name='call2'/>
+                <H3>SNS 계정</H3>
+                <Input type='text' style={{ width: '100%' }} name='sns' />
+                <BottomDiv>
+                    <Submit type='submit' value='수정' />
+                    <Back><Link to='/'>뒤로 가기</Link></Back>
+                </BottomDiv>
                 
                 
             </Form>
+
+            
         </Background>
+
+        
     )
 };
 

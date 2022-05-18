@@ -28,4 +28,30 @@ router.post('/store/setting',async (req,res)=>{
     
 )
 
+router.post('/store/setting/:store_id',async (req,res)=>{
+    console.log(req.params)    
+    const sql = `select * from shop `
+        
+        try {
+            const [result] = await pool.execute(sql)
+            
+            const response = {
+                result
+            }
+            res.json(response)
+            
+        }
+
+        catch (e) {
+            console.log(e.message)
+            const response = {
+                errormsg: e.message,
+                errno: 1
+            }
+            
+            res.json(response)  
+        }
+    } 
+
+)
 module.exports = router

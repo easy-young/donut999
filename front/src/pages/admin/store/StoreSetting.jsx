@@ -1,13 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useParams  } from "react-router-dom";
 import {useDispatch, useSelector} from 'react-redux';
 import {admin_store_request} from '../../../reducers/admin';
 import { useEffect } from 'react';
 import {Div, Ebutton, Dbutton, Table, Tr, Td} from '../../../components/styles/AdminTable';
 import { AuthButton } from "../../../components/styles/AdminStyles";
 
-import {Routes, Route } from 'react-router-dom';
-import Edit from './Idx.jsx';
-
+import {Routes, Route  } from 'react-router-dom';
+import Edit from './Idx.jsx'
 
 const StoreSetting = () => {
     const dispatch = useDispatch()
@@ -17,8 +16,11 @@ const StoreSetting = () => {
     //dispatch({type:admin_store_request.toString()})
     const stores = useSelector(state=>state.admin.store)
 
+    
+
     return(
-        <>  
+        <> 
+        
             <h2>STORE</h2>
             <Div>
             <Table>
@@ -30,17 +32,20 @@ const StoreSetting = () => {
                     </Tr>
                 </thead>
                 <tbody>
-                    {stores && stores.map ((x) => {
+                    {stores && stores.map ((x, i) => {
                         if(x.idx < 21){
                             return(
-                                <Tr>
-                                    <Td>{x.idx}</Td>
-                                    <Td>{x.name}</Td>
-                                    <Td>
-                                        <Link to="/:stores.idx"><Ebutton>수정</Ebutton></Link>
-                                        <Dbutton>삭제</Dbutton>
-                                    </Td>
-                                </Tr>
+                                <>
+                                    <Tr>
+                                        <Td>{x.idx}</Td>
+                                        <Td>{x.name}</Td>
+                                        <Td>
+                                            <Link to={"/dt/admin/menu/store/setting/"+x.idx}><Ebutton>수정</Ebutton></Link>
+                                            <Dbutton>삭제</Dbutton>
+                                        </Td>
+                                    </Tr>
+                                    
+                                </>
                             );
                         }
                     })}
@@ -62,7 +67,7 @@ const StoreSetting = () => {
                                     <Td>{x.idx}</Td>
                                     <Td>{x.name}</Td>
                                     <Td>
-                                        <Link to="/:stores.idx"><Ebutton>수정</Ebutton></Link>
+                                        <Link to={"/dt/admin/menu/store/setting/"+x.idx}><Ebutton>수정</Ebutton></Link>
                                         <Dbutton>삭제</Dbutton>
                                     </Td>
                                 </Tr>
@@ -87,7 +92,7 @@ const StoreSetting = () => {
                                     <Td>{x.idx}</Td>
                                     <Td>{x.name}</Td>
                                     <Td>
-                                        <Link to="/:stores.idx"><Ebutton>수정</Ebutton></Link>
+                                        <Link to={"/dt/admin/menu/store/setting/"+x.idx}><Ebutton>수정</Ebutton></Link>
                                         <Dbutton>삭제</Dbutton>
                                     </Td>
                                 </Tr>
@@ -103,9 +108,6 @@ const StoreSetting = () => {
                 </div>
             </Link>
 
-            <Routes>
-                <Route path="/:{stores.idx}" element={<Edit />} />
-            </Routes>
             
         </>
     )
