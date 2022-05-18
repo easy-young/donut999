@@ -53,7 +53,7 @@ const kauth = async(req, res) => {
         const email = userinfo.data.kakao_account.profile.email
         const tempInfo = {nickname, email}
         const jwt_token = createToken({...tempInfo})
-        res.cookie('token', jwt_token, {
+        res.cookie('dount', jwt_token, {
             path:'/',
             httpOnly:true
         })
