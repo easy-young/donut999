@@ -1,13 +1,13 @@
 const express = require('express')
 const router = express.Router()
+const {pool} = require('../db.js')
 
 router.post('/store/setting',async (req,res)=>{
-    const store = async (req, res) => {
         const sql = `select name from shop`
     
         try {
             const [result] = await pool.execute(sql)
-    
+            
             const response = {
                 result
             }
@@ -25,6 +25,6 @@ router.post('/store/setting',async (req,res)=>{
         }
     } 
     
-})
+)
 
 module.exports = router

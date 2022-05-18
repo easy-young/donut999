@@ -1,4 +1,5 @@
-import { createAction} from "redux-actions";
+import { createAction } from "redux-actions";
+
 
 const initialState = {
     idx:null,
@@ -25,12 +26,14 @@ const admin = (state=initialState,action) => {
                 ...state,
             }
         case ADMIN_STORE.SUCCESS:
+
             return {
                 ...state,
+                name:action.payload.result
             }
         case ADMIN_STORE.FAILURE:
             return {
-                ...state,
+                ...state
             }
         
         default:

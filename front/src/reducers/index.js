@@ -3,6 +3,7 @@ import { combineReducers } from "redux";
 // import counter from './counter.js';
 // import user from './user.js';
 import display from './display.js';
+import admin from './admin.js'
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
@@ -13,7 +14,7 @@ const persist = {
 };
 
 const rootReducer = combineReducers({
-    display
+    display,admin
 });
 
 export default persistReducer(persist, rootReducer);
