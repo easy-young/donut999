@@ -1,5 +1,8 @@
+import { useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { register_request } from '../../reducers/register';
 
 const Background = styled.body`
     display: flex;
@@ -67,12 +70,26 @@ const BottomDiv = styled.div`
 `;
 
 const Join = () => {
+    const dispatch = useDispatch();
+    const store = useSelector((state) => state.store);
+    const onRegister = useCallback((e) => {
+        e.preventDefault();
+        const { name, menu1, menu2, menu3, address, call1, call2, sns } = e.target;
+        const payload = {
+            name: name.value, 
+            menu: [menu1.value, menu2.value, menu3.value], 
+            address: address.value, 
+            call: [call1.value, call2.value], 
+            sns: sns.value
+        };
+        dispatch(register_request(payload));
+    }, [dispatch]);
     return (
         <Background>
-            <Form>
+            <Form method='post' onSubmit={onRegister}>
                 <H1>맛집 등록 신청</H1>
                 <H3>가게명</H3>
-                <Input type='text' style={{ width: '100%' }} name='store' />
+                <Input type='text' style={{ width: '100%' }} name='name' />
                 <H3>대표 도넛 (최대 3개)</H3>
                 <Input type='text' style={{ marginRight: '16px' }} name='menu1' />
                 <Input type='text' style={{ marginRight: '16px' }} name='menu2' />

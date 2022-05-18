@@ -1,6 +1,6 @@
 import DefaultHeader from './components/DefaultLayout';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import 'antd/dist/antd.css';
+import 'antd/dist/antd.min.css';
 
 import Index from './pages/Index.jsx';
 import Mypage from './pages/Mypage.jsx';

@@ -10,6 +10,7 @@ const COOKIE_SECRET = process.env.COOKIE_SECRET || 'donut';
 const userRouter = require('./routes/user');
 const commentRouter = require('./routes/comment');
 const shopRouter = require('./routes/shop.js')
+const registerRouter = require('./routes/register.js');
 const adminRouter = require('./routes/admin.js')
 
 app.use(express.json());
@@ -25,6 +26,7 @@ app.use(cors({
 app.use('/user', userRouter);
 // app.use('/comment', commentRouter);
 app.use('/shop', shopRouter)
+app.use('/register', registerRouter);
 app.use('/dt/admin/menu', adminRouter)
 
 app.listen(PORT, ()=>{
