@@ -1,6 +1,14 @@
 import styled from 'styled-components';
 import { BrowserView, MobileView, isMobile } from 'react-device-detect'
+import { AutoComplete } from 'antd';
 // import MapImg from '../../public/img/route_map.png'
+import { useState, useRef, useEffect } from 'react';
+import {useDispatch} from 'react-redux';
+import { check_map_success } from '../reducers/routemap';
+
+<style>
+    
+</style>
 const Index = () => {
 
     const Body = styled.body`
@@ -8,19 +16,18 @@ const Index = () => {
         padding: 0;
         width:100vw;
         height:1500px;
+        background:pink;
     `
 
     const MapBox = styled.div `
     /* width:1000px; */
     width:80vw;
-    background:black;
     /* height:500px; */
     height:80vh;
-    background-color:red;
     position:relative;
     margin:0 auto;
     box-sizing:border-box;
-    z-index:3;
+    z-index:6;
     overflow:hidden;
     border-radius:50px;
     margin-top:5vh;
@@ -32,35 +39,45 @@ const Index = () => {
     }
 
     `
-
-
  // 부모
+
+
     const RouteMap = styled.img`
 
     width:240%;
-    /* height:350%; */
+    /* height:330%; */
+    /* height:0; */
+    /* width:1824px;
+    height:1150px; */
     margin: 0 auto;
     position: absolute;
-    z-index:1;
+    z-index:5;
     cursor:pointer;
-    top:-50%;
-    left:-50%;
+    /* background-size: contain;
+    background-repeat:no-repeat; */
+
+    /* top:-50%;
+    left:-50%; */
+    /* background-image: url(http://localhost:3000/img/route_map.png); */
+    /* background-color:red; */
     @media (max-width: 600px) {
         width: 422%;
-        /* height: 129%; */
+        height: auto;
     }
     
-    `
+    ` //자식
 
     const Station = styled.div `
+    position:absolute;
     width:20%;
     height:20%;
     background:yellow;
     z-index:5;
+    top:50%;
+    left:50%;
     
     `
 
- //자식
 
     let isdragging = null
     let originX = null
@@ -68,9 +85,10 @@ const Index = () => {
     let originLeft = null
     let originTop = null
 
+
     const mouseDownHandler = (e) =>{
         // console.log('여기는 웹',isMobile)
-        isdragging = true   
+        isdragging = true
         originX = e.clientX
         originY = e.clientY
         // console.log(originX,originY)//브라우저 좌표
@@ -90,19 +108,19 @@ const Index = () => {
             // console.log("얼마나 이동했나요?",diffX, diffY)
             // e.target.parentNode.style = originLeft + diffX + "px"
             // e.target.parentNode.style = originTop + diffY + "px"
-            const containerWidth = e.target.parentNode.offsetWidth
-            const containerHeigt = e.target.parentNode.offsetHeight
-            const imgBoxWidth = e.target.width
-            const imgBoxHeight = e.target.height
+            const containerWidth = e.target.parentNode.parentNode.offsetWidth
+            const containerHeigt = e.target.parentNode.parentNode.offsetHeight
+            const imgBoxWidth = e.target.offsetWidth
+            const imgBoxHeight = e.target.offsetHeight
             console.log("길이들",containerWidth, containerHeigt,imgBoxWidth,imgBoxHeight)
             const endOfXPoint = containerWidth - imgBoxWidth //200px
             const endOfYPoint = containerHeigt - imgBoxHeight //444px
-            // console.log("최대",endOfXPoint, endOfYPoint)
+            console.log("최대",endOfXPoint, endOfYPoint)
 
             e.target.style.left = `${Math.max(Math.min(0, originLeft + diffX),endOfXPoint)}px`
             e.target.style.top = `${Math.max(Math.min(0, originTop+ diffY),endOfYPoint)}px`
-            // console.log(" asdfasdf", e.target.style.left)
-            // console.log("스타일...",e.target.style.left,e.target.style.top)
+            console.log(" asdfasdf", e.target.style.left)
+            console.log("스타일...",e.target.style.left,e.target.style.top)
         }
     }
 
@@ -134,11 +152,11 @@ const Index = () => {
             // console.log("얼마나 이동했나요?",diffX, diffY)
             // e.target.parentNode.style = originLeft + diffX + "px"
             // e.target.parentNode.style = originTop + diffY + "px"
-            const containerWidth = e.target.parentNode.offsetWidth
-            const containerHeigt = e.target.parentNode.offsetHeight
+            const containerWidth = e.target.parentNode.parentNode.offsetWidth
+            const containerHeigt = e.target.parentNode.parentNode.offsetHeight
             const imgBoxWidth = e.target.width
             const imgBoxHeight = e.target.height
-            console.log("길이들",containerWidth, containerHeigt,imgBoxWidth,imgBoxHeight)
+            console.log("길이들d",containerWidth, containerHeigt,imgBoxWidth,imgBoxHeight)
             const endOfXPoint = containerWidth - imgBoxWidth //200px
             const endOfYPoint = containerHeigt - imgBoxHeight //444px
             // console.log("최대",endOfXPoint, endOfYPoint)
@@ -154,29 +172,63 @@ const Index = () => {
         isdragging = false
     }
 
+    const imgRef = useRef()
+    const imgParent = useRef()
+
+    const dispatch = useDispatch()
+    
+
+    useEffect(()=>{
+        dispatch({type:check_map_success.toString()})
+
+        const map_img = document.querySelector('#map_img')
+        const imgHeight = map_img.offsetHeight //이미지 높이
+        console.log("이미지dsf",imgHeight)
+        const imgParentBox = document.querySelector('#map_img').parentNode//이미지박스
+        console.log(imgParentBox.style.height)
+        imgParentBox.style.height = imgHeight+"px"
+        console.log("높이",imgParentBox.style.height)
+        
+    },[dispatch])
+
+
     return (
         <Body>
             <BrowserView>
-                <div style={{width:"100%", height:"auto"}}>
-                    <MapBox>
-                        <RouteMap alt="route_map" src="img/route_map.png"
-                            onMouseDown={mouseDownHandler} onMouseMove={mouseMoveHandler}
-                            onMouseUp={mouseUpHandler}
-                            >
 
-                        </RouteMap>
-                        <Station/>
+                    <MapBox>
+                        <div id='img_box' style={{width:"240%", height:"auto"}}>
+                            <RouteMap alt="route_map" src="img/route_map.png" id="map_img"
+                                onMouseDown={mouseDownHandler} onMouseMove={mouseMoveHandler}
+                                onMouseUp={mouseUpHandler}>
+                                {/* <Station/> */}
+                            </RouteMap>
+                        </div>
+
+                        {/* </div> */}
+                        {/* <RouteMap
+                            onMouseDown={mouseDownHandler} onMouseMove={mouseMoveHandler}
+                            onMouseUp={mouseUpHandler}>
+
+                        </RouteMap> */}
+
                     </MapBox>
-                </div>
             </BrowserView>
             <MobileView>
                 <MapBox>
-                    <RouteMap alt="route_map" src="img/route_map.png"
+                    <div id="img_box" style={{width:"422%", height:"auto",background:"blue"}}
                         onTouchStart={touchStartHandler}
                         onTouchMove={touchMoveHandler}
-                        onTouchEnd={touchEndHandler}
-                        >
-                    </RouteMap>
+                        onTouchEnd={touchEndHandler}>
+                        <RouteMap alt="route_map" src="img/route_map.png" id="map_img" >
+                        </RouteMap>
+                    </div>
+                    {/* <RouteMap
+                        onTouchStart={touchStartHandler}
+                        onTouchMove={touchMoveHandler}
+                        onTouchEnd={touchEndHandler}>
+
+                    </RouteMap> */}
                 </MapBox>
             </MobileView>
         </Body>

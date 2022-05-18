@@ -7,6 +7,8 @@ import admin from './admin.js'
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
+import route_map from "./routemap.js";
+
 const persist = {
     key:'user',
     storage,
@@ -14,7 +16,7 @@ const persist = {
 };
 
 const rootReducer = combineReducers({
-    display,admin
+    display,admin,route_map
 });
 
 export default persistReducer(persist, rootReducer);
