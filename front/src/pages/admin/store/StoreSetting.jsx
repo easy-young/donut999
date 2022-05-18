@@ -1,8 +1,6 @@
 
-import axios from 'axios'
 import {useDispatch, useSelector} from 'react-redux'
-import { useEffect } from 'react'
-import {admin_store_request,admin_store_success} from '../../../reducers/admin'
+import {admin_store_request} from '../../../reducers/admin'
 
 
 
@@ -12,16 +10,15 @@ const StoreSetting = () => {
     //dispatch({type:admin_store_request.toString()})
     const name = useSelector(state=>state.admin.name)
     dispatch({type:admin_store_request.toString()})
-    console.log(name)
-   
-
-
-
+    
+    const array = name.map(x=><li>{x.name}</li>)
+    
     return(
-        <>
-            <div>
-                {admin_store_success.name}
-            </div>
+        <>  
+            <h2>STORE</h2>
+            <ul>
+                {array}
+            </ul>
         </>
     )
 }
