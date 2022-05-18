@@ -3,18 +3,33 @@ import { BrowserView, MobileView, isMobile } from 'react-device-detect'
 // import MapImg from '../../public/img/route_map.png'
 const Index = () => {
 
+    const Body = styled.body`
+        margin: 0;
+        padding: 0;
+        background:#ff7bcc;
+        width:100vw;
+        height:1500px;
+    `
+
     const MapBox = styled.div `
-    
-    width:1000px;
+    /* width:1000px; */
+    width:80vw;
     background:black;
-    height:400px;
+    /* height:500px; */
+    height:80vh;
+    background-color:red;
     position:relative;
     margin:0 auto;
+    box-sizing:border-box;
     z-index:3;
     overflow:hidden;
+    border-radius:50px;
+    margin-top:5vh;
     @media (max-width: 600px) {
-        width: 340px;
-        height: 200px;
+        /* width: 340px; */
+        width:80vw;
+        height:80vh;
+        /* height: 200px; */
     }
 
     `
@@ -23,8 +38,8 @@ const Index = () => {
  // 부모
     const RouteMap = styled.img`
 
-    width:1200px;
-    height:756px;
+    width:240%;
+    /* height:350%; */
     margin: 0 auto;
     position: absolute;
     z-index:1;
@@ -32,8 +47,8 @@ const Index = () => {
     top:0;
     left:0;
     @media (max-width: 600px) {
-        width: 400px;
-        height: 250px;
+        width: 422%;
+        /* height: 129%; */
     }
     
     `
@@ -72,7 +87,7 @@ const Index = () => {
             const containerHeigt = e.target.parentNode.offsetHeight
             const imgBoxWidth = e.target.width
             const imgBoxHeight = e.target.height
-            // console.log("길이들",containerWidth, containerHeigt,imgBoxWidth,imgBoxHeight)
+            console.log("길이들",containerWidth, containerHeigt,imgBoxWidth,imgBoxHeight)
             const endOfXPoint = containerWidth - imgBoxWidth //200px
             const endOfYPoint = containerHeigt - imgBoxHeight //444px
             // console.log("최대",endOfXPoint, endOfYPoint)
@@ -116,7 +131,7 @@ const Index = () => {
             const containerHeigt = e.target.parentNode.offsetHeight
             const imgBoxWidth = e.target.width
             const imgBoxHeight = e.target.height
-            // console.log("길이들",containerWidth, containerHeigt,imgBoxWidth,imgBoxHeight)
+            console.log("길이들",containerWidth, containerHeigt,imgBoxWidth,imgBoxHeight)
             const endOfXPoint = containerWidth - imgBoxWidth //200px
             const endOfYPoint = containerHeigt - imgBoxHeight //444px
             // console.log("최대",endOfXPoint, endOfYPoint)
@@ -133,15 +148,17 @@ const Index = () => {
     }
 
     return (
-        <>
+        <Body>
             <BrowserView>
-                <MapBox>
-                    <RouteMap alt="route_map" src="img/route_map.png"
-                        onMouseDown={mouseDownHandler} onMouseMove={mouseMoveHandler}
-                        onMouseUp={mouseUpHandler}
-                        >
-                    </RouteMap>
-                </MapBox>
+                <div style={{width:"100%", height:"auto"}}>
+                    <MapBox>
+                        <RouteMap alt="route_map" src="img/route_map.png"
+                            onMouseDown={mouseDownHandler} onMouseMove={mouseMoveHandler}
+                            onMouseUp={mouseUpHandler}
+                            >
+                        </RouteMap>
+                    </MapBox>
+                </div>
             </BrowserView>
             <MobileView>
                 <MapBox>
@@ -153,7 +170,7 @@ const Index = () => {
                     </RouteMap>
                 </MapBox>
             </MobileView>
-        </>
+        </Body>
 
     )
 };
