@@ -5,6 +5,8 @@ import register from "./register.js";
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
+import route_map from "./routemap.js";
+
 const persist = {
     key:'user',
     storage,
@@ -14,7 +16,8 @@ const persist = {
 const rootReducer = combineReducers({
     display,
     admin,
-    register
+    register,
+    route_map
 });
 
 export default persistReducer(persist, rootReducer);
