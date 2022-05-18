@@ -8,6 +8,7 @@ import Sider from 'antd/lib/layout/Sider';
 
 const StyledSider = styled(Sider)`
     position: fixed;
+    z-index: 1000;
     top: 0px;
     right: 0px;
 `;
@@ -22,15 +23,22 @@ const StyledButton = styled.button`
     }
 `;
 
-const DefaultHeader = ({children}) => {
+const Img = styled.img`
+    display: fixed;
+    float: right;
+    margin: 4px 12px 0 0;
+`;
+
+const DefaultHeader = () => {
     const dispatch = useDispatch();
     const header = useSelector((state) => state.display);
-    const onShow = useCallback(()=>{ dispatch(show()) }, [dispatch]);
-    const onHidden = useCallback(()=>{ dispatch(hidden()) }, [dispatch]);
+    const onShow = useCallback(() => { dispatch(show()) }, [dispatch]);
+    const onHidden = useCallback(() => { dispatch(hidden()) }, [dispatch]);
     return (
         <>
             <header>
                 <Link to="/">도넛철도 999</Link>
+                <Img onClick={onShow} src="http://localhost:3000/menu.png" width={40} height={40} alt=''/>
             </header>
             {
                 header.display === 'block' &&
@@ -60,7 +68,6 @@ const DefaultHeader = ({children}) => {
                     </StyledSider>
                 </Layout>
             }
-            <img onClick={onShow} src="http://localhost:3000/menu.png" width={30} height={30} alt=''/>
         </>
     )
 };

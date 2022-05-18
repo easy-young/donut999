@@ -26,5 +26,5 @@ app.use('/user', userRouter);
 app.use('/shop', shopRouter)
 
 app.listen(PORT, ()=>{
-    console.log('front server 4000');
+    console.log('back server 4000');
 });

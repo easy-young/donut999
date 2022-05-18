@@ -4,6 +4,7 @@ import styled from "styled-components";
 const Background = styled.body`
     display: flex;
     position: fixed;
+    z-index: 2000;
     width: 100%;
     height: 100%;
     justify-content: center;
@@ -64,9 +65,10 @@ const BigDiv = styled.div`
     height: 600px;
     flex-direction: column;
     justify-content: space-evenly;
+    align-items: center;
     padding: 40px;
     background: white;
-    border-radius: 10px;
+    border-radius: 20px;
 
     @media (max-width: 1100px) {
         height: 100%;
@@ -74,6 +76,10 @@ const BigDiv = styled.div`
 
     @media (max-height: 800px) {
         height: 90%;
+    }
+
+    @media (max-width: 400px) {
+        height: 86%;
     }
 `;
 
@@ -94,7 +100,7 @@ const Rank = () => {
                 <Tab><StyledLink to='/rank/atmosphere'>분위기</StyledLink></Tab>
                 <Tab><StyledLink to='/rank/cheap'>가성비</StyledLink></Tab>
                 <Tab><StyledLink to='/rank/service'>서비스</StyledLink></Tab>
-                <Tab style={{ float: 'right' }}><StyledLink to='/'>뒤로 가기</StyledLink></Tab>
+                <Tab style={{ float: 'right', background: '#f8bcff' }}><StyledLink to='/'>뒤로 가기</StyledLink></Tab>
                 <BigDiv>
                     <SmallDiv>1</SmallDiv>
                     <SmallDiv>2</SmallDiv>
