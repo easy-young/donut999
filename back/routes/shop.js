@@ -2,12 +2,6 @@ const express = require('express')
 const router = express.Router()
 const app = express()
 
-const cors = require('cors')
-app.use(cors({
-    origin:true,
-    credentials:true,
-}))
-
 const pool = require('../db.js').pool
 const { default: axios } = require('axios')
 

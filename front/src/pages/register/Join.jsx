@@ -4,6 +4,7 @@ import styled from 'styled-components';
 const Background = styled.body`
     display: flex;
     position: fixed;
+    z-index: 2000;
     width: 100%;
     height: 100%;
     justify-content: center;
@@ -71,17 +72,17 @@ const Join = () => {
             <Form>
                 <H1>맛집 등록 신청</H1>
                 <H3>가게명</H3>
-                <Input type='text' style={{ width: '100%' }} />
+                <Input type='text' style={{ width: '100%' }} name='store' />
                 <H3>대표 도넛 (최대 3개)</H3>
-                <Input type='text' style={{ marginRight: '16px' }} />
-                <Input type='text' style={{ marginRight: '16px' }} />
-                <Input type='text' />
+                <Input type='text' style={{ marginRight: '16px' }} name='menu1' />
+                <Input type='text' style={{ marginRight: '16px' }} name='menu2' />
+                <Input type='text' name='menu3' />
                 <H3>주소</H3>
-                <Input type='text' style={{ width: '100%' }} placeholder='서울 지역만 가능합니다.'/>
+                <Input type='text' style={{ width: '100%' }} name='address' placeholder='서울 지역만 가능합니다.'/>
                 <H3>연락처</H3>
-                <Span>02</Span> - <Input type='text' /> - <Input type='text' />
+                <Span>02</Span> - <Input type='text' name='call1'/> - <Input type='text' name='call2'/>
                 <H3>SNS 계정 (선택)</H3>
-                <Input type='text' style={{ width: '100%' }}/>
+                <Input type='text' style={{ width: '100%' }} name='sns' />
                 <BottomDiv>
                     <Submit type='submit' value='신청' />
                     <Back><Link to='/'>뒤로 가기</Link></Back>
