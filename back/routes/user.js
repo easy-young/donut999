@@ -64,7 +64,13 @@ const kauth = async(req, res) => {
     res.redirect('http://localhost:3000')
 }
 
+const klogout = (req, res) => {
+    res.clearCookie('token', {path : '/'})
+    res.send(`<script>alert('로그아웃 되었습니다.'); location.href='http://localhost:3000';</script>`)
+}
+
 router.use('/klogin', klogin)
 router.use('/oauth/kakao', kauth)
+router.use('/klogout', klogout)
 
 module.exports = router
