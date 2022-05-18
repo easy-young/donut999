@@ -6,7 +6,6 @@ const Index = () => {
     const Body = styled.body`
         margin: 0;
         padding: 0;
-        background:#ff7bcc;
         width:100vw;
         height:1500px;
     `
@@ -44,12 +43,20 @@ const Index = () => {
     position: absolute;
     z-index:1;
     cursor:pointer;
-    top:0;
-    left:0;
+    top:-50%;
+    left:-50%;
     @media (max-width: 600px) {
         width: 422%;
         /* height: 129%; */
     }
+    
+    `
+
+    const Station = styled.div `
+    width:20%;
+    height:20%;
+    background:yellow;
+    z-index:5;
     
     `
 
@@ -69,8 +76,8 @@ const Index = () => {
         // console.log(originX,originY)//브라우저 좌표
         originLeft = e.target.offsetLeft
         originTop = e.target.offsetTop
-        // console.log("부모기준",originLeft, originTop) // 부모 div기준 좌표
-        // console.log("시작위치",originX, originY)
+        // console.log("부모기준현재위치",originLeft, originTop) // 부모 div기준 좌표
+        console.log("현재위치",originX, originY)
 
     }
 
@@ -156,7 +163,9 @@ const Index = () => {
                             onMouseDown={mouseDownHandler} onMouseMove={mouseMoveHandler}
                             onMouseUp={mouseUpHandler}
                             >
+
                         </RouteMap>
+                        <Station/>
                     </MapBox>
                 </div>
             </BrowserView>
