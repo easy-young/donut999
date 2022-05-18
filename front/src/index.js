@@ -7,11 +7,9 @@ import Store from './store/useStore';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <Store>
-      <App/>
-    </Store>
-  </React.StrictMode>
+  <Store>
+    <App/>
+  </Store>
 );
 
 // If you want to start measuring performance in your app, pass a function

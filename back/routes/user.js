@@ -50,22 +50,24 @@ const kauth = async(req, res) => {
     })
         console.log(userinfo.data)
         const nickname = userinfo.data.kakao_account.profile.nickname
-        const email = userinfo.data.kakao_account.profile.email
+        const email = userinfo.data.kakao_account.email
         const tempInfo = {nickname, email}
         const jwt_token = createToken({...tempInfo})
         res.cookie('dount', jwt_token, {
             path:'/',
             httpOnly:true
         })
+
+        res.json(tempInfo)
     }
     catch (e) {
         console.log(e)
     }
-    res.redirect('http://localhost:3000')
+    // res.redirect('http://localhost:3000')
 }
 
 const klogout = (req, res) => {
-    res.clearCookie('token', {path : '/'})
+    res.clearCookie('dount', {path : '/'})
     res.send(`<script>alert('로그아웃 되었습니다.'); location.href='http://localhost:3000';</script>`)
 }
 
