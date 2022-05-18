@@ -28,7 +28,7 @@ import Check from './pages/register/Check.jsx';
 
 const App = () => {
   return (
-    <body style={{ background: '#ff7bcc' }}>
+    <div style={{ background: '#ff7bcc' }}>
       <BrowserRouter>
         <DefaultHeader />
         <Routes>
@@ -54,7 +54,7 @@ const App = () => {
           <Route path="/dt/admin/menu/review/setting" element={<ReviewSetting />} />
         </Routes>
       </BrowserRouter>
-    </body>
+    </div>
   )
 };
 
