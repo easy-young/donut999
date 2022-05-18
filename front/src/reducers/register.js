@@ -1,7 +1,7 @@
 import { createAction } from "redux-actions";
 
 const initialState = {
-    submit: null,
+    result: null,
     error: null
 };
 
@@ -24,10 +24,13 @@ const register = (state = initialState, action) => {
         case REGISTER.SUCCESS:
             return {
                 ...state,
+                result: true
             }
         case REGISTER.FAILURE:
             return {
                 ...state,
+                result: null,
+                error: action.payload
             }
         default:
             return {
