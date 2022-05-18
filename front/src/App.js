@@ -22,6 +22,7 @@ import Confirm from './pages/admin/store/Confirm.jsx';
 import StoreSetting from './pages/admin/store/StoreSetting.jsx';
 import UserSetting from './pages/admin/user/UserSetting.jsx';
 import ReviewSetting from './pages/admin/review/ReviewSetting.jsx';
+import Edit from './pages/admin/store/Idx.jsx'
 
 import Join from './pages/register/Join.jsx';
 import Check from './pages/register/Check.jsx';
@@ -30,8 +31,9 @@ const App = () => {
   return (
     <div style={{ background: '#ff7bcc' }}>
       <BrowserRouter>
-        <DefaultHeader />
-        <Routes>
+      <DefaultHeader />
+      <Routes>
+          
           <Route path="/" index element={<Index />} />
           <Route path="/mypage" element={<Mypage />} />
           <Route path="/login" element={<Login />} />
@@ -52,6 +54,7 @@ const App = () => {
           <Route path="/dt/admin/menu/store/setting" element={<StoreSetting />} />
           <Route path="/dt/admin/menu/user/setting" element={<UserSetting />} />
           <Route path="/dt/admin/menu/review/setting" element={<ReviewSetting />} />
+          <Route path="/dt/admin/menu/store/setting/:store_id" element={<Edit />}/>
         </Routes>
       </BrowserRouter>
     </div>
