@@ -41,6 +41,8 @@ export const AuthButton = styled.button`
     margin-top:7%;
     background-color: pink;
     border:none;
+    color:#000;
+    font-weight:bolder;
 `
 
 export const AdminMenuDiv = styled.div`

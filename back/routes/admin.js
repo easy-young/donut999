@@ -12,6 +12,7 @@ router.post('/store/setting',async (req,res)=>{
                 result
             }
             res.json(response)
+            
         }
     
         catch (e) {

@@ -1,9 +1,12 @@
+import { Link } from "react-router-dom";
+import {useDispatch, useSelector} from 'react-redux';
+import {admin_store_request} from '../../../reducers/admin';
+import { useEffect } from 'react';
+import {Div, Ebutton, Dbutton, Table, Tr, Td} from '../../../components/styles/AdminTable';
+import { AuthButton } from "../../../components/styles/AdminStyles";
 
-import {useDispatch, useSelector} from 'react-redux'
-import {admin_store_request} from '../../../reducers/admin'
-import { useEffect } from 'react'
-
-
+import {Routes, Route } from 'react-router-dom';
+import Edit from './Idx.jsx';
 
 
 const StoreSetting = () => {
@@ -12,15 +15,98 @@ const StoreSetting = () => {
         dispatch({type:admin_store_request.toString()})
     },[dispatch])
     //dispatch({type:admin_store_request.toString()})
-    const name = useSelector(state=>state.admin.name)
-    
+    const stores = useSelector(state=>state.admin.store)
 
     return(
         <>  
             <h2>STORE</h2>
-            <ol>
-                {name && name.map( x => {return <li>{x.name}</li>})}
-            </ol>
+            <Div>
+            <Table>
+                <thead>
+                    <Tr>
+                        <Td>idx</Td>
+                        <Td>name</Td>
+                        <Td>ADMIN</Td>
+                    </Tr>
+                </thead>
+                <tbody>
+                    {stores && stores.map ((x) => {
+                        if(x.idx < 21){
+                            return(
+                                <Tr>
+                                    <Td>{x.idx}</Td>
+                                    <Td>{x.name}</Td>
+                                    <Td>
+                                        <Link to="/:stores.idx"><Ebutton>수정</Ebutton></Link>
+                                        <Dbutton>삭제</Dbutton>
+                                    </Td>
+                                </Tr>
+                            );
+                        }
+                    })}
+                </tbody>
+            </Table>
+            <Table>
+                <thead>
+                    <Tr>
+                        <Td>idx</Td>
+                        <Td>name</Td>
+                        <Td>ADMIN</Td>
+                    </Tr>
+                </thead>
+                <tbody>
+                    {stores && stores.map ((x) => {
+                        if(20 < x.idx && x.idx < 41){
+                            return(
+                                <Tr>
+                                    <Td>{x.idx}</Td>
+                                    <Td>{x.name}</Td>
+                                    <Td>
+                                        <Link to="/:stores.idx"><Ebutton>수정</Ebutton></Link>
+                                        <Dbutton>삭제</Dbutton>
+                                    </Td>
+                                </Tr>
+                            );
+                        }
+                    })}
+                </tbody>
+            </Table>
+            <Table>
+                <thead>
+                    <Tr>
+                        <Td>idx</Td>
+                        <Td>name</Td>
+                        <Td>ADMIN</Td>
+                    </Tr>
+                </thead>
+                <tbody>
+                    {stores && stores.map ((x) => {
+                        if(40 < x.idx && x.idx < 61){
+                            return(
+                                <Tr>
+                                    <Td>{x.idx}</Td>
+                                    <Td>{x.name}</Td>
+                                    <Td>
+                                        <Link to="/:stores.idx"><Ebutton>수정</Ebutton></Link>
+                                        <Dbutton>삭제</Dbutton>
+                                    </Td>
+                                </Tr>
+                            );
+                        }
+                    })}
+                </tbody>
+            </Table>
+            </Div>
+            <Link to="/dt/admin/menu">
+                <div style={{textAlign:"center"}}>
+                    <AuthButton>Admin Menu</AuthButton>
+                </div>
+            </Link>
+
+            <Routes>
+                <Route path="/:{stores.idx}" element={<Edit />} />
+            </Routes>
+            
         </>
     )
 }
