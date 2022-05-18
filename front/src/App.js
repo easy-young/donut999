@@ -1,6 +1,6 @@
 import DefaultHeader from './components/DefaultLayout';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import 'antd/dist/antd.css';
+import 'antd/dist/antd.min.css';
 
 import Index from './pages/Index.jsx';
 import Mypage from './pages/Mypage.jsx';
@@ -28,31 +28,33 @@ import Check from './pages/register/Check.jsx';
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <DefaultHeader />
-      <Routes>
-        <Route path="/" index element={<Index />} />
-        <Route path="/mypage" element={<Mypage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/rank" element={<Rank />} />
-        <Route path='/rank/flavor' element={<Flavor />} />
-        <Route path='/rank/atmosphere' element={<Atmosphere />} />
-        <Route path='/rank/cheap' element={<Cheap />} />
-        <Route path='/rank/service' element={<Service />} />
-        <Route path="/theme/protein" element={<Protein />} />
-        <Route path="/theme/photo" element={<Photo />} />
-        <Route path="/theme/unique" element={<Unique />} />
-        <Route path="/theme/parking" element={<Parking />} />
-        <Route path='/register/join' element={<Join/>} />
-        <Route path='/register/check' element={<Check />} />
-        <Route path="/dt/admin" element={<Admin />} />
-        <Route path="/dt/admin/menu" element={<AdminMenu />} />
-        <Route path="/dt/admin/menu/store/confirm" element={<Confirm />} />
-        <Route path="/dt/admin/menu/store/setting" element={<StoreSetting />} />
-        <Route path="/dt/admin/menu/user/setting" element={<UserSetting />} />
-        <Route path="/dt/admin/menu/review/setting" element={<ReviewSetting />} />
-      </Routes>
-    </BrowserRouter>
+    <body style={{ background: '#ff7bcc' }}>
+      <BrowserRouter>
+        <DefaultHeader />
+        <Routes>
+          <Route path="/" index element={<Index />} />
+          <Route path="/mypage" element={<Mypage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/rank" element={<Rank />} />
+          <Route path='/rank/flavor' element={<Flavor />} />
+          <Route path='/rank/atmosphere' element={<Atmosphere />} />
+          <Route path='/rank/cheap' element={<Cheap />} />
+          <Route path='/rank/service' element={<Service />} />
+          <Route path="/theme/protein" element={<Protein />} />
+          <Route path="/theme/photo" element={<Photo />} />
+          <Route path="/theme/unique" element={<Unique />} />
+          <Route path="/theme/parking" element={<Parking />} />
+          <Route path='/register/join' element={<Join/>} />
+          <Route path='/register/check' element={<Check />} />
+          <Route path="/dt/admin" element={<Admin />} />
+          <Route path="/dt/admin/menu" element={<AdminMenu />} />
+          <Route path="/dt/admin/menu/store/confirm" element={<Confirm />} />
+          <Route path="/dt/admin/menu/store/setting" element={<StoreSetting />} />
+          <Route path="/dt/admin/menu/user/setting" element={<UserSetting />} />
+          <Route path="/dt/admin/menu/review/setting" element={<ReviewSetting />} />
+        </Routes>
+      </BrowserRouter>
+    </body>
   )
 };
 
