@@ -16,7 +16,7 @@ const persist = {
 
 const persistKey = 'user'
 const storageState = localStorage.getItem(persistKey)
-//localStorage.setItem(persistKey, JSON.stringify(storage ? JSON.parse(storageState) : user()))
+localStorage.setItem(persistKey, JSON.stringify(storage ? JSON.parse(storageState) : user()))
 
 const rootReducer = combineReducers({
     display,

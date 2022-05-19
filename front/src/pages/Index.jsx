@@ -5,6 +5,8 @@ import { AutoComplete } from 'antd';
 import { useState, useRef, useEffect } from 'react';
 import {useDispatch} from 'react-redux';
 import { check_map_success } from '../reducers/routemap';
+import { user_login_failure, user_login_request, user_login_success, 
+    user_logout_request, user_logout_success } from '../reducers/user';
 
 <style>
     
@@ -177,7 +179,6 @@ const Index = () => {
 
     const dispatch = useDispatch()
     
-
     useEffect(()=>{
         dispatch({type:check_map_success.toString()})
 
@@ -189,6 +190,12 @@ const Index = () => {
         imgParentBox.style.height = imgHeight+"px"
         console.log("높이",imgParentBox.style.height)
         
+        
+        const query = document.location.href
+        if(query.split('?')[1]) {
+        const query2 = query.split('?')[1].split('&').map(v => v.split('=')[1])
+            dispatch({type : user_login_success.toString(), payload: {nickname: query2[0], email:query2[1]}})
+        }
     },[dispatch])
 
 
@@ -210,8 +217,7 @@ const Index = () => {
                             onMouseDown={mouseDownHandler} onMouseMove={mouseMoveHandler}
                             onMouseUp={mouseUpHandler}>
 
-                        </RouteMap> */}
-
+                        </RouteMap> */}    
                     </MapBox>
             </BrowserView>
             <MobileView>

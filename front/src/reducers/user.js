@@ -4,8 +4,8 @@ const initialState = {
     me:{
         email: null,
         nickname: null,
+        isLogin: false,
     },
-    isLogin: false,
     error: null,
     loading: false,
 };
@@ -31,36 +31,49 @@ export const user_logout_success = createAction(USER_LOGOUT.SUCCESS);
 export const user_logout_failure = createAction(USER_LOGOUT.FAILURE);
 
 const user = (state = initialState, action) => {
-    console.log(action, '<<< this')
+    console.log(action.type, '<<< this')
     switch (action.type) {
         case USER_LOGIN.REQUEST:
             return {
                 ...state,
+                me: {
+                    ...state.me,
+                    isLogin:false
+                },
                 loading: true,
-                isLogin: false,
                 error: null,
             };
         case USER_LOGIN.SUCCESS:
-            console.log('sdfsdf')
+            console.log(action.payload)
             return {
                 ...state,
                 loading: false,
-                isLogin: true,
                 me: {
-                    ...action.payload.user,
+                    ...state.me,
+                    nickname: action.payload.nickname,
+                    email: action.payload.email,
+                    isLogin: true,
                 },
+                // me : {nickname: null, email:''}
                 error: null,
             };
         case USER_LOGIN.FAILURE:
             return {
                 ...state,
+                me: {
+                    ...state.me,
+                    isLogin:false
+                },
                 loading: false,
-                isLogin: false,
                 error: action
             };
         case USER_LOGOUT.REQUEST:
             return {
                 ...state,
+                me: {
+                    ...state.me,
+                    isLogin:true
+                },
                 loading: true,
                 isLogin: true,
                 error: null,
@@ -69,18 +82,22 @@ const user = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                isLogin: false,
                 me: {
+                    ...state.me,
                     email:null,
                     nickname:null,
+                    isLogin: false
                 },
                 error: null,
             };
         case USER_LOGOUT.FAILURE:
             return {
                 ...state,
+                me: {
+                    ...state.me,
+                    isLogin:true
+                },
                 loading: false,
-                isLogin: true,
                 error: action
             };
         default:

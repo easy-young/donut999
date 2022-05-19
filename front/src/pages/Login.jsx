@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { user_login_failure, user_login_request, user_login_success, 
 user_logout_request, user_logout_success } from '../reducers/user';
 import { connect,useDispatch, useSelector } from 'react-redux'
-import axios from 'axios'
 import { Result } from 'antd';
 
 
@@ -17,19 +16,6 @@ import { Result } from 'antd';
 
 const Login = ({user }) => {
     const dispatch = useDispatch()
-    const me = useSelector(state => state.user.isLogin)
-
-    const userLogin = async () => {
-  
-    }
-
-    const userLogout = () => {
-        dispatch({type:user_logout_success.toString()})
-    }
-
-    const click = () => {
-        console.log(me)
-    }
 
     return (
         <>

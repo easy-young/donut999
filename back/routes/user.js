@@ -34,7 +34,6 @@ const kauth = async(req, res) => {
         client_secret
     })
     const response = await axios.post(token_url, body, headers)
-    console.log(response.data.access_token)
 
     try {
         
@@ -46,7 +45,6 @@ const kauth = async(req, res) => {
             }
         })
 
-        console.log(userinfo.data)
         const nickname = userinfo.data.kakao_account.profile.nickname
         const email = userinfo.data.kakao_account.email
         const tempInfo = {nickname, email}
