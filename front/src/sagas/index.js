@@ -1,12 +1,14 @@
 import { all } from 'redux-saga/effects';
 import userSaga from './userSaga';
-import adminSaga from './adminSaga';
+import adminSaga from '././admin/adminSaga';
+import adminStoreSaga from './admin/adminStoreSaga'
 import registerSaga from './registerSaga';
 
 export default function* rootSaga() {
     yield all([
         userSaga(),
         adminSaga(),
+        adminStoreSaga(),
         registerSaga(),
     ]);
 }

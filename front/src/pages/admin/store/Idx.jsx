@@ -1,6 +1,6 @@
 import { Link,useParams,Routes, Route  } from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
-import {admin_store_request} from '../../../reducers/admin';
+import {admin_store_edit_request} from '../../../reducers/admin/adminStore.js';
 import { useEffect } from 'react';
 import styled from 'styled-components';
 
@@ -73,14 +73,15 @@ const Edit = () => {
 
     const dispatch = useDispatch()
     useEffect(()=>{
-        dispatch({type:admin_store_request.toString()})
+        dispatch({type:admin_store_edit_request.toString()})
     },[dispatch])
     //dispatch({type:admin_store_request.toString()})
     
     const stores = useSelector(state=>state.admin.store)
     let params = useParams()
     let store_id = params.store_id;
-    console.log(stores)
+
+ 
 
     return (
         <Background>

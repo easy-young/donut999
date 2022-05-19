@@ -28,10 +28,10 @@ router.post('/store/setting',async (req,res)=>{
     
 )
 
-router.post('/store/setting/:store_id',async (req,res)=>{
+router.post(`/store/setting/:store_id`,async (req,res)=>{
     console.log(req.params)    
-    const sql = `select * from shop `
-        
+    const sql = `select * from shop where idx = 1 `
+    
         try {
             const [result] = await pool.execute(sql)
             

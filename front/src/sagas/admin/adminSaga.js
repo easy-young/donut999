@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {takeLatest,call,put} from 'redux-saga/effects';
-import { admin_store_request, admin_store_success, admin_store_failure} from '../reducers/admin'
+import { admin_store_request, admin_store_success, admin_store_failure} from '../../reducers/admin/admin.js';
 
 async function adminAPI(payload){
     try{
