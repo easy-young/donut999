@@ -10,13 +10,13 @@ import route_map from "./routemap.js";
 
 const persist = {
     key:'user',
-    storage,
-    whitelist:['user'],
+    storage, // 저장 방법 
+    whitelist:['user'], // localstorage 에 저장할 내용
 };
 
-const persistKey = 'user'
-const storageState = localStorage.getItem(persistKey)
-localStorage.setItem(persistKey, JSON.stringify(storage ? JSON.parse(storageState) : user()))
+// const persistKey = 'user'
+// const storageState = localStorage.getItem(persistKey)
+// localStorage.setItem(persistKey, JSON.stringify(storage ? JSON.parse(storageState) : user()))
 
 const rootReducer = combineReducers({
     display,

@@ -63,8 +63,9 @@ const kauth = async(req, res) => {
 }
 
 const klogout = (req, res) => {
-    res.clearCookie('dount', {path : '/'})
-    res.send(`<script>alert('로그아웃 되었습니다.'); location.href='http://localhost:3000';</script>`)
+    //res.clearCookie('dount', {path : '/'})
+    //res.send(`<script>alert('로그아웃 되었습니다.'); location.href='http://localhost:3000';</script>`)
+    res.send(`<script>alert('로그아웃 되었습니다.')</script>`)
 }
 
 router.use('/klogin', klogin)

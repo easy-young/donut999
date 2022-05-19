@@ -75,7 +75,6 @@ const user = (state = initialState, action) => {
                     isLogin:true
                 },
                 loading: true,
-                isLogin: true,
                 error: null,
             };
         case USER_LOGOUT.SUCCESS:
