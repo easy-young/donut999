@@ -1,10 +1,10 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { register_request } from '../../reducers/register';
+import { register_failure, register_request } from '../../reducers/register';
 
-const Background = styled.body`
+const Background = styled.div`
     display: flex;
     position: fixed;
     z-index: 2000;
@@ -69,9 +69,44 @@ const BottomDiv = styled.div`
     margin-top: 26px;
 `;
 
+const SuccessDiv = styled.div`
+    display: flex;
+    position: absolute;
+    width: 360px;
+    height: 240px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    text-align: center;
+    z-index: 3000;
+    background: #ffcbcb;
+    
+    @media (max-width: 400px) {
+        width: 94%;
+    }
+`;
+
+const Div = styled.div`
+    margin: 30px;
+
+    @media (max-width: 400px) {
+        margin: 10px;
+    }
+`;
+
+const MainLink = styled(Link)`
+    width: 80px;
+    height: 30px;
+    line-height: 30px;
+    color: black;
+    background-color: #ff9ec1;
+    border-radius: 10px;
+`;
+
 const Join = () => {
     const dispatch = useDispatch();
-    const store = useSelector((state) => state.store);
+    const store = useSelector((state) => state.register);
     const onRegister = useCallback((e) => {
         e.preventDefault();
         const { name, menu1, menu2, menu3, address, call1, call2, sns } = e.target;
@@ -105,6 +140,18 @@ const Join = () => {
                     <Back><Link to='/'>뒤로 가기</Link></Back>
                 </BottomDiv>
             </Form>
+            {
+                store.result && 
+                <SuccessDiv>
+                    <Div style={{ fontSize: '20px', fontWeight: 'bolder' }}>
+                        신청이 완료되었습니다.
+                    </Div>
+                    <Div>
+                        승인 절차는 최대 7일 정도 소요될 수 있습니다.
+                    </Div>
+                    <MainLink to='/'>메인으로</MainLink>
+                </SuccessDiv>
+            }
         </Background>
     )
 };

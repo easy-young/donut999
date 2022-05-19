@@ -20,7 +20,7 @@ const Login = ({user }) => {
     const me = useSelector(state => state.user.isLogin)
 
     const userLogin = async () => {
-        window.location.href=`https://kauth.kakao.com/oauth/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=code`
+  
     }
 
     const userLogout = () => {
