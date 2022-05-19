@@ -1,12 +1,12 @@
-create database react;
-use react;
+CREATE DATABASE react;
+USE react;
 
 CREATE TABLE user (
     idx INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(30) NOT NULL,
     userpw VARCHAR(50) NOT NULL,
     level INT NOT NULL DEFAULT 1,
-    available VARCHAR(3) NOT NULL DEFAULT 'on',
+    available CHAR(1) NOT NULL DEFAULT 'Y',
     UNIQUE (email)
 );
 
@@ -16,13 +16,16 @@ CREATE TABLE shop (
     station VARCHAR(10) NOT NULL,
     line VARCHAR(16) NOT NULL,
     address VARCHAR(60) NOT NULL,
-    parking CHAR(2) DEFAULT '불가',
+    parking CHAR(1) DEFAULT 'N',
     operhour VARCHAR(50),
     website VARCHAR(100),
     menu VARCHAR(350),
     beverage VARCHAR(20),
     tel VARCHAR(20),
-    guiter VARCHAR(50),
+    protein CHAR(1) DEFAULT 'N',
+    photo CHAR(1) DEFAULT 'N',
+    special CHAR(1) DEFAULT 'N',
+    more VARCHAR(50),
     intro VARCHAR(500)
 );
 
