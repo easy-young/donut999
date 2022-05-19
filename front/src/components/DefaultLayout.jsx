@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Menu, Layout } from 'antd';
@@ -34,6 +34,7 @@ const DefaultHeader = () => {
     const header = useSelector((state) => state.display);
     const onShow = useCallback(() => { dispatch(show()) }, [dispatch]);
     const onHidden = useCallback(() => { dispatch(hidden()) }, [dispatch]);
+
     return (
         <>
             <header>

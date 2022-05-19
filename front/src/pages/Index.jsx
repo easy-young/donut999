@@ -5,6 +5,8 @@ import { AutoComplete } from 'antd';
 import { useState, useRef, useEffect } from 'react';
 import {useDispatch} from 'react-redux';
 import { check_map_success } from '../reducers/routemap';
+import { user_login_failure, user_login_request, user_login_success, 
+    user_logout_request, user_logout_success } from '../reducers/user';
 
 <style>
     
@@ -184,6 +186,8 @@ const Index = () => {
     const imgRef = useRef(0)
     // const imgParent = useRef()
 
+    const dispatch = useDispatch()
+    
     // const dispatch = useDispatch()
     const handleReSize = () => {
 
@@ -242,8 +246,7 @@ const Index = () => {
                             onMouseDown={mouseDownHandler} onMouseMove={mouseMoveHandler}
                             onMouseUp={mouseUpHandler}>
 
-                        </RouteMap> */}
-
+                        </RouteMap> */}    
                     </MapBox>
             </BrowserView>
             <MobileView>

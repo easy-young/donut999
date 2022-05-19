@@ -27,7 +27,22 @@ import Edit from './pages/admin/store/Idx.jsx'
 import Join from './pages/register/Join.jsx';
 import Check from './pages/register/Check.jsx';
 
+import { useEffect } from 'react'
+import {useDispatch} from 'react-redux';
+import { user_login_failure, user_login_request, user_login_success, 
+  user_logout_request, user_logout_success } from './reducers/user';
+
+
+
 const App = () => {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    const query = document.location.href
+    if(query.split('?')[1]) {
+        const query2 = query.split('?')[1].split('&').map(v => v.split('=')[1])
+        dispatch({type : user_login_success.toString(), payload: {nickname: query2[0], email:query2[1]}})
+    }
+  },[])
   return (
     <div style={{ background: 'pink' }}>
       <BrowserRouter>

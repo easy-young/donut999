@@ -6,6 +6,8 @@ import createSagaMiddleware from 'redux-saga';
 import rootSaga from '../sagas/index.js';
 import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
+import { persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
 
 const sagaMiddleware = createSagaMiddleware();
 const middleware = [sagaMiddleware];
