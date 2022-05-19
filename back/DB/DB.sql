@@ -1,13 +1,8 @@
 CREATE DATABASE react;
 USE react;
 
-CREATE TABLE user (
-    idx INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    email VARCHAR(30) NOT NULL,
-    userpw VARCHAR(50) NOT NULL,
-    level INT NOT NULL DEFAULT 1,
-    available CHAR(1) NOT NULL DEFAULT 'Y',
-    UNIQUE (email)
+CREATE TABLE black (
+    email VARCHAR(30) NOT NULL
 );
 
 CREATE TABLE shop (
@@ -37,4 +32,15 @@ CREATE TABLE register (
     contact VARCHAR(10) NOT NULL,
     sns VARCHAR(100) NOT NULL,
     time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE review (
+    idx INT NOT NULL,
+    email VARCHAR(30) NOT NULL,
+    flavor INT NOT NULL,
+    atmosphere INT NOT NULL,
+    cheap INT NOT NULL,
+    service INT NOT NULL,
+    text VARCHAR(300) NOT NULL,
+    FOREIGN KEY (idx) REFERENCES shop (idx)
 );

@@ -12,6 +12,7 @@ function* register(action) {
         const result = yield call(registerAPI, action);
         yield put({
             type: register_success.toString(),
+            payload: result
         });
     } catch (e) {
         yield put({
