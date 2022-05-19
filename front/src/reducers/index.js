@@ -13,8 +13,12 @@ const persist = {
     whitelist:['user'],
 };
 
+const persistKey = 'user'
+const storageState = localStorage.getItem(persistKey)
+localStorage.setItem(persistKey, JSON.stringify(storage ? JSON.parse(storageState) : user()))
+
 const rootReducer = combineReducers({
-    display,admin, user
+    display, admin, user
 });
 
 export default persistReducer(persist, rootReducer);

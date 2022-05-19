@@ -21,7 +21,7 @@ const klogin = (req, res) => {
 }
 
 const kauth = async(req, res) => {
-    const {query:{code}} = req
+    const code = req.query.code
     const token_url = host + '/oauth/token'
     const headers = {
         'Content-type': 'application/x-www-form-urlencoded'
@@ -34,20 +34,16 @@ const kauth = async(req, res) => {
         client_secret
     })
     const response = await axios.post(token_url, body, headers)
-    
 
     try {
-        const { access_token:ACCESS_TOKEN} = response.data
-        const option = {
-            'Content-type' : 'application/x-www-form-urlencoded',
-            'Authorization':`Bearer ${ACCESS_TOKEN}`
-        }
+        const { access_token:ACCESS_TOKEN } = response.data
         const url = 'https://kapi.kakao.com/v2/user/me'
-        const userinfo = await axios.post(url, null, {
+        const userinfo = await axios.post(url, {
             headers:{
-                ...option
+                'Authorization':`Bearer ${ACCESS_TOKEN}`
             }
-    })
+        })
+        
         console.log(userinfo.data)
         const nickname = userinfo.data.kakao_account.profile.nickname
         const email = userinfo.data.kakao_account.email
@@ -58,7 +54,7 @@ const kauth = async(req, res) => {
             httpOnly:true
         })
 
-        res.json(tempInfo)
+        res.redirect(`http://localhost:3000?nickname=${nickname}&email=${eamil}`)
     }
     catch (e) {
         console.log(e)

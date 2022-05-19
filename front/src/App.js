@@ -26,6 +26,8 @@ import ReviewSetting from './pages/admin/review/ReviewSetting.jsx';
 import Join from './pages/register/Join.jsx';
 import Check from './pages/register/Check.jsx';
 
+import Test from './pages/test';
+
 const App = () => {
   return (
     <body style={{ background: '#ff7bcc' }}>
@@ -33,6 +35,7 @@ const App = () => {
         <DefaultHeader />
         <Routes>
           <Route path="/" index element={<Index />} />
+          <Route path="/oauth/kakao/callback" element={<Test />} />
           <Route path="/mypage" element={<Mypage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/rank" element={<Rank />} />
