@@ -21,6 +21,8 @@ async function adminStoreAPI({payload}){
     }
 }
 
+
+
 function* store(action){
     console.log('action',action.payload)
     try{
@@ -36,6 +38,7 @@ function* store(action){
        
     }
 }
+
 
 export default function* adminSaga(){
     yield takeLatest(admin_store_edit_request.toString(),store)

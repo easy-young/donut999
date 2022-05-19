@@ -19,27 +19,27 @@ const initialState = {
 
 }
 
-const ADMIN_STORE_EDIT = {
-    REQUEST:'ADMIN/STORE_EDIT_REQUEST',
-    SUCCESS:'ADMIN/STORE_EDIT_SUCCESS',
-    FAILURE:'ADMIN/STORE_EDIT_FAILURE',
+const ADMIN_EDIT_STORE = {
+    REQUEST:'ADMIN/EDIT_STORE_REQUEST',
+    SUCCESS:'ADMIN/EDIT_STORE_SUCCESS',
+    FAILURE:'ADMIN/EDIT_STORE_FAILURE',
 }
 
-export const admin_store_edit_request = createAction(ADMIN_STORE_EDIT.REQUEST) 
-export const admin_store_edit_success = createAction(ADMIN_STORE_EDIT.SUCCESS)
-export const admin_store_edit_failure = createAction(ADMIN_STORE_EDIT.FAILURE)
+export const admin_edit_store_request = createAction(ADMIN_EDIT_STORE.REQUEST) 
+export const admin_edit_store_success = createAction(ADMIN_EDIT_STORE.SUCCESS)
+export const admin_edit_store_failure = createAction(ADMIN_EDIT_STORE.FAILURE)
 
 
 
 
 
-const adminStore = (state=initialState,action) => {
+const adminEditStore = (state=initialState,action) => {
     switch(action.type){
-        case ADMIN_STORE_EDIT.REQUEST:
+        case ADMIN_EDIT_STORE.REQUEST:
             return {
                 ...state,
             }
-        case ADMIN_STORE_EDIT.SUCCESS:
+        case ADMIN_EDIT_STORE.SUCCESS:
             return {
                 ...state,
                 name:action.payload[0].name,
@@ -57,7 +57,7 @@ const adminStore = (state=initialState,action) => {
                 tel:action.payload[0].tel,
                 intro:action.payload[0].intro,
             }
-        case ADMIN_STORE_EDIT.FAILURE:
+        case ADMIN_EDIT_STORE.FAILURE:
             return {
                 ...state
             }
@@ -68,4 +68,4 @@ const adminStore = (state=initialState,action) => {
 }
 
 
-export default adminStore
+export default adminEditStore
