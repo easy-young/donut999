@@ -20,6 +20,7 @@ const Index = () => {
     `
 
     const MapBox = styled.div `
+        /* 보이는 영역입니다. */
     /* width:1000px; */
     width:80vw;
     /* height:500px; */
@@ -43,23 +44,15 @@ const Index = () => {
 
 
     const RouteMap = styled.img`
-
-    width:240%;
-    /* height:330%; */
-    /* height:0; */
-    /* width:1824px;
-    height:1150px; */
-    margin: 0 auto;
-    position: absolute;
+    /* 이미지 영역입니다. */
+    width:150%;
+    /* margin: 0 auto; */
+    /* position: absolute; */
     z-index:5;
     cursor:pointer;
-    /* background-size: contain;
-    background-repeat:no-repeat; */
-
     /* top:-50%;
     left:-50%; */
-    /* background-image: url(http://localhost:3000/img/route_map.png); */
-    /* background-color:red; */
+
     @media (max-width: 600px) {
         width: 422%;
         height: auto;
@@ -67,14 +60,26 @@ const Index = () => {
     
     ` //자식
 
+    const StationBox = styled.div`
+    /* 이미지 담은 박스입니다. */
+    width:150%;
+    z-index:10;
+    background:red;
+    position: absolute;
+    @media (max-width: 600px) {
+        width: 422%;
+        height: auto;
+    }
+    `
+
     const Station = styled.div `
     position:absolute;
     width:20%;
     height:20%;
     background:yellow;
     z-index:5;
-    top:50%;
-    left:50%;
+    top:0;
+    left:0;
     
     `
 
@@ -93,8 +98,8 @@ const Index = () => {
         originX = e.clientX
         originY = e.clientY
         // console.log(originX,originY)//브라우저 좌표
-        originLeft = e.target.offsetLeft
-        originTop = e.target.offsetTop
+        originLeft = e.target.parentNode.offsetLeft
+        originTop = e.target.parentNode.offsetTop
         // console.log("부모기준현재위치",originLeft, originTop) // 부모 div기준 좌표
         console.log("현재위치",originX, originY)
 
@@ -102,6 +107,7 @@ const Index = () => {
 
     const mouseMoveHandler = (e) => {
         if(isdragging){
+            console.log("현재 이벤트 엘리먼트",e.target.parentNode)
             // console.log('현재마우스좌표', originLeft,originTop)
             // console.log("이동위치",e.clientX, e.clientY)
             const diffX = e.clientX - originX
@@ -117,11 +123,13 @@ const Index = () => {
             const endOfXPoint = containerWidth - imgBoxWidth //200px
             const endOfYPoint = containerHeigt - imgBoxHeight //444px
             console.log("최대",endOfXPoint, endOfYPoint)
-
-            e.target.style.left = `${Math.max(Math.min(0, originLeft + diffX),endOfXPoint)}px`
-            e.target.style.top = `${Math.max(Math.min(0, originTop+ diffY),endOfYPoint)}px`
-            console.log(" asdfasdf", e.target.style.left)
-            console.log("스타일...",e.target.style.left,e.target.style.top)
+            
+            // e.target.style.left = `${Math.max(Math.min(0, originLeft + diffX),endOfXPoint)}px`
+            // e.target.style.top = `${Math.max(Math.min(0, originTop+ diffY),endOfYPoint)}px`
+            e.target.parentNode.style.left = `${Math.max(Math.min(0, originLeft + diffX),endOfXPoint)}px`
+            e.target.parentNode.style.top = `${Math.max(Math.min(0, originTop+ diffY),endOfYPoint)}px`
+            // console.log(" asdfasdf", e.target.style.left)
+            // console.log("스타일...",e.target.style.left,e.target.style.top)
         }
     }
 
@@ -162,8 +170,8 @@ const Index = () => {
             const endOfYPoint = containerHeigt - imgBoxHeight //444px
             // console.log("최대",endOfXPoint, endOfYPoint)
 
-            e.target.style.left = `${Math.max(Math.min(0, originLeft + diffX),endOfXPoint)}px`
-            e.target.style.top = `${Math.max(Math.min(0, originTop+ diffY),endOfYPoint)}px`
+            e.target.parentNode.style.left = `${Math.max(Math.min(0, originLeft + diffX),endOfXPoint)}px`
+            e.target.parentNode.style.top = `${Math.max(Math.min(0, originTop+ diffY),endOfYPoint)}px`
             // console.log(" asdfasdf", e.target.style.left)
             // console.log("스타일...",e.target.style.left,e.target.style.top)
         }
@@ -220,16 +228,14 @@ const Index = () => {
         <Body>
             <BrowserView>
                     <MapBox>
-                        <div id='img_box' style={{width:"240%", height, zIndex:"6", background:"red"}}>
+                        <StationBox id='img_box'style={{height}}>
                             <RouteMap alt="route_map" src="img/route_map.png" id="map_img" ref={imgRef}
-                                onMouseDown={mouseDownHandler} onMouseMove={mouseMoveHandler}
-                                onMouseUp={mouseUpHandler}
                                 onLoad={ handleReSize }
-                            >
-                                
+                                onMouseDown={mouseDownHandler} onMouseMove={mouseMoveHandler}
+                                onMouseUp={mouseUpHandler}>
                             </RouteMap>
                             <Station/>
-                        </div>
+                        </StationBox>
 
                         {/* </div> */}
                         {/* <RouteMap
@@ -242,11 +248,13 @@ const Index = () => {
             </BrowserView>
             <MobileView>
                 <MapBox>
-                    <div id="img_box" style={{width:"422%", height:"auto",background:"blue"}}
+                    <div id="img_box" style={{height}}
                         onTouchStart={touchStartHandler}
                         onTouchMove={touchMoveHandler}
                         onTouchEnd={touchEndHandler}>
-                        <RouteMap alt="route_map" src="img/route_map.png" id="map_img" >
+                        <RouteMap alt="route_map" src="img/route_map.png" id="map_img" ref={imgRef}
+                        onLoad={ handleReSize }
+                        >
                         </RouteMap>
                     </div>
                     {/* <RouteMap
