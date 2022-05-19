@@ -85,6 +85,7 @@ const Index = () => {
     let originLeft = null
     let originTop = null
 
+    const [height,setHeight] = useState(0)
 
     const mouseDownHandler = (e) =>{
         // console.log('여기는 웹',isMobile)
@@ -172,37 +173,62 @@ const Index = () => {
         isdragging = false
     }
 
-    const imgRef = useRef()
-    const imgParent = useRef()
+    const imgRef = useRef(0)
+    // const imgParent = useRef()
 
-    const dispatch = useDispatch()
-    
+    // const dispatch = useDispatch()
+    const handleReSize = () => {
+
+        setHeight( imgRef.current.height )
+        
+        // localStorage.setItem('height',imgRef.current.height)
+        // console.log('됐음', localStorage.getItem('height'))
+    }
 
     useEffect(()=>{
-        dispatch({type:check_map_success.toString()})
-
-        const map_img = document.querySelector('#map_img')
-        const imgHeight = map_img.offsetHeight //이미지 높이
-        console.log("이미지dsf",imgHeight)
-        const imgParentBox = document.querySelector('#map_img').parentNode//이미지박스
-        console.log(imgParentBox.style.height)
-        imgParentBox.style.height = imgHeight+"px"
-        console.log("높이",imgParentBox.style.height)
         
-    },[dispatch])
+        // if ( imgRef.current.height === 0 ){
+
+        //     let localheight =  localStorage.getItem('height')
+            
+
+        //     console.log('새로고침을 진행함 height:',height,'ref height :',imgRef.current.height ,'localstroe : ', localheight)
+        // } else {
+        //     localStorage.setItem('height',imgRef.current.height === null ? parseInt(localStorage.getItem('height')) : imgRef.current.height)
+        //     console.log('componentDidMount : ', imgRef.current.height , parseInt(localStorage.getItem('height')))
+        //     setHeight(1)
+        // }
+
+        window.addEventListener('resize', handleReSize)
+        return () => {
+            window.removeEventListener('resize',handleReSize)
+        }
+        // dispatch({type:check_map_success.toString()});;a
+        
+        // const map_img = document.querySelector('#map_img')
+        // const imgHeight = map_img.offsetHeight //이미지 높이
+        // console.log("이미지dsf",imgHeight)
+        // const imgParentBox = document.querySelector('#map_img').parentNode//이미지박스
+        // console.log(imgParentBox.style.height)
+        // imgParentBox.style.height = imgHeight+"px;"
+        // console.log("높이ds",imgParentBox.style.height)
+        
+    },[])
 
 
     return (
         <Body>
             <BrowserView>
-
                     <MapBox>
-                        <div id='img_box' style={{width:"240%", height:"auto"}}>
-                            <RouteMap alt="route_map" src="img/route_map.png" id="map_img"
+                        <div id='img_box' style={{width:"240%", height, zIndex:"6", background:"red"}}>
+                            <RouteMap alt="route_map" src="img/route_map.png" id="map_img" ref={imgRef}
                                 onMouseDown={mouseDownHandler} onMouseMove={mouseMoveHandler}
-                                onMouseUp={mouseUpHandler}>
-                                {/* <Station/> */}
+                                onMouseUp={mouseUpHandler}
+                                onLoad={ handleReSize }
+                            >
+                                
                             </RouteMap>
+                            <Station/>
                         </div>
 
                         {/* </div> */}
