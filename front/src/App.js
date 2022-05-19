@@ -29,11 +29,10 @@ import Check from './pages/register/Check.jsx';
 
 const App = () => {
   return (
-    <div style={{ background: '#ff7bcc' }}>
+    <div style={{ background: 'pink' }}>
       <BrowserRouter>
-      <DefaultHeader />
-      <Routes>
-          
+        <DefaultHeader />
+        <Routes>
           <Route path="/" index element={<Index />} />
           <Route path="/mypage" element={<Mypage />} />
           <Route path="/login" element={<Login />} />
