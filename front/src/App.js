@@ -31,11 +31,10 @@ import Test from './pages/test';
 
 const App = () => {
   return (
-    <div style={{ background: '#ff7bcc' }}>
+    <div style={{ background: 'pink' }}>
       <BrowserRouter>
-      <DefaultHeader />
-      <Routes>
-          
+        <DefaultHeader />
+        <Routes>
           <Route path="/" index element={<Index />} />
           <Route path="/oauth/kakao/callback" element={<Test />} />
           <Route path="/mypage" element={<Mypage />} />
