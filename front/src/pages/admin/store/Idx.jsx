@@ -69,24 +69,24 @@ const BottomDiv = styled.div`
     margin-top: 26px;
 `;
 
+
 const Edit = () => {
 
     const dispatch = useDispatch()
-    useEffect(()=>{
-        dispatch({type:admin_store_edit_request.toString()})
-    },[dispatch])
-    //dispatch({type:admin_store_request.toString()})
+    
     
     const stores = useSelector(state=>state.admin.store)
+   
     let params = useParams()
     let store_id = params.store_id;
+    useEffect(()=>{
+        dispatch(admin_store_edit_request({payload:store_id}))
 
- 
+    },[dispatch])
 
     return (
         <Background>
             <Form>
-                
                 <H1>name</H1>
                 <H3>menu</H3>
                 <Input type='textarea' style={{ marginRight: '16px' }} name='menu' />
@@ -100,8 +100,6 @@ const Edit = () => {
                     <Submit type='submit' value='수정' />
                     <Back><Link to='/'>뒤로 가기</Link></Back>
                 </BottomDiv>
-                
-                
             </Form>
 
             
