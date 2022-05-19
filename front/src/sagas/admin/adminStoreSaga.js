@@ -21,20 +21,22 @@ async function adminStoreAPI({payload}){
     }
 }
 
-function* admin(action){
+function* store(action){
+    console.log('action',action.payload)
     try{
         const result = yield call(adminStoreAPI,action.payload)
+        console.log(result)
         yield put({
-            type:admin_store_edit_success(),payload:result.data
+            type:admin_store_edit_success.toString(),payload:result.data.result
         })
     }catch(e){
         yield put({
-            type:admin_store_edit_failure(),payload:e.response.data
+            type:admin_store_edit_failure.toString(),payload:e.response
         })
        
     }
 }
 
 export default function* adminSaga(){
-    yield takeLatest(admin_store_edit_request.toString(),admin)
+    yield takeLatest(admin_store_edit_request.toString(),store)
 }
