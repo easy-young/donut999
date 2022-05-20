@@ -7,6 +7,7 @@ import adminStoreDelSaga from './admin/adminStoreDelSaga';
 import adminBlackSaga from './admin/adminBlackSaga';
 import adminNewBlackSaga from './admin/adminNewBlackSaga';
 import registerSaga from './registerSaga';
+import stationSaga from './stationSaga';
 
 export default function* rootSaga() {
     yield all([
@@ -18,5 +19,6 @@ export default function* rootSaga() {
         adminBlackSaga(),
         adminNewBlackSaga(),
         registerSaga(),
+        stationSaga()
     ]);
 }

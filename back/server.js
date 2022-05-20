@@ -12,7 +12,9 @@ const commentRouter = require('./routes/comment');
 const shopRouter = require('./routes/shop.js');
 const registerRouter = require('./routes/register.js');
 const themeRouter = require('./routes/theme.js');
+const rankRouter = require('./routes/rank.js');
 const adminRouter = require('./routes/admin.js');
+const stationRouter = require('./routes/station.js');
 
 app.use(express.json());
 app.use(cookieParser());
@@ -29,7 +31,9 @@ app.use('/user', userRouter);
 app.use('/shop', shopRouter)
 app.use('/register', registerRouter);
 app.use('/theme', themeRouter);
+app.use('/rank', rankRouter);
 app.use('/dt/admin/menu', adminRouter)
+app.use('/station', stationRouter);
 
 app.listen(PORT, ()=>{
     console.log('back server 4000');

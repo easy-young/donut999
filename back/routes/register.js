@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { pool } = require('../db.js');
 
-router.post('/join', async (req, res) =>{
+router.post('/join', async (req, res) => {
     const { name, address, sns } = req.body.payload;
     let { menu, call } = req.body.payload;
     if (menu[1] === '' && menu[2] === '') menu = menu[0];
