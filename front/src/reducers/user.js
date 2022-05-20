@@ -31,7 +31,6 @@ export const user_logout_success = createAction(USER_LOGOUT.SUCCESS);
 export const user_logout_failure = createAction(USER_LOGOUT.FAILURE);
 
 const user = (state = initialState, action) => {
-
     switch (action.type) {
         case USER_LOGIN.REQUEST:
             return {

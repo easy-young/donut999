@@ -1,7 +1,7 @@
 import { Link,useParams,Routes, Route  } from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {admin_store_edit_request} from '../../../reducers/admin/adminStore.js';
-import {admin_edit_store_request} from '../../../reducers/admin/editStore.js';
+import {admin_edit_store_request,admin_edit_store_success} from '../../../reducers/admin/editStore.js';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
@@ -164,7 +164,6 @@ const Edit = (defaultValue) => {
     }
 
     const handleChangeInput = e =>{
-        console.log(e.target.value)
         const {name,value}=e.target
         setValues({...values,[name]:value})   
     }
@@ -197,8 +196,9 @@ const Edit = (defaultValue) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        const {menu_donut, menu_beverage,address,subway,line,call1,call2,openhour,parking,protein,photozone,special,sns,intro} = e.target
-        const editStore = {
+        const {menu_donut, menu_beverage,address,subway,line,tel,openhour,parking,protein,photozone,special,sns,intro} = e.target
+        const payload = {
+            store_id,
             station:subway.value,
             line:line.value,
             address:address.value,
@@ -210,11 +210,11 @@ const Edit = (defaultValue) => {
             website:sns.value,
             menu:menu_donut.value,
             beverage:menu_beverage.value,
-            tel:'02'+call1.value+call2.value,
+            tel:tel.value,
             intro:intro.value,
         }
-        
-        dispatch(admin_edit_store_request({payload:store_id}))
+       
+        dispatch(admin_edit_store_request(payload))
         
 
     }
@@ -224,27 +224,27 @@ const Edit = (defaultValue) => {
             <Form onSubmit={handleSubmit}>
                 <H1>{stores.name}</H1>
                 <H3>Menu-donut</H3>
-                <TextArea  defaultValue={stores.menu} value={values.menu_donut} type='textarea' style={{ marginRight: '16px' }} name='menu_donut' onChange ={handleChangeInput}></TextArea>
+                <TextArea  defaultValue={stores.menu} value={values.menu_donut} type='textarea' style={{ marginRight: '16px' }} name='menu_donut' onChange ={handleChangeInput} />
                 <H3>Menu-beverage</H3>
                 <Input defaultValue={stores.beverage} value={values.menu_beverage} type='textarea' style={{ marginRight: '16px' }} name='menu_beverage' onChange ={handleChangeInput}/>
                 <H3>주소</H3>
-                <Input value={stores.address} type='text' style={{ width: '100%' }} name='address'/>
+                <Input defaultValue={stores.address} value={values.address} type='text' style={{ width: '100%' }} name='address'/>
                 <FlexDiv>
                     <div style={{width:'50%',marginTop:'2%'}}>
                         <div style={{display:'flex', width:'100%'}} >
                             <div style={{width:'50%'}} >
                                 <H3 style={{display:'inline'}}>지하철</H3>
-                                <InputP style={{width:'70%'}} value={stores.station} type="text" name="subway" />
+                                <InputP style={{width:'70%'}} defaultValue={stores.station} value={values.station} type="text" name="subway" />
                             </div>
                             <div style={{width:'50%'}}>
                                 <H3 style={{display:'inline'}}>지하철노선</H3>
-                                <InputP style={{width:'57.5%'}} value={stores.line} type="text" name="line" />
+                                <InputP style={{width:'57.5%'}} defaultValue={stores.line} value={values.line} type="text" name="line" />
                             </div>
                         </div>
                         <H3>연락처</H3>
-                        <Span>02</Span> - <InputP type='text' name='call1'/> - <InputP type='text' name='call2'/>
+                        <Input defaultValue={stores.tel} value={values.tel} type='text' style={{ width: '100%' }} name='tel'/>
                         <H3>오픈시간</H3>
-                        <Input value={stores.operhour} type="text" name="openhour" />
+                        <Input defaultValue={stores.operhour} value={values.operhour} type="text" name="openhour" />
                 
                     </div>
                     <div style={{width:'50%', marginLeft:'5%', marginTop:'1%'}}>
@@ -274,12 +274,12 @@ const Edit = (defaultValue) => {
                             <InputR type="radio" name="special" value="N" checked = {stores.parking !== "Y" }onChange={handleClickRadioButton} />
                         </div>
                         <H3 style={{marginTop:'6%'}}>SNS 계정</H3>
-                        <Input value={stores.website} type='text' style={{ width: '100%' }} name='sns' />
+                        <Input defaultValue={stores.website} value={values.website} type='text' style={{ width: '100%' }} name='sns' />
                     </div>
                 </FlexDiv>
                 
                 <H3>소개</H3>
-                <TextArea value={stores.intro} type='textarea' style={{ marginRight: '16px' }} name='intro' />
+                <TextArea defaultValue={stores.intro} value={values.intro} type='textarea' style={{ marginRight: '16px' }} name='intro' />
                 
                 <BottomDiv>
                     <Submit type='submit' value='수정' />
