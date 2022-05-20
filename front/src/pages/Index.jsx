@@ -534,16 +534,6 @@ const Index = () => {
                                 onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
                             </Station>                                                   
                         </StationBox>
-<<<<<<< HEAD
-=======
-
-                        {/* </div> */}
-                        {/* <RouteMap
-                            onMouseDown={mouseDownHandler} onMouseMove={mouseMoveHandler}
-                            onMouseUp={mouseUpHandler}>
-
-                        </RouteMap> */}    
->>>>>>> 5821ad0077066114991ad88551656a2b1e70d099
                     </MapBox>
             </BrowserView>
             <MobileView>
