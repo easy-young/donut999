@@ -1,7 +1,8 @@
 import { Link,useParams,Routes, Route  } from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
-import {admin_store_request} from '../../../reducers/admin';
-import { useEffect } from 'react';
+import {admin_store_edit_request} from '../../../reducers/admin/adminStore.js';
+import {admin_edit_store_request} from '../../../reducers/admin/editStore.js';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 const Background = styled.div`
@@ -21,7 +22,12 @@ const H1 = styled.h1`
 `;
 
 const H3 = styled.h3`
-    margin-top: 20px;
+    margin-top: 10px;
+`;
+
+const H3R = styled.h3`
+    margin-left: 10px;
+    display: inline-block;
 `;
 
 const Span = styled.span`
@@ -30,22 +36,34 @@ const Span = styled.span`
 `;
 
 const Form = styled.form`
-    width: 600px;
-    height: 600px;
-    padding: 40px;
+    width: 800px;
+    height: 750px;
+    padding: 20px;
     border-radius: 40px;
     background: white;
+    overflow: auto;
+    &::-webkit-scrollbar{
+        border-radius:100px;
+        width:10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 100px;
+        border: 6px solid rgba(0, 0, 0, 0.18);
+        border-left: 0;
+        border-right: 0;
+        background-color: pink;
+    }
 
     @media (max-width: 600px) {
         width: 96%;
     }
 `;
-
-const Input = styled.input`
-    width: 162px;
-    height: 30px;
+const TextArea = styled.textarea`
+    width: 100%;
+    height: 18%;
     border: none;
-    border-bottom: 1px solid black;
+    border: 1px solid pink;
 
     @media (max-width: 600px) {
         width: 28%;
@@ -53,6 +71,54 @@ const Input = styled.input`
 
     @media (max-width: 300px) {
         width: 22%;
+    }
+`;
+
+const Input = styled.input`
+    width: 100%;
+    height: 30px;
+    border: none;
+    border-bottom: 1px solid pink;
+
+    @media (max-width: 600px) {
+        width: 28%;
+    }
+
+    @media (max-width: 300px) {
+        width: 22%;
+    }
+`;
+
+const InputP = styled.input`
+    width: 39.7%;
+    height: 30px;
+    border: none;
+    border-bottom: 1px solid pink;
+    margin-left: 2%;
+
+    @media (max-width: 600px) {
+        width: 28%;
+    }
+
+    @media (max-width: 300px) {
+        width: 22%;
+    }
+`;
+
+
+const InputR = styled.input`
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 20px;
+    height: 20px;
+    vertical-align: -4px;
+
+    @media (max-width: 600px) {
+        width: 10%;
+    }
+
+    @media (max-width: 300px) {
+        width: 10%;
     }
 `;
 
@@ -69,39 +135,157 @@ const BottomDiv = styled.div`
     margin-top: 26px;
 `;
 
-const Edit = () => {
+const FlexDiv = styled.div`
+    display: flex;
+    width:100%;
+
+`
+
+
+const Edit = (defaultValue) => {
 
     const dispatch = useDispatch()
-    useEffect(()=>{
-        dispatch({type:admin_store_request.toString()})
-    },[dispatch])
-    //dispatch({type:admin_store_request.toString()})
+    const [values, setValues] = useState(defaultValue)
+
+    const handleClickRadioButton = (e) => {
+        setValues(e.target.value)
+    }
+
+    const editStore = {
+        station:'',
+        line:'',
+        address:'',
+        operhour:'',
+        website:'',
+        menu:'',
+        beverage:'',
+        tel:'',
+        intro:'',
+    }
+
+    const handleChangeInput = e =>{
+        console.log(e.target.value)
+        const {name,value}=e.target
+        setValues({...values,[name]:value})   
+    }
     
-    const stores = useSelector(state=>state.admin.store)
+
+    // const {menu_donut, menu_beverage,address,subway,line,call1,call2,openhour,sns,intro} = handleChangeInput(editStore)
+    // const editStore = {
+    //     station:subway.value,
+    //     line:line.value,
+    //     address:address.value,
+    //     operhour:openhour.value,
+    //     website:sns.value,
+    //     menu:menu_donut.value,
+    //     beverage:menu_beverage.value,
+    //     tel:'02'+call1.value+call2.value,
+    //     intro:intro.value,
+    // }
+
+
+    
     let params = useParams()
     let store_id = params.store_id;
-    console.log(stores)
+    useEffect(()=>{
+        dispatch(admin_store_edit_request({payload:store_id}))
+
+    },[dispatch])
+
+    const stores = useSelector(state=>state.adminStore)
+
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        const {menu_donut, menu_beverage,address,subway,line,call1,call2,openhour,parking,protein,photozone,special,sns,intro} = e.target
+        const editStore = {
+            station:subway.value,
+            line:line.value,
+            address:address.value,
+            parking:parking.value,
+            protein:protein.value,
+            photo:photozone.value,
+            special:special.value,
+            operhour:openhour.value,
+            website:sns.value,
+            menu:menu_donut.value,
+            beverage:menu_beverage.value,
+            tel:'02'+call1.value+call2.value,
+            intro:intro.value,
+        }
+        
+        dispatch(admin_edit_store_request({payload:store_id}))
+        
+
+    }
 
     return (
         <Background>
-            <Form>
-                
-                <H1>name</H1>
-                <H3>menu</H3>
-                <Input type='textarea' style={{ marginRight: '16px' }} name='menu' />
+            <Form onSubmit={handleSubmit}>
+                <H1>{stores.name}</H1>
+                <H3>Menu-donut</H3>
+                <TextArea  defaultValue={stores.menu} value={values.menu_donut} type='textarea' style={{ marginRight: '16px' }} name='menu_donut' onChange ={handleChangeInput}></TextArea>
+                <H3>Menu-beverage</H3>
+                <Input defaultValue={stores.beverage} value={values.menu_beverage} type='textarea' style={{ marginRight: '16px' }} name='menu_beverage' onChange ={handleChangeInput}/>
                 <H3>주소</H3>
-                <Input type='text' style={{ width: '100%' }} name='address'/>
-                <H3>연락처</H3>
-                <Span>02</Span> - <Input type='text' name='call1'/> - <Input type='text' name='call2'/>
-                <H3>SNS 계정</H3>
-                <Input type='text' style={{ width: '100%' }} name='sns' />
+                <Input value={stores.address} type='text' style={{ width: '100%' }} name='address'/>
+                <FlexDiv>
+                    <div style={{width:'50%',marginTop:'2%'}}>
+                        <div style={{display:'flex', width:'100%'}} >
+                            <div style={{width:'50%'}} >
+                                <H3 style={{display:'inline'}}>지하철</H3>
+                                <InputP style={{width:'70%'}} value={stores.station} type="text" name="subway" />
+                            </div>
+                            <div style={{width:'50%'}}>
+                                <H3 style={{display:'inline'}}>지하철노선</H3>
+                                <InputP style={{width:'57.5%'}} value={stores.line} type="text" name="line" />
+                            </div>
+                        </div>
+                        <H3>연락처</H3>
+                        <Span>02</Span> - <InputP type='text' name='call1'/> - <InputP type='text' name='call2'/>
+                        <H3>오픈시간</H3>
+                        <Input value={stores.operhour} type="text" name="openhour" />
+                
+                    </div>
+                    <div style={{width:'50%', marginLeft:'5%', marginTop:'1%'}}>
+                        
+                        <div>
+                            <H3R>주차여부</H3R>
+                            <span style={{marginLeft:'7px'}}>Y</span>
+                            <InputR type="radio" name="parking" value="Y" checked = {stores.parking === "Y" }onChange={handleClickRadioButton} />
+                            <span style={{marginLeft:'7px'}}>N</span>
+                            <InputR type="radio" name="parking" value="N" checked = {stores.parking !== "Y" }onChange={handleClickRadioButton} />
+                            <H3R>프로틴</H3R>
+                            <span style={{marginLeft:'7px'}}>Y</span>
+                            <InputR type="radio" name="protein" value="Y" checked = {stores.parking === "Y" }onChange={handleClickRadioButton} />
+                            <span style={{marginLeft:'7px'}}>N</span>
+                            <InputR type="radio" name="protein" value="N" checked = {stores.parking !== "Y" } onChange={handleClickRadioButton} />
+                        </div>
+                        <div style={{marginTop:'5%'}}>
+                            <H3R>포토존</H3R>
+                            <span style={{marginLeft:'7px'}}>Y</span>
+                            <InputR type="radio" name="photozone" value="Y" checked = {stores.parking === "Y" }onChange={handleClickRadioButton} />
+                            <span style={{marginLeft:'7px'}}>N</span>
+                            <InputR type="radio" name="photozone" value="N" checked = {stores.parking !== "Y" }onChange={handleClickRadioButton} />
+                            <H3R>이색 도넛</H3R>
+                            <span style={{marginLeft:'7px'}}>Y</span
+                            ><InputR type="radio" name="special" value="Y" checked = {stores.parking === "Y" }onChange={handleClickRadioButton} />
+                            <span style={{marginLeft:'7px'}}>N</span>
+                            <InputR type="radio" name="special" value="N" checked = {stores.parking !== "Y" }onChange={handleClickRadioButton} />
+                        </div>
+                        <H3 style={{marginTop:'6%'}}>SNS 계정</H3>
+                        <Input value={stores.website} type='text' style={{ width: '100%' }} name='sns' />
+                    </div>
+                </FlexDiv>
+                
+                <H3>소개</H3>
+                <TextArea value={stores.intro} type='textarea' style={{ marginRight: '16px' }} name='intro' />
+                
                 <BottomDiv>
                     <Submit type='submit' value='수정' />
-                    <Back><Link to='/'>뒤로 가기</Link></Back>
+                    <Back><Link to='/dt/admin/menu/store/setting'>뒤로 가기</Link></Back>
                 </BottomDiv>
-                
-                
-            </Form>
+            </Form >
 
             
         </Background>
@@ -110,4 +294,4 @@ const Edit = () => {
     )
 };
 
-export default Edit
+export default Edit;

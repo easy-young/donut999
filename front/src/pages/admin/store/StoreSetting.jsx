@@ -1,12 +1,10 @@
 import { Link, useParams  } from "react-router-dom";
 import {useDispatch, useSelector} from 'react-redux';
-import {admin_store_request} from '../../../reducers/admin';
+import {admin_store_request} from '../../../reducers/admin/admin.js';
 import { useEffect } from 'react';
 import {Div, Ebutton, Dbutton, Table, Tr, Td} from '../../../components/styles/AdminTable';
 import { AuthButton } from "../../../components/styles/AdminStyles";
 
-import {Routes, Route  } from 'react-router-dom';
-import Edit from './Idx.jsx'
 
 const StoreSetting = () => {
     const dispatch = useDispatch()
