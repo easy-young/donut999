@@ -14,7 +14,6 @@ async function adminStoreAPI({payload}){
             str = '11111'+name
             console.log(str) // 11111ingoo
         */
-        console.log(result)
         return result
     }catch(e){
         console.log(e)
@@ -24,10 +23,8 @@ async function adminStoreAPI({payload}){
 
 
 function* store(action){
-    console.log('action',action.payload)
     try{
         const result = yield call(adminStoreAPI,action.payload)
-        console.log(result)
         yield put({
             type:admin_store_edit_success.toString(),payload:result.data.result
         })
