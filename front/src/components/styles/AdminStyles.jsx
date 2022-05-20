@@ -1,4 +1,10 @@
 import styled from 'styled-components'
+
+export const Li = styled.li`
+    color:#ff1eb2;
+    font-weight:bold;
+`
+
 export const AuthInputBox = styled.input`
     font-size:1rem;
     border:none;
@@ -39,7 +45,7 @@ export const AuthButton = styled.button`
     height: 30px;
     margin: 0 auto;
     margin-top:7%;
-    background-color: pink;
+    background-color: #fff;
     border:none;
     color:#000;
     font-weight:bolder;
@@ -52,6 +58,25 @@ export const AdminMenuDiv = styled.div`
     font-size:1rem;
     justify-content: space-around;
     margin-top:10%;
+`
+
+export const AdminInput = styled.input`
+    width: 40%;
+    padding:3px;
+    border:none;
+    background-color: #fff;
+    font-weight: bold;
+    font-size:1.5rem;
+`
+
+export const BigButton = styled.button`
+    padding:7px;
+    border:1px solid #fff;
+    border-radius: 50px;
+    background: transparent;
+    font-weight: bold;
+    font-size:1.5rem;
+    cursor: pointer;
 `
 
 export const Ol = styled.ol`
