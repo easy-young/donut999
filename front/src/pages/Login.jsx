@@ -20,7 +20,9 @@ const Login = () => {
     const logoutHandler = () => {
         console.log(localStorage)
         localStorage.setItem('persist:user', `{\"me\":{\"email\":\"null\",\"nickname\":\"null\",\"isLogin\":false},\"error\":null,\"loading\":false}`)
+        dispatch({type: user_logout_success.toString()})
         window.href='http://localhost:3000'
+
         // setState를 사용해 바꾼 로컬 스토리지 값을 state로 전달? 
     }
 
