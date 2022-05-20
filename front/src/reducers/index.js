@@ -7,6 +7,7 @@ import register from "./register.js";
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import user from './user.js'
+import station from "./station.js";
 
 import route_map from "./routemap.js";
 
@@ -27,7 +28,8 @@ const rootReducer = combineReducers({
     adminEditStore,
     register,
     route_map,
-    user
+    user,
+    station
 });
 
 export default persistReducer(persist, rootReducer);

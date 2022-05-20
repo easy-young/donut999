@@ -8,7 +8,8 @@ CREATE TABLE black (
 CREATE TABLE shop (
     idx INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(25) NOT NULL,
-    station VARCHAR(10) NOT NULL,
+    stationKor VARCHAR(12) NOT NULL,
+    station VARCHAR(25) NOT NULL,
     line VARCHAR(16) NOT NULL,
     address VARCHAR(60) NOT NULL,
     parking CHAR(1) DEFAULT 'N',
