@@ -44,3 +44,6 @@ CREATE TABLE review (
     text VARCHAR(300) NOT NULL,
     FOREIGN KEY (idx) REFERENCES shop (idx)
 );
+
+--insert into review(idx, email, flavor, atmosphere, cheap, service, text ) 
+--values(1,'619049@naver.com', 5, 5, 5, 5, '와 정말 맛있어요!')

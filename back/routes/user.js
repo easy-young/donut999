@@ -36,7 +36,6 @@ const kauth = async(req, res) => {
     const response = await axios.post(token_url, body, headers)
 
     try {
-        
         const { access_token } = response.data
         const url = 'https://kapi.kakao.com/v2/user/me'
         const userinfo = await axios.get(url, {
@@ -68,8 +67,31 @@ const klogout = (req, res) => {
     res.send(`<script>alert('로그아웃 되었습니다.')</script>`)
 }
 
+const getReview = async (req, res) => {
+    const {email} = req.body
+    const sql = `select * from review where email=?`
+    const param = [email]
+    try {
+        const [ result ] = await pool.execute(sql,param)
+
+        const response = {
+            errno:0,
+            result
+        }
+        res.json(response)
+    }
+    catch (e) {
+        console.log(e)
+        const response = {
+            errno: 1
+        }
+        res.json(response)
+    }
+}
+
 router.use('/klogin', klogin)
 router.use('/oauth/kakao', kauth)
 router.use('/klogout', klogout)
+router.use('/getReview',getReview)
 
 module.exports = router
