@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Store from '.././store/useStore.jsx'
 import {useDispatch, useSelector} from 'react-redux';
-import { useEffect } from 'react';
-import axios from 'axios'
+import { useEffect, useState } from 'react';
+import { review_failure, review_success, review_request } from "../reducers/review.js";
 
 const Background = styled.div`
     display: flex;
@@ -24,54 +24,46 @@ const Container = styled.div`
     border-radius: 30px;
 `;
 
-const Mypage = (state) => {
-    const stores = useSelector(state=>state.user)
-    const sila = () => {
-        console.log(stores.me)
+const Mypage = () => {
+    const stores = useSelector(state => state)
+    const dispatch = useDispatch()
+    // const [ reviewList, setReviewList ] = useState([])
+
+    const body = { email : stores.user.me.email }
+
+    const getReview = () => {
+        dispatch({ type:review_request.toString(), payload:{ email: body.email } })
     }
 
-    const body = {email : stores.me.email }
-
-    const option = {
-        'Content-type':'application/json',
-        withCredentials:true
-    }
-
-    const review = []
-
-    const getReview = async() => {
-        const response = await axios.post('http://localhost:4000/user/getReview', body, option )
-        const review = response.data.result
-        const reviewlist = review.map(v => (
-            <li>{v.flavor}</li>,
-            <li>{v.atmosphere}</li>,
-            <li>{v.cheap}</li>,
-            <li>{v.service}</li>,
+    const reviewList = stores.review.data.map(v=> (
+        <ul>
+            <li >{v.idx}</li>
+            <li>{v.flavor}</li>
+            <li>{v.atmosphere}</li>
+            <li>{v.cheap}</li>
+            <li>{v.service}</li>
             <li>{v.text}</li>
-        ))
-        
-    }
+        </ul>
+    ))
 
-    // state에 값을 추가해줘야 할 것 같다..
 
     useEffect(() => {  
         getReview()
-        console.log(review) 
-    },[])
+    },[dispatch])
 
     return (
         <Background>
             <Container>
-                <span> {stores.me.nickname} 님! 환영합니다! </span>
+                <span> {stores.user.me.nickname} 님! 환영합니다! </span>
                 <br/>
-                <span> 이메일: {stores.me.email} </span>
+                <span> 이메일: {stores.user.me.email} </span>
                 <br/>
-                <span> review zone</span>
-                <ul>
-                    {/* {reviewlist} */}
-                </ul>
-        
+                <span> review zone </span>
 
+                <hr/>
+                
+                {reviewList}
+                
             </Container>
         </Background>
     )

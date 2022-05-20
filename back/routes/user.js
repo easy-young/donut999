@@ -68,7 +68,7 @@ const klogout = (req, res) => {
 }
 
 const getReview = async (req, res) => {
-    const {email} = req.body
+    const { email } = req.body
     const sql = `select * from review where email=?`
     const param = [email]
     try {

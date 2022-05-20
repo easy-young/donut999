@@ -45,5 +45,8 @@ CREATE TABLE review (
     FOREIGN KEY (idx) REFERENCES shop (idx)
 );
 
+
 --insert into review(idx, email, flavor, atmosphere, cheap, service, text ) 
---values(1,'619049@naver.com', 5, 5, 5, 5, '와 정말 맛있어요!')
+--values(1,'619049@naver.com', 5, 5, 5, 5, '와 정말 맛있어요!');
+--insert into review(idx, email, flavor, atmosphere, cheap, service, text ) 
+--values(2,'619049@naver.com', 5, 5, 5, 5, '와 정말 비싸요!');
