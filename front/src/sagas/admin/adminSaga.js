@@ -1,8 +1,8 @@
 import axios from 'axios';
 import {takeLatest,call,put} from 'redux-saga/effects';
-import { admin_store_request, admin_store_success, admin_store_failure} from '../reducers/admin'
+import { admin_store_request, admin_store_success, admin_store_failure} from '../../reducers/admin/admin.js';
 
-async function adminAPI(payload){
+async function adminAPI(){
     try{
         const result = await axios.post('http://localhost:4000/dt/admin/menu/store/setting',null)
         return result
@@ -13,7 +13,7 @@ async function adminAPI(payload){
 
 function* admin(action){
     try{
-        const result = yield call(adminAPI,action)
+        const result = yield call(adminAPI,action.payload)
         yield put({
             type:admin_store_success.toString(),payload:result.data
         })
