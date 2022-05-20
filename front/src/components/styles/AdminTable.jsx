@@ -7,12 +7,14 @@ export const Div = styled.div`
 `
 
 export const Ebutton = styled.button`
+    display: inline;
     border:none;
     background-color: #ff5bb3;
     color:#fff;
 `
 
 export const Dbutton = styled.button`
+    display: inline;
     border:none;
     background-color: #ff4136;
     color:#fff;
