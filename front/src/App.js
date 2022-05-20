@@ -66,6 +66,7 @@ const App = () => {
           <Route path="/dt/admin/menu" element={<AdminMenu />} />
           <Route path="/dt/admin/menu/store/confirm" element={<Confirm />} />
           <Route path="/dt/admin/menu/store/setting" element={<StoreSetting />} />
+          {/* <Route path="/dt/admin/menu/store/setting/update/:store_id" element={<Edit />} /> */}
           <Route path="/dt/admin/menu/user/setting" element={<UserSetting />} />
           <Route path="/dt/admin/menu/review/setting" element={<ReviewSetting />} />
           <Route path="/dt/admin/menu/store/setting/:store_id" element={<Edit />}/>
