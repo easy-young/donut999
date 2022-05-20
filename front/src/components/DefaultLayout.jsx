@@ -55,6 +55,7 @@ const DefaultHeader = () => {
                             <Menu.Item key='0'><Link to="/mypage">마이 페이지</Link></Menu.Item>
                             <Menu.Item key='1'><Link to="/login">로그인</Link></Menu.Item>
                             <Menu.Item key='2'><Link to="/rank">랭킹</Link></Menu.Item>
+                            <Menu.Item key='5'><Link to="/write">리뷰 작성(임시로 위치)</Link></Menu.Item>
                             <Menu.SubMenu key='3' title='테마'>
                                 <Menu.Item key='protein'><Link to="/theme/protein">프로틴 도넛</Link></Menu.Item>
                                 <Menu.Item key='photo'><Link to="/theme/photo">포토존</Link></Menu.Item>

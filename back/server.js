@@ -13,6 +13,7 @@ const shopRouter = require('./routes/shop.js');
 const registerRouter = require('./routes/register.js');
 const themeRouter = require('./routes/theme.js');
 const adminRouter = require('./routes/admin.js');
+const reviewRouter = require('./routes/review.js')
 
 app.use(express.json());
 app.use(cookieParser());
@@ -30,6 +31,7 @@ app.use('/shop', shopRouter)
 app.use('/register', registerRouter);
 app.use('/theme', themeRouter);
 app.use('/dt/admin/menu', adminRouter)
+app.use('/review', reviewRouter)
 
 app.listen(PORT, ()=>{
     console.log('back server 4000');

@@ -37,12 +37,11 @@ const Mypage = () => {
 
     const reviewList = stores.review.data.map(v=> (
         <ul>
-            <li >{v.idx}</li>
-            <li>{v.flavor}</li>
-            <li>{v.atmosphere}</li>
-            <li>{v.cheap}</li>
-            <li>{v.service}</li>
-            <li>{v.text}</li>
+            <li> 맛 : {v.flavor == null ? '평가 정보 없음' : v.flavor}</li>
+            <li> 분위기 : {v.atmosphere == null ? '평가 정보 없음' : v.atmosphere}</li>
+            <li> 가격 : {v.cheap == null ? '평가 정보 없음' : v.cheap}</li>
+            <li> 서비스 : {v.service == null ? '평가 정보 없음' : v.service}</li>
+            <li> 평가 : {v.text == null ? '평가 정보 없음' : v.text}</li>
         </ul>
     ))
 

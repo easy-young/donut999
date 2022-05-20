@@ -6,8 +6,10 @@ import adminEditStore from "./admin/editStore.js";
 import register from "./register.js";
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+
 import user from './user.js'
 import review from './review.js'
+import createReview from "./writeReview.js";
 
 import route_map from "./routemap.js";
 
@@ -29,7 +31,8 @@ const rootReducer = combineReducers({
     register,
     route_map,
     user,
-    review
+    review,
+    createReview
 });
 
 export default persistReducer(persist, rootReducer);
