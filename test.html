@@ -10,10 +10,14 @@
     <div id="wrap">
         <div id="img_box">
             <div id="img_parent">
-                <div id="img">
-                    hi
-                </div>
+                <img id="img" src="./front/public/img/choco_donut.png">
+
             </div>
+            <div id="component">
+
+            </div>
+
+            
         </div>
     </div>
 </body>
@@ -25,7 +29,7 @@
     #img_box{
         width: 80vw;
         height: 80vh;
-        background: red;
+        border:1px solid red;
         margin: 0 auto;
         overflow: hidden;
         position: relative;
@@ -34,7 +38,6 @@
     #img_parent{
         width: 150%;
         height: 200%;
-        background: pink;
         position: absolute;
         left: 10px;
         z-index: 100;
@@ -43,9 +46,14 @@
     #img{
         width: 150%;
         height: 200%;
-        background: blue;
         
     }
 
+    #component{
+        width: 100px;
+        height: 100px;
+        z-index: 100;
+        background: yellow;
+    }
 </style>
 </html>
