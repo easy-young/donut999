@@ -19,6 +19,12 @@ const initialState = {
 
 }
 
+// const initialState = {
+//     result: null,
+//     error: null
+
+// }
+
 const ADMIN_EDIT_STORE = {
     REQUEST:'ADMIN/EDIT_STORE_REQUEST',
     SUCCESS:'ADMIN/EDIT_STORE_SUCCESS',
@@ -34,28 +40,33 @@ export const admin_edit_store_failure = createAction(ADMIN_EDIT_STORE.FAILURE)
 
 
 const adminEditStore = (state=initialState,action) => {
+  
     switch(action.type){
         case ADMIN_EDIT_STORE.REQUEST:
+            console.log('reducer R ', action)
             return {
                 ...state,
             }
         case ADMIN_EDIT_STORE.SUCCESS:
+            console.log('reducer s ', action)
             return {
                 ...state,
-                name:action.payload[0].name,
-                station:action.payload[0].station,
-                line:action.payload[0].line,
-                address:action.payload[0].address,
-                parking:action.payload[0].parking,
-                protein:action.payload[0].protein,
-                photo:action.payload[0].photo,
-                special:action.payload[0].special,
-                operhour:action.payload[0].operhour,
-                website:action.payload[0].website,
-                menu:action.payload[0].menu,
-                beverage:action.payload[0].beverage,
-                tel:action.payload[0].tel,
-                intro:action.payload[0].intro,
+                name:action.payload.name,
+                station:action.payload.station,
+                line:action.payload.line,
+                address:action.payload.address,
+                parking:action.payload.parking,
+                protein:action.payload.protein,
+                photo:action.payload.photo,
+                special:action.payload.special,
+                operhour:action.payload.operhour,
+                website:action.payload.website,
+                menu:action.payload.menu,
+                beverage:action.payload.beverage,
+                tel:action.payload.tel,
+                intro:action.payload.intro,
+
+                // result:true
             }
         case ADMIN_EDIT_STORE.FAILURE:
             return {
