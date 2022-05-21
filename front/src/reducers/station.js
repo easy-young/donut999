@@ -1,7 +1,7 @@
 import { createAction } from "redux-actions";
 
 const initialState = {
-    station: null,
+    name: null,
     store: []
 };
 
@@ -20,13 +20,12 @@ const station = (state = initialState, action) => {
         case STATION.REQUEST:
             return {
                 ...state,
-                station: action.payload
+                name: action.payload
             };
         case STATION.SUCCESS:
-            console.log(action.payload);
             return {
                 ...state,
-                station: action.payload[0].stationKor,
+                name: action.payload[0].stationKor,
                 store: [
                     ...action.payload
                 ]

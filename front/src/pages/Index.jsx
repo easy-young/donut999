@@ -53,6 +53,7 @@ const Index = () => {
         right: 10%; */
         border-radius:50px;
         margin-top:5vh;
+        box-shadow: 0px 0px 20px 1px grey;
         @media (max-width: 600px) {
             /* width: 340px; */
             width:80vw;
@@ -288,13 +289,10 @@ const Index = () => {
     const img_box = document.querySelector('#img_box')
     // console.log("내 화면의 너비:",window.outerWidth,"내 화면의 높이", window.innerHeight) //리사이징마다 갱신
 
-    const { station } = useSelector((state) => state.station);
+    const { name } = useSelector((state) => state.station);
     const { store } = useSelector((state) => state.station);
-    // console.log('useSelector', station);
     const clickStation = (e) => {
         dispatch(station_request(e.target.id));
-        // console.log('useSelector', station);
-        console.log('store', store);
     }
     const mouseOver =  (e) => {
         // console.log("마우스 오버", e.target)
@@ -789,10 +787,31 @@ const Index = () => {
                 </MapBox>
             </MobileView>
             {
-                station && 
+                name && 
                 <Background>
                     <Container>
-                        hello { station }
+                        hello { name }
+                        { store[0] &&
+                            <div>
+                                {store[0].idx},
+                                {store[0].name},
+                                {store[0].stationKor},
+                                {store[0].station},
+                                {store[0].line},
+                                {store[0].address},
+                                {store[0].parking},
+                                {store[0].operhour},
+                                {store[0].website},
+                                {store[0].menu},
+                                {store[0].beverage},
+                                {store[0].tel},
+                                {store[0].protein},
+                                {store[0].photo},
+                                {store[0].special},
+                                {store[0].more},
+                                {store[0].intro}
+                            </div>
+                        }
                     </Container>
                 </Background>
             }
