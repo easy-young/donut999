@@ -3,6 +3,7 @@ import { AuthButton,AdminInput,BigButton } from "../../../components/styles/Admi
 import {useDispatch, useSelector} from 'react-redux';
 import {admin_black_request} from '../../../reducers/admin/adminBlack.js';
 import {admin_new_black_request} from '../../../reducers/admin/adminNewBlack.js';
+import {admin_del_black_request} from '../../../reducers/admin/adminDelBlack.js';
 import { useEffect } from 'react';
 
 const UserSetting = () => {
@@ -12,7 +13,6 @@ const UserSetting = () => {
         dispatch({type:admin_black_request.toString()})
     },[dispatch])
     const black = useSelector(state=>state.adminBlack.user)
-    console.log(black)
 
     const blackSubmit = (e) => {
         e.preventDefault()
@@ -24,6 +24,12 @@ const UserSetting = () => {
         dispatch(admin_new_black_request(payload)) 
     }
 
+    const delSubmit = (e) => {
+        e.preventDefault()
+        const {value} = e.target.kemail
+
+        dispatch(admin_del_black_request(value)) 
+    }
 
     return(
         <>
@@ -42,7 +48,12 @@ const UserSetting = () => {
                                 <li style={{marginTop:'3%'}}>
                                     {x.email}
                                     <span style={{marginLeft:'3%'}}><button>작성 리뷰</button></span>
-                                    <spna style={{marginLeft:'3%'}}><button>일반 회원</button></spna>
+                                    <span>
+                                        <form method="post" onSubmit={delSubmit} style={{marginLeft:'3%',display:'inline'}}>
+                                            <input type="hidden" name = "kemail" value={x.email}/>
+                                            <button type="submit">일반 회원</button>
+                                        </form>
+                                    </span>
                                 </li>
                             </>
                         )

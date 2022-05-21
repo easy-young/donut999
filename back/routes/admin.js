@@ -166,4 +166,29 @@ router.post('/user/setting/addblack',async (req,res)=>{
 
 )
 
+router.post('/user/setting/deleteblack/:kemail',async (req,res)=>{
+    const sql = `DELETE FROM black where email = ? `
+    const prepare = [req.params.kemail]
+    try {
+        const [result] = await pool.execute(sql,prepare)
+        const response = {
+            result
+        }
+        res.json(response)
+        
+    }
+
+    catch (e) {
+        console.log(e.message)
+        const response = {
+            errormsg: e.message,
+            errno: 1
+        }
+        
+        res.json(response)  
+    }
+} 
+
+)
+
 module.exports = router
