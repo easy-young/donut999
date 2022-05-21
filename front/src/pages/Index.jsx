@@ -34,6 +34,7 @@ const Index = () => {
         right: 10%; */
         border-radius:50px;
         margin-top:5vh;
+        box-shadow: 0px 0px 20px 1px grey;
         @media (max-width: 600px) {
             /* width: 340px; */
             width:80vw;
