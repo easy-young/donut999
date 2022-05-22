@@ -28,6 +28,9 @@ export const review_create_success = createAction(review_create_SUCCESS)
 export const review_create_failure = createAction(review_create_FAILURE)
 export const review_write = createAction(review_WRITE)
 
+
+/*  reducer */
+
 const createReview = (state = initialState, action) => {
     switch (action.type) {
         /* 각 항목 점수 변경 */
@@ -101,7 +104,7 @@ const createReview = (state = initialState, action) => {
                     loading: false,
                     error: true
                 }
-            }
+            }   
         default :
             return state
     }

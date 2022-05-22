@@ -11,8 +11,8 @@ import stationSaga from './stationSaga';
 
 /*  review CRUD  */
 import reviewSaga from './reviewSaga.js'
-import createReviewSaga from './review/createReviewSaga';
-
+import createReviewSaga from './review/createReviewSaga.js';
+import deleteReviewSaga from './review/deleteReviewSaga.js'
 
 
 
@@ -27,12 +27,10 @@ export default function* rootSaga() {
         adminBlackSaga(),
         adminNewBlackSaga(),
         registerSaga(),
-<<<<<<< HEAD
         reviewSaga(),
-        createReviewSaga()
-=======
+        createReviewSaga(),
+        deleteReviewSaga(),
         stationSaga()
->>>>>>> c2c90b70f6f28b8377f897b890374d57828b9c4f
     ]);
     
 }

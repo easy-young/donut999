@@ -27,9 +27,53 @@ const createReview = async (req, res) => {
         }
         res.json(response)
     }
+}
 
+const deleteReview = async (req, res) => {
+    const { idx } = req.body
+    const sql = `delete from review where idx=?`
+    const param = [idx]
+
+    try {
+        const result = await pool.execute(sql, param)
+        const response = {
+            errno : 0,
+            result
+        }
+        res.json(response)
+    }
+    catch (e) {
+        console.log(e)
+        const response = {
+            errno: 1
+        }
+        res.json(response)
+    }
+}
+
+const updateReview = async (req, res) => {
+    const { idx} = req.body
+    const sql = `update`
+
+    try {
+        const result = await pool.execute(sql, param)
+        const response = {
+            errno: 0,
+            result
+        }
+        res.json(response)
+    }
+    catch (e) {
+        console.log(e)
+        const response = {
+            errno:1
+        }
+        res.json(response)
+    }
 }
 
 router.use('/createReview', createReview)
+router.use('/deleteReview', deleteReview)
+// router.use('/updateReview', updateReview)
 
 module.exports = router

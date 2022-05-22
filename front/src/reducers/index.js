@@ -11,12 +11,9 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 import user from './user.js'
-<<<<<<< HEAD
 import review from './review.js'
 import createReview from "./writeReview.js";
-=======
 import station from "./station.js";
->>>>>>> c2c90b70f6f28b8377f897b890374d57828b9c4f
 
 import route_map from "./routemap.js";
 
@@ -41,12 +38,9 @@ const rootReducer = combineReducers({
     register,
     route_map,
     user,
-<<<<<<< HEAD
     review,
-    createReview
-=======
+    createReview,
     station
->>>>>>> c2c90b70f6f28b8377f897b890374d57828b9c4f
 });
 
 export default persistReducer(persist, rootReducer);

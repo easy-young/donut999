@@ -21,5 +21,6 @@
     "qs": "^6.10.3",
     "supervisor": "^0.12.0"
   },
+  "devDependencies": {},
   "description": ""
 }

@@ -14,11 +14,8 @@ const registerRouter = require('./routes/register.js');
 const themeRouter = require('./routes/theme.js');
 const rankRouter = require('./routes/rank.js');
 const adminRouter = require('./routes/admin.js');
-<<<<<<< HEAD
 const reviewRouter = require('./routes/review.js')
-=======
 const stationRouter = require('./routes/station.js');
->>>>>>> c2c90b70f6f28b8377f897b890374d57828b9c4f
 
 app.use(express.json());
 app.use(cookieParser());
@@ -37,11 +34,8 @@ app.use('/register', registerRouter);
 app.use('/theme', themeRouter);
 app.use('/rank', rankRouter);
 app.use('/dt/admin/menu', adminRouter)
-<<<<<<< HEAD
 app.use('/review', reviewRouter)
-=======
 app.use('/station', stationRouter);
->>>>>>> c2c90b70f6f28b8377f897b890374d57828b9c4f
 
 app.listen(PORT, ()=>{
     console.log('back server 4000');
