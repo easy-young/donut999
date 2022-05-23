@@ -22,10 +22,38 @@ const Background = styled.div`
 `;
 
 const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     width: 1100px;
     height: 700px;
     border-radius: 30px;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
+`;
+
+const StoreName = styled.div`
+    position: absolute;
+    top: 38px;
+    left: 240px;
+    font-size: 24px;
+`;
+
+const CloseBtn = styled.button`
+    position: absolute;
+    width: 36px;
+    height: 36px;
+    top: 38px;
+    right: 240px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    background: #fcdcff;
+`;
+
+const StoreBox = styled.div`
+    width: 800px;
+    height: auto;
+    background: blue;
 `;
 
 const Index = () => {
@@ -790,28 +818,76 @@ const Index = () => {
                 name && 
                 <Background>
                     <Container>
-                        hello { name }
-                        { store[0] &&
-                            <div>
-                                {store[0].idx},
-                                {store[0].name},
-                                {store[0].stationKor},
-                                {store[0].station},
-                                {store[0].line},
-                                {store[0].address},
-                                {store[0].parking},
-                                {store[0].operhour},
-                                {store[0].website},
-                                {store[0].menu},
-                                {store[0].beverage},
-                                {store[0].tel},
-                                {store[0].protein},
-                                {store[0].photo},
-                                {store[0].special},
-                                {store[0].more},
-                                {store[0].intro}
-                            </div>
-                        }
+                        <StoreName>
+                            { name }역 맛집
+                        </StoreName>
+                        <CloseBtn>X</CloseBtn>
+                        <StoreBox>
+                            { store[0] &&
+                                <div>
+                                    {store[0].name},
+                                    {store[0].stationKor},
+                                    {store[0].station},
+                                    {store[0].line},
+                                    {store[0].address},
+                                    {store[0].parking},
+                                    {store[0].operhour},
+                                    {store[0].website},
+                                    {store[0].menu},
+                                    {store[0].beverage},
+                                    {store[0].tel},
+                                    {store[0].protein},
+                                    {store[0].photo},
+                                    {store[0].special},
+                                    {store[0].more},
+                                    {store[0].intro}
+                                </div>
+                            }
+                        </StoreBox>
+                        <StoreBox style={{ marginTop: '20px' }}>
+                            { store[1] &&
+                                <div>
+                                    {store[1].name},
+                                    {store[1].stationKor},
+                                    {store[1].station},
+                                    {store[1].line},
+                                    {store[1].address},
+                                    {store[1].parking},
+                                    {store[1].operhour},
+                                    {store[1].website},
+                                    {store[1].menu},
+                                    {store[1].beverage},
+                                    {store[1].tel},
+                                    {store[1].protein},
+                                    {store[1].photo},
+                                    {store[1].special},
+                                    {store[1].more},
+                                    {store[1].intro}
+                                </div>
+                            }
+                        </StoreBox>
+                        <StoreBox style={{ marginTop: '20px' }}>
+                            { store[2] &&
+                                <div>
+                                    {store[2].name},
+                                    {store[2].stationKor},
+                                    {store[2].station},
+                                    {store[2].line},
+                                    {store[2].address},
+                                    {store[2].parking},
+                                    {store[2].operhour},
+                                    {store[2].website},
+                                    {store[2].menu},
+                                    {store[2].beverage},
+                                    {store[2].tel},
+                                    {store[2].protein},
+                                    {store[2].photo},
+                                    {store[2].special},
+                                    {store[2].more},
+                                    {store[2].intro}
+                                </div>
+                            }
+                        </StoreBox>
                     </Container>
                 </Background>
             }
