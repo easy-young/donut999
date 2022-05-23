@@ -18,7 +18,7 @@ CREATE TABLE shop (
     operhour VARCHAR(50),
     website VARCHAR(100),
     menu VARCHAR(350),
-    beverage VARCHAR(20),
+    beverage VARCHAR(400),
     tel VARCHAR(20),
     protein CHAR(1) DEFAULT 'N',
     photo CHAR(1) DEFAULT 'N',
