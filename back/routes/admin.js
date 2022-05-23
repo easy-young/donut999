@@ -114,6 +114,32 @@ router.post(`/store/setting/delete/:store_id`,async (req,res)=>{
 
 )
 
+router.post(`/store/confirm`,async (req,res)=>{
+    const sql = `select *,DATE_FORMAT(time,'%Y-%m-%d %h:%i:%s') AS stamp from register`
+
+        try {
+            const [result] = await pool.query(sql)
+            
+            const response = {
+                result
+            }
+            res.json(response)
+            
+        }
+
+        catch (e) {
+            console.log(e.message)
+            const response = {
+                errormsg: e.message,
+                errno: 1
+            }
+            
+            res.json(response)  
+        }
+    } 
+
+)
+
 router.post('/user/setting',async (req,res)=>{
     const sql = `SELECT email, DATE_FORMAT(date,'%Y-%m-%d %h:%i:%s') AS stamp FROM black ORDER BY date DESC`
 

@@ -28,6 +28,7 @@ const ReviewSetting = () => {
                     <thead>
                         <Tr>
                             <Td>Idx</Td>
+                            <Td>Email</Td>
                             <Td>Text</Td>
                             <Td>Flavor</Td>
                             <Td>Atmosphere</Td>
@@ -43,6 +44,7 @@ const ReviewSetting = () => {
                                 <>
                                     <Tr>
                                         <Td>{x.idx}</Td>
+                                        <Td>{x.email}</Td>
                                         <Td>{x.text}</Td>
                                         <Td>{x.flavor}</Td>
                                         <Td>{x.atmosphere}</Td>
