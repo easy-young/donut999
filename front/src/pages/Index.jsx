@@ -4,7 +4,7 @@ import { AutoComplete } from 'antd';
 // import MapImg from '../../public/img/route_map.png'
 import { useState, useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { station_request } from '../reducers/station';
+import { station_exit, station_request } from '../reducers/station';
 import { Link } from 'react-router-dom';
 
 const Background = styled.div`
@@ -367,6 +367,10 @@ const Index = () => {
         // console.log('원상태로 좌표:', e.target.style.left)
     }
     // const top =window.innerHeight * 14.2 + "%"
+
+    const Close = () => {
+        dispatch({type: station_exit.toString()});
+    };
 
     return (
         <Body>
@@ -838,17 +842,17 @@ const Index = () => {
                 </MapBox>
             </MobileView>
             {
-                name && 
+                name &&
                 <Background>
                     <Container>
                         <StationName>{ name }역 맛집</StationName>
-                        <CloseBtn>X</CloseBtn>
+                        <CloseBtn onClick={Close}>X</CloseBtn>
                         {
                             store && store.map((v, i) => {
                                 return(
                                     <>
                                         <div style={{ height: '20px' }}></div>
-                                        <StoreBox>
+                                        <StoreBox key={i}>
                                             { store[i] &&
                                                 <div>
                                                     <img 
@@ -859,7 +863,7 @@ const Index = () => {
                                                     />
                                                     <StoreName>
                                                         <Link 
-                                                            to={`/store/${store[i].idx}`}
+                                                            to={`/shop/${store[i].idx}`}
                                                             style={{ color: 'black' }}
                                                         >
                                                             {store[i].name}

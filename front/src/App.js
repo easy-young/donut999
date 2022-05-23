@@ -5,6 +5,7 @@ import 'antd/dist/antd.min.css';
 import Index from './pages/Index.jsx';
 import Mypage from './pages/Mypage.jsx';
 import Login from './pages/Login.jsx';
+import Shop from './pages/Shop.jsx';
 import Rank from './pages/Rank.jsx';
 import Flavor from './pages/rank/Flavor.jsx';
 import Atmosphere from './pages/rank/Atmosphere.jsx';
@@ -52,6 +53,7 @@ const App = () => {
           <Route path="/" index element={<Index />} />
           <Route path="/mypage" element={<Mypage />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/shop/:idx" element={<Shop/>}/>
           <Route path="/rank" element={<Rank />} />
           <Route path='/rank/flavor' element={<Flavor />} />
           <Route path='/rank/atmosphere' element={<Atmosphere />} />

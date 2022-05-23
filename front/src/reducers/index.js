@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
 import display from './display.js';
+import shop from './shop.js';
 import admin from './admin/admin.js';
 import adminStore from './admin/adminStore.js';
 import adminEditStore from "./admin/editStore.js";
@@ -27,6 +28,7 @@ const persist = {
 // localStorage.setItem(persistKey, JSON.stringify(storage ? JSON.parse(storageState) : user()))
 
 const rootReducer = combineReducers({
+    shop,
     display,
     admin,
     adminStore,
