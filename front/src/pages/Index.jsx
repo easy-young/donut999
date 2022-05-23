@@ -33,7 +33,7 @@ const Index = () => {
     const Body = styled.body`
         margin: 0;
         padding: 0;
-        width:100vw;
+        width:100%;
         height:1500px;
         background:pink;
     `
@@ -41,7 +41,7 @@ const Index = () => {
     const MapBox = styled.div `
         /* 보이는 영역입니다. */
         /* width:1000px; */
-        width:80vw;
+        width:80%;
         /* height:500px; */
         height:80vh;
         position:relative;
