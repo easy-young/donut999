@@ -45,7 +45,7 @@ const App = () => {
     }
   },[])
   return (
-    <div style={{ background: 'pink' }}>
+    <div style={{ background: '#FFFCDD' }}>
       <BrowserRouter>
         <DefaultHeader />
         <Routes>
