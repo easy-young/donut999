@@ -33,7 +33,7 @@ import {useDispatch} from 'react-redux';
 import { user_login_failure, user_login_request, user_login_success, 
   user_logout_request, user_logout_success } from './reducers/user';
 
-
+import GlobalStyle from '../src/style/global'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -73,6 +73,7 @@ const App = () => {
           <Route path="/dt/admin/menu/user/setting/checkblack/:email" element={<CheckReview />} />
           <Route path="/dt/admin/menu/review/setting" element={<ReviewSetting />} />
         </Routes>
+        <GlobalStyle/>
       </BrowserRouter>
     </div>
   )
