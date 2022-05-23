@@ -21,6 +21,7 @@ import AdminMenu from './pages/admin/AdminMenu.jsx';
 import Confirm from './pages/admin/store/Confirm.jsx';
 import StoreSetting from './pages/admin/store/StoreSetting.jsx';
 import UserSetting from './pages/admin/user/UserSetting.jsx';
+import CheckReview from './pages/admin/user/CheckReview.jsx';
 import ReviewSetting from './pages/admin/review/ReviewSetting.jsx';
 import Edit from './pages/admin/store/Idx.jsx'
 
@@ -67,7 +68,8 @@ const App = () => {
           <Route path="/dt/admin/menu/store/confirm" element={<Confirm />} />
           <Route path="/dt/admin/menu/store/setting" element={<StoreSetting />} />
           {/* <Route path="/dt/admin/menu/store/setting/update/:store_id" element={<Edit />} /> */}
-          <Route path="/dt/admin/menu/user/setting" element={<UserSetting />} />
+          <Route path="/dt/admin/menu/user/setting" element={<UserSetting/>} />
+          <Route path="/dt/admin/menu/user/setting/checkblack/:email" element={<CheckReview />} />
           <Route path="/dt/admin/menu/review/setting" element={<ReviewSetting />} />
           <Route path="/dt/admin/menu/store/setting/:store_id" element={<Edit />}/>
         </Routes>

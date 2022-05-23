@@ -9,10 +9,14 @@ import { useEffect } from 'react';
 const UserSetting = () => {
 
     const dispatch = useDispatch()
+    
+    const black = useSelector(state=>state.adminBlack.user)
+
     useEffect(()=>{
         dispatch({type:admin_black_request.toString()})
+
     },[dispatch])
-    const black = useSelector(state=>state.adminBlack.user)
+
 
     const blackSubmit = (e) => {
         e.preventDefault()
@@ -47,13 +51,17 @@ const UserSetting = () => {
                             <>
                                 <li style={{marginTop:'3%'}}>
                                     {x.email}
-                                    <span style={{marginLeft:'3%'}}><button>작성 리뷰</button></span>
+                                    
+                                    <Link to ={"/dt/admin/menu/user/setting/checkblack/"+x.email}>
+                                        <span style={{marginLeft:'3%'}}><button>작성 리뷰</button></span>
+                                    </Link>
                                     <span>
                                         <form method="post" onSubmit={delSubmit} style={{marginLeft:'3%',display:'inline'}}>
                                             <input type="hidden" name = "kemail" value={x.email}/>
                                             <button type="submit">일반 회원</button>
                                         </form>
                                     </span>
+                                    <p>{x.stamp}</p>
                                 </li>
                             </>
                         )
