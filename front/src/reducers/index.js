@@ -9,6 +9,8 @@ import adminBlack from './admin/adminBlack.js';
 import adminNewBlack from './admin/adminNewBlack.js';
 import adminDelBlack from "./admin/adminDelBlack.js";
 import adminBlackReview from "./admin/adminBlackReview.js";
+import adminReview from './admin/adminReview.js';
+import adminDelReview from "./admin/adminDelReview.js";
 import register from "./register.js";
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
@@ -38,6 +40,8 @@ const rootReducer = combineReducers({
     adminNewBlack,
     adminDelBlack,
     adminBlackReview,
+    adminReview,
+    adminDelReview,
     register,
     route_map,
     user,
