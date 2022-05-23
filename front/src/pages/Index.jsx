@@ -86,7 +86,7 @@ const Index = () => {
         padding: 0;
         width:100%;
         height:1500px;
-        background:pink;
+        background: #FFFCDD;
     `
 
     const MapBox = styled.div `
