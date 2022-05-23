@@ -5,6 +5,7 @@ import { Menu, Layout } from 'antd';
 import { show, hidden } from '../reducers/display.js';
 import styled from 'styled-components';
 import Sider from 'antd/lib/layout/Sider';
+import SFLemon from '../font/fonts';
 
 const StyledSider = styled(Sider)`
     position: fixed;
@@ -12,6 +13,14 @@ const StyledSider = styled(Sider)`
     top: 0px;
     right: 0px;
 `;
+
+const StyledMenu = styled(Menu)`
+    background: #FFFCDD;
+    font-family: 'YdestreetB';
+    font-size:20px;
+
+
+`
 
 const StyledButton = styled.button`
     width: 50px;
@@ -21,6 +30,7 @@ const StyledButton = styled.button`
     :hover {
         cursor: pointer;
     }
+
 `;
 
 const Img = styled.img`
@@ -45,28 +55,29 @@ const DefaultHeader = () => {
                 header.display === 'block' &&
                 <Layout>
                     <StyledSider width={300} collapsedWidth={500}>
-                        <Menu
+                        <StyledMenu
                             mode="inline"
                             defaultSelectedKeys={['1']}
                             defaultOpenKeys={['sub1']}
                             style={{ height: '100vh' }}
                         >
                             <StyledButton onClick={onHidden}>X</StyledButton>
-                            <Menu.Item key='0'><Link to="/mypage">마이 페이지</Link></Menu.Item>
-                            <Menu.Item key='1'><Link to="/login">로그인</Link></Menu.Item>
-                            <Menu.Item key='2'><Link to="/rank">랭킹</Link></Menu.Item>
-                            <Menu.SubMenu key='3' title='테마'>
-                                <Menu.Item key='protein'><Link to="/theme/protein">프로틴 도넛</Link></Menu.Item>
-                                <Menu.Item key='photo'><Link to="/theme/photo">포토존</Link></Menu.Item>
-                                <Menu.Item key='unique'><Link to="/theme/unique">이색 도넛</Link></Menu.Item>
-                                <Menu.Item key='parking'><Link to="/theme/parking">주차 가능</Link></Menu.Item>
-                            </Menu.SubMenu>
-                            <Menu.SubMenu key='4' title='맛집 등록'>
-                                <Menu.Item key='join'><Link to="/register/join">등록 신청</Link></Menu.Item>
-                                <Menu.Item key='check'><Link to="/register/check">등록 확인</Link></Menu.Item>
-                            </Menu.SubMenu>
-                        </Menu>
+                            <StyledMenu.Item key='0'><Link to="/mypage">슿 마이 페이지</Link></StyledMenu.Item>
+                            <StyledMenu.Item key='1'><Link to="/login">쳌 로그인</Link></StyledMenu.Item>
+                            <StyledMenu.Item key='2'><Link to="/rank"> 👑 랭킹</Link></StyledMenu.Item>
+                            <StyledMenu.SubMenu key='3' title='슾 테마'>
+                                <StyledMenu.Item key='protein'><Link to="/theme/protein">프로틴 도넛</Link></StyledMenu.Item>
+                                <StyledMenu.Item key='photo'><Link to="/theme/photo">포토존</Link></StyledMenu.Item>
+                                <StyledMenu.Item key='unique'><Link to="/theme/unique">이색 도넛</Link></StyledMenu.Item>
+                                <StyledMenu.Item key='parking'><Link to="/theme/parking">주차 가능</Link></StyledMenu.Item>
+                            </StyledMenu.SubMenu>
+                            <StyledMenu.SubMenu key='4' title='늇 맛집 등록'>
+                                <StyledMenu.Item key='join'><Link to="/register/join">등록 신청</Link></StyledMenu.Item>
+                                <StyledMenu.Item key='check'><Link to="/register/check">등록 확인</Link></StyledMenu.Item>
+                            </StyledMenu.SubMenu>
+                        </StyledMenu>
                     </StyledSider>
+                    <SFLemon/>
                 </Layout>
             }
         </>
