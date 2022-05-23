@@ -6,6 +6,7 @@ import adminEditStore from "./admin/editStore.js";
 import adminDeleteStore from "./admin/deleteStore.js";
 import adminBlack from './admin/adminBlack.js';
 import adminNewBlack from './admin/adminNewBlack.js';
+import adminDelBlack from "./admin/adminDelBlack.js";
 import register from "./register.js";
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
@@ -32,6 +33,7 @@ const rootReducer = combineReducers({
     adminDeleteStore,
     adminBlack,
     adminNewBlack,
+    adminDelBlack,
     register,
     route_map,
     user,

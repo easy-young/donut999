@@ -6,6 +6,7 @@ import adminStoreUpSaga from './admin/adminStoreUpSaga'
 import adminStoreDelSaga from './admin/adminStoreDelSaga';
 import adminBlackSaga from './admin/adminBlackSaga';
 import adminNewBlackSaga from './admin/adminNewBlackSaga';
+import adminDelBlackSaga from './admin/adminDelBlackSaga';
 import registerSaga from './registerSaga';
 import stationSaga from './stationSaga';
 
@@ -18,6 +19,7 @@ export default function* rootSaga() {
         adminStoreDelSaga(),
         adminBlackSaga(),
         adminNewBlackSaga(),
+        adminDelBlackSaga(),
         registerSaga(),
         stationSaga()
     ]);
