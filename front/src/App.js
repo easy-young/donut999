@@ -5,6 +5,7 @@ import 'antd/dist/antd.min.css';
 import Index from './pages/Index.jsx';
 import Mypage from './pages/Mypage.jsx';
 import Login from './pages/Login.jsx';
+import Shop from './pages/Shop.jsx';
 import Rank from './pages/Rank.jsx';
 import Flavor from './pages/rank/Flavor.jsx';
 import Atmosphere from './pages/rank/Atmosphere.jsx';
@@ -32,7 +33,7 @@ import {useDispatch} from 'react-redux';
 import { user_login_failure, user_login_request, user_login_success, 
   user_logout_request, user_logout_success } from './reducers/user';
 
-
+import GlobalStyle from '../src/style/global'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -51,6 +52,7 @@ const App = () => {
           <Route path="/" index element={<Index />} />
           <Route path="/mypage" element={<Mypage />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/shop/:idx" element={<Shop/>}/>
           <Route path="/rank" element={<Rank />} />
           <Route path='/rank/flavor' element={<Flavor />} />
           <Route path='/rank/atmosphere' element={<Atmosphere />} />
@@ -71,6 +73,7 @@ const App = () => {
           <Route path="/dt/admin/menu/user/setting/checkblack/:email" element={<CheckReview />} />
           <Route path="/dt/admin/menu/review/setting" element={<ReviewSetting />} />
         </Routes>
+        <GlobalStyle/>
       </BrowserRouter>
     </div>
   )

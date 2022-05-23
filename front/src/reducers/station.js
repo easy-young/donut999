@@ -8,12 +8,14 @@ const initialState = {
 const STATION = {
     REQUEST: "STATION_REQUEST",
     SUCCESS: "STATION_SUCCESS",
-    FAILURE: "STATION_FAILURE"
+    FAILURE: "STATION_FAILURE",
+    EXIT: "STATION_EXIT"
 };
 
 export const station_request = createAction(STATION.REQUEST, payload => payload);
 export const station_success = createAction(STATION.SUCCESS, payload => payload);
 export const station_failure = createAction(STATION.FAILURE, payload => payload);
+export const station_exit = createAction(STATION.EXIT);
 
 const station = (state = initialState, action) => {
     switch (action.type) {
@@ -34,6 +36,11 @@ const station = (state = initialState, action) => {
             return {
                 ...state,
             };
+        case STATION.EXIT:
+            return {
+                ...state,
+                name: false,
+            }
         default:
             return {
                 ...state,

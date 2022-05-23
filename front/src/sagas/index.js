@@ -13,6 +13,7 @@ import adminDelReviewSaga from './admin/adminDelReviewSaga';
 import adminConfirmSaga from './admin/adminStoreConfirmSaga';
 import registerSaga from './registerSaga';
 import stationSaga from './stationSaga';
+import shopSaga from './shopSaga';
 
 export default function* rootSaga() {
     yield all([
@@ -29,6 +30,7 @@ export default function* rootSaga() {
         adminDelReviewSaga(),
         adminConfirmSaga(),
         registerSaga(),
-        stationSaga()
+        stationSaga(),
+        shopSaga()
     ]);
 }
