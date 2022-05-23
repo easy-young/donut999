@@ -6,7 +6,6 @@ async function deleteStoreAPI({payload}){
     console.log('api',payload)
     try{
         const result = await axios.post(`http://localhost:4000/dt/admin/menu/store/setting/delete/`+payload,payload)
-        console.log(result)
         return result
     }catch(e){
         console.log(e)
