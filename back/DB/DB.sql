@@ -3,7 +3,7 @@ USE react;
 
 CREATE TABLE black (
     email VARCHAR(30) NOT NULL
-    date CURRENT_TIMESTAMP
+    date DATETIME CURRENT_TIMESTAMP
     ADD PRIMARY KEY (email);
 
 );
@@ -46,5 +46,6 @@ CREATE TABLE review (
     cheap INT NOT NULL,
     service INT NOT NULL,
     text VARCHAR(300) NOT NULL,
+    date  DATETIME CURRENT_TIMESTAMP
     FOREIGN KEY (idx) REFERENCES shop (idx)
 );
