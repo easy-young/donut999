@@ -3,6 +3,9 @@ USE react;
 
 CREATE TABLE black (
     email VARCHAR(30) NOT NULL
+    date CURRENT_TIMESTAMP
+    ADD PRIMARY KEY (email);
+
 );
 
 CREATE TABLE shop (

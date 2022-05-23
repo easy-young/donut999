@@ -4,10 +4,8 @@ import { AutoComplete } from 'antd';
 // import MapImg from '../../public/img/route_map.png'
 import { useState, useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { check_map_success } from '../reducers/routemap';
-import { user_login_failure, user_login_request, user_login_success, 
-    user_logout_request, user_logout_success } from '../reducers/user';
 import { station_request } from '../reducers/station';
+import { Link } from 'react-router-dom';
 
 const Background = styled.div`
     display: flex;
@@ -22,10 +20,63 @@ const Background = styled.div`
 `;
 
 const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 1100px;
     height: 700px;
     border-radius: 30px;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
+`;
+
+const StationName = styled.div`
+    position: absolute;
+    top: 38px;
+    left: 240px;
+    font-size: 24px;
+    font-weight: bolder;
+`;
+
+const CloseBtn = styled.button`
+    position: absolute;
+    width: 36px;
+    height: 36px;
+    top: 38px;
+    right: 240px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    background: #fcdcff;
+
+    :hover {
+        cursor: pointer;
+    }
+`;
+
+const StoreBox = styled.div`
+    width: 1040px;
+    height: 280px;
+    padding: 20px;
+    border-radius: 20px;
+    background: #ffeddf;
+`;
+
+const StoreName = styled.div`
+    position: relative;
+    bottom: 220px;
+    left: 300px;
+    font-size: 22px;
+`;
+
+const StoreAddress = styled.div`
+    position: relative;
+    bottom: 210px;
+    left: 300px;
+`;
+
+const StoreScore = styled(StoreAddress)`
+    bottom: 200px;
 `;
 
 const Index = () => {
@@ -790,27 +841,40 @@ const Index = () => {
                 name && 
                 <Background>
                     <Container>
-                        hello { name }
-                        { store[0] &&
-                            <div>
-                                {store[0].idx},
-                                {store[0].name},
-                                {store[0].stationKor},
-                                {store[0].station},
-                                {store[0].line},
-                                {store[0].address},
-                                {store[0].parking},
-                                {store[0].operhour},
-                                {store[0].website},
-                                {store[0].menu},
-                                {store[0].beverage},
-                                {store[0].tel},
-                                {store[0].protein},
-                                {store[0].photo},
-                                {store[0].special},
-                                {store[0].more},
-                                {store[0].intro}
-                            </div>
+                        <StationName>{ name }역 맛집</StationName>
+                        <CloseBtn>X</CloseBtn>
+                        {
+                            store && store.map((v, i) => {
+                                return(
+                                    <>
+                                        <div style={{ height: '20px' }}></div>
+                                        <StoreBox>
+                                            { store[i] &&
+                                                <div>
+                                                    <img 
+                                                        src={require(`../../public/img/donut_store/${store[i].idx}_1.jpg`)}
+                                                        style={{ borderRadius: '30px' }}
+                                                        width={240}
+                                                        height={240}
+                                                    />
+                                                    <StoreName>
+                                                        <Link 
+                                                            to={`/store/${store[i].idx}`}
+                                                            style={{ color: 'black' }}
+                                                        >
+                                                            {store[i].name}
+                                                        </Link>
+                                                    </StoreName>
+                                                    <StoreAddress>
+                                                        주소 : {store[i].address}
+                                                    </StoreAddress>
+                                                    <StoreScore>평점 : 5</StoreScore>
+                                                </div>
+                                            }
+                                        </StoreBox>
+                                    </>
+                                )
+                            })
                         }
                     </Container>
                 </Background>

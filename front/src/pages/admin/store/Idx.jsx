@@ -151,37 +151,11 @@ const Edit = (defaultValue) => {
         setValues(e.target.value)
     }
 
-    const editStore = {
-        station:'',
-        line:'',
-        address:'',
-        operhour:'',
-        website:'',
-        menu:'',
-        beverage:'',
-        tel:'',
-        intro:'',
-    }
 
     const handleChangeInput = e =>{
         const {name,value}=e.target
         setValues({...values,[name]:value})   
     }
-    
-
-    // const {menu_donut, menu_beverage,address,subway,line,call1,call2,openhour,sns,intro} = handleChangeInput(editStore)
-    // const editStore = {
-    //     station:subway.value,
-    //     line:line.value,
-    //     address:address.value,
-    //     operhour:openhour.value,
-    //     website:sns.value,
-    //     menu:menu_donut.value,
-    //     beverage:menu_beverage.value,
-    //     tel:'02'+call1.value+call2.value,
-    //     intro:intro.value,
-    // }
-
 
     
     let params = useParams()
