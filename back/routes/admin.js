@@ -115,7 +115,7 @@ router.post(`/store/setting/delete/:store_id`,async (req,res)=>{
 )
 
 router.post('/user/setting',async (req,res)=>{
-    const sql = `select * from black`
+    const sql = `SELECT email, DATE_FORMAT(date,'%Y-%m-%d %h:%i:%s') AS stamp FROM black ORDER BY date DESC`
 
     try {
         const [result] = await pool.execute(sql)
@@ -169,6 +169,32 @@ router.post('/user/setting/addblack',async (req,res)=>{
 router.post('/user/setting/deleteblack/:kemail',async (req,res)=>{
     const sql = `DELETE FROM black where email = ? `
     const prepare = [req.params.kemail]
+    try {
+        const [result] = await pool.execute(sql,prepare)
+        const response = {
+            result
+        }
+        res.json(response)
+        
+    }
+
+    catch (e) {
+        console.log(e.message)
+        const response = {
+            errormsg: e.message,
+            errno: 1
+        }
+        
+        res.json(response)  
+    }
+} 
+
+)
+
+router.post('/user/setting/checkblack/:email',async (req,res)=>{
+    const sql = `SELECT * FROM review where email = ? `
+    const prepare = [req.params.email]
+    console.log(prepare)
     try {
         const [result] = await pool.execute(sql,prepare)
         const response = {
