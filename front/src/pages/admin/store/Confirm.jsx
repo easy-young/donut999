@@ -22,9 +22,9 @@ const Confirm = () => {
 
     return(
         <>
-            <h2 style={{textAlign:'center'}}>Confirm New Store</h2>
-                <Div>
-                    <Table>
+            <h2 style={{textAlign:'center', marginTop:'4%'}}>Confirm New Store</h2>
+                <Div style={{marginTop:'3%'}}>
+                    <Table style={{width:'90%'}}>
                         <thead>
                             <Tr>
                                 <Td>Idx</Td>
@@ -35,8 +35,12 @@ const Confirm = () => {
                                 <Td>Contact</Td>
                                 <Td>SNS or Web</Td>
                                 <Td>Application Date</Td>
-                                <Td></Td>
-                                <Td></Td>
+                                <Td>상태</Td>
+                                <Td>
+                                    <label for = "registerDel">
+                                        <Dbutton type="submit">삭제</Dbutton>
+                                    </label>
+                                </Td>
                             </Tr>
                         </thead>
                         <tbody>
@@ -46,7 +50,7 @@ const Confirm = () => {
                                         <Tr>
                                             <Td>{x.idx}</Td>
                                             <Td>{x.email}</Td>
-                                            <Td>{x.store}</Td>
+                                            <Td><Link to = {"/dt/admin/menu/store/confirm/"+x.idx}>{x.store}</Link></Td>
                                             <Td>{x.menu}</Td>
                                             <Td>{x.address}</Td>
                                             <Td>{x.contact}</Td>
@@ -61,10 +65,9 @@ const Confirm = () => {
                                                 <input type="radio" name="access" id="access1" />
                                             </Td>
                                             <Td>
-                                                {/* <form method="post"  style={{display:'inline'}}>
-                                                    <input type="hidden" name = "reviewIdx" value={x.idx} />
-                                                    <Dbutton type="submit">삭제</Dbutton>
-                                                </form> */}
+                                                <form method="post">
+                                                    <input type="checkbox" name = "registerDel" value={x.idx} />
+                                                </form>
                                             </Td>
                                         </Tr>
                                     </>

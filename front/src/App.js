@@ -24,7 +24,8 @@ import StoreSetting from './pages/admin/store/StoreSetting.jsx';
 import UserSetting from './pages/admin/user/UserSetting.jsx';
 import CheckReview from './pages/admin/user/CheckReview.jsx';
 import ReviewSetting from './pages/admin/review/ReviewSetting.jsx';
-import Edit from './pages/admin/store/Idx.jsx'
+import Edit from './pages/admin/store/Idx.jsx';
+import RegiEdit from './pages/admin/store/RegiConfirm.jsx';
 
 import Join from './pages/register/Join.jsx';
 
@@ -66,12 +67,15 @@ const App = () => {
           <Route path="/dt/admin" element={<Admin />} />
           <Route path="/dt/admin/menu" element={<AdminMenu />} />
           <Route path="/dt/admin/menu/store/confirm" element={<Confirm />} />
+          <Route path="/dt/admin/menu/store/confirm/:regi_id" element={<RegiEdit />}/>
           <Route path="/dt/admin/menu/store/setting" element={<StoreSetting />} />
           <Route path="/dt/admin/menu/store/setting/:store_id" element={<Edit />}/>
           {/* <Route path="/dt/admin/menu/store/setting/update/:store_id" element={<Edit />} /> */}
           <Route path="/dt/admin/menu/user/setting" element={<UserSetting/>} />
           <Route path="/dt/admin/menu/user/setting/checkblack/:email" element={<CheckReview />} />
           <Route path="/dt/admin/menu/review/setting" element={<ReviewSetting />} />
+
+          
         </Routes>
         <GlobalStyle/>
       </BrowserRouter>
