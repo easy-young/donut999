@@ -22,8 +22,8 @@ const ReviewSetting = () => {
     }
     return(
         <>
-            <h2 style={{textAlign:'center'}}>Review</h2>
-            <Div>
+            <h2 style={{textAlign:'center', marginTop:'4%'}}>Review</h2>
+            <Div style={{marginTop:'2%'}}>
                 <Table>
                     <thead>
                         <Tr>
