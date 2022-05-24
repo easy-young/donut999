@@ -36,38 +36,3 @@
     transform: rotate(360deg);
   }
 }
-
-
-
-
-.ant-menu-title-content:hover {
-  color:red;
-  background-color: blue;
-}
-
-.ant-menu-title-content > a::before > a{
-  color:red;
-  background-color: yellow;
-}
-
-.ant-menu-item a:hover{
-  color:red !important;
-}
-
-.ant-menu-submenu-title{
-  background: yellow !important;
-}
-.ant-menu-item-selected a {
-  color:red !important;
-}
-
-.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
-  background-color: yellow !important;
-}
-
-
-.ant-menu-submenu-selected {
-  color: red !important; 
-}
-
-

@@ -22,12 +22,10 @@ export const admin_store_confirm_failure = createAction(ADMIN_STORE_CONFIRM.FAIL
 const adminConfirm = (state=initialState,action) => {
     switch(action.type){
         case ADMIN_STORE_CONFIRM.REQUEST:
-            console.log('req',action)
             return {
                 ...state,
             }
         case ADMIN_STORE_CONFIRM.SUCCESS:
-            console.log('suc',action.payload)
             return {
                 ...state,
                register:action.payload

@@ -11,6 +11,7 @@ import adminBlackReviewSaga from './admin/adminBlackReviewSaga';
 import adminReviewSaga from './admin/adminReviewSaga';
 import adminDelReviewSaga from './admin/adminDelReviewSaga';
 import adminConfirmSaga from './admin/adminStoreConfirmSaga';
+
 import registerSaga from './registerSaga';
 import stationSaga from './stationSaga';
 import shopSaga from './shopSaga';
@@ -29,6 +30,8 @@ export default function* rootSaga() {
         adminReviewSaga(),
         adminDelReviewSaga(),
         adminConfirmSaga(),
+
+
         registerSaga(),
         stationSaga(),
         shopSaga()
