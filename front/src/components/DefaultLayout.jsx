@@ -8,8 +8,6 @@ import { keyframes } from 'styled-components';
 import Sider from 'antd/lib/layout/Sider';
 import SFLemon from '../font/fonts';
 
-import '../../src/App.css'
-
 const Header = styled.header`
     width:100%;
     height:15vh;
