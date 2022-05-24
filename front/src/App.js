@@ -27,7 +27,6 @@ import ReviewSetting from './pages/admin/review/ReviewSetting.jsx';
 import Edit from './pages/admin/store/Idx.jsx'
 
 import Join from './pages/register/Join.jsx';
-import Check from './pages/register/Check.jsx';
 
 import { useEffect } from 'react'
 import {useDispatch} from 'react-redux';
@@ -64,7 +63,6 @@ const App = () => {
           <Route path="/theme/unique" element={<Unique />} />
           <Route path="/theme/parking" element={<Parking />} />
           <Route path='/register/join' element={<Join/>} />
-          <Route path='/register/check' element={<Check />} />
           <Route path="/dt/admin" element={<Admin />} />
           <Route path="/dt/admin/menu" element={<AdminMenu />} />
           <Route path="/dt/admin/menu/store/confirm" element={<Confirm />} />
