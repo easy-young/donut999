@@ -12,7 +12,8 @@ import '../../src/App.css'
 
 const Header = styled.header`
     width:100%;
-    height:10vh;
+    height:15vh;
+
     
 `
 const StyledSider = styled(Sider)`
