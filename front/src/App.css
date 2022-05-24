@@ -87,8 +87,8 @@
   color: red !important; 
 }
 /* 메뉴 색 */
-.ant-menu{
-}
+/* .ant-menu{
+} */
 
 /* div 끝에 색처리 */
 .ant-menu-inline .ant-menu-item:after{
