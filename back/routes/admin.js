@@ -139,6 +139,7 @@ router.post(`/store/confirm`,async (req,res)=>{
 )
 
 router.post(`/store/confirm/delregi/:regi_id`,async (req,res)=>{
+    
     const sql = `DELETE FROM register where idx = ?`
 
         try {
