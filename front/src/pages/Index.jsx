@@ -377,7 +377,7 @@ const Index = () => {
             <BrowserView>
                     <MapBox>
                         <StationBox id='img_box'style={{height, width}}>
-                            <RouteMap alt="route_map" src="img/route_map.png" id="map_img" ref={imgRef}
+                            <RouteMap alt="route_map" src="img/route_map_2.png" id="map_img" ref={imgRef}
                             style={{width}}
                                 onLoad={ handleReSize }
                                 onMouseDown={mouseDownHandler} onMouseMove={mouseMoveHandler}
