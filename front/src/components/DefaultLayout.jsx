@@ -21,6 +21,7 @@ const StyledSider = styled(Sider)`
     z-index: 1000;
     top: 0px;
     right: 0px;
+    border-left: solid 3px yellow;
 `;
 
 const StyledMenu = styled(Menu)`

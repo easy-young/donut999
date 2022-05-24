@@ -102,7 +102,7 @@ const Index = () => {
         overflow:hidden;
         /* top: 50%;
         right: 10%; */
-        border-radius:50px;
+        border-radius:30px;
         margin-top:5vh;
         box-shadow: 0px 0px 20px 1px grey;
         @media (max-width: 600px) {
@@ -136,7 +136,7 @@ const Index = () => {
     const StationBox = styled.div`
         /* 이미지 담은 박스입니다. */
         z-index:10;
-        background:red;
+        background:#ffc7dd;
         position: relative;
         @media (max-width: 600px) {
             width: 422%;
