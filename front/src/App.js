@@ -46,14 +46,14 @@ const App = () => {
     }
   },[])
   return (
-    <div style={{ background: 'pink' }}>
+    <div style={{ background: '#FFFCDD' }}>
       <BrowserRouter>
         <DefaultHeader />
         <Routes>
           <Route path="/" index element={<Index />} />
           <Route path="/mypage" element={<Mypage />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/shop/:idx" element={<Shop/>}/>
+          <Route path="/shop/:idx" element={<Shop />}/>
           <Route path="/rank" element={<Rank />} />
           <Route path='/rank/flavor' element={<Flavor />} />
           <Route path='/rank/atmosphere' element={<Atmosphere />} />

@@ -10,7 +10,8 @@ import SFLemon from '../font/fonts';
 
 const Header = styled.header`
     width:100%;
-    height:10vh;
+    height:15vh;
+
     
 `
 const StyledSider = styled(Sider)`
@@ -18,6 +19,7 @@ const StyledSider = styled(Sider)`
     z-index: 1000;
     top: 0px;
     right: 0px;
+    border-left: solid 3px yellow;
 `;
 
 const StyledMenu = styled(Menu)`

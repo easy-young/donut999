@@ -15,7 +15,7 @@ const STATION = {
 export const station_request = createAction(STATION.REQUEST, payload => payload);
 export const station_success = createAction(STATION.SUCCESS, payload => payload);
 export const station_failure = createAction(STATION.FAILURE, payload => payload);
-export const station_exit = createAction(STATION.EXIT);
+export const station_exit = createAction(STATION.EXIT, payload => payload);
 
 const station = (state = initialState, action) => {
     switch (action.type) {
@@ -40,6 +40,7 @@ const station = (state = initialState, action) => {
             return {
                 ...state,
                 name: false,
+                store: []
             }
         default:
             return {
