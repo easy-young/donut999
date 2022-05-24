@@ -8,11 +8,10 @@ import { keyframes } from 'styled-components';
 import Sider from 'antd/lib/layout/Sider';
 import SFLemon from '../font/fonts';
 
-
-
 const Header = styled.header`
     width:100%;
-    height:10vh;
+    height:15vh;
+
     
 `
 const StyledSider = styled(Sider)`
@@ -20,6 +19,7 @@ const StyledSider = styled(Sider)`
     z-index: 1000;
     top: 0px;
     right: 0px;
+    border-left: solid 3px yellow;
 `;
 
 const StyledMenu = styled(Menu)`
@@ -72,6 +72,9 @@ const Img = styled.img`
         transition: all ease 2s 0s;
     }
 `;
+
+
+
 
 
 
