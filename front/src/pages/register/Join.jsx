@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { register_failure, register_request } from '../../reducers/register';
-
+import SFLemon from '../../font/fonts';
 const Background = styled.div`
     display: flex;
     position: fixed;
@@ -34,7 +34,7 @@ const Form = styled.form`
     height: 600px;
     padding: 40px;
     border-radius: 40px;
-    background: white;
+    background: #fdd;
 
     @media (max-width: 600px) {
         width: 96%;
@@ -120,39 +120,43 @@ const Join = () => {
         dispatch(register_request(payload));
     }, [dispatch]);
     return (
-        <Background>
-            <Form method='post' onSubmit={onRegister}>
-                <H1>맛집 등록 신청</H1>
-                <H3>가게명</H3>
-                <Input type='text' style={{ width: '100%' }} name='name' />
-                <H3>대표 도넛 (최대 3개)</H3>
-                <Input type='text' style={{ marginRight: '16px' }} name='menu1' />
-                <Input type='text' style={{ marginRight: '16px' }} name='menu2' />
-                <Input type='text' name='menu3' />
-                <H3>주소</H3>
-                <Input type='text' style={{ width: '100%' }} name='address' placeholder='서울 지역만 가능합니다.'/>
-                <H3>연락처</H3>
-                <Span>02</Span> - <Input type='text' name='call1'/> - <Input type='text' name='call2'/>
-                <H3>SNS 계정 (선택)</H3>
-                <Input type='text' style={{ width: '100%' }} name='sns' />
-                <BottomDiv>
-                    <Submit type='submit' value='신청' />
-                    <Back><Link to='/'>뒤로 가기</Link></Back>
-                </BottomDiv>
-            </Form>
-            {
-                store.result && 
-                <SuccessDiv>
-                    <Div style={{ fontSize: '20px', fontWeight: 'bolder' }}>
-                        신청이 완료되었습니다.
-                    </Div>
-                    <Div>
-                        승인 절차는 최대 7일 정도 소요될 수 있습니다.
-                    </Div>
-                    <MainLink to='/'>메인으로</MainLink>
-                </SuccessDiv>
-            }
-        </Background>
+        <>
+            <Background>
+                <Form method='post' onSubmit={onRegister}>
+                    <H1>맛집 등록 신청</H1>
+                    <H3>가게명</H3>
+                    <Input type='text' style={{ width: '100%' }} name='name' />
+                    <H3>대표 도넛 (최대 3개)</H3>
+                    <Input type='text' style={{ marginRight: '16px' }} name='menu1' />
+                    <Input type='text' style={{ marginRight: '16px' }} name='menu2' />
+                    <Input type='text' name='menu3' />
+                    <H3>주소</H3>
+                    <Input type='text' style={{ width: '100%' }} name='address' placeholder='서울 지역만 가능합니다.'/>
+                    <H3>연락처</H3>
+                    <Span>02</Span> - <Input type='text' name='call1'/> - <Input type='text' name='call2'/>
+                    <H3>SNS 계정 (선택)</H3>
+                    <Input type='text' style={{ width: '100%' }} name='sns' />
+                    <BottomDiv>
+                        <Submit type='submit' value='신청' />
+                        <Back><Link to='/'>뒤로 가기</Link></Back>
+                    </BottomDiv>
+                    
+                </Form>
+                {
+                    store.result && 
+                    <SuccessDiv>
+                        <Div style={{ fontSize: '20px', fontWeight: 'bolder' }}>
+                            신청이 완료되었습니다.
+                        </Div>
+                        <Div>
+                            승인 절차는 최대 7일 정도 소요될 수 있습니다.
+                        </Div>
+                        <MainLink to='/'>메인으로</MainLink>
+                    </SuccessDiv>
+                }
+            </Background>
+            <SFLemon/>
+        </>
     )
 };
 
