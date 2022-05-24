@@ -11,6 +11,7 @@ import adminDelBlack from "./admin/adminDelBlack.js";
 import adminBlackReview from "./admin/adminBlackReview.js";
 import adminReview from './admin/adminReview.js';
 import adminDelReview from "./admin/adminDelReview.js";
+import adminConfirm from './admin/adminStoreConfirm.js';
 import register from "./register.js";
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
@@ -42,6 +43,7 @@ const rootReducer = combineReducers({
     adminBlackReview,
     adminReview,
     adminDelReview,
+    adminConfirm,
     register,
     route_map,
     user,
