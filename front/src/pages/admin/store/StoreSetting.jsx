@@ -1,4 +1,4 @@
-import { Link, useParams  } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {useDispatch, useSelector} from 'react-redux';
 import {admin_store_request} from '../../../reducers/admin/admin.js';
 import {admin_delete_store_request} from '../../../reducers/admin/deleteStore'
@@ -25,7 +25,7 @@ const StoreSetting = () => {
     return(
         <> 
         
-            <h2 style={{textAlign:'center'}}>STORE</h2>
+            <h2 style={{textAlign:'center', marginTop:"3%"}}>STORE</h2>
             <Div>
             <Table>
                 <thead>
@@ -36,7 +36,7 @@ const StoreSetting = () => {
                     </Tr>
                 </thead>
                 <tbody>
-                    {stores && stores.map ((x, i) => {
+                    {stores && stores.map ((x) => {
                         if(x.idx < 21){
                             return(
                                 <>

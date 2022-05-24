@@ -8,7 +8,7 @@ import { keyframes } from 'styled-components';
 import Sider from 'antd/lib/layout/Sider';
 import SFLemon from '../font/fonts';
 
-
+import '../../src/App.css'
 
 const Header = styled.header`
     width:100%;
@@ -72,6 +72,9 @@ const Img = styled.img`
         transition: all ease 2s 0s;
     }
 `;
+
+
+
 
 
 
