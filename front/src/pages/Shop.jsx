@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { shop_request } from '../reducers/shop.js';
@@ -40,6 +40,14 @@ const Img = styled.img`
     height: 300px;
 `;
 
+const StarImg = styled.img`
+    position: absolute;
+    width: 150px;
+    height: 30px;
+    left: 0px;
+    z-index: 10;
+`;
+
 const ReviewBtn = styled.button`
     margin-left: 20px;
     width: 90px;
@@ -57,7 +65,35 @@ const ReviewBtn = styled.button`
 const Half = styled.div`
     display: inline-block;
     width: 660px;
-    height: 400px;
+    height: 340px;
+`;
+
+const Btn = styled.button`
+    padding: 6px;
+    height: 34px;
+    border: none;
+    border-radius: 10px;
+    background-color: blanchedalmond;
+
+    :hover {
+        cursor: pointer;
+    }
+`;
+
+const StarBox = styled.span`
+    display: inline-block;
+    position: relative;
+`;
+
+const StarSpan = styled.span`
+    display: inline-block;
+    position: relative;
+    width: 50px;
+    height: 30px;
+    background: url('/img/star/star5.png');
+    background-size: 150px 30px;
+    overflow: hidden;
+    z-index: 20;
 `;
 
 const Shop = () => {
@@ -68,6 +104,9 @@ const Shop = () => {
     useEffect(() => {
         dispatch(shop_request(idx));
     }, [dispatch]);
+    const review = () => {
+        // dispatch(review_create_request());
+    };
     return (
         <Background>
             <Container>
@@ -81,7 +120,14 @@ const Shop = () => {
                         </ImgBox>
                         <div style={{ display: 'flex', justifyContent: 'center' }}>
                             <Half>
-                                <StoreName>{info.name}</StoreName>
+                                <StoreName>
+                                    {info.name}
+                                    <StarBox>
+                                        <StarImg src='/img/star/star0.png'/>
+                                        {/* <StarImg src='/img/star/star5.png'/> */}
+                                        <StarSpan></StarSpan>
+                                    </StarBox>
+                                </StoreName>
                                 <div>(지하철) {info.line}호선 {info.stationKor}역</div>
                                 <div>(주소) {info.address}</div>
                                 <div>(도넛) {info.menu}</div>
@@ -100,9 +146,15 @@ const Shop = () => {
                             <Half>
                                 <StoreName>
                                     리뷰
-                                    <ReviewBtn>리뷰 작성</ReviewBtn>
+                                    <ReviewBtn onClick={review}>
+                                            리뷰 작성
+                                    </ReviewBtn>
                                 </StoreName>
                             </Half>
+                        </div>
+                        <div style={{ display: 'flex', justifyContent:'center' }}>
+                            <Btn>홈으로</Btn>
+                            <Btn style={{ marginLeft: '10px' }}>뒤로 가기</Btn>
                         </div>
                     </>
                 }

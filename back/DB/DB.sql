@@ -46,6 +46,6 @@ CREATE TABLE review (
     cheap INT NOT NULL,
     service INT NOT NULL,
     text VARCHAR(300) NOT NULL,
-    date  DATETIME CURRENT_TIMESTAMP
+    date DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (idx) REFERENCES shop (idx)
 );

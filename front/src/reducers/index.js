@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 import display from './display.js';
 import shop from './shop.js';
+import review from './review.js';
 import admin from './admin/admin.js';
 import adminStore from './admin/adminStore.js';
 import adminEditStore from "./admin/editStore.js";
@@ -32,6 +33,7 @@ const persist = {
 
 const rootReducer = combineReducers({
     shop,
+    review,
     display,
     admin,
     adminStore,
