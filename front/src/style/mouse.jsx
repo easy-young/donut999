@@ -10,7 +10,7 @@ const Fork = styled.img`
 `
 document.addEventListener("mousemove", (e) => {
     const fork = document.querySelector(".fork")
-    console.log(fork)
+    // console.log(fork)
 
     const mouseX = e.clientX;
     const mouseY = e.clientY;
