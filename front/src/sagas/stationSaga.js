@@ -4,12 +4,14 @@ import { station_request, station_success, station_failure } from "../reducers/s
 
 async function stationAPI(action) {
     const result = await axios.post('http://localhost:4000/station/info', action);
+    console.log('result', result);
     return result;
 }
 
 function* station(action) {
     try {
         const result = yield call(stationAPI, action);
+        if (result.data.length === 0) throw new Error('해당 역에 도넛 맛집 없음');
         yield put({
             type: station_success.toString(),
             payload: result.data
@@ -17,7 +19,7 @@ function* station(action) {
     } catch (e) {
         yield put({
             type: station_failure.toString(),
-            payload: e.response.data
+            payload: null
         });
     }
 }

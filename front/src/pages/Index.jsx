@@ -848,7 +848,7 @@ const Index = () => {
                         <StationName>{ name }역 맛집</StationName>
                         <CloseBtn onClick={Close}>X</CloseBtn>
                         {
-                            store && store.map((v, i) => {
+                            store.length > 0 && store.map((v, i) => {
                                 return(
                                     <>
                                         <div style={{ height: '20px' }}></div>
