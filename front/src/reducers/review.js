@@ -1,5 +1,4 @@
-import { Action } from "history"
-import { createAction, handleActions } from "redux-actions"
+import { createAction } from "redux-actions"
 
 const initialState = { metadata : { loading : false, error : null }, 
     data: [], update:null }
@@ -114,20 +113,11 @@ const review = (state=initialState, action) => {
                 update: action.payload.upidx
             }
         case review_update_PROCEED :
-            let qwe = []
             for (let i =0; i< state.data.length; i++) {
-                // if(state.data[i].idx !== state.update ) {
-                //     qwe.push(state.data.length[i])
-                // }
-                // else {
-                //     state.data.text = action.payload
-                // }
-                if (state.data[i].idx == state.update) {
+                if (state.data[i].idx === state.update) {
                     state.data[i].text = action.payload
-                    console.log(state.data[i].text)
                 }
             }
-            // console.log(qwe)
             return {
                 ...state,
                 data : [...state.data,
@@ -135,7 +125,6 @@ const review = (state=initialState, action) => {
             }
 
         case review_update_REQUEST :
-            // console.log(action.payload)
             return {
                 ...state,
                 metadata : {
@@ -145,9 +134,19 @@ const review = (state=initialState, action) => {
                 }
             }
         case review_update_SUCCESS :
-            // const idx = action.payload.idx
+            console.log(action.payload)
+            for (let i =0; i < state.data.length; i++) {
+                if (state.data[i].idx === state.update) {
+                    state.data[i].text = action.payload.text
+                    state.data[i].flavor = parseInt(action.payload.flavor)
+                    state.data[i].atmosphere = parseInt(action.payload.atmosphere)
+                    state.data[i].service = parseInt(action.payload.service)
+                    state.data[i].cheap = parseInt(action.payload.cheap)
+                }
+            }
             return {
                 ...state,
+                data : [ ...state.data],
                 update:null,
                 metadata : {
                     ...state.metadata,
