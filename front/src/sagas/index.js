@@ -19,7 +19,15 @@ import registerSaga from './registerSaga';
 import stationSaga from './stationSaga';
 import shopSaga from './shopSaga';
 
+/*  review CRUD  */
+import reviewSaga from './reviewSaga.js'
+import createReviewSaga from './review/createReviewSaga.js';
+import deleteReviewSaga from './review/deleteReviewSaga.js'
+import updateReviewSaga from './review/updateReviewSaga.js'
+
+
 export default function* rootSaga() {
+
     yield all([
         // userSaga(),
         adminSaga(),
@@ -38,7 +46,12 @@ export default function* rootSaga() {
         confirmDelSaga(),
 
         registerSaga(),
+        reviewSaga(),
+        createReviewSaga(),
+        deleteReviewSaga(),
+        updateReviewSaga(),
         stationSaga(),
         shopSaga()
     ]);
+    
 }
