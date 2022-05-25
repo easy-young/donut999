@@ -219,7 +219,7 @@ const Mypage = () => {
                     <>
                         <a href='/'>x</a>
                         <hr/>
-                        <span> {stores.user.me.nickname} 님! 환영합니다! </span>
+                        <span> {decodeURI(stores.user.me.nickname)} 님! 환영합니다! </span>
                         <br/>
                         <span> 이메일: {stores.user.me.email} </span>
                         <br/>
