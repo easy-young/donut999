@@ -1,6 +1,9 @@
 import DefaultHeader from './components/DefaultLayout';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import 'antd/dist/antd.min.css';
+import styled,{keyframes} from 'styled-components'
+
+import Fork from './style/mouse';
 
 import Index from './pages/Index.jsx';
 import Mypage from './pages/Mypage.jsx';
@@ -33,6 +36,51 @@ import { user_login_failure, user_login_request, user_login_success,
 import Write from './pages/Write.jsx'
 import GlobalStyle from '../src/style/global'
 
+
+const snow = keyframes`
+
+    0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+
+    100% {background-position: 100% 100%, 300px 1000px, 400px 400px, 300px 300px;}
+    
+
+    /* -webkit-background-position{
+        0% {background-position: 0px 0px;}
+
+        100% {background-position: 500px 1000px;}
+    }
+
+    -moz-background-position{
+        0% {background-position: 0px 0px;}
+
+        100% {background-position: 500px 1000px;}
+    }
+
+    -o-background-position{
+        0% {background-position: 0px 0px;}
+
+        100% {background-position: 500px 1000px;}
+    }
+
+    -ms-background-position{
+        0% {background-position: 0px 0px;}
+
+        100% {background-position: 500px 1000px;}
+    } */
+`
+
+const Wrap = styled.div`
+  width:100%;
+  height:100%;
+
+  background-color: #FFFCDD;
+  background-image: url("/img/background.png"),url("/img/snow.png"),url("/img/snow2.png"),url("/img/snow3.png");
+  background-repeat: no repeat;
+  background-size: 950px;
+  animation: ${snow} 30s linear infinite;
+
+`
+
 const App = () => {
   const dispatch = useDispatch()
   useEffect(() => {
@@ -43,7 +91,8 @@ const App = () => {
     }
   },[])
   return (
-    <div style={{ background: '#FFFCDD' }}>
+    <Wrap>
+      <Fork/>
       <BrowserRouter>
         <DefaultHeader />
         <Routes>
@@ -73,7 +122,7 @@ const App = () => {
         </Routes>
         <GlobalStyle/>
       </BrowserRouter>
-    </div>
+    </Wrap>
   )
 };
 
