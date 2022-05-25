@@ -13,7 +13,7 @@ document.addEventListener("mousemove", (e) => {
     // console.log(fork)
 
     const mouseX = e.clientX;
-    const mouseY = e.clientY;
+    const mouseY = e.pageY;
     fork.style.left = mouseX + 'px';
     fork.style.top = mouseY + 'px';
 
