@@ -23,13 +23,11 @@ export const admin_confirm_del_failure = createAction(ADMIN_CONFIRM_DEL.FAILURE)
 const confirmDel = (state=initialState,action) => {
     switch(action.type){
         case ADMIN_CONFIRM_DEL.REQUEST:
-            console.log('reducer req',action.payload)
             return {
                 ...state,
             }
         case ADMIN_CONFIRM_DEL.SUCCESS:
-            console.log('reducer suc',action.payload)
-            const idx = action.payload.idx
+            const { idx } = action.payload
             return {
                 ...state,
                 display:false,
