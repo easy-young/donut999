@@ -113,7 +113,7 @@ router.post(`/store/setting/delete/:store_id`,async (req,res)=>{
 )
 
 router.post(`/store/confirm`,async (req,res)=>{
-    const sql = `select *,DATE_FORMAT(time,'%Y-%m-%d %h:%i:%s') AS stamp from register`
+    const sql = `select *,DATE_FORMAT(time,'%Y-%m-%d') AS stamp from register`
 
         try {
             const [result] = await pool.query(sql)
@@ -122,6 +122,7 @@ router.post(`/store/confirm`,async (req,res)=>{
                 result
             }
             res.json(response)
+            console.log(response)
             
         }
 
@@ -139,13 +140,17 @@ router.post(`/store/confirm`,async (req,res)=>{
 )
 
 router.post(`/store/confirm/delregi/:regi_id`,async (req,res)=>{
-    const sql = `DELETE FROM register where idx = ?`
-
+    
+    const prepare = [[req.body]]
+    const sql = `DELETE FROM register where idx in (${prepare})`
+    const sql2 = `select *,DATE_FORMAT(time,'%Y-%m-%d') AS stamp from register`
+        
         try {
             const [result] = await pool.query(sql)
-            
+            const [result2] = await pool.query(sql2)
+            console.log(result2)
             const response = {
-                result
+                result2
             }
             res.json(response)
             
@@ -167,17 +172,16 @@ router.post(`/store/confirm/delregi/:regi_id`,async (req,res)=>{
 router.post('/store/confirm/:register_id',async (req,res)=>{
     
     const sql = `select * from register where idx = ? `
-    const prepare = [req.params]
+    const prepare = [req.params.register_id]
     console.log(prepare)
-
     try {
         const [result] = await pool.execute(sql,prepare)
-        console.log(result)
+     
         const response = {
             result
         }
         res.json(response)
-        
+        console.log(response)
     }
 
     catch (e) {
@@ -193,11 +197,11 @@ router.post('/store/confirm/:register_id',async (req,res)=>{
 
 )
 
-router.post('/store/confirm/addstore/:regi_id',async (req,res)=>{
+router.post('/store/confirm/addstore/:register_id',async (req,res)=>{
     const { name, station, line, address, parking , protein, photo, special,operhour , website , menu , beverage , tel , intro  } = req.body
-    const sql = `INSERT INTO shop (name, stationKor, line, address, parking, operhour, website, menu, beverage, tel, protein, photo, special, intro) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)`
-    const prepare = [ name, station, line, address, parking , protein, photo, special, operhour , website , menu , beverage , tel , intro]
-
+    const sql = `INSERT INTO shop (name, stationKor, station, line, address, parking, operhour, website, menu, beverage, tel, protein, photo, special, intro, more) VALUES (?,?,'hello',?,?,?,?,?,?,?,?,?,?,?,?,'hi')`
+    const prepare = [ name, station, line, address, parking , operhour , website , menu , beverage , tel ,  protein, photo, special,intro]
+    console.log(prepare)
     try {
         const [result] = await pool.execute(sql,prepare)
         console.log(result)
