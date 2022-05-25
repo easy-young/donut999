@@ -81,19 +81,20 @@ const Mypage = () => {
     const setDefault = (k) => {
         for (let i = 0; i<stores.review.data.length; i++) {
             if( stores.review.data[i].idx === k ) {
-                const originalFlavor = 'flavor' + stores.review.data[i].flavor
+                const originalFlavor = 'flavor' + (6-stores.review.data[i].flavor)
+                
                 const defaultFlavor = document.querySelector(`#`+originalFlavor)
                 defaultFlavor.setAttribute('checked', 'checked')
 
-                const originalCheap = 'cheap' + stores.review.data[i].cheap
+                const originalCheap = 'cheap' + (6-stores.review.data[i].cheap)
                 const defaultCheap = document.querySelector(`#`+originalCheap)
                 defaultCheap.setAttribute('checked', 'checked')
 
-                const originalService = 'service' + stores.review.data[i].service
+                const originalService = 'service' + (6-stores.review.data[i].service)
                 const defaultService = document.querySelector(`#`+originalService)
                 defaultService.setAttribute('checked', 'checked')
 
-                const originalAtmopshere = 'atmosphere' + stores.review.data[i].atmosphere
+                const originalAtmopshere = 'atmosphere' + (6-stores.review.data[i].atmosphere)
                 const defaultAtmosphere = document.querySelector(`#`+originalAtmopshere)
                 defaultAtmosphere.setAttribute('checked', 'checked')
             }
