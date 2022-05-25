@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import { keyframes } from 'styled-components';
 import Sider from 'antd/lib/layout/Sider';
 import SFLemon from '../font/fonts';
+import '../App.css';
 
 const Header = styled.header`
     width:100%;

@@ -79,14 +79,24 @@ const StoreScore = styled(StoreAddress)`
     bottom: 200px;
 `;
 
+
 const Index = () => {
+    
 
     const Body = styled.body`
         margin: 0;
         padding: 0;
         width:100%;
         height:1500px;
-        background: #FFFCDD;
+        background:transparent;
+
+
+        /* -webkit-animation: snow 10s linear infinite;
+
+        -moz-animation: snow 10s linear infinite;
+
+        -ms-animation: snow 10s linear infinite; */
+
     `
 
     const MapBox = styled.div `
