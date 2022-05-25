@@ -23,7 +23,7 @@ function* confirmDel(action){
         const result = yield call(confirmDelAPI,action)
         console.log('su',result)
         yield put({
-            type:admin_confirm_del_success.toString(),payload:result.data.result
+            type:admin_confirm_del_success.toString(),payload:result.data.result2
         })
 
     }catch(e){

@@ -2,7 +2,8 @@ import { createAction } from "redux-actions";
 
 
 const initialState = {
-    display:true
+    display:true,
+    regi:[]
 }
 
 const ADMIN_CONFIRM_DEL = {
@@ -28,9 +29,13 @@ const confirmDel = (state=initialState,action) => {
             }
         case ADMIN_CONFIRM_DEL.SUCCESS:
             console.log('reducer suc',action.payload)
+            const idx = action.payload.idx
             return {
                 ...state,
-                display:false
+                display:false,
+                regi:[
+                    ...state.regi.filter(v => v.idx !== idx)
+                ] 
             }
         case ADMIN_CONFIRM_DEL.FAILURE:
             return {

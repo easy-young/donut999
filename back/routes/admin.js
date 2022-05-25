@@ -141,13 +141,16 @@ router.post(`/store/confirm`,async (req,res)=>{
 
 router.post(`/store/confirm/delregi/:regi_id`,async (req,res)=>{
     
-    const sql = `DELETE FROM register where idx = ?`
-
+    const prepare = [[req.body]]
+    const sql = `DELETE FROM register where idx in (${prepare})`
+    const sql2 = `select *,DATE_FORMAT(time,'%Y-%m-%d') AS stamp from register`
+        
         try {
             const [result] = await pool.query(sql)
-            
+            const [result2] = await pool.query(sql2)
+            console.log(result2)
             const response = {
-                result
+                result2
             }
             res.json(response)
             
