@@ -4,7 +4,7 @@ const Fork = styled.img`
     position: absolute;
     width: 3vw; 
     height: 20vh;
-    transform: translate(50%, -10%) rotate(-35deg);
+    transform: translate(60%, -5%) rotate(-35deg);
     z-index:2000;
 
 `
