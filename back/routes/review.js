@@ -52,9 +52,9 @@ const deleteReview = async (req, res) => {
 }
 
 const updateReview = async (req, res) => {
-    const { text, idx } = req.body
-    const sql = `update review set text=? where idx=?`
-    const param = [text, idx]
+    const { text, idx, flavor, cheap, atmosphere, service } = req.body
+    const sql = `update review set text=?, flavor=?, cheap=?, atmosphere=?, service=? where idx=?`
+    const param = [text, flavor, cheap, atmosphere, service, idx]
 
     try {
         const result = await pool.execute(sql, param)
