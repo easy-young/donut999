@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import {useDispatch, useSelector} from 'react-redux';
 import {admin_store_confirm_request} from '../../../reducers/admin/adminStoreConfirm.js';
-import {admin_confirm_del_request} from '../../../reducers/admin/confirmDel.js';
+import {admin_confirm_del_request} from '../../../reducers/admin/adminStoreConfirm.js';
 import { useEffect, useState } from 'react';
 import {Div, Dbutton, Table, Tr, Td} from '../../../components/styles/AdminTable';
 import { AuthButton } from "../../../components/styles/AdminStyles";
@@ -9,17 +9,13 @@ import { AuthButton } from "../../../components/styles/AdminStyles";
 const Confirm = () => {
     const dispatch = useDispatch()
     useEffect(()=>{
-        qwert()
+        dispatch({type:admin_store_confirm_request.toString()})
     },[dispatch])
 
     const registers = useSelector(state=>state.adminConfirm.register)
     const a = registers.length
     console.log('-----------------',registers)
     console.log('----------------->',registers.length)
-  
-   const qwert = () => {
-    dispatch({type:admin_store_confirm_request.toString()})
-   }
     
     const check = Array(a).fill(false)
     console.log(check)
@@ -39,7 +35,7 @@ const Confirm = () => {
 
     const onDelete = (e) => {
         e.preventDefault()
-         dispatch(admin_confirm_del_request(checkArr))
+        dispatch(admin_confirm_del_request(checkArr))
          
     }
     
