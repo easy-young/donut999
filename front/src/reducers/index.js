@@ -14,6 +14,9 @@ import adminReview from './admin/adminReview.js';
 import adminDelReview from "./admin/adminDelReview.js";
 import adminConfirm from './admin/adminStoreConfirm.js';
 import adminDelRegi from './admin/adminStConDel.js';
+import confirmSet from './admin/confirmSet';
+import confirmStore from './admin/confirmStore';
+import confirmDel from './admin/confirmDel';
 
 import register from "./register.js";
 import { persistReducer } from 'redux-persist';
@@ -51,7 +54,10 @@ const rootReducer = combineReducers({
     adminReview,
     adminDelReview,
     adminConfirm,
+    confirmStore,
     adminDelRegi,
+    confirmSet,
+    confirmDel,
     register,
     route_map,
     user,
