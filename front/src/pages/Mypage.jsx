@@ -226,10 +226,6 @@ const Mypage = () => {
         getReview()
     },[dispatch])
 
-    const qwe = () => {
-        console.log(localStorage)
-    }
-
     return (
         <Background>
             <Container>

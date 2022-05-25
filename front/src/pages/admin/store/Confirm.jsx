@@ -12,14 +12,15 @@ const Confirm = () => {
         qwert()
     },[dispatch])
 
-    const registers = useSelector(state=>state.adminConfirm.register)
-    const a = registers.length
-    console.log('-----------------',registers)
-    console.log('----------------->',registers.length)
   
    const qwert = () => {
     dispatch({type:admin_store_confirm_request.toString()})
    }
+
+   const registers = useSelector(state=>state.adminConfirm.register)
+   const a = registers.length
+   console.log('-----------------',registers)
+   console.log('----------------->',registers.length)
     
     const check = Array(a).fill(false)
     console.log(check)
