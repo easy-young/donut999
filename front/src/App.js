@@ -2,6 +2,8 @@ import DefaultHeader from './components/DefaultLayout';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import 'antd/dist/antd.min.css';
 
+import Fork from './style/mouse';
+
 import Index from './pages/Index.jsx';
 import Mypage from './pages/Mypage.jsx';
 import Login from './pages/Login.jsx';
@@ -47,6 +49,7 @@ const App = () => {
   },[])
   return (
     <div style={{ background: '#FFFCDD' }}>
+      <Fork/>
       <BrowserRouter>
         <DefaultHeader />
         <Routes>
