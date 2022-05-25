@@ -2,8 +2,8 @@ import styled from 'styled-components'
 
 const Fork = styled.img`
     position: absolute;
-    width: 5vw; 
-    height: 30vh;
+    width: 3vw; 
+    height: 20vh;
     transform: translate(50%, -10%) rotate(-35deg);
     z-index:2000;
 
