@@ -7,10 +7,6 @@ import Mypage from './pages/Mypage.jsx';
 import Login from './pages/Login.jsx';
 import Shop from './pages/Shop.jsx';
 import Rank from './pages/Rank.jsx';
-import Flavor from './pages/rank/Flavor.jsx';
-import Atmosphere from './pages/rank/Atmosphere.jsx';
-import Cheap from './pages/rank/Cheap.jsx';
-import Service from './pages/rank/Service.jsx';
 
 import Parking from './pages/theme/Parking.jsx';
 import Photo from './pages/theme/Photo.jsx';
@@ -57,10 +53,6 @@ const App = () => {
           <Route path='/write' element={<Write/>} />
           <Route path="/shop/:idx" element={<Shop />}/>
           <Route path="/rank" element={<Rank />} />
-          <Route path='/rank/flavor' element={<Flavor />} />
-          <Route path='/rank/atmosphere' element={<Atmosphere />} />
-          <Route path='/rank/cheap' element={<Cheap />} />
-          <Route path='/rank/service' element={<Service />} />
           <Route path="/theme/protein" element={<Protein />} />
           <Route path="/theme/photo" element={<Photo />} />
           <Route path="/theme/unique" element={<Unique />} />

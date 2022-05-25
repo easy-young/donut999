@@ -1,5 +1,7 @@
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { rank_flavor_request, rank_atmosphere_request, rank_cheap_request, rank_service_request } from "../reducers/rank";
 
 const Background = styled.body`
     display: flex;
@@ -36,6 +38,8 @@ const Tab = styled.div`
     height: 40px;
     padding: 1% 0.8%;
     text-align: center;
+    color: #ffffff;
+    font-weight: bolder;
     background: #ff99aa;
     margin-right: 2%;
     border-top-left-radius: 10px;
@@ -43,6 +47,7 @@ const Tab = styled.div`
 
     :hover {
         cursor: pointer;
+        color: #fff8c4;
     }
 
     :visited {
@@ -53,7 +58,7 @@ const Tab = styled.div`
 const StyledLink = styled(Link)`
     color: #ffffff;
     font-weight: bolder;
-    
+
     :hover {
         color: #fff8c4;
     }
@@ -92,14 +97,27 @@ const SmallDiv = styled.div`
 `;
 
 const Rank = () => {
+    const dispatch = useDispatch();
+    const flavor = () => {
+        dispatch(rank_flavor_request());
+    };
+    const atmosphere = () => {
+        dispatch(rank_atmosphere_request());
+    };
+    const cheap = () => {
+        dispatch(rank_cheap_request());
+    };
+    const service = () => {
+        dispatch(rank_service_request());
+    };
     return (
         <Background>
             <Container>
                 <Tab style={{ marginLeft: '2%' }}><StyledLink to='/rank'>전체</StyledLink></Tab>
-                <Tab><StyledLink to='/rank/flavor'>맛</StyledLink></Tab>
-                <Tab><StyledLink to='/rank/atmosphere'>분위기</StyledLink></Tab>
-                <Tab><StyledLink to='/rank/cheap'>가성비</StyledLink></Tab>
-                <Tab><StyledLink to='/rank/service'>서비스</StyledLink></Tab>
+                <Tab onClick={flavor}>맛</Tab>
+                <Tab onClick={atmosphere}>분위기</Tab>
+                <Tab onClick={cheap}>가성비</Tab>
+                <Tab onClick={service}>서비스</Tab>
                 <Tab style={{ float: 'right', background: '#f8bcff' }}><StyledLink to='/'>뒤로 가기</StyledLink></Tab>
                 <BigDiv>
                     <SmallDiv>1</SmallDiv>
