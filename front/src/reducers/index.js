@@ -1,11 +1,20 @@
 import { combineReducers } from "redux";
 import display from './display.js';
+import shop from './shop.js';
+// import review from './review.js';
 import admin from './admin/admin.js';
 import adminStore from './admin/adminStore.js';
 import adminEditStore from "./admin/editStore.js";
 import adminDeleteStore from "./admin/deleteStore.js";
 import adminBlack from './admin/adminBlack.js';
 import adminNewBlack from './admin/adminNewBlack.js';
+import adminDelBlack from "./admin/adminDelBlack.js";
+import adminBlackReview from "./admin/adminBlackReview.js";
+import adminReview from './admin/adminReview.js';
+import adminDelReview from "./admin/adminDelReview.js";
+import adminConfirm from './admin/adminStoreConfirm.js';
+import adminDelRegi from './admin/adminStConDel.js';
+
 import register from "./register.js";
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
@@ -28,6 +37,8 @@ const persist = {
 // localStorage.setItem(persistKey, JSON.stringify(storage ? JSON.parse(storageState) : user()))
 
 const rootReducer = combineReducers({
+    shop,
+    review,
     display,
     admin,
     adminStore,
@@ -35,6 +46,12 @@ const rootReducer = combineReducers({
     adminDeleteStore,
     adminBlack,
     adminNewBlack,
+    adminDelBlack,
+    adminBlackReview,
+    adminReview,
+    adminDelReview,
+    adminConfirm,
+    adminDelRegi,
     register,
     route_map,
     user,

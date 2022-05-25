@@ -5,6 +5,7 @@ import 'antd/dist/antd.min.css';
 import Index from './pages/Index.jsx';
 import Mypage from './pages/Mypage.jsx';
 import Login from './pages/Login.jsx';
+import Shop from './pages/Shop.jsx';
 import Rank from './pages/Rank.jsx';
 import Flavor from './pages/rank/Flavor.jsx';
 import Atmosphere from './pages/rank/Atmosphere.jsx';
@@ -21,11 +22,12 @@ import AdminMenu from './pages/admin/AdminMenu.jsx';
 import Confirm from './pages/admin/store/Confirm.jsx';
 import StoreSetting from './pages/admin/store/StoreSetting.jsx';
 import UserSetting from './pages/admin/user/UserSetting.jsx';
+import CheckReview from './pages/admin/user/CheckReview.jsx';
 import ReviewSetting from './pages/admin/review/ReviewSetting.jsx';
-import Edit from './pages/admin/store/Idx.jsx'
+import Edit from './pages/admin/store/Idx.jsx';
+
 
 import Join from './pages/register/Join.jsx';
-import Check from './pages/register/Check.jsx';
 
 import { useEffect } from 'react'
 import {useDispatch} from 'react-redux';
@@ -33,6 +35,7 @@ import { user_login_failure, user_login_request, user_login_success,
   user_logout_request, user_logout_success } from './reducers/user';
 
 import Write from './pages/Write.jsx'
+import GlobalStyle from '../src/style/global'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -44,7 +47,7 @@ const App = () => {
     }
   },[])
   return (
-    <div style={{ background: 'pink' }}>
+    <div style={{ background: '#FFFCDD' }}>
       <BrowserRouter>
         <DefaultHeader />
         <Routes>
@@ -52,6 +55,7 @@ const App = () => {
           <Route path="/mypage" element={<Mypage />} />
           <Route path="/login" element={<Login />} />
           <Route path='/write' element={<Write/>} />
+          <Route path="/shop/:idx" element={<Shop />}/>
           <Route path="/rank" element={<Rank />} />
           <Route path='/rank/flavor' element={<Flavor />} />
           <Route path='/rank/atmosphere' element={<Atmosphere />} />
@@ -62,16 +66,20 @@ const App = () => {
           <Route path="/theme/unique" element={<Unique />} />
           <Route path="/theme/parking" element={<Parking />} />
           <Route path='/register/join' element={<Join/>} />
-          <Route path='/register/check' element={<Check />} />
           <Route path="/dt/admin" element={<Admin />} />
           <Route path="/dt/admin/menu" element={<AdminMenu />} />
           <Route path="/dt/admin/menu/store/confirm" element={<Confirm />} />
+          {/* <Route path="/dt/admin/menu/store/confirm/:register_id" element={<RegiEdit />}/> */}
           <Route path="/dt/admin/menu/store/setting" element={<StoreSetting />} />
-          {/* <Route path="/dt/admin/menu/store/setting/update/:store_id" element={<Edit />} /> */}
-          <Route path="/dt/admin/menu/user/setting" element={<UserSetting />} />
-          <Route path="/dt/admin/menu/review/setting" element={<ReviewSetting />} />
           <Route path="/dt/admin/menu/store/setting/:store_id" element={<Edit />}/>
+          {/* <Route path="/dt/admin/menu/store/setting/update/:store_id" element={<Edit />} /> */}
+          <Route path="/dt/admin/menu/user/setting" element={<UserSetting/>} />
+          <Route path="/dt/admin/menu/user/setting/checkblack/:email" element={<CheckReview />} />
+          <Route path="/dt/admin/menu/review/setting" element={<ReviewSetting />} />
+
+          
         </Routes>
+        <GlobalStyle/>
       </BrowserRouter>
     </div>
   )

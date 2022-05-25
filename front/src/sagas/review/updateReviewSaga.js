@@ -21,20 +21,20 @@ async function updateReviewAPI (action) {
     }
 }
 
-function* updateDelete(action) {
+function* updateReview(action) {
     try {
         const result = yield call(updateReviewAPI, action)
         yield put({
-            type:review_update_success.toString(), payload: result.result
+            type:review_update_success.toString()
         })
     }
     catch (e) {
         yield put ({
-            type : review_update_failure.toString(), payload: e.response.data
+            type : review_update_failure.toString()
         })
     }
 }
 
 export default function* updateReviewSaga() {
-    yield takeLatest(review_update_request.toString(), updateDelete)
+    yield takeLatest(review_update_request.toString(), updateReview)
 } 

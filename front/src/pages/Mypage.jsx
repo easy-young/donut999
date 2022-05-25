@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import Store from '.././store/useStore.jsx'
+import Store, { store } from '.././store/useStore.jsx'
 import {useDispatch, useSelector} from 'react-redux';
 import { useEffect, useState } from 'react';
 import { review_failure, review_success, review_request, review_delete_request, review_delete_success, review_delete_failure,
@@ -43,11 +43,24 @@ const Mypage = () => {
 
     const updateBoot = (k) => {
         dispatch({type: review_update_start.toString(), payload : { upidx : k} })
+        // console.log(stores.review.data)
+        // for( let i = 0; i < stores.review.data.length; i++) {
+        //     if (stores.review.data[i].idx == k ) {
+        //         const qwe = document.querySelector('#qwe')
+        //         qwe.innerHTML = stores.review.data[i].text
+        //     }
+        // }
     }
 
     const changeHandler = (e) => {
-        console.log(e.target.value)
+        // console.log(e.target.value)
         dispatch({type: review_update_proceed.toString(), payload: e.target.value } )
+    }
+
+    const submitHandler = (k) => (e) => {
+        e.preventDefault()
+        const submitText = document.querySelector('#submitText')
+        dispatch({type: review_update_request.toString(), payload : {text: submitText.value, idx: k }})
     }
 
     const reviewList = stores.review.data.map((v)=> {
@@ -61,7 +74,7 @@ const Mypage = () => {
                 <li> 서비스 : {v.service == null ? '평가 정보 없음' : v.service}</li>
                 <li> 평가 : {v.text == null ? '평가 정보 없음' : v.text}</li>
                 <li> updateFlag : {v.updateFlag}</li>
-                <li> { v.idx} </li>
+                <li> { v.idx } </li>
                 <button onClick={() => updateBoot(v.idx)}> 수정 </button>
             </ul>
             :
@@ -71,7 +84,10 @@ const Mypage = () => {
                 <li> 분위기 : {v.atmosphere == null ? '평가 정보 없음' : v.atmosphere}</li>
                 <li> 가격 : {v.cheap == null ? '평가 정보 없음' : v.cheap}</li>
                 <li> 서비스 : {v.service == null ? '평가 정보 없음' : v.service}</li>
-                <input type='text' value={v.text} onChange = {changeHandler}/>
+                <form onSubmit={submitHandler(v.idx)}>
+                    <input type='text' onChange = {changeHandler} value={v.text} id='submitText'/>
+                    <input type='submit' value='submit' />
+                </form>
             </ul>
         )
     })

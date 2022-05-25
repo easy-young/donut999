@@ -6,14 +6,21 @@ import adminStoreUpSaga from './admin/adminStoreUpSaga'
 import adminStoreDelSaga from './admin/adminStoreDelSaga';
 import adminBlackSaga from './admin/adminBlackSaga';
 import adminNewBlackSaga from './admin/adminNewBlackSaga';
+import adminDelBlackSaga from './admin/adminDelBlackSaga';
+import adminBlackReviewSaga from './admin/adminBlackReviewSaga';
+import adminReviewSaga from './admin/adminReviewSaga';
+import adminDelReviewSaga from './admin/adminDelReviewSaga';
+import adminConfirmSaga from './admin/adminStoreConfirmSaga';
+
 import registerSaga from './registerSaga';
 import stationSaga from './stationSaga';
+import shopSaga from './shopSaga';
 
 /*  review CRUD  */
 import reviewSaga from './reviewSaga.js'
 import createReviewSaga from './review/createReviewSaga.js';
 import deleteReviewSaga from './review/deleteReviewSaga.js'
-
+import updateReviewSaga from './review/updateReviewSaga.js'
 
 
 export default function* rootSaga() {
@@ -26,11 +33,18 @@ export default function* rootSaga() {
         adminStoreDelSaga(),
         adminBlackSaga(),
         adminNewBlackSaga(),
+        adminDelBlackSaga(),
+        adminBlackReviewSaga(),
+        adminReviewSaga(),
+        adminDelReviewSaga(),
+        adminConfirmSaga(),
         registerSaga(),
         reviewSaga(),
         createReviewSaga(),
         deleteReviewSaga(),
-        stationSaga()
+        updateReviewSaga(),
+        stationSaga(),
+        shopSaga()
     ]);
     
 }

@@ -2,7 +2,9 @@ CREATE DATABASE react;
 USE react;
 
 CREATE TABLE black (
-    email VARCHAR(30) NOT NULL
+    email VARCHAR(30) NOT NULL,
+    date DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
+	PRIMARY KEY (email)
 );
 
 CREATE TABLE shop (
@@ -16,7 +18,7 @@ CREATE TABLE shop (
     operhour VARCHAR(50),
     website VARCHAR(100),
     menu VARCHAR(350),
-    beverage VARCHAR(20),
+    beverage VARCHAR(400),
     tel VARCHAR(20),
     protein CHAR(1) DEFAULT 'N',
     photo CHAR(1) DEFAULT 'N',
@@ -27,6 +29,7 @@ CREATE TABLE shop (
 
 CREATE TABLE register (
     idx INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(60) NOT NULL,
     store VARCHAR(30) NOT NULL,
     menu VARCHAR(30) NOT NULL,
     address VARCHAR(60) NOT NULL,
@@ -44,7 +47,7 @@ CREATE TABLE review (
     cheap INT,
     service INT,
     text VARCHAR(300),
-    updateFlag BOOLEAN DEFAULT false,
+    date DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (sidx) REFERENCES shop (idx)
 );
 

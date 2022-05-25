@@ -52,8 +52,9 @@ const deleteReview = async (req, res) => {
 }
 
 const updateReview = async (req, res) => {
-    const { idx} = req.body
-    const sql = `update`
+    const { text, idx } = req.body
+    const sql = `update review set text=? where idx=?`
+    const param = [text, idx]
 
     try {
         const result = await pool.execute(sql, param)
@@ -74,6 +75,6 @@ const updateReview = async (req, res) => {
 
 router.use('/createReview', createReview)
 router.use('/deleteReview', deleteReview)
-// router.use('/updateReview', updateReview)
+router.use('/updateReview', updateReview)
 
 module.exports = router

@@ -1,33 +1,17 @@
-const express = require('express')
-const router = express.Router()
-const app = express()
+const express = require('express');
+const router = express.Router();
+const { pool } = require('../db.js');
 
-const pool = require('../db.js').pool
-const { default: axios } = require('axios')
-
-const shop = async (req, res) => {
-    const sql = `select name from shop`
-
+router.post('/:idx', async (req, res) => {
+    const idx = req.body.payload;
+    const sql = `SELECT * FROM shop WHERE idx=${idx}`;
     try {
-        const [result] = await pool.execute(sql)
-
-        const response = {
-            result
-        }
-        res.json(response)
+        const [[result]] = await pool.execute(sql);
+        res.json(result);
+    } catch (e) {
+        console.log(e.message);
+        res.json({});
     }
+});
 
-    catch (e) {
-        console.log(e.message)
-        const response = {
-            errormsg: e.message,
-            errno: 1
-        }
-        
-        res.json(response)  
-    }
-} 
-
-router.use('/shop', shop)
-
-module.exports = router
+module.exports = router;

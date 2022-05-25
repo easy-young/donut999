@@ -3,16 +3,20 @@ import { AuthButton,AdminInput,BigButton } from "../../../components/styles/Admi
 import {useDispatch, useSelector} from 'react-redux';
 import {admin_black_request} from '../../../reducers/admin/adminBlack.js';
 import {admin_new_black_request} from '../../../reducers/admin/adminNewBlack.js';
+import {admin_del_black_request} from '../../../reducers/admin/adminDelBlack.js';
 import { useEffect } from 'react';
 
 const UserSetting = () => {
 
     const dispatch = useDispatch()
+    
+    const black = useSelector(state=>state.adminBlack.user)
+
     useEffect(()=>{
         dispatch({type:admin_black_request.toString()})
+
     },[dispatch])
-    const black = useSelector(state=>state.adminBlack.user)
-    console.log(black)
+
 
     const blackSubmit = (e) => {
         e.preventDefault()
@@ -24,12 +28,18 @@ const UserSetting = () => {
         dispatch(admin_new_black_request(payload)) 
     }
 
+    const delSubmit = (e) => {
+        e.preventDefault()
+        const {value} = e.target.kemail
+
+        dispatch(admin_del_black_request(value)) 
+    }
 
     return(
         <>
             <div>
-                <h2 style={{textAlign:'center'}}>~ Black List ~</h2>
-                <form method="post" style={{textAlign:'center', marginTop:'5%' }} onSubmit={blackSubmit}>
+                <h2 style={{textAlign:'center', marginTop:'4%'}}>~ Black List ~</h2>
+                <form method="post" style={{textAlign:'center', marginTop:'3%' }} onSubmit={blackSubmit}>
                     <AdminInput type="text" name="kakaoEmail" placeholder="블랙 리스트 회원을 추가해 주세요."/>
                     <BigButton type="submit" style={{marginLeft:"2%", fontSize:'1.3rem'}}>블랙리스트등록</BigButton>
                 </form>
@@ -41,8 +51,17 @@ const UserSetting = () => {
                             <>
                                 <li style={{marginTop:'3%'}}>
                                     {x.email}
-                                    <span style={{marginLeft:'3%'}}><button>작성 리뷰</button></span>
-                                    <spna style={{marginLeft:'3%'}}><button>일반 회원</button></spna>
+                                    
+                                    <Link to ={"/dt/admin/menu/user/setting/checkblack/"+x.email}>
+                                        <span style={{marginLeft:'3%'}}><button>작성 리뷰</button></span>
+                                    </Link>
+                                    <span>
+                                        <form method="post" onSubmit={delSubmit} style={{marginLeft:'3%',display:'inline'}}>
+                                            <input type="hidden" name = "kemail" value={x.email}/>
+                                            <button type="submit">일반 회원</button>
+                                        </form>
+                                    </span>
+                                    <p>{x.stamp}</p>
                                 </li>
                             </>
                         )

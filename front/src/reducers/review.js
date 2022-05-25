@@ -90,7 +90,7 @@ const review = (state=initialState, action) => {
             const idx = action.payload.idx
             return {
                 ...state,
-                data: [...state.data.filter(v => v.idx != idx)],
+                data: [...state.data.filter(v => v.idx !== idx)],
                 metadata : {
                     ...state.metadata,
                     loading:false,
@@ -114,13 +114,28 @@ const review = (state=initialState, action) => {
                 update: action.payload.upidx
             }
         case review_update_PROCEED :
-            console.log(action.payload)
+            let qwe = []
+            for (let i =0; i< state.data.length; i++) {
+                // if(state.data[i].idx !== state.update ) {
+                //     qwe.push(state.data.length[i])
+                // }
+                // else {
+                //     state.data.text = action.payload
+                // }
+                if (state.data[i].idx == state.update) {
+                    state.data[i].text = action.payload
+                    console.log(state.data[i].text)
+                }
+            }
+            // console.log(qwe)
             return {
                 ...state,
-                data : [...state.data ]
+                data : [...state.data,
+                ]
             }
 
         case review_update_REQUEST :
+            // console.log(action.payload)
             return {
                 ...state,
                 metadata : {
@@ -133,7 +148,7 @@ const review = (state=initialState, action) => {
             // const idx = action.payload.idx
             return {
                 ...state,
-                data: [...state.data.filter(v => v.idx != idx)],
+                update:null,
                 metadata : {
                     ...state.metadata,
                     loading:false,

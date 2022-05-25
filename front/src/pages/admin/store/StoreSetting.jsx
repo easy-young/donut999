@@ -1,4 +1,4 @@
-import { Link, useParams  } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {useDispatch, useSelector} from 'react-redux';
 import {admin_store_request} from '../../../reducers/admin/admin.js';
 import {admin_delete_store_request} from '../../../reducers/admin/deleteStore'
@@ -18,13 +18,14 @@ const StoreSetting = () => {
     const onDelete = (e) => {
         e.preventDefault()
         const {value} = e.target.storeidx
+        console.log(value)
         dispatch(admin_delete_store_request(value))
     }
 
     return(
         <> 
         
-            <h2 style={{textAlign:'center'}}>STORE</h2>
+            <h2 style={{textAlign:'center', marginTop:"3%"}}>STORE</h2>
             <Div>
             <Table>
                 <thead>
@@ -35,7 +36,7 @@ const StoreSetting = () => {
                     </Tr>
                 </thead>
                 <tbody>
-                    {stores && stores.map ((x, i) => {
+                    {stores && stores.map ((x) => {
                         if(x.idx < 21){
                             return(
                                 <>
@@ -45,9 +46,9 @@ const StoreSetting = () => {
                                         <Td>
                                             <Link to={"/dt/admin/menu/store/setting/"+x.idx}><Ebutton>수정</Ebutton></Link>
                                             <form method="post" onSubmit={onDelete} style={{display:'inline'}}>
-                                                    <input type="hidden" name = "storeidx" value={x.idx} />
-                                                    <input type="hidden" name="idx" value="" />
-                                                    <Link to={"/dt/admin/menu/store/setting"}><Dbutton type="submit">삭제</Dbutton></Link>
+                                                <input type="hidden" name = "storeidx" value={x.idx} />
+                                                <input type="hidden" name = "idx" value="" />
+                                                <Dbutton type="submit">삭제</Dbutton>
                                             </form>
                                         </Td>
                                     </Tr>
@@ -77,8 +78,8 @@ const StoreSetting = () => {
                                         <Link to={"/dt/admin/menu/store/setting/"+x.idx}><Ebutton>수정</Ebutton></Link>
                                         <form method="post" onSubmit={onDelete} style={{display:'inline'}}>
                                                 <input type="hidden" name = "storeidx" value={x.idx} />
-                                                <input type="hidden" name="idx" value="" />
-                                                <Link to={"/dt/admin/menu/store/setting"}><Dbutton type="submit">삭제</Dbutton></Link>
+                                       
+                                                <Dbutton type="submit">삭제</Dbutton>
                                         </form>
                                     </Td>
                                 </Tr>
@@ -106,8 +107,7 @@ const StoreSetting = () => {
                                         <Link to={"/dt/admin/menu/store/setting/"+x.idx}><Ebutton>수정</Ebutton></Link>
                                         <form method="post" onSubmit={onDelete} style={{display:'inline'}}>
                                                 <input type="hidden" name = "storeidx" value={x.idx} />
-                                                <input type="hidden" name="idx" value="" />
-                                                <Link to={"/dt/admin/menu/store/setting"}><Dbutton type="submit">삭제</Dbutton></Link>
+                                                <Dbutton type="submit">삭제</Dbutton>
                                         </form>
                                     </Td>
                                 </Tr>

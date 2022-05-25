@@ -25,10 +25,12 @@ const adminDeleteStore = (state=initialState,action) => {
   
     switch(action.type){
         case ADMIN_DELETE_STORE.REQUEST:
+            console.log('req',action.payload)
             return {
                 ...state,
             }
         case ADMIN_DELETE_STORE.SUCCESS:
+            console.log('suc',action.payload)
             return {
                 ...state,
                 display:false
