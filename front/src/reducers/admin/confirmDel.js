@@ -34,7 +34,7 @@ const confirmDel = (state=initialState,action) => {
                 ...state,
                 display:false,
                 regi:[
-                    ...state.regi.filter(v => v.idx !== idx)
+                    ...state.regi
                 ] 
             }
         case ADMIN_CONFIRM_DEL.FAILURE:

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {takeLatest,call,put} from 'redux-saga/effects';
-import { admin_confirm_del_request, admin_confirm_del_success, admin_confirm_del_failure} from '../../reducers/admin/confirmDel.js';
+import { admin_confirm_del_request, admin_confirm_del_success, admin_confirm_del_failure} from '../../reducers/admin/adminStoreConfirm';
 
 async function confirmDelAPI({payload}){
     console.log('api',payload)
