@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 import display from './display.js';
 import shop from './shop.js';
+// import review from './review.js';
 import admin from './admin/admin.js';
 import adminStore from './admin/adminStore.js';
 import adminEditStore from "./admin/editStore.js";
@@ -17,7 +18,10 @@ import adminDelRegi from './admin/adminStConDel.js';
 import register from "./register.js";
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+
 import user from './user.js'
+import review from './review.js'
+import createReview from "./writeReview.js";
 import station from "./station.js";
 
 import route_map from "./routemap.js";
@@ -34,6 +38,7 @@ const persist = {
 
 const rootReducer = combineReducers({
     shop,
+    review,
     display,
     admin,
     adminStore,
@@ -50,6 +55,8 @@ const rootReducer = combineReducers({
     register,
     route_map,
     user,
+    review,
+    createReview,
     station
 });
 

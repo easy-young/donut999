@@ -39,13 +39,20 @@ CREATE TABLE register (
 );
 
 CREATE TABLE review (
-    idx INT NOT NULL,
+    idx INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    sidx INT ,
     email VARCHAR(30) NOT NULL,
-    flavor INT NOT NULL,
-    atmosphere INT NOT NULL,
-    cheap INT NOT NULL,
-    service INT NOT NULL,
-    text VARCHAR(300) NOT NULL,
-    date  DATETIME CURRENT_TIMESTAMP
-    FOREIGN KEY (idx) REFERENCES shop (idx)
+    flavor INT,
+    atmosphere INT,
+    cheap INT,
+    service INT,
+    text VARCHAR(300),
+    date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (sidx) REFERENCES shop (idx)
 );
+
+
+insert into review(sidx, email, flavor, atmosphere, cheap, service, text, updateFlag ) 
+values(1,'619049@naver.com', 5, 5, 5, 5, '와 정말 맛있어요!', false);
+insert into review(sidx, email, flavor, atmosphere, cheap, service, text, updateFlag ) 
+values(2,'619049@naver.com', 5, 5, 5, 5, '와 정말 비싸요!', false);
