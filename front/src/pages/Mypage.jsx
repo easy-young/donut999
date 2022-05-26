@@ -89,6 +89,7 @@ const Mypage = () => {
     const body = { email : stores.user.me.email }
 
     const deleteHandler = (k) => {
+        console.log(k)
         dispatch({type :review_delete_request.toString(), payload: {idx:k} })
     }
 
