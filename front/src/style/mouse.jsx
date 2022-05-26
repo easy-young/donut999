@@ -1,10 +1,12 @@
 import styled from 'styled-components'
-
+import { isMobile } from 'react-device-detect';
+import display from '../reducers/display';
 const Fork = styled.img`
+
     position: absolute;
-    width: 3vw; 
-    height: 20vh;
-    transform: translate(60%, -5%) rotate(-35deg);
+    width: 30px; 
+    height: 120px;
+    transform: translate(100%, 0%) rotate(-35deg);
     z-index:2000;
 
 `
@@ -23,7 +25,13 @@ document.addEventListener("mousemove", (e) => {
 
 const forkComponent = () => {
     return(
-        <Fork src="http://localhost:3000/img/fork.png" className="fork"/>
+        <>
+            {isMobile ? <Fork style={{display:"none"}}/> :
+
+            <Fork src="http://localhost:3000/img/fork.png" className="fork"/>
+            }
+        </>
+        
     )
 }
 export default forkComponent;
