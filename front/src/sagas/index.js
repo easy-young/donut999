@@ -16,6 +16,7 @@ import confirmStoreSaga from './admin/confirmStoreSaga';
 import confirmDelSaga from './admin/confirmDelSaga';
 import blackSearchSaga from './admin/blackSearchSaga';
 import reviewSearchSaga from './admin/reviewSearchSaga';
+import sortConfirmSaga from './admin/sortConfirmSaga';
 
 import registerSaga from './registerSaga';
 import stationSaga from './stationSaga';
@@ -52,6 +53,7 @@ export default function* rootSaga() {
         confirmDelSaga(),
         blackSearchSaga(),
         reviewSearchSaga(),
+        sortConfirmSaga(),
 
         registerSaga(),
 

@@ -3,6 +3,7 @@ import { createAction } from "redux-actions";
 
 const initialState = {
     register:[],
+    sort:[],
 }
 
 const ADMIN_STORE_CONFIRM = {
@@ -70,17 +71,19 @@ const adminConfirm = (state=initialState,action) => {
                 ...state
             }
         case ADMIN_CONFIRM_STATE.REQUEST:
-        
+        console.log('state req reducer', action.payload)
             return {
                 ...state,
             }
         case ADMIN_CONFIRM_STATE.SUCCESS:
-            
+            console.log('state suc reducer', action)
             return {
                 ...state,
-                register:action.payload
+                sort:action.payload
+                
             }
         case ADMIN_CONFIRM_STATE.FAILURE:
+        
             return {
                 ...state
             }
