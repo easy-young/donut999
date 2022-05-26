@@ -23,6 +23,7 @@ import shopSaga from './shopSaga';
 import rankSaga from './rankSaga';
 
 /*  review CRUD  */
+import getStoreSaga from './review/getStoreSaga';
 import reviewSaga from './reviewSaga.js'
 import createReviewSaga from './review/createReviewSaga.js';
 import deleteReviewSaga from './review/deleteReviewSaga.js'
@@ -53,6 +54,8 @@ export default function* rootSaga() {
         reviewSearchSaga(),
 
         registerSaga(),
+
+        getStoreSaga(),
         reviewSaga(),
         createReviewSaga(),
         deleteReviewSaga(),
