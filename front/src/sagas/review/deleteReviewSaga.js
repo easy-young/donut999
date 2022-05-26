@@ -12,9 +12,14 @@ async function deleteReviewAPI (action) {
     const data = {
         ...action.payload
     }
+    console.log(action.payload.idx)
     try {
         const result = await axios.post('http://localhost:4000/review/deleteReview', data , option )
-        return result.data
+        const response = {
+            result: result.data,
+            idx: action.payload.idx
+        }
+        return response
     }
     catch(e) {
         console.log(e)
@@ -25,7 +30,7 @@ function* reviewDelete(action) {
     try {
         const result = yield call(deleteReviewAPI, action)
         yield put({
-            type:review_delete_success.toString(), payload: result.result
+            type:review_delete_success.toString(), payload: result
         })
     }
     catch (e) {
