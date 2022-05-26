@@ -85,13 +85,11 @@ const StarSpan = styled.span`
 const Mypage = () => {
     const stores = useSelector(state => state)
     const dispatch = useDispatch()
-    // const [ reviewList, setReviewList ] = useState([])
 
     const body = { email : stores.user.me.email }
 
     const deleteHandler = (k) => {
         dispatch({type :review_delete_request.toString(), payload: {idx:k} })
-        // getReview()
     }
 
     const getReview = () => {

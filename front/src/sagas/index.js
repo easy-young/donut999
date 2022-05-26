@@ -25,6 +25,8 @@ import createReviewSaga from './review/createReviewSaga.js';
 import deleteReviewSaga from './review/deleteReviewSaga.js'
 import updateReviewSaga from './review/updateReviewSaga.js'
 
+import themeSaga from './themeSaga.js';
+
 
 export default function* rootSaga() {
 
@@ -51,7 +53,8 @@ export default function* rootSaga() {
         deleteReviewSaga(),
         updateReviewSaga(),
         stationSaga(),
-        shopSaga()
+        shopSaga(),
+        themeSaga()
     ]);
     
 }

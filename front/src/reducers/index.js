@@ -29,6 +29,7 @@ import createReview from "./writeReview.js";
 import station from "./station.js";
 
 import route_map from "./routemap.js";
+import theme from './theme.js'
 
 const persist = {
     key:'user',
@@ -65,7 +66,8 @@ const rootReducer = combineReducers({
     user,
     review,
     createReview,
-    station
+    station,
+    theme
 });
 
 export default persistReducer(persist, rootReducer);
