@@ -79,6 +79,12 @@ const StoreScore = styled(StoreAddress)`
     bottom: 200px;
 `;
 
+const NoBox = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 20px;
+`;
 
 const Index = () => {
     
@@ -357,8 +363,7 @@ const Index = () => {
     const img_box = document.querySelector('#img_box')
     // console.log("내 화면의 너비:",window.outerWidth,"내 화면의 높이", window.innerHeight) //리사이징마다 갱신
 
-    const { name } = useSelector((state) => state.station);
-    const { store } = useSelector((state) => state.station);
+    const { name, store, no } = useSelector((state) => state.station);
     const clickStation = (e) => {
         dispatch(station_request(e.target.id));
     }
@@ -862,7 +867,7 @@ const Index = () => {
                 name &&
                 <Background>
                     <Container>
-                        <StationName>{ name }역 맛집</StationName>
+                        <StationName>{ store.length > 0 && name+"역 맛집" }</StationName>
                         <CloseBtn onClick={Close}>X</CloseBtn>
                         {
                             store.length > 0 && store.map((v, i) => {
@@ -896,6 +901,13 @@ const Index = () => {
                                     </>
                                 )
                             })
+                        }
+                        {
+                            no &&
+                            <NoBox>
+                                <div>현재 해당 역 맛집 정보가 없습니다.</div>
+                                <div>다른 역을 클릭해 보세요!</div>
+                            </NoBox>
                         }
                     </Container>
                 </Background>
