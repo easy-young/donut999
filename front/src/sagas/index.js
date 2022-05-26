@@ -18,6 +18,7 @@ import confirmDelSaga from './admin/confirmDelSaga';
 import registerSaga from './registerSaga';
 import stationSaga from './stationSaga';
 import shopSaga from './shopSaga';
+import rankSaga from './rankSaga';
 
 /*  review CRUD  */
 import reviewSaga from './reviewSaga.js'
@@ -51,7 +52,8 @@ export default function* rootSaga() {
         deleteReviewSaga(),
         updateReviewSaga(),
         stationSaga(),
-        shopSaga()
+        shopSaga(),
+        rankSaga()
     ]);
     
 }
