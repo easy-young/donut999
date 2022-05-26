@@ -58,11 +58,7 @@ export default function* rootSaga() {
         updateReviewSaga(),
         stationSaga(),
         shopSaga(),
-<<<<<<< HEAD
-
-=======
         rankSaga(),
->>>>>>> 5d0484e35e99d6a771859b16f44932045dc17f93
         themeSaga()
     ]);
     
