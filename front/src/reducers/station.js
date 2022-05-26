@@ -2,18 +2,21 @@ import { createAction } from "redux-actions";
 
 const initialState = {
     name: null,
-    store: []
+    store: [],
+    no: null
 };
 
 const STATION = {
     REQUEST: "STATION_REQUEST",
     SUCCESS: "STATION_SUCCESS",
+    NO: "STATION_NO",
     FAILURE: "STATION_FAILURE",
     EXIT: "STATION_EXIT"
 };
 
 export const station_request = createAction(STATION.REQUEST, payload => payload);
 export const station_success = createAction(STATION.SUCCESS, payload => payload);
+export const station_no = createAction(STATION.NO, payload => payload);
 export const station_failure = createAction(STATION.FAILURE, payload => payload);
 export const station_exit = createAction(STATION.EXIT, payload => payload);
 
@@ -32,6 +35,11 @@ const station = (state = initialState, action) => {
                     ...action.payload
                 ]
             };
+        case STATION.NO:
+            return {
+                ...state,
+                no: true
+            }
         case STATION.FAILURE:
             return {
                 ...state,
@@ -40,7 +48,8 @@ const station = (state = initialState, action) => {
             return {
                 ...state,
                 name: false,
-                store: []
+                store: [],
+                no: null
             }
         default:
             return {

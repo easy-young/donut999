@@ -357,8 +357,7 @@ const Index = () => {
     const img_box = document.querySelector('#img_box')
     // console.log("내 화면의 너비:",window.outerWidth,"내 화면의 높이", window.innerHeight) //리사이징마다 갱신
 
-    const { name } = useSelector((state) => state.station);
-    const { store } = useSelector((state) => state.station);
+    const { name, store } = useSelector((state) => state.station);
     const clickStation = (e) => {
         dispatch(station_request(e.target.id));
     }
@@ -862,7 +861,7 @@ const Index = () => {
                 name &&
                 <Background>
                     <Container>
-                        <StationName>{ name }역 맛집</StationName>
+                        <StationName>{ store.length > 0 && name+"역 맛집" }</StationName>
                         <CloseBtn onClick={Close}>X</CloseBtn>
                         {
                             store.length > 0 && store.map((v, i) => {
