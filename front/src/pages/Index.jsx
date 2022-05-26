@@ -87,8 +87,15 @@ const Index = () => {
         margin: 0;
         padding: 0;
         width:100%;
-        height:1500px;
+        height:700px;
         background:transparent;
+
+        @media (max-height: 700px) {
+            /* width: 340px; */
+            width:100vw;
+            height:100vh;
+            /* height: 200px; */
+        }
 
 
         /* -webkit-animation: snow 10s linear infinite;
