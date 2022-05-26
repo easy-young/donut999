@@ -19,7 +19,6 @@ const UserSetting = () => {
 
     const black = useSelector(state=>state.adminBlack.user)
     const search = useSelector(state=>state.adminBlack.search)
-    console.log(search)
 
 
     const blackSubmit = (e) => {

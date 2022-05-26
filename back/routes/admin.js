@@ -239,13 +239,15 @@ router.post('/store/confirm/:register_id',async (req,res)=>{
 )
 
 router.post('/store/confirm/addstore/:register_id',async (req,res)=>{
+    const prepare2 = [req.body.regi_id]
     const { name, station, line, address, parking , protein, photo, special,operhour , website , menu , beverage , tel , intro  } = req.body
     const sql = `INSERT INTO shop (name, stationKor, station, line, address, parking, operhour, website, menu, beverage, tel, protein, photo, special, intro, more) VALUES (?,?,'hello',?,?,?,?,?,?,?,?,?,?,?,?,'hi')`
     const prepare = [ name, station, line, address, parking , operhour , website , menu , beverage , tel ,  protein, photo, special,intro]
-    console.log(prepare)
+    const sql2 = `UPDATE register SET state = '승인' WHERE idx = ${prepare2}`
+    
     try {
+        const [result2] = await pool.execute(sql2)
         const [result] = await pool.execute(sql,prepare)
-        console.log(result)
         const response = {
             result
         }

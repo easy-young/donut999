@@ -35,27 +35,14 @@ const Confirm = () => {
          
     }
 
-    const radioHandler = (e) => {
-        e.preventDefault()
-        const {value} = e.target
-        console.log(value)
-        dispatch(admin_confirm_state_request)
-    }
-
-    const radioSubmit = (e) =>{
-        e.preventDefault()
-        console.log(e.target.value)
-    }
     
     const sortHandler = (e) => {
         e.preventDefault()
         let target = e.target.value
-        if(target == true){
-            dispatch()
-        }else if(target == false){
-            dispatch()
-        }
+        console.log('sort',target)
+        dispatch(admin_confirm_state_request(target))
     }
+    
 
     return(
         <>
@@ -74,7 +61,7 @@ const Confirm = () => {
                                     <Td>SNS or Web</Td>
                                     <Td>Application Date</Td>
                                     <Td><select name="sort" onChange={sortHandler}>
-                                            <option value="false">반려</option>
+                                            <option value="false">대기</option>
                                             <option value="true">승인</option>
                                         </select></Td>
                                     <Td>
@@ -96,13 +83,7 @@ const Confirm = () => {
                                                 <Td>{x.sns}</Td>
                                                 <Td>{x.stamp}</Td>
                                                 <Td>
-                                                    <form method="post" >
-                                                        <label htmlFor="cancel1">반려</label>
-                                                        <input type="radio" name={"radio"+x.idx} id="cancel1" value="false" onChange={radioHandler}/>
-                                            
-                                                        <label htmlFor="access1">승인</label>
-                                                        <input type="radio" name={"radio"+x.idx} id="access1" value="true" onChange={radioHandler}/>
-                                                    </form>
+                                                    {x.state}
                                                 </Td>
                                                 <Td>
                                                     <input type="checkbox" name = {"registerDel"+x.idx}  value={x.idx} onChange={checkHandler}/>
