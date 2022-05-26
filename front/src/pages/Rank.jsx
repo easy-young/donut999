@@ -1,7 +1,8 @@
-import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { rank_flavor_request, rank_atmosphere_request, rank_cheap_request, rank_service_request } from "../reducers/rank";
+import { rank_total_request, rank_flavor_request, rank_atmosphere_request, rank_cheap_request, rank_service_request } from "../reducers/rank";
 
 const Background = styled.body`
     display: flex;
@@ -98,6 +99,13 @@ const SmallDiv = styled.div`
 
 const Rank = () => {
     const dispatch = useDispatch();
+    const { topFive } = useSelector(state => state.rank);
+    useEffect(() => {
+        dispatch(rank_total_request());
+    }, [dispatch]);
+    const total = () => {
+        dispatch(rank_total_request());
+    };
     const flavor = () => {
         dispatch(rank_flavor_request());
     };
@@ -113,18 +121,23 @@ const Rank = () => {
     return (
         <Background>
             <Container>
-                <Tab style={{ marginLeft: '2%' }}><StyledLink to='/rank'>전체</StyledLink></Tab>
+                <Tab style={{ marginLeft: '2%' }} onClick={total}>전체</Tab>
                 <Tab onClick={flavor}>맛</Tab>
                 <Tab onClick={atmosphere}>분위기</Tab>
                 <Tab onClick={cheap}>가성비</Tab>
                 <Tab onClick={service}>서비스</Tab>
                 <Tab style={{ float: 'right', background: '#f8bcff' }}><StyledLink to='/'>뒤로 가기</StyledLink></Tab>
                 <BigDiv>
-                    <SmallDiv>1</SmallDiv>
-                    <SmallDiv>2</SmallDiv>
-                    <SmallDiv>3</SmallDiv>
-                    <SmallDiv>4</SmallDiv>
-                    <SmallDiv style={{ marginBottom: '0%' }}>5</SmallDiv>
+                    {
+                        topFive && topFive.map((v, i) => 
+                        (
+                            <SmallDiv key={i}>
+                                <div>{i+1}위 : {topFive[i].name}</div>
+                                <div>주소 : {topFive[i].address}</div>
+                                <div>운영 시간 : {topFive[i].operhour}</div>
+                            </SmallDiv>
+                        ))
+                    }
                 </BigDiv>
             </Container>
         </Background>
