@@ -101,14 +101,24 @@ const ReviewDiv = styled.div`
     font-size: 14px;
 `;
 
+const StarSpan2 = styled.span`
+    font-size: 1.25rem;
+`
+
 const Shop = () => {
     const dispatch = useDispatch();
     const { info, review } = useSelector((state) => state.shop);
+
+    const stores = useSelector(state=>state)
+    const email = stores.user.me.email
+
     const params = useParams();
     const { idx } = params;
+
     useEffect(() => {
         dispatch(shop_request(idx));
     }, [dispatch]);
+
     return (
         <Background>
             <Container>
@@ -148,19 +158,40 @@ const Shop = () => {
                                 <StoreName>
                                     리뷰
                                     <ReviewBtn>
-                                        <Link to={"/write/"+info.idx}>
+                                        <Link to={`/write/`+info.idx}>
                                             리뷰 작성
                                         </Link>
                                     </ReviewBtn>
                                     {
                                         review && review.map(v =>
-                                            <ReviewDiv>
+                                            <ReviewDiv>                                            
+                                                <>
                                                 ID : {v.email} <br/>
-                                                맛 : {v.flavor} <br/>
-                                                분위기 : {v.atmosphere} <br/>
-                                                가성비 : {v.cheap} <br/>
-                                                서비스 : {v.service} <br/>
-                                                내용 : {v.text}
+
+                                                맛 : {
+                                                    v.flavor === 1 ? <StarSpan2>⭐</StarSpan2> : v.flavor === 2 ? <StarSpan2>⭐⭐</StarSpan2> 
+                                                    : v.flavor === 3 ? <StarSpan2>⭐⭐⭐</StarSpan2> 
+                                                    : v.flavor === 4 ? <StarSpan2>⭐⭐⭐⭐</StarSpan2> : v.flavor === 5 ? <StarSpan2>⭐⭐⭐⭐⭐ </StarSpan2> : '평가 정보 없음'
+                                                    } <br/>
+                                                분위기 : {
+                                                    v.atmosphere === 1 ? <StarSpan2>⭐</StarSpan2> : v.atmosphere === 2 ? <StarSpan2>⭐⭐</StarSpan2> 
+                                                    : v.atmosphere === 3 ? <StarSpan2>⭐⭐⭐</StarSpan2> 
+                                                    : v.atmosphere === 4 ? <StarSpan2>⭐⭐⭐⭐</StarSpan2> : v.atmosphere === 5 ? <StarSpan2>⭐⭐⭐⭐⭐</StarSpan2> : '평가 정보 없음'
+                                                    } <br/>
+                                                가성비 : {
+                                                    v.cheap === 1 ? <StarSpan2>⭐</StarSpan2> : v.cheap === 2 ? <StarSpan2>⭐⭐</StarSpan2> 
+                                                    : v.cheap === 3 ? <StarSpan2>⭐⭐⭐</StarSpan2> 
+                                                    : v.cheap === 4 ? <StarSpan2>⭐⭐⭐⭐</StarSpan2> : v.cheap === 5 ? <StarSpan2>⭐⭐⭐⭐⭐</StarSpan2> : '평가 정보 없음'
+                                                } <br/>
+                                                서비스 : {
+                                                    v.service === 1 ? <StarSpan2>⭐</StarSpan2> : v.service === 2 ? <StarSpan2>⭐⭐</StarSpan2> 
+                                                    : v.service === 3 ? <StarSpan2>⭐⭐⭐</StarSpan2> 
+                                                    : v.service === 4 ? <StarSpan2>⭐⭐⭐⭐</StarSpan2> : v.service === 5 ? <StarSpan2>⭐⭐⭐⭐⭐</StarSpan2> : '평가 정보 없음'
+                                                    } <br/>
+                                                내용 : {v.text} <br/>
+                                                { email === v.email ? <button><a href='/mypage'>수정하기</a></button> : null}
+                                                <hr/>
+                                                </>
                                             </ReviewDiv>
                                         )
                                     }
