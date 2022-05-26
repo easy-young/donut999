@@ -22,38 +22,18 @@
     </div>
 </body>
 <style>
-    #wrap{
-        width: 100%;
-        height: 100%;
-    }
-    #img_box{
-        width: 80vw;
-        height: 80vh;
-        border:1px solid red;
-        margin: 0 auto;
-        overflow: hidden;
-        position: relative;
-    }
 
-    #img_parent{
-        width: 150%;
-        height: 200%;
-        position: absolute;
-        left: 10px;
-        z-index: 100;
-    }
 
-    #img{
-        width: 150%;
-        height: 200%;
-        
-    }
-
-    #component{
-        width: 100px;
-        height: 100px;
-        z-index: 100;
-        background: yellow;
-    }
 </style>
+<div class="mypage">
+    <a href='/' class="close">x</a>
+    <div class="mypage_box">
+        <h1 class="welcome"> 🍩 {decodeURI(stores.user.me.nickname)} 님! 환영합니다! 🍩 </h1>
+        <h2 class="email"> 📧 내 이메일(ID): {stores.user.me.email} </h2>
+        <h2 class="review"> ✏️ 내가 쓴 리뷰 </h2>
+        <div class="review_list">
+            {reviewList}
+        </div>
+    </div>
+</div>
 </html>

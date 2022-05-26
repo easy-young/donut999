@@ -41,7 +41,7 @@ const snow = keyframes`
 
     0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
 
-    100% {background-position: 100% 100%, 300px 1000px, 400px 400px, 300px 300px;}
+    100% {background-position: 500px 1000px, 300px 1000px, 400px 400px, 300px 300px;}
     
 
     /* -webkit-background-position{
