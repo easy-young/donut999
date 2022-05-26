@@ -41,6 +41,7 @@ CREATE TABLE register (
 CREATE TABLE review (
     idx INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     sidx INT ,
+    storename VARCHAR(30) NOT NULL,
     email VARCHAR(30) NOT NULL,
     flavor INT,
     atmosphere INT,

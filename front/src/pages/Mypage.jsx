@@ -143,6 +143,7 @@ const Mypage = () => {
             stores.review.update !== v.idx ?
             <Starul>
                 <li onClick={() => deleteHandler(v.idx)}> x </li>
+                <li> {v.storename}</li>
                 <Starli> 맛 : {
                     v.flavor === 1 ? <StarSpan>⭐</StarSpan> : v.flavor === 2 ? <StarSpan>⭐⭐</StarSpan> 
                     : v.flavor === 3 ? <StarSpan>⭐⭐⭐</StarSpan> 
