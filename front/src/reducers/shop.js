@@ -23,7 +23,8 @@ const shop = (state = initialState, action) => {
         case SHOP.SUCCESS:
             return {
                 ...state,
-                info: action.payload
+                info: action.payload.info,
+                review: action.payload.review
             }
         case SHOP.FAILURE:
             return {

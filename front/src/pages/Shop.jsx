@@ -34,6 +34,12 @@ const ImgBox = styled.div`
     justify-content: space-around;
 `;
 
+const ContentBox = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+`;
+
 const Img = styled.img`
     display: inline-block;
     width: 400px;
@@ -42,8 +48,8 @@ const Img = styled.img`
 
 const StarImg = styled.img`
     position: absolute;
-    width: 150px;
-    height: 30px;
+    width: 100px;
+    height: 20px;
     left: 0px;
     z-index: 10;
 `;
@@ -62,12 +68,6 @@ const ReviewBtn = styled.button`
     }
 `;
 
-const Half = styled.div`
-    display: inline-block;
-    width: 660px;
-    height: 340px;
-`;
-
 const Btn = styled.button`
     padding: 6px;
     height: 34px;
@@ -83,30 +83,42 @@ const Btn = styled.button`
 const StarBox = styled.span`
     display: inline-block;
     position: relative;
+    margin-left: 16px;
 `;
 
 const StarSpan = styled.span`
     display: inline-block;
-    position: relative;
+    position: absolute;
     width: 50px;
-    height: 30px;
+    height: 20px;
     background: url('/img/star/star5.png');
-    background-size: 150px 30px;
+    background-size: 100px 20px;
     overflow: hidden;
     z-index: 20;
 `;
 
+const ReviewDiv = styled.div`
+    font-size: 14px;
+`;
+
+const StarSpan2 = styled.span`
+    font-size: 1.25rem;
+`
+
 const Shop = () => {
     const dispatch = useDispatch();
-    const { info } = useSelector((state) => state.shop);
+    const { info, review } = useSelector((state) => state.shop);
+
+    const stores = useSelector(state=>state)
+    const email = stores.user.me.email
+
     const params = useParams();
     const { idx } = params;
+
     useEffect(() => {
         dispatch(shop_request(idx));
     }, [dispatch]);
-    const review = () => {
-        // dispatch(review_create_request());
-    };
+
     return (
         <Background>
             <Container>
@@ -118,13 +130,12 @@ const Shop = () => {
                             <Img src={require(`../../public/img/donut_store/${info.idx}_2.jpg`)}/>
                             <Img src={require(`../../public/img/donut_store/${info.idx}_3.jpg`)}/>
                         </ImgBox>
-                        <div style={{ display: 'flex', justifyContent: 'center' }}>
-                            <Half>
+                        <ContentBox>
+                            <div>
                                 <StoreName>
                                     {info.name}
                                     <StarBox>
                                         <StarImg src='/img/star/star0.png'/>
-                                        {/* <StarImg src='/img/star/star5.png'/> */}
                                         <StarSpan></StarSpan>
                                     </StarBox>
                                 </StoreName>
@@ -142,19 +153,53 @@ const Shop = () => {
                                     info.intro &&
                                     <div>(소개) {info.intro}</div>
                                 }
-                            </Half>
-                            <Half>
+                            </div>
+                            <div>
                                 <StoreName>
                                     리뷰
-                                    <ReviewBtn onClick={review}>
+                                    <ReviewBtn>
+                                        <Link to={`/write/`+info.idx}>
                                             리뷰 작성
+                                        </Link>
                                     </ReviewBtn>
+                                    {
+                                        review && review.map(v =>
+                                            <ReviewDiv>                                            
+                                                <>
+                                                ID : {v.email} <br/>
+
+                                                맛 : {
+                                                    v.flavor === 1 ? <StarSpan2>⭐</StarSpan2> : v.flavor === 2 ? <StarSpan2>⭐⭐</StarSpan2> 
+                                                    : v.flavor === 3 ? <StarSpan2>⭐⭐⭐</StarSpan2> 
+                                                    : v.flavor === 4 ? <StarSpan2>⭐⭐⭐⭐</StarSpan2> : v.flavor === 5 ? <StarSpan2>⭐⭐⭐⭐⭐ </StarSpan2> : '평가 정보 없음'
+                                                    } <br/>
+                                                분위기 : {
+                                                    v.atmosphere === 1 ? <StarSpan2>⭐</StarSpan2> : v.atmosphere === 2 ? <StarSpan2>⭐⭐</StarSpan2> 
+                                                    : v.atmosphere === 3 ? <StarSpan2>⭐⭐⭐</StarSpan2> 
+                                                    : v.atmosphere === 4 ? <StarSpan2>⭐⭐⭐⭐</StarSpan2> : v.atmosphere === 5 ? <StarSpan2>⭐⭐⭐⭐⭐</StarSpan2> : '평가 정보 없음'
+                                                    } <br/>
+                                                가성비 : {
+                                                    v.cheap === 1 ? <StarSpan2>⭐</StarSpan2> : v.cheap === 2 ? <StarSpan2>⭐⭐</StarSpan2> 
+                                                    : v.cheap === 3 ? <StarSpan2>⭐⭐⭐</StarSpan2> 
+                                                    : v.cheap === 4 ? <StarSpan2>⭐⭐⭐⭐</StarSpan2> : v.cheap === 5 ? <StarSpan2>⭐⭐⭐⭐⭐</StarSpan2> : '평가 정보 없음'
+                                                } <br/>
+                                                서비스 : {
+                                                    v.service === 1 ? <StarSpan2>⭐</StarSpan2> : v.service === 2 ? <StarSpan2>⭐⭐</StarSpan2> 
+                                                    : v.service === 3 ? <StarSpan2>⭐⭐⭐</StarSpan2> 
+                                                    : v.service === 4 ? <StarSpan2>⭐⭐⭐⭐</StarSpan2> : v.service === 5 ? <StarSpan2>⭐⭐⭐⭐⭐</StarSpan2> : '평가 정보 없음'
+                                                    } <br/>
+                                                내용 : {v.text} <br/>
+                                                { email === v.email ? <button><a href='/mypage'>수정하기</a></button> : null}
+                                                <hr/>
+                                                </>
+                                            </ReviewDiv>
+                                        )
+                                    }
                                 </StoreName>
-                            </Half>
-                        </div>
+                            </div>
+                        </ContentBox>
                         <div style={{ display: 'flex', justifyContent:'center' }}>
-                            <Btn>홈으로</Btn>
-                            <Btn style={{ marginLeft: '10px' }}>뒤로 가기</Btn>
+                            <Btn><Link to="/">뒤로 가기</Link></Btn>
                         </div>
                     </>
                 }

@@ -2,8 +2,29 @@ const express = require('express');
 const router = express.Router();
 const { pool } = require('../db.js');
 
+router.post('/total', async (req, res) => {
+    const sql = `SELECT *, 
+                        (SELECT (AVG(flavor) + AVG(atmosphere) + AVG(cheap) + AVG(service)) 
+                            FROM review 
+                            WHERE shop.idx = review.sidx 
+                            GROUP BY sidx) AS avg_total
+                    FROM shop
+                    ORDER BY avg_total DESC
+                    LIMIT 5`;
+    try {
+        const [result] = await pool.execute(sql);
+        res.json({result});
+    } catch (e) {
+        console.log(e.message);
+        res.json({});
+    }
+})
+
 router.post('/flavor', async (req, res) => {
-    const sql = `SELECT idx, avg(flavor) AS flavor FROM review GROUP BY idx ORDER BY flavor DESC LIMIT 5`;
+    const sql = `SELECT *, (SELECT AVG(flavor) FROM review WHERE shop.idx = review.sidx) AS avg_flavor
+                    FROM shop
+                    ORDER BY avg_flavor DESC
+                    LIMIT 5`;
     try {
         const [result] = await pool.execute(sql);
         res.json({result});
@@ -14,7 +35,10 @@ router.post('/flavor', async (req, res) => {
 });
 
 router.post('/atmosphere', async (req, res) => {
-    const sql = `SELECT idx, avg(atmosphere) AS atmosphere FROM review GROUP BY idx ORDER BY atmosphere DESC LIMIT 5`;
+    const sql = `SELECT *, (SELECT AVG(atmosphere) FROM review WHERE shop.idx = review.sidx) AS avg_atmosphere
+                    FROM shop
+                    ORDER BY avg_atmosphere DESC
+                    LIMIT 5`;
     try {
         const [result] = await pool.execute(sql);
         res.json({result});
@@ -25,7 +49,10 @@ router.post('/atmosphere', async (req, res) => {
 });
 
 router.post('/cheap', async (req, res) => {
-    const sql = `SELECT idx, avg(cheap) AS cheap FROM review GROUP BY idx ORDER BY cheap DESC LIMIT 5`;
+    const sql = `SELECT *, (SELECT AVG(cheap) FROM review WHERE shop.idx = review.sidx) AS avg_cheap
+                    FROM shop
+                    ORDER BY avg_cheap DESC
+                    LIMIT 5`;
     try {
         const [result] = await pool.execute(sql);
         res.json({result});
@@ -36,7 +63,10 @@ router.post('/cheap', async (req, res) => {
 });
 
 router.post('/service', async (req, res) => {
-    const sql = `SELECT idx, avg(service) AS service FROM review GROUP BY idx ORDER BY service DESC LIMIT 5`;
+    const sql = `SELECT *, (SELECT AVG(service) FROM review WHERE shop.idx = review.sidx) AS avg_service
+                    FROM shop
+                    ORDER BY avg_service DESC
+                    LIMIT 5`;
     try {
         const [result] = await pool.execute(sql);
         res.json({result});

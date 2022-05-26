@@ -227,6 +227,24 @@ const Starlabel = styled.label`
     }
 `
 
+// 
+
+const Starul = styled.ul`
+    list-style : none;
+    border : 1px solid black;
+    padding: 0 auto;
+`
+
+const Starli = styled.li`
+    display: inline-block;
+`
+
+const Textli = styled.li`
+    width: 500px;
+    height: 200px;
+    border : 1px solid black;
+`
+
 const StarSpan = styled.span`
     font-size: 1rem;
     @media (max-width: 400px){
@@ -240,13 +258,12 @@ const StarSpan = styled.span`
 const Mypage = () => {
     const stores = useSelector(state => state)
     const dispatch = useDispatch()
-    // const [ reviewList, setReviewList ] = useState([])
 
     const body = { email : stores.user.me.email }
 
     const deleteHandler = (k) => {
+        console.log(k)
         dispatch({type :review_delete_request.toString(), payload: {idx:k} })
-        // getReview()
     }
 
     const getReview = () => {
@@ -388,10 +405,6 @@ const Mypage = () => {
     useEffect(() => {  
         getReview()
     },[dispatch])
-
-    const qwe = () => {
-        console.log(localStorage)
-    }
 
     return (
         <Background>

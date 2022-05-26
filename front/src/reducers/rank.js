@@ -1,10 +1,13 @@
 import { createAction } from "redux-actions";
 
 const initialState = {
-    flavor: [],
-    atmosphere: [],
-    cheap: [],
-    service: []
+    topFive: []
+};
+
+const RANK_TOTAL = {
+    REQUEST: "RANK/TOTAL_REQUEST",
+    SUCCESS: "RANK/TOTAL_SUCCESS",
+    FAILURE: "RANK/TOTAL_FAILURE"
 };
 
 const RANK_FLAVOR = {
@@ -31,6 +34,10 @@ const RANK_SERVICE = {
     FAILURE: "RANK/SERVICE_FAILURE"
 };
 
+export const rank_total_request = createAction(RANK_TOTAL.REQUEST, payload => payload);
+export const rank_total_success = createAction(RANK_TOTAL.SUCCESS, payload => payload);
+export const rank_total_failure = createAction(RANK_TOTAL.FAILURE, payload => payload);
+
 export const rank_flavor_request = createAction(RANK_FLAVOR.REQUEST, payload => payload);
 export const rank_flavor_success = createAction(RANK_FLAVOR.SUCCESS, payload => payload);
 export const rank_flavor_failure = createAction(RANK_FLAVOR.FAILURE, payload => payload);
@@ -49,52 +56,16 @@ export const rank_service_failure = createAction(RANK_SERVICE.FAILURE, payload =
 
 const rank = (state = initialState, action) => {
     switch (action.type) {
-        case RANK_FLAVOR.REQUEST:
+        case RANK_TOTAL.REQUEST: case RANK_FLAVOR.REQUEST: case RANK_ATMOSPHERE.REQUEST: case RANK_CHEAP.REQUEST: case RANK_SERVICE.REQUEST:
             return {
                 ...state,
             }
-        case RANK_FLAVOR.SUCCESS:
+        case RANK_TOTAL.SUCCESS: case RANK_FLAVOR.SUCCESS: case RANK_ATMOSPHERE.SUCCESS: case RANK_CHEAP.SUCCESS: case RANK_SERVICE.SUCCESS:
             return {
                 ...state,
-                flavor: [...action.payload]
+                topFive: [...action.payload]
             }
-        case RANK_FLAVOR.FAILURE:
-            return {
-                ...state,
-            }
-        case RANK_ATMOSPHERE.REQUEST:
-            return {
-                ...state,
-            }
-        case RANK_ATMOSPHERE.SUCCESS:
-            return {
-                ...state,
-            }
-        case RANK_ATMOSPHERE.FAILURE:
-            return {
-                ...state,
-            }
-        case RANK_CHEAP.REQUEST:
-            return {
-                ...state,
-            }
-        case RANK_CHEAP.SUCCESS:
-            return {
-                ...state,
-            }
-        case RANK_CHEAP.FAILURE:
-            return {
-                ...state,
-            }
-        case RANK_SERVICE.REQUEST:
-            return {
-                ...state,
-            }
-        case RANK_SERVICE.SUCCESS:
-            return {
-                ...state,
-            }
-        case RANK_SERVICE.FAILURE:
+        case RANK_TOTAL.FAILURE: case RANK_FLAVOR.FAILURE: case RANK_ATMOSPHERE.FAILURE: case RANK_CHEAP.FAILURE: case RANK_SERVICE.FAILURE:
             return {
                 ...state,
             }

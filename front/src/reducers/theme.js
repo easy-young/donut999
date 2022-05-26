@@ -2,28 +2,31 @@ import { createAction } from "redux-actions";
 
 const initialState = {
     protein: {
-        result: null,
-        error: null
+        result: [],
     },
     photo: {
-        result: null,
-        error: null
+        result: []
     },
     unique: {
-        result: null,
-        error: null
+        result: []
     },
     parking: {
-        result: null,
+        result: []
+    },
+    metadata: {
+        loading: false,
         error: null
     }
 };
 
-const THEME_PROTEIN = {
-    REQUEST: 'THEME/PROTEIN_REQUEST',
-    SUCCESS: 'THEME/PROTEIN_SUCCESS',
-    FAILURE: 'THEME/PROTEIN_FAILURE'
-};
+
+const protein_REQUEST = 'PROTEIN/REQUEST'
+const protein_SUCCESS = 'PROTEIN/SUCCESS'
+const protein_FAILURE = 'PROTEIN/FAILURE'
+
+export const protein_request = createAction(protein_REQUEST);
+export const protein_success = createAction(protein_SUCCESS);
+export const protein_failure = createAction(protein_FAILURE);
 
 const THEME_PHOTO = {
     REQUEST: 'THEME/PHOTO_REQUEST',
@@ -43,9 +46,6 @@ const THEME_PARKING = {
     FAILURE: 'THEME/PARKING_FAILURE'
 };
 
-export const theme_protein_request = createAction(THEME_PROTEIN.REQUEST, payload => payload);
-export const theme_protein_success = createAction(THEME_PROTEIN.SUCCESS, payload => payload);
-export const theme_protein_failure = createAction(THEME_PROTEIN.FAILURE, payload => payload);
 
 export const theme_photo_request = createAction(THEME_PHOTO.REQUEST, payload => payload);
 export const theme_photo_success = createAction(THEME_PHOTO.SUCCESS, payload => payload);
@@ -61,20 +61,34 @@ export const theme_parking_failure = createAction(THEME_PARKING.FAILURE, payload
 
 const theme = (state = initialState, action) => {
     switch (action.type) {
-
-        case THEME_PROTEIN.REQUEST:
+        /*  protein  */
+        case protein_REQUEST:
+            return {
+                ...state,
+                metadata : {
+                    ...state.metadata,
+                    loading: true,
+                    error: null
+                }
+            }
+        case protein_SUCCESS:
+            const newList = [...action.payload]
+            return {
+                ...state,
+                protein: {
+                    ...state.protein,
+                    result : [...newList]
+                },
+                metadata: {
+                    loading: false,
+                    error: null
+                }
+            }
+        case protein_FAILURE:
             return {
                 ...state,
             }
-        case THEME_PROTEIN.SUCCESS:
-            return {
-                ...state,
-            }
-        case THEME_PROTEIN.FAILURE:
-            return {
-                ...state,
-            }
-
+        /*  photo  */
         case THEME_PHOTO.REQUEST:
             return {
                 ...state,

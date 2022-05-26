@@ -99,7 +99,7 @@ const App = () => {
           <Route path="/" index element={<Index />} />
           <Route path="/mypage" element={<Mypage />} />
           <Route path="/login" element={<Login />} />
-          <Route path='/write' element={<Write/>} />
+          <Route path='/write/:idx' element={<Write/>} />
           <Route path="/shop/:idx" element={<Shop />}/>
           <Route path="/rank" element={<Rank />} />
           <Route path="/theme/protein" element={<Protein />} />
