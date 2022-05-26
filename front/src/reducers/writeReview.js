@@ -28,7 +28,7 @@ export const review_service = createAction(review_SERVICE)
 
 /* review 제출 */
 const review_create_REQUEST = 'REVIEW_CREATE/REQUEST'
-const review_create_SUCCESS = 'REVIEW_CREATE/RSUCCESS'
+const review_create_SUCCESS = 'REVIEW_CREATE/SUCCESS'
 const review_create_FAILURE = 'REVIEW_CREATE/FAILURE'
 const review_WRITE = 'REVIEW_WRITE/DOWN'
 
@@ -112,6 +112,7 @@ const createReview = (state = initialState, action) => {
             return {
                 ...state,
                 number : { ...state.number},
+                name:action.payload.name,
                 sidx: action.payload.sidx,
                 text : action.payload.text,
                 email: action.payload.email,

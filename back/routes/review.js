@@ -6,11 +6,11 @@ const pool = require('../db.js').pool
 const { default: axios } = require('axios')
 
 const createReview = async (req, res) => {
-    const { email, text, number, sidx } = req.body
+    const { email, text, number, sidx, name } = req.body
     const { flavor, atmosphere, cheap, service } = number
-    const sql = `insert into review(sidx, email, flavor, atmosphere, cheap, service, text) 
-        values(?, ?, ?,?,?,?,?)`
-    const param = [sidx, email, flavor, atmosphere, cheap, service, text]
+    const sql = `insert into review(sidx, storename, email, flavor, atmosphere, cheap, service, text) 
+        values(?, ?, ?, ?,?,?,?,?)`
+    const param = [sidx, name, email, flavor, atmosphere, cheap, service, text]
 
     try {
         const result = await pool.execute(sql, param)

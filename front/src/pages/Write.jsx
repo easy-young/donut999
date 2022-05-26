@@ -75,7 +75,7 @@ const Write = () => {
             alert('점수, 평가 중 하나 이상은 작성해주세요!')       
                 return
         }
-        const payload = {email, text: stores.createReview.text, number : score,
+        const payload = {email, text: stores.createReview.text, number : score, name: stores.createReview.name,
                             sidx: parseInt(stores.createReview.sidx)}
         dispatch({type: review_create_request.toString(), payload: {...payload } })
         alert('리뷰가 작성되었습니다!')
