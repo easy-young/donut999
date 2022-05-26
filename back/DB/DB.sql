@@ -36,6 +36,7 @@ CREATE TABLE register (
     contact VARCHAR(10) NOT NULL,
     sns VARCHAR(100) NOT NULL,
     time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    state VARCHAR(30) NOT NULl DEFAULT 'FALSE'
 );
 
 CREATE TABLE review (
@@ -56,3 +57,4 @@ insert into review(sidx, email, flavor, atmosphere, cheap, service, text, update
 values(1,'619049@naver.com', 5, 5, 5, 5, '와 정말 맛있어요!', false);
 insert into review(sidx, email, flavor, atmosphere, cheap, service, text, updateFlag ) 
 values(2,'619049@naver.com', 5, 5, 5, 5, '와 정말 비싸요!', false);
+

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import {useDispatch, useSelector} from 'react-redux';
 import {admin_store_confirm_request} from '../../../reducers/admin/adminStoreConfirm.js';
 import {admin_confirm_del_request} from '../../../reducers/admin/adminStoreConfirm.js';
+import {admin_confirm_state_request} from '../../../reducers/admin/adminStoreConfirm.js';
 import { useEffect, useState } from 'react';
 import {Div, Dbutton, Table, Tr, Td} from '../../../components/styles/AdminTable';
 import { AuthButton } from "../../../components/styles/AdminStyles";
@@ -16,7 +17,6 @@ const Confirm = () => {
     const a = registers.length
   
     const check = Array(a).fill(false)
-    console.log(check)
     let checkArr = []
     const checkHandler = (e) => {
         const idx = e.target.value
@@ -33,6 +33,18 @@ const Confirm = () => {
         e.preventDefault()
         dispatch(admin_confirm_del_request(checkArr))
          
+    }
+
+    const radioHandler = (e) => {
+        e.preventDefault()
+        const {value} = e.target
+        console.log(value)
+        dispatch(admin_confirm_state_request)
+    }
+
+    const radioSubmit = (e) =>{
+        e.preventDefault()
+        console.log(e.target.value)
     }
     
     const sortHandler = (e) => {
@@ -84,11 +96,13 @@ const Confirm = () => {
                                                 <Td>{x.sns}</Td>
                                                 <Td>{x.stamp}</Td>
                                                 <Td>
-                                                    <label htmlFor="cancel">반려</label>
-                                                    <input type="radio" name="cancel" id="cancel1" />
-                                         
-                                                    <label htmlFor="cancel">승인</label>
-                                                    <input type="radio" name="access" id="access1" />
+                                                    <form method="post" >
+                                                        <label htmlFor="cancel1">반려</label>
+                                                        <input type="radio" name={"radio"+x.idx} id="cancel1" value="false" onChange={radioHandler}/>
+                                            
+                                                        <label htmlFor="access1">승인</label>
+                                                        <input type="radio" name={"radio"+x.idx} id="access1" value="true" onChange={radioHandler}/>
+                                                    </form>
                                                 </Td>
                                                 <Td>
                                                     <input type="checkbox" name = {"registerDel"+x.idx}  value={x.idx} onChange={checkHandler}/>
