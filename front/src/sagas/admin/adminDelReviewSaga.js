@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {takeLatest,call,put} from 'redux-saga/effects';
-import { admin_del_review_request, admin_del_review_success, admin_del_review_failure} from '../../reducers/admin/adminDelReview.js';
+import { admin_del_review_request, admin_del_review_success, admin_del_review_failure} from '../../reducers/admin/adminReview.js';
 
 async function deleteReviewAPI({payload}){
     try{

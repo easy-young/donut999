@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {takeLatest,call,put} from 'redux-saga/effects';
-import { admin_del_black_request, admin_del_black_success, admin_del_black_failure} from '../../reducers/admin/adminDelBlack';
+import { admin_del_black_request, admin_del_black_success, admin_del_black_failure} from '../../reducers/admin/adminBlack';
 
 async function deleteBlackAPI({payload}){
     try{
