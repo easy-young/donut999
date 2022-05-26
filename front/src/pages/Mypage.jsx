@@ -25,6 +25,8 @@ const Container = styled.div`
     height: 600px;
     background-color: white;
     border-radius: 30px;
+    padding: 100px;
+
 `;
 
 const StarForm = styled.form`
@@ -58,6 +60,24 @@ const Starlabel = styled.label`
     }
 `
 
+// 
+
+const Starul = styled.ul`
+    list-style : none;
+    border : 1px solid black;
+    padding: 0 auto;
+`
+
+const Starli = styled.li`
+    display: inline-block;
+`
+
+const Textli = styled.li`
+    width: 500px;
+    height: 200px;
+    border : 1px solid black;
+`
+
 const StarSpan = styled.span`
     font-size: 1.25rem;
 `
@@ -65,13 +85,12 @@ const StarSpan = styled.span`
 const Mypage = () => {
     const stores = useSelector(state => state)
     const dispatch = useDispatch()
-    // const [ reviewList, setReviewList ] = useState([])
 
     const body = { email : stores.user.me.email }
 
     const deleteHandler = (k) => {
+        console.log(k)
         dispatch({type :review_delete_request.toString(), payload: {idx:k} })
-        // getReview()
     }
 
     const getReview = () => {
@@ -122,36 +141,35 @@ const Mypage = () => {
     const reviewList = stores.review.data.map((v)=> {
         return (
             stores.review.update !== v.idx ?
-            <ul key={v.idx}>
+            <Starul>
                 <li onClick={() => deleteHandler(v.idx)}> x </li>
-                <li> 맛 : {
-
+                <Starli> 맛 : {
                     v.flavor === 1 ? <StarSpan>⭐</StarSpan> : v.flavor === 2 ? <StarSpan>⭐⭐</StarSpan> 
                     : v.flavor === 3 ? <StarSpan>⭐⭐⭐</StarSpan> 
                     : v.flavor === 4 ? <StarSpan>⭐⭐⭐⭐</StarSpan> : v.flavor === 5 ? <StarSpan>⭐⭐⭐⭐⭐ </StarSpan> : '평가 정보 없음'
                     }
-                </li>
-                <li> 분위기 : {
+                </Starli>
+                <Starli> 분위기 : {
                     v.atmosphere === 1 ? <StarSpan>⭐</StarSpan> : v.atmosphere === 2 ? <StarSpan>⭐⭐</StarSpan> 
                     : v.atmosphere === 3 ? <StarSpan>⭐⭐⭐</StarSpan> 
                     : v.atmosphere === 4 ? <StarSpan>⭐⭐⭐⭐</StarSpan> : v.atmosphere === 5 ? <StarSpan>⭐⭐⭐⭐⭐</StarSpan> : '평가 정보 없음'
                     }
-                </li>
-                <li> 가격 : {
+                </Starli>
+                <Starli> 가격 : {
                     v.cheap === 1 ? <StarSpan>⭐</StarSpan> : v.cheap === 2 ? <StarSpan>⭐⭐</StarSpan> 
                     : v.cheap === 3 ? <StarSpan>⭐⭐⭐</StarSpan> 
                     : v.cheap === 4 ? <StarSpan>⭐⭐⭐⭐</StarSpan> : v.cheap === 5 ? <StarSpan>⭐⭐⭐⭐⭐</StarSpan> : '평가 정보 없음'
                 }
-                </li>
-                <li> 서비스 : {
+                </Starli>
+                <Starli> 서비스 : {
                     v.service === 1 ? <StarSpan>⭐</StarSpan> : v.service === 2 ? <StarSpan>⭐⭐</StarSpan> 
                     : v.service === 3 ? <StarSpan>⭐⭐⭐</StarSpan> 
                     : v.service === 4 ? <StarSpan>⭐⭐⭐⭐</StarSpan> : v.service === 5 ? <StarSpan>⭐⭐⭐⭐⭐</StarSpan> : '평가 정보 없음'
                     }
-                </li>
-                <li> 평가 : {v.text === null ? '평가 정보 없음' : v.text}</li>
-                <button onClick={() => updateBoot(v.idx)}> 수정 </button>
-            </ul>
+                </Starli>
+                <Textli> 평가 : {v.text === null ? '평가 정보 없음' : v.text}</Textli>
+                <li onClick={() => updateBoot(v.idx)}> 수정 </li>
+            </Starul>
             :
             <StarForm onSubmit = {submitHandler(v.idx)}>
                 <ul>
@@ -206,10 +224,6 @@ const Mypage = () => {
     useEffect(() => {  
         getReview()
     },[dispatch])
-
-    const qwe = () => {
-        console.log(localStorage)
-    }
 
     return (
         <Background>

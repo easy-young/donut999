@@ -43,9 +43,9 @@ const THEME_PARKING = {
     FAILURE: 'THEME/PARKING_FAILURE'
 };
 
-export const theme_protein_request = createAction(THEME_PROTEIN.REQUEST, payload => payload);
-export const theme_protein_success = createAction(THEME_PROTEIN.SUCCESS, payload => payload);
-export const theme_protein_failure = createAction(THEME_PROTEIN.FAILURE, payload => payload);
+export const theme_protein_request = createAction(THEME_PROTEIN.REQUEST);
+export const theme_protein_success = createAction(THEME_PROTEIN.SUCCESS);
+export const theme_protein_failure = createAction(THEME_PROTEIN.FAILURE);
 
 export const theme_photo_request = createAction(THEME_PHOTO.REQUEST, payload => payload);
 export const theme_photo_success = createAction(THEME_PHOTO.SUCCESS, payload => payload);
@@ -61,20 +61,25 @@ export const theme_parking_failure = createAction(THEME_PARKING.FAILURE, payload
 
 const theme = (state = initialState, action) => {
     switch (action.type) {
-
+        /*  protein  */
         case THEME_PROTEIN.REQUEST:
+            console.log('protein req')
             return {
                 ...state,
             }
         case THEME_PROTEIN.SUCCESS:
             return {
                 ...state,
+                protein: {
+                    ...state.protein,
+                    result : [...action.payload]
+                }
             }
         case THEME_PROTEIN.FAILURE:
             return {
                 ...state,
             }
-
+        /*  photo  */
         case THEME_PHOTO.REQUEST:
             return {
                 ...state,
