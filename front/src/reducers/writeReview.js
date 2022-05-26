@@ -1,10 +1,19 @@
-import { Action } from "history"
-import { createAction, handleActions } from "redux-actions"
+// import { Action } from "history"
+import { createAction } from "redux-actions"
 
 const initialState = { 
-    number: { flavor: null, atmosphere : null, cheap: null, service: null }, 
+    name: null, sidx : null, number: { flavor: null, atmosphere : null, cheap: null, service: null }, 
     email: null, text: null, metadata: { loading: false, error: null}
 }
+
+/*  store 이름 가져오기  */
+const getStore_REQUEST = 'GET_STORE/REQUEST'
+const getStore_SUCCESS = 'GET_STORE/SUCCESS'
+const getStore_FAILURE = 'GET_STORE/FAILURE' 
+
+export const getStore_request = createAction(getStore_REQUEST)
+export const getStore_success = createAction(getStore_SUCCESS)
+export const getStore_failure = createAction(getStore_FAILURE)
 
 /* score list */
 const review_FLAVOR = `REVIEW/FLAVOR`
@@ -33,6 +42,33 @@ export const review_write = createAction(review_WRITE)
 
 const createReview = (state = initialState, action) => {
     switch (action.type) {
+        /* 상점 이름 가져오기 */
+        case getStore_REQUEST :
+            return {
+                ...state,
+                metadata : {
+                    ...state.metadata,
+                    loading: true,
+                    error : null
+                }
+            }
+        case getStore_SUCCESS :
+            return {
+                ...state,
+                name: action.payload.result.data.result[0].name,
+                sidx: action.payload.sidx,
+                metadata : {
+                    ...state.metadata,
+                    loading: false,
+                    error: null
+                }
+            }
+        
+        case getStore_FAILURE :
+            return {
+                ...state
+            }
+
         /* 각 항목 점수 변경 */
         case review_FLAVOR : 
             return {
@@ -76,6 +112,7 @@ const createReview = (state = initialState, action) => {
             return {
                 ...state,
                 number : { ...state.number},
+                sidx: action.payload.sidx,
                 text : action.payload.text,
                 email: action.payload.email,
                 metadata : {

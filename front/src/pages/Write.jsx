@@ -1,9 +1,9 @@
 //import { Link } from "react-router-dom";
 import styled from "styled-components";
-//import Store, { store } from '.././store/useStore.jsx'
+// import Store, { store } from '.././store/useStore.jsx'
 import {useDispatch, useSelector} from 'react-redux';
-//import { useEffect, useState } from 'react';
-import {review_create_request, review_write
+import { useEffect } from 'react';
+import {getStore_request, review_create_request, review_write
 , review_flavor, review_atmosphere, review_cheap, review_service} from '../reducers/writeReview.js'
 
 const StarForm = styled.form`
@@ -37,8 +37,6 @@ const Starlabel = styled.label`
     }
 `
 
-
-
 const Write = () => {
     const stores = useSelector(state => state)
     const dispatch = useDispatch()
@@ -46,6 +44,10 @@ const Write = () => {
     const email = stores.user.me.email
     const score = stores.createReview.number
     const reviewText = stores.createReview.text
+
+    const getStore = () => {
+        dispatch({type: getStore_request.toString(), payload: {sidx: window.location.href.split('/')[4]} })
+    }
 
     const changeHandler = (e) => {
         if ( e.target.value != null) {
@@ -68,21 +70,27 @@ const Write = () => {
 
     const submitHandler = (e) => {
         e.preventDefault()
-        // const reviewText = document.querySelector('#reviewText')
         if(score.flavor == null && score.atmosphere == null && score.cheap == null && score.service == null
             && reviewText == null ) { 
             alert('점수, 평가 중 하나 이상은 작성해주세요!')       
                 return
         }
-        const payload = {email, text: stores.createReview.text, number : score}
+        const payload = {email, text: stores.createReview.text, number : score,
+                            sidx: parseInt(stores.createReview.sidx)}
         dispatch({type: review_create_request.toString(), payload: {...payload } })
         alert('리뷰가 작성되었습니다!')
         window.location= 'http://localhost:3000'
     }
 
+    useEffect(() => {  
+        getStore()
+    },[dispatch])
+
     return(
-        <>
+        <>  
+            
             <StarForm onSubmit = {submitHandler}>
+                <span> Store : {stores.createReview.name} </span>
                 <ul>
                     <li>
                         <span>맛</span>

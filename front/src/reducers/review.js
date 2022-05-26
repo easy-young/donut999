@@ -88,7 +88,7 @@ const review = (state=initialState, action) => {
         case review_delete_SUCCESS :
             const idx = action.payload.idx
             //console.log(idx)
-            const newData = [...state.data.filter(v => v.idx != idx)]
+            const newData = [...state.data.filter(v => v.idx !== idx)]
             //console.log(newData)
             return {
                 ...state,
@@ -176,6 +176,9 @@ export default review;
 /* 
 
 insert into review (sidx, email, flavor, atmosphere, cheap, service, text, updateFlag) values(
-3, '619049@naver.com', 4, 3, 2, 1, '구멍 없는게 도넛이냐?', false 
-);
+6, '619049@naver.com', 4, 3, 2, 1, '구멍 없는게 도넛이냐?', false );
+
+insert into review (sidx, email, flavor, atmosphere, cheap, service, text, updateFlag) values(
+6, 'loerain111@gmail.com', 4, 3, 2, 1, '구멍 없는게 도넛이냐?', false );
+
 */

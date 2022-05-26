@@ -1,14 +1,15 @@
 import styled from "styled-components";
 import {useDispatch, useSelector} from 'react-redux';
 import { useEffect } from 'react';
-import { theme_protein_request } from "../../reducers/theme.js";
+import { protein_request } from "../../reducers/theme.js";
 
 const Protein = () => {
     const stores = useSelector(state => state)
     const dispatch = useDispatch()
 
-    const getProtein = () => {
-        dispatch({type: theme_protein_request.toString()})
+
+    const getProtein =  () => {
+        dispatch({type: protein_request.toString()})
     }
 
     const proteinList = stores.theme.protein.result.map((v) => {
@@ -33,10 +34,12 @@ const Protein = () => {
         getProtein()
     },[dispatch])
 
+
     return (
         <>
-        {proteinList}
+            {proteinList}
         </>
+    
     )
 };
 

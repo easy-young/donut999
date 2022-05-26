@@ -12,7 +12,6 @@ async function deleteReviewAPI (action) {
     const data = {
         ...action.payload
     }
-    console.log(action.payload.idx)
     try {
         const result = await axios.post('http://localhost:4000/review/deleteReview', data , option )
         const response = {

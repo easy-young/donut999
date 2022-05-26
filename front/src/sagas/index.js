@@ -20,6 +20,7 @@ import stationSaga from './stationSaga';
 import shopSaga from './shopSaga';
 
 /*  review CRUD  */
+import getStoreSaga from './review/getStoreSaga';
 import reviewSaga from './reviewSaga.js'
 import createReviewSaga from './review/createReviewSaga.js';
 import deleteReviewSaga from './review/deleteReviewSaga.js'
@@ -48,12 +49,15 @@ export default function* rootSaga() {
         confirmDelSaga(),
 
         registerSaga(),
+
+        getStoreSaga(),
         reviewSaga(),
         createReviewSaga(),
         deleteReviewSaga(),
         updateReviewSaga(),
         stationSaga(),
         shopSaga(),
+
         themeSaga()
     ]);
     
