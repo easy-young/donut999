@@ -3,13 +3,31 @@ const router = express.Router()
 const {pool} = require('../db.js')
 
 router.post('/search/black', async (req,res)=>{
-    const prepare = [req.body]
-    console.log(req.body)
-    const sql = `select * from black like ${prepare}`
+    const prepare = [req.body.payload]
+    const sql = `select email,DATE_FORMAT(date,'%Y-%m-%d %h:%i:%s') AS stamp from black where email like '%${prepare}%'`
 
     try{
         const [result] = await pool.query(sql)
-        console.log(result)
+        const response = {
+            result
+        }
+        res.json(response)
+    }catch (e) {
+        console.log(e.message)
+        const response = {
+            errormsg: e.message,
+            errno: 1
+        }
+        
+        res.json(response)  
+    }
+})
+
+router.post('/search/review', async (req,res)=>{
+    const prepare = [req.body.payload]
+    const sql = `select *,DATE_FORMAT(date,'%Y-%m-%d %h:%i:%s') AS stamp from review where text like '%${prepare}%'`
+    try{
+        const [result] = await pool.query(sql)
         const response = {
             result
         }
@@ -276,9 +294,12 @@ router.post('/user/setting',async (req,res)=>{
 
 router.post('/user/setting/addblack',async (req,res)=>{
     const sql = `insert into black (email) values (?)`
-    const prepare = [req.body.email]
+    const prepare = [req.body.user]
+    const sql2 = `SELECT email, DATE_FORMAT(date,'%Y-%m-%d %h:%i:%s') AS stamp FROM black ORDER BY date DESC`
+
     try {
-        const [result] = await pool.execute(sql,prepare)
+        const [result1] = await pool.execute(sql,prepare)
+        const [result] = await pool.execute(sql2)
         const response = {
             result
         }
@@ -302,8 +323,11 @@ router.post('/user/setting/addblack',async (req,res)=>{
 router.post('/user/setting/deleteblack/:kemail',async (req,res)=>{
     const sql = `DELETE FROM black where email = ? `
     const prepare = [req.params.kemail]
+    const sql2 = `SELECT email, DATE_FORMAT(date,'%Y-%m-%d %h:%i:%s') AS stamp FROM black ORDER BY date DESC`
+
     try {
-        const [result] = await pool.execute(sql,prepare)
+        const [result1] = await pool.execute(sql,prepare)
+        const [result] = await pool.execute(sql2)
         const response = {
             result
         }
@@ -356,6 +380,7 @@ router.post('/review/setting',async (req,res)=>{
 
     try {
         const [result] = await pool.execute(sql)
+        console.log(result)
         const response = {
             result
         }
@@ -379,8 +404,12 @@ router.post('/review/setting',async (req,res)=>{
 router.post('/review/setting/deletereview/:reviewidx',async (req,res)=>{
     const sql = `DELETE FROM review where idx = ? `
     const prepare = [req.params.reviewidx]
+    const sql2 = `SELECT *, DATE_FORMAT(date,'%Y-%m-%d %h:%i:%s') AS stamp FROM review ORDER BY idx ASC`
+
     try {
-        const [result] = await pool.execute(sql,prepare)
+        const [result1] = await pool.execute(sql,prepare)
+        const [result] = await pool.execute(sql2)
+        console.log(result)
         const response = {
             result
         }

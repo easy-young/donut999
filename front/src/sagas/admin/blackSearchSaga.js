@@ -1,12 +1,12 @@
 import axios from 'axios';
 import {takeLatest,call,put} from 'redux-saga/effects';
-import { admin_search_request, admin_search_success, admin_search_failure} from '../../reducers/admin/search.js';
+import { admin_search_request, admin_search_success, admin_search_failure} from '../../reducers/admin/adminBlack';
 
 
-async function searchAPI({payload}){
-    console.log('searchApi', payload)
+async function searchAPI(action){
+
     try{
-        const result = await axios.post(`http://localhost:4000/dt/admin/menu/search/black`,payload)
+        const result = await axios.post(`http://localhost:4000/dt/admin/menu/search/black`,action)
         return result
     }catch(e){
         console.log(e)
@@ -16,7 +16,6 @@ async function searchAPI({payload}){
 
 
 function* search(action){
-    console.log('search suc', action.payload)
     try{
         const result = yield call(searchAPI,action)
         yield put({
@@ -31,6 +30,6 @@ function* search(action){
 }
 
 
-export default function* searchSaga(){
+export default function* blackSearchSaga(){
     yield takeLatest(admin_search_request.toString(),search)
 }

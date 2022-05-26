@@ -35,7 +35,7 @@ const adminConfirm = (state=initialState,action) => {
                 ...state,
             }
         case ADMIN_STORE_CONFIRM.SUCCESS:
-            console.log('확인',action.payload)
+            
             return {
                 ...state,
                register:action.payload
@@ -45,13 +45,12 @@ const adminConfirm = (state=initialState,action) => {
                 ...state
             }
         case ADMIN_CONFIRM_DEL.REQUEST:
-            console.log('reducer req',action.payload)
+          
             return {
                 ...state,
             }
         case ADMIN_CONFIRM_DEL.SUCCESS:
-            console.log('reducer suc',action.payload)
-            const idx = action.payload.idx
+          
             return {
                 ...state,
                 register:action.payload

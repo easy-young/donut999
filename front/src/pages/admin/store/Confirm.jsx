@@ -14,15 +14,12 @@ const Confirm = () => {
 
     const registers = useSelector(state=>state.adminConfirm.register)
     const a = registers.length
-    console.log('-----------------',registers)
-    console.log('----------------->',registers.length)
-    
+  
     const check = Array(a).fill(false)
     console.log(check)
     let checkArr = []
     const checkHandler = (e) => {
         const idx = e.target.value
-        console.log(idx)
         if(!check[idx-1]){
             check[idx-1]=true
             checkArr.push(idx)
@@ -30,7 +27,6 @@ const Confirm = () => {
             check[idx-1]=false
             checkArr = checkArr.filter(v => v !== idx)
         }
-        console.log(checkArr)
     }
 
     const onDelete = (e) => {
