@@ -88,6 +88,7 @@ const Container = styled.div`
         overflow:scroll;
         position:relative;
         @media (max-width: 400px){
+            /* height:80%; */
             height:80%;
         }
 
@@ -105,7 +106,7 @@ const ReviewOne = styled.ul`
     border-top: 1px solid grey;
     border-bottom : 1px solid grey;
     @media (max-width: 400px){
-            min-height:60%;
+            min-height:80%;
             height:auto;
     }
     /* 여기가 문제임 자식 div가 늘어나도 크기가 증가하지 않음. */
@@ -160,6 +161,7 @@ const ReviewOne = styled.ul`
         @media (max-width: 400px){
             min-height:60%;
             height:auto;
+
         }
     }
 
