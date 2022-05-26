@@ -63,6 +63,7 @@ const theme = (state = initialState, action) => {
     switch (action.type) {
         /*  protein  */
         case THEME_PROTEIN.REQUEST:
+            console.log('protein req')
             return {
                 ...state,
             }

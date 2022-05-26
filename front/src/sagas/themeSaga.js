@@ -28,7 +28,7 @@ async function proteinAPI() {
 function* protein(action) {
     try {
         const result = yield call(proteinAPI, action);
-        // console.log(result.data.result[0])
+        console.log(result.data.result[0])
         yield put({
             type: theme_protein_success.toString(),
             payload: result.data.result[0]
