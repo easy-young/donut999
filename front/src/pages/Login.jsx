@@ -1,6 +1,7 @@
 
-import { user_login_failure, user_login_request, user_login_success, 
-user_logout_request, user_logout_success } from '../reducers/user';
+// import { user_login_failure, user_login_request, user_login_success, 
+// user_logout_request, user_logout_success } from '../reducers/user';
+import { user_logout_success } from '../reducers/user.js'
 import { useDispatch } from 'react-redux'
 import { Result } from 'antd';
 
