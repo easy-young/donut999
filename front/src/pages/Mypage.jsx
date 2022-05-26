@@ -1,4 +1,4 @@
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 //import Store, { store } from '.././store/useStore.jsx'
 import {useDispatch, useSelector} from 'react-redux';
@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import { review_request, review_delete_request,
 review_update_start, review_update_proceed, review_update_request } from "../reducers/review.js";
 //import { review_flavor, review_atmosphere, review_cheap, review_service } from '.././reducers/writeReview.js'
-
+import { BrowserView, MobileView,isMobile } from "react-device-detect";
 
 const Background = styled.div`
     display: flex;
@@ -21,13 +21,182 @@ const Background = styled.div`
 `;
 
 const Container = styled.div`
-    width: 1000px;
-    height: 600px;
-    background-color: white;
+    width: 70%;
+    height: 95%;
+    background-color: #FFFFE9;
     border-radius: 30px;
-    padding: 100px;
+    @media (max-width: 400px) {
+            /* width: 340px; */
+            width:100%;
+            height:100%;
+            /* height: 200px; */
+            border-radius:0px;
+        }
 
-`;
+    .mypage{
+        width:95%;
+        height:90%;
+        margin: 0 auto;
+    }
+
+    .close{
+        display:block;
+        width:30px;
+        height:30px;
+        text-align:center;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        font-size:20px;
+        margin-top:20px;}
+
+    .mypage_box{
+        width:90%;
+        height:90%;
+        margin: 0 auto;
+        /* background:yellow; */
+    }
+    .welcome{
+        text-align:center;
+
+        @media (max-width: 400px){
+            font-size:20px;
+        }
+    }
+    .email,.review{
+        margin-top:40px;
+    }
+
+    .email{
+        @media (max-width: 400px){
+            font-size:12px;
+            margin-top:10px;
+            text-align:center;
+        }
+    }
+    *{
+        list-style:none;
+    }
+    .review_list{
+        width:100%;
+        height:60%;
+        background:#FFFFFA;
+        border-radius:10px;
+        display:flex;
+        flex-direction:column;
+        flex-wrap:nowrap;
+        overflow:scroll;
+        position:relative;
+        @media (max-width: 400px){
+            /* height:80%; */
+            height:80%;
+        }
+
+    }
+
+`
+
+const ReviewOne = styled.ul`
+    width:95%;
+    /* background:red; */
+    min-height:80%;
+    height:auto;
+    margin: 0 auto;
+    margin-top:10px;
+    border-top: 1px solid grey;
+    border-bottom : 1px solid grey;
+    @media (max-width: 400px){
+            min-height:80%;
+            height:auto;
+    }
+    /* 여기가 문제임 자식 div가 늘어나도 크기가 증가하지 않음. */
+    .close2{
+        width:4%;
+        height:100%;
+        display:block;
+        text-align:center;
+        font-size:20px;
+        /* align-items:flex-start; */
+
+    }
+    .review_box{
+        /* background:purple; */
+        width:100%;
+        height:30%;
+        display:flex;
+        justify-content:space-between;
+        align-items:flex-start;
+        @media (max-width: 400px){
+            align-items:center;
+            font-size:20px;
+            flex-wrap:wrap;
+            min-height:40px;
+            height:auto;
+            border-bottom: 1px solid #efefef;
+
+        }
+
+
+    }
+   
+
+
+    .star_box{
+        width:24%;
+        height:30px;
+        margin-bottom:10px;
+        border-bottom: 0.5px solid #DCDCDC;
+        @media (max-width: 400px){
+            font-size:14px;
+            width:50%;
+            height:10%;
+            border:none;
+        }
+    }
+
+    .evaluate{
+        width:100%;
+        min-height:45%;
+        height:auto;
+        @media (max-width: 400px){
+            min-height:60%;
+            height:auto;
+
+        }
+    }
+
+    
+    .button_box{
+        width:100%;
+        min-height:20%;
+        height:auto;
+        display:flex;
+        justify-content:space-between;
+    }
+
+    .update_button, .delete_button{
+        width:70px;
+        height:20px;
+        margin-right:5px;
+        margin-bottom:10px;
+        font-size:14px;
+        line-height:7px;
+        background: none;
+        border: 1.5px solid;
+        color:#FFD5A9;
+        letter-spacing: inherit;
+        border-bottom: 3px solid ;
+        border-right: 3px solid ;
+        text-transform: inherit;
+        cursor:pointer;
+        @media (max-width: 400px){
+
+        }
+
+    }
+
+
+`
 
 const StarForm = styled.form`
     // border : 2px solid #000;
@@ -79,8 +248,14 @@ const Textli = styled.li`
 `
 
 const StarSpan = styled.span`
-    font-size: 1.25rem;
+    font-size: 1rem;
+    @media (max-width: 400px){
+            font-size:12px;
+
+        }
+    
 `
+
 
 const Mypage = () => {
     const stores = useSelector(state => state)
@@ -89,7 +264,6 @@ const Mypage = () => {
     const body = { email : stores.user.me.email }
 
     const deleteHandler = (k) => {
-        console.log(k)
         dispatch({type :review_delete_request.toString(), payload: {idx:k} })
     }
 
@@ -141,77 +315,104 @@ const Mypage = () => {
     const reviewList = stores.review.data.map((v)=> {
         return (
             stores.review.update !== v.idx ?
-            <Starul>
-                <li onClick={() => deleteHandler(v.idx)}> x </li>
-                <li> {v.storename}</li>
-                <Starli> 맛 : {
-                    v.flavor === 1 ? <StarSpan>⭐</StarSpan> : v.flavor === 2 ? <StarSpan>⭐⭐</StarSpan> 
-                    : v.flavor === 3 ? <StarSpan>⭐⭐⭐</StarSpan> 
-                    : v.flavor === 4 ? <StarSpan>⭐⭐⭐⭐</StarSpan> : v.flavor === 5 ? <StarSpan>⭐⭐⭐⭐⭐ </StarSpan> : '평가 정보 없음'
-                    }
-                </Starli>
-                <Starli> 분위기 : {
-                    v.atmosphere === 1 ? <StarSpan>⭐</StarSpan> : v.atmosphere === 2 ? <StarSpan>⭐⭐</StarSpan> 
-                    : v.atmosphere === 3 ? <StarSpan>⭐⭐⭐</StarSpan> 
-                    : v.atmosphere === 4 ? <StarSpan>⭐⭐⭐⭐</StarSpan> : v.atmosphere === 5 ? <StarSpan>⭐⭐⭐⭐⭐</StarSpan> : '평가 정보 없음'
-                    }
-                </Starli>
-                <Starli> 가격 : {
-                    v.cheap === 1 ? <StarSpan>⭐</StarSpan> : v.cheap === 2 ? <StarSpan>⭐⭐</StarSpan> 
-                    : v.cheap === 3 ? <StarSpan>⭐⭐⭐</StarSpan> 
-                    : v.cheap === 4 ? <StarSpan>⭐⭐⭐⭐</StarSpan> : v.cheap === 5 ? <StarSpan>⭐⭐⭐⭐⭐</StarSpan> : '평가 정보 없음'
-                }
-                </Starli>
-                <Starli> 서비스 : {
-                    v.service === 1 ? <StarSpan>⭐</StarSpan> : v.service === 2 ? <StarSpan>⭐⭐</StarSpan> 
-                    : v.service === 3 ? <StarSpan>⭐⭐⭐</StarSpan> 
-                    : v.service === 4 ? <StarSpan>⭐⭐⭐⭐</StarSpan> : v.service === 5 ? <StarSpan>⭐⭐⭐⭐⭐</StarSpan> : '평가 정보 없음'
-                    }
-                </Starli>
-                <Textli> 평가 : {v.text === null ? '평가 정보 없음' : v.text}</Textli>
-                <li onClick={() => updateBoot(v.idx)}> 수정 </li>
-            </Starul>
+                <ReviewOne key={v.idx}>
+                    <div class="review_box">
+                        <li class="star_box"> 맛 : {
+
+                            v.flavor === 1 ? <StarSpan>⭐</StarSpan> : v.flavor === 2 ? <StarSpan>⭐⭐</StarSpan> 
+                            : v.flavor === 3 ? <StarSpan>⭐⭐⭐</StarSpan> 
+                            : v.flavor === 4 ? <StarSpan>⭐⭐⭐⭐</StarSpan> : v.flavor === 5 ? <StarSpan>⭐⭐⭐⭐⭐ </StarSpan> : '평가 정보 없음'
+                            }
+                        </li>
+                        <li class="star_box"> 분위기 : {
+                            v.atmosphere === 1 ? <StarSpan>⭐</StarSpan> : v.atmosphere === 2 ? <StarSpan>⭐⭐</StarSpan> 
+                            : v.atmosphere === 3 ? <StarSpan>⭐⭐⭐</StarSpan> 
+                            : v.atmosphere === 4 ? <StarSpan>⭐⭐⭐⭐</StarSpan> : v.atmosphere === 5 ? <StarSpan>⭐⭐⭐⭐⭐</StarSpan> : '평가 정보 없음'
+                            }
+                        </li>
+                        <li class="star_box"> 가격 : {
+                            v.cheap === 1 ? <StarSpan>⭐</StarSpan> : v.cheap === 2 ? <StarSpan>⭐⭐</StarSpan> 
+                            : v.cheap === 3 ? <StarSpan>⭐⭐⭐</StarSpan> 
+                            : v.cheap === 4 ? <StarSpan>⭐⭐⭐⭐</StarSpan> : v.cheap === 5 ? <StarSpan>⭐⭐⭐⭐⭐</StarSpan> : '평가 정보 없음'
+                        }
+                        </li>
+                        <li class="star_box"> 서비스 : {
+                            v.service === 1 ? <StarSpan>⭐</StarSpan> : v.service === 2 ? <StarSpan>⭐⭐</StarSpan> 
+                            : v.service === 3 ? <StarSpan>⭐⭐⭐</StarSpan> 
+                            : v.service === 4 ? <StarSpan>⭐⭐⭐⭐</StarSpan> : v.service === 5 ? <StarSpan>⭐⭐⭐⭐⭐</StarSpan> : '평가 정보 없음'
+                            }
+                        </li>
+                        {(isMobile==false)&&<span onClick={() => deleteHandler(v.idx)} class="close2"> x </span>}
+                        
+                    </div>
+                    <div class="evaluate"> 총평 : {v.text === null ? '평가 정보 없음' : v.text}</div>
+                    <div class="button_box">
+                        <button class="update_button"onClick={() => updateBoot(v.idx)}> 수정하기 </button>
+                        {(isMobile)&&<button class="delete_button" onClick={() => deleteHandler(v.idx)}> 삭제하기 </button>}
+                    </div>
+                    
+                </ReviewOne>
             :
             <StarForm onSubmit = {submitHandler(v.idx)}>
                 <ul>
                     <li>
                         <span>맛</span>
                         <MyFieldSet>
-                            <Radioinput type='radio' value='5' id='flavor1' name='flavor'/><Starlabel for='flavor1'>⭐</Starlabel>
-                            <Radioinput type='radio' value='4' id='flavor2' name='flavor'/><Starlabel for='flavor2'>⭐</Starlabel>
-                            <Radioinput type='radio' value='3' id='flavor3' name='flavor'/><Starlabel for='flavor3'>⭐</Starlabel>
-                            <Radioinput type='radio' value='2' id='flavor4' name='flavor'/><Starlabel for='flavor4'>⭐</Starlabel>
-                            <Radioinput type='radio' value='1' id='flavor5' name='flavor'/><Starlabel for='flavor5'>⭐</Starlabel>
+                            <Radioinput type='radio' value='5' id='flavor1' name='flavor'/>
+                            <Starlabel for='flavor1'>⭐</Starlabel>
+                            <Radioinput type='radio' value='4' id='flavor2' name='flavor'/>
+                            <Starlabel for='flavor2'>⭐</Starlabel>
+                            <Radioinput type='radio' value='3' id='flavor3' name='flavor'/>
+                            <Starlabel for='flavor3'>⭐</Starlabel>
+                            <Radioinput type='radio' value='2' id='flavor4' name='flavor'/>
+                            <Starlabel for='flavor4'>⭐</Starlabel>
+                            <Radioinput type='radio' value='1' id='flavor5' name='flavor'/>
+                            <Starlabel for='flavor5'>⭐</Starlabel>
                         </MyFieldSet>
                     </li>
                     <li>
                         <span>분위기</span>
                         <MyFieldSet>
-                            <Radioinput type='radio' value='5' id='atmosphere1' name='atmosphere'/><Starlabel for='atmosphere1'>⭐</Starlabel>
-                            <Radioinput type='radio' value='4' id='atmosphere2' name='atmosphere'/><Starlabel for='atmosphere2'>⭐</Starlabel>
-                            <Radioinput type='radio' value='3' id='atmosphere3' name='atmosphere'/><Starlabel for='atmosphere3'>⭐</Starlabel>
-                            <Radioinput type='radio' value='2' id='atmosphere4' name='atmosphere'/><Starlabel for='atmosphere4'>⭐</Starlabel>
-                            <Radioinput type='radio' value='1' id='atmosphere5' name='atmosphere'/><Starlabel for='atmosphere5'>⭐</Starlabel>
+                            <Radioinput type='radio' value='5' id='atmosphere1' name='atmosphere'/>
+                            <Starlabel for='atmosphere1'>⭐</Starlabel>
+                            <Radioinput type='radio' value='4' id='atmosphere2' name='atmosphere'/>
+                            <Starlabel for='atmosphere2'>⭐</Starlabel>
+                            <Radioinput type='radio' value='3' id='atmosphere3' name='atmosphere'/>
+                            <Starlabel for='atmosphere3'>⭐</Starlabel>
+                            <Radioinput type='radio' value='2' id='atmosphere4' name='atmosphere'/>
+                            <Starlabel for='atmosphere4'>⭐</Starlabel>
+                            <Radioinput type='radio' value='1' id='atmosphere5' name='atmosphere'/>
+                            <Starlabel for='atmosphere5'>⭐</Starlabel>
                         </MyFieldSet>
                     </li>
                     <li>
                         <span>가격</span>
                         <MyFieldSet>
-                            <Radioinput type='radio' value='5' id='cheap1' name='cheap'/><Starlabel for='cheap1'>⭐</Starlabel>
-                            <Radioinput type='radio' value='4' id='cheap2' name='cheap'/><Starlabel for='cheap2'>⭐</Starlabel>
-                            <Radioinput type='radio' value='3' id='cheap3' name='cheap'/><Starlabel for='cheap3'>⭐</Starlabel>
-                            <Radioinput type='radio' value='2' id='cheap4' name='cheap'/><Starlabel for='cheap4'>⭐</Starlabel>
-                            <Radioinput type='radio' value='1' id='cheap5' name='cheap'/><Starlabel for='cheap5'>⭐</Starlabel>
+                            <Radioinput type='radio' value='5' id='cheap1' name='cheap'/>
+                            <Starlabel for='cheap1'>⭐</Starlabel>
+                            <Radioinput type='radio' value='4' id='cheap2' name='cheap'/>
+                            <Starlabel for='cheap2'>⭐</Starlabel>
+                            <Radioinput type='radio' value='3' id='cheap3' name='cheap'/>
+                            <Starlabel for='cheap3'>⭐</Starlabel>
+                            <Radioinput type='radio' value='2' id='cheap4' name='cheap'/>
+                            <Starlabel for='cheap4'>⭐</Starlabel>
+                            <Radioinput type='radio' value='1' id='cheap5' name='cheap'/>
+                            <Starlabel for='cheap5'>⭐</Starlabel>
                         </MyFieldSet>
                     </li>
                     <li>
                         <span>서비스</span>
                         <MyFieldSet>
-                            <Radioinput type='radio' value='5' id='service1' name='service'/><Starlabel for='service1'>⭐</Starlabel>
-                            <Radioinput type='radio' value='4' id='service2' name='service'/><Starlabel for='service2'>⭐</Starlabel>
-                            <Radioinput type='radio' value='3' id='service3' name='service'/><Starlabel for='service3'>⭐</Starlabel>
-                            <Radioinput type='radio' value='2' id='service4' name='service'/><Starlabel for='service4'>⭐</Starlabel>
-                            <Radioinput type='radio' value='1' id='service5' name='service'/><Starlabel for='service5'>⭐</Starlabel>
+                            <Radioinput type='radio' value='5' id='service1' name='service'/>
+                            <Starlabel for='service1'>⭐</Starlabel>
+                            <Radioinput type='radio' value='4' id='service2' name='service'/>
+                            <Starlabel for='service2'>⭐</Starlabel>
+                            <Radioinput type='radio' value='3' id='service3' name='service'/>
+                            <Starlabel for='service3'>⭐</Starlabel>
+                            <Radioinput type='radio' value='2' id='service4' name='service'/>
+                            <Starlabel for='service4'>⭐</Starlabel>
+                            <Radioinput type='radio' value='1' id='service5' name='service'/>
+                            <Starlabel for='service5'>⭐</Starlabel>
                         </MyFieldSet>
                     </li>
                 </ul>
@@ -231,19 +432,17 @@ const Mypage = () => {
             <Container>
                 { stores.user.me.email !== null
                 ?
-                    <>
-                        <a href='/'>x</a>
-                        <hr/>
-                        <span> {decodeURI(stores.user.me.nickname)} 님! 환영합니다! </span>
-                        <br/>
-                        <span> 이메일: {stores.user.me.email} </span>
-                        <br/>
-                        <hr/>
-                        <span> review zone </span>
-                        <div>
+                <div class="mypage">
+                    <a href='/' class="close">x</a>
+                    <div class="mypage_box">
+                        <h1 class="welcome"> 🍩 {decodeURI(stores.user.me.nickname)} 님! 환영합니다! 🍩 </h1>
+                        <h2 class="email"> 📧 내 이메일(ID): {stores.user.me.email} </h2>
+                        <h2 class="review"> ✏️ 내가 쓴 리뷰 </h2>
+                        <div class="review_list">
                             {reviewList}
                         </div>
-                    </>
+                    </div>
+                </div>
                 :
                     <>
                     <a href='/'>x</a>
