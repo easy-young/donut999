@@ -11,6 +11,7 @@ export const Ebutton = styled.button`
     border:none;
     background-color: #ff5bb3;
     color:#fff;
+    padding: 5px 7px;
 `
 
 export const Dbutton = styled.button`
@@ -18,11 +19,29 @@ export const Dbutton = styled.button`
     border:none;
     background-color: #ff4136;
     color:#fff;
+    padding: 5px 7px;
+`
+
+export const Rbutton = styled.button`
+    padding: 5px 7px;
+    border:none;
+    background: #b9ff84;
+`
+
+export const Sbutton = styled.button`
+    padding: 5px 7px;
+    border:none;
+    background: #ca84ff;
+    font-size: 20px;
+    margin-left:4%;
+    color:#fff;
 `
 
 
 export const Table = styled.table`
     text-align: center;
+    background: #fff;
+   
    
 
 `
@@ -33,7 +52,7 @@ export const Tr = styled.tr`
         font-weight:bold;
     }
     border-spacing: 1px 40px;
-    border: 1px solid #fff;
+    border: 1px solid pink;
 
     &>Td:nth-child(2){
         width:280px;
@@ -44,7 +63,7 @@ export const Tr = styled.tr`
 export const Td = styled.td`
     text-align: center;
 
-    border: 1px solid #fff;
+    border: 1px solid pink;
 
 
     
