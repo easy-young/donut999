@@ -2,18 +2,8 @@ import { createAction } from "redux-actions";
 
 
 const initialState = {
-    register:[],
+    sort:[],
 }
-
-const ADMIN_STORE_CONFIRM = {
-    REQUEST:'ADMIN/STORE_CONFIRM_REQUEST',
-    SUCCESS:'ADMIN/STORE_CONFIRM_SUCCESS',
-    FAILURE:'ADMIN/STORE_CONFIRM_FAILURE',
-}
-
-export const admin_store_confirm_request = createAction(ADMIN_STORE_CONFIRM.REQUEST) 
-export const admin_store_confirm_success = createAction(ADMIN_STORE_CONFIRM.SUCCESS)
-export const admin_store_confirm_failure = createAction(ADMIN_STORE_CONFIRM.FAILURE)
 
 const ADMIN_CONFIRM_DEL = {
     REQUEST:'ADMIN/CONFIRM_DEL_REQUEST',
@@ -40,20 +30,6 @@ export const admin_confirm_state_failure = createAction(ADMIN_CONFIRM_STATE.FAIL
 
 const adminConfirm = (state=initialState,action) => {
     switch(action.type){
-        case ADMIN_STORE_CONFIRM.REQUEST:
-            return {
-                ...state,
-            }
-        case ADMIN_STORE_CONFIRM.SUCCESS:
-            
-            return {
-                ...state,
-               register:action.payload
-            }
-        case ADMIN_STORE_CONFIRM.FAILURE:
-            return {
-                ...state
-            }
         case ADMIN_CONFIRM_DEL.REQUEST:
           
             return {
@@ -63,24 +39,24 @@ const adminConfirm = (state=initialState,action) => {
           
             return {
                 ...state,
-                register:action.payload
+                sort:action.payload
             }
         case ADMIN_CONFIRM_DEL.FAILURE:
             return {
                 ...state
             }
         case ADMIN_CONFIRM_STATE.REQUEST:
-        
             return {
                 ...state,
             }
         case ADMIN_CONFIRM_STATE.SUCCESS:
-            
             return {
                 ...state,
-                register:action.payload
+                sort:action.payload.data.result
+                
             }
         case ADMIN_CONFIRM_STATE.FAILURE:
+        
             return {
                 ...state
             }
