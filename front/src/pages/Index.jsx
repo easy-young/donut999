@@ -21,44 +21,25 @@ const Background = styled.div`
 `;
 
 const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     width: 60%;
     height: 80%;
     border-radius: 30px;
     background-color: rgb(255, 255, 255);
     overflow: scroll;
 
-    &>div{
-        display:flex;
-        justify-content: space-between;
-        width:100%;
-        
-
-    }
     @media (max-width: 600px) {
         width: 80%;
         }
 `;
 
 const StationName = styled.div`
-    /* position: absolute;
-    top: 38px;
-    left: 240px; */
     display:inline-block;
-    width:100px;
+    width:60%;
     font-size: 24px;
     font-weight: bolder;
 `;
 
 const CloseBtn = styled.button`
-    /* position: absolute;
-    width: 36px;
-    height: 36px;
-    top: 38px;
-    right: 240px; */
     width:36px;
     font-size: 16px;
     border: none;
@@ -72,36 +53,39 @@ const CloseBtn = styled.button`
 
 const StoreBox = styled.div`
     margin-top: 2%;
-    width: 90%;
-    height: 35%;
+    width: 95%;
+    margin:0 auto;
+    /* height: 52%; */
     padding: 3%;
     border-radius: 20px;
     background: #ffeddf;
+    display:flex;
+
+    
 `;
 
 const StoreName = styled.div`
-    position: relative;
-    bottom: 220px;
-    left: 300px;
     font-size: 22px;
 `;
 
 const StoreAddress = styled.div`
-    position: relative;
-    bottom: 210px;
-    left: 300px;
+
+    margin-top:3%;
+    font-size: 18px;
 `;
 
 const StoreScore = styled(StoreAddress)`
-    bottom: 200px;
+    
 `;
 
 const NoBox = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: 20px;
-`;
+    font-size: 25px;
+    justify-content: center;
+`
+
 
 const Index = () => {
     
@@ -884,7 +868,7 @@ const Index = () => {
                 name &&
                 <Background>
                     <Container>
-                        <div>
+                        <div style={{display:'flex',justifyContent:'space-between',width:'100%',padding:'2%'}}>
                             <StationName>{ store.length > 0 && name+"역 맛집" }</StationName>
                             <CloseBtn onClick={Close}>X</CloseBtn>
                         </div>
@@ -896,27 +880,30 @@ const Index = () => {
                                         {/* <div style={{ height: '20px' }}></div> */}
                                         <StoreBox key={i}>
                                             { store[i] &&
-                                                <div>
+                                                <>
                                                     <img 
                                                         src={require(`../../public/img/donut_store/${store[i].idx}_1.jpg`)}
-                                                        style={{ borderRadius: '30px', }}
+                                                        style={{ borderRadius: '30px'}}
                                                         width={240}
                                                         height={240}
 
                                                     />
-                                                    <StoreName>
-                                                        <Link 
-                                                            to={`/shop/${store[i].idx}`}
-                                                            style={{ color: 'black' }}
-                                                        >
-                                                            {store[i].name}
-                                                        </Link>
-                                                    </StoreName>
-                                                    <StoreAddress>
-                                                        주소 : {store[i].address}
-                                                    </StoreAddress>
-                                                    <StoreScore>평점 : 5</StoreScore>
-                                                </div>
+                                                    <div style={{marginLeft:'3%'}}>
+                                                        <StoreName>
+                                                            <Link 
+                                                                to={`/shop/${store[i].idx}`}
+                                                                style={{ color: 'black' }}
+                                                            >
+                                                                {store[i].name}
+                                                            </Link>
+                                                        </StoreName>
+                                                        <StoreAddress>
+                                                            주소 : {store[i].address}
+                                                        </StoreAddress>
+                                                        <StoreScore>평점 : 5</StoreScore>
+                                                    </div>
+
+                                                </>
                                             }
                                         </StoreBox>
                                     </>

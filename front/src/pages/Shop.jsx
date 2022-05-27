@@ -106,6 +106,12 @@ const StarBox = styled.span`
     position: relative;
     top: 5px;
     margin-left: 16px;
+    @media (max-width: 600px) {
+        display: block;
+        position: relative;
+        top: 5px;
+        margin-left: 16px;
+    }
 `;
 
 const StarSpan = styled.span`
