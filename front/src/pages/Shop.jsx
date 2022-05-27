@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { shop_request } from '../reducers/shop.js';
+import { isMobile } from "react-device-detect";
 
 const Background = styled.div`
     display: flex;
@@ -49,6 +50,7 @@ const Ul = styled.ul`
 `
 
 const Li = styled.li`
+    width:100%;
     margin-top:1%;
 `
 
@@ -164,11 +166,18 @@ const Shop = () => {
                 {
                     info &&
                     <>
-                        <ImgBox>
+                        {isMobile 
+                        ? 
+                        <ImgBox>  
+                            <Img src={require(`../../public/img/donut_store/${info.idx}_3.jpg`)}/>
+                        </ImgBox>
+                        : 
+                        <ImgBox>  
                             <Img src={require(`../../public/img/donut_store/${info.idx}_1.jpg`)}/>
                             <Img src={require(`../../public/img/donut_store/${info.idx}_2.jpg`)}/>
                             <Img src={require(`../../public/img/donut_store/${info.idx}_3.jpg`)}/>
                         </ImgBox>
+                        }
                         <ContentBox>
                             <div>
                                 <StoreName>
@@ -183,43 +192,46 @@ const Shop = () => {
                                 <Ul>
                                 <Li>
                                     <Span1>지하철 🚃</Span1>
-                                    <Span> {info.line}호선 {info.stationKor}역 </Span>
                                 </Li>
+                                <p> {info.line}호선 {info.stationKor}역 </p>
                                 
                                 <Li>
                                     <Span1>주소 🏡</Span1>
-                                    <Span> {info.address}역 </Span>
                                 </Li>
+                                <p>{info.address}</p>
                                 <Li>
                                     <Span1>도넛 🍩</Span1>
-                                    <Span> {info.menu}</Span>
                                 </Li>
+                                <p>{info.menu}</p>
                                 <Li>
                                     <Span1>음료🥤</Span1>
-                                    <Span> {info.beverage} </Span>
                                 </Li>
+                                <p>{info.beverage}</p>
                                 <Li>
                                     <Span1>운영시간 ⏰ </Span1>
-                                    <Span> {info.operhour} </Span>
                                 </Li>
+                                <p>{info.operhour}</p>
                                 <Li>
                                     <Span1>연락처 ☎️</Span1>
-                                    <Span> {info.tel} </Span>
                                 </Li>
+                                <p>{info.tel}</p>
                                 {
                                     info.website &&
+                                    <>
                                     <Li>
                                         <Span1>SNS 📱</Span1>
-                                        <Span>{info.website}</Span>
                                     </Li>
-        
+                                    <a>{info.website}</a>
+                                    </>
                                 }
                                 {
                                     info.intro &&
+                                    <>
                                     <Li>
                                         <Span1>소개 🔔</Span1>
-                                        <Span>{info.intro}</Span>
                                     </Li>
+                                    <p>{info.intro}</p>
+                                    </>
                                 }
                              </Ul>
                             </div>
