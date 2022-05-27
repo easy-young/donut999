@@ -7,7 +7,7 @@ const Fork = styled.img`
     width: 30px; 
     height: 120px;
     transform: translate(100%, 0%) rotate(-35deg);
-    z-index:5000;
+    z-index:3000;
 
 `
 document.addEventListener("mousemove", (e) => {

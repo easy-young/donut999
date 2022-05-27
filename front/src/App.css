@@ -53,14 +53,15 @@
 
 
 .ant-menu-submenu:hover, .ant-menu-submenu-inline:hover {
-  background: pink;
+  background: #e5e4c6;
 }
 .ant-menu-item:hover, .ant-menu-item-only-child:hover{
-  background: pink;
+  background: #e5e4c6;
 }
 
+
 .ant-menu-submenu:hover>.ant-menu-item, .ant-menu-submenu-inline:hover>.ant-menu-item {
-  background: pink;
+  background: #e5e4c6;
   color:red;
 }
 
@@ -72,7 +73,7 @@
 }
 /* 메뉴 박스 호버시 배경색 */
 .ant-menu-item:hover, .ant-menu-item-selected:hover, .ant-menu-item-only-child:hover{
-  background: pink;
+  background: #e5e4c6;
 }
 /* 메뉴 호버시 글자색 */
 .ant-menu-item a:hover{
@@ -102,7 +103,7 @@
 
 /* div 끝에 색처리 */
 .ant-menu-inline .ant-menu-item:after{
-  border: none!important;
+  border: #ccc9ab!important;
 }
 /* 화살표 색 */
 .ant-menu-submenu:hover >.ant-menu-submenu-title>.ant-menu-submenu-arrow{
