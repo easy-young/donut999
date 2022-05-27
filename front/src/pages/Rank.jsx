@@ -31,6 +31,22 @@ const Container = styled.div`
     @media (max-width: 400px) {
         height: 94%;
     }
+
+    .total{
+        outline: 2px solid rgb(225, 106, 147);
+    }
+    .flavor{
+        outline: 2px solid rgb(225, 106, 147);
+    }
+    .atmosphere{
+        outline: 2px solid rgb(225, 106, 147);
+    }
+    .cheap{
+        outline: 2px solid rgb(225, 106, 147);
+    }
+    .service{
+        outline: 2px solid rgb(225, 106, 147);
+    }
 `;
 
 const Tab = styled.div`
@@ -45,12 +61,12 @@ const Tab = styled.div`
     margin-right: 2%;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    outline: 2px solid #E16A93;
 
 
     :hover {
         cursor: pointer;
-        color: #fff8c4;
+        color: #828282;
+        transition: ease 0.5s;
     }
 
     :visited {
@@ -151,7 +167,10 @@ const StyledLink2 = styled(Link)`
     }
 `;
 
+
+
 const Rank = () => {
+    const total_rank = document.querySelectorAll(".classify > div") //tab 리스트
     const dispatch = useDispatch();
     const { topFive } = useSelector(state => state.rank);
     useEffect(() => {
@@ -159,27 +178,55 @@ const Rank = () => {
     }, [dispatch]);
     const total = () => {
         dispatch(rank_total_request());
+        total_rank[0].style.outline ="2px solid #FF6A89"
+        total_rank[1].style.outline ="none"
+        total_rank[2].style.outline ="none"
+        total_rank[3].style.outline ="none"
+        total_rank[4].style.outline ="none"
+
     };
     const flavor = () => {
         dispatch(rank_flavor_request());
+        total_rank[0].style.outline ="none"
+        total_rank[1].style.outline ="2px solid #FFA500"
+        total_rank[2].style.outline ="none"
+        total_rank[3].style.outline ="none"
+        total_rank[4].style.outline ="none"
     };
     const atmosphere = () => {
         dispatch(rank_atmosphere_request());
+        total_rank[0].style.outline ="none"
+        total_rank[1].style.outline ="none"
+        total_rank[2].style.outline ="2px solid #FFD732"
+        total_rank[3].style.outline ="none"
+        total_rank[4].style.outline ="none"
     };
     const cheap = () => {
         dispatch(rank_cheap_request());
+        total_rank[0].style.outline ="none"
+        total_rank[1].style.outline ="none"
+        total_rank[2].style.outline ="none"
+        total_rank[3].style.outline ="2px solid #4AB34A"
+        total_rank[4].style.outline ="none"
     };
     const service = () => {
         dispatch(rank_service_request());
+        total_rank[0].style.outline ="none"
+        total_rank[1].style.outline ="none"
+        total_rank[2].style.outline ="none"
+        total_rank[3].style.outline ="none"
+        total_rank[4].style.outline ="2px solid #50BEBE"
     };
+
+
     return (
         <Background>
-            <Container>
-                <Tab style={{ marginLeft: '2%' }} onClick={total}>전체</Tab>
-                <Tab onClick={flavor} style={{background:"#FFB788"}}>맛</Tab>
-                <Tab onClick={atmosphere} style={{background:"#FFFF8C"}}>분위기</Tab>
-                <Tab onClick={cheap}  style={{background:"#98FB98"}}>가성비</Tab>
-                <Tab onClick={service} style={{background:"#87F5F5"}}>서비스</Tab>
+            <Container className="classify">
+                <Tab style={{ marginLeft: '2%', outline:"2px solid #FF6A89" }} onClick={total}name="total">전체</Tab>
+                <Tab onClick={flavor} style={{background:"#FFB788"}} name="favor" >맛</Tab>
+                <Tab onClick={atmosphere} style={{background:"#FFFF8C"}} name="atmosphere" >분위기</Tab>
+                <Tab onClick={cheap}  style={{background:"#98FB98"}} name="cheap" >가성비</Tab>
+                <Tab onClick={service} style={{background:"#87F5F5"}} name="service">서비스</Tab>
                 <Tab style={{ float: 'right', background: '#CE69E7' }}><StyledLink to='/'>뒤로 가기</StyledLink></Tab>
                 <BigDiv>
                     <div className="visible">
