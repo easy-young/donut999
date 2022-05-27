@@ -129,7 +129,6 @@ router.post(`/store/setting/update/:store_id`,async (req,res)=>{
 router.post(`/store/setting/delete/:store_id`,async (req,res)=>{
     const sql = `DELETE FROM shop where idx = ? `
     const prepare = [req.params.store_id]
-    console.log(prepare)
 
         try {
             const [result] = await pool.query(sql,prepare)
@@ -154,32 +153,7 @@ router.post(`/store/setting/delete/:store_id`,async (req,res)=>{
 
 )
 
-router.post(`/store/confirm`,async (req,res)=>{
-    const sql = `select *,DATE_FORMAT(time,'%Y-%m-%d') AS stamp from register`
 
-        try {
-            const [result] = await pool.query(sql)
-            
-            const response = {
-                result
-            }
-            res.json(response)
-            console.log(response)
-            
-        }
-
-        catch (e) {
-            console.log(e.message)
-            const response = {
-                errormsg: e.message,
-                errno: 1
-            }
-            
-            res.json(response)  
-        }
-    } 
-
-)
 
 router.post(`/store/confirm/delregi/:regi_id`,async (req,res)=>{
     
@@ -190,7 +164,7 @@ router.post(`/store/confirm/delregi/:regi_id`,async (req,res)=>{
         try {
             const [result] = await pool.query(sql)
             const [result2] = await pool.query(sql2)
-            console.log(result2)
+     
             const response = {
                 result2
             }
@@ -211,11 +185,64 @@ router.post(`/store/confirm/delregi/:regi_id`,async (req,res)=>{
 
 )
 
-router.post('/store/confirm/:register_id',async (req,res)=>{
+router.post('/store/confirm/sort',async (req,res)=>{
     
+    const prepare =[req.body.payload]
+    if(prepare == '전체'){
+        const sql1 = `select *,DATE_FORMAT(time,'%Y-%m-%d') AS stamp from register`
+        try {
+            const [result] = await pool.query(sql1)
+            const response = {
+                result
+            }
+            res.json(response)
+           
+        }
+    
+        catch (e) {
+            console.log(e.message)
+            const response = {
+                errormsg: e.message,
+                errno: 1
+            }
+            
+            res.json(response)  
+        }
+    } else{
+        const sql = `select *,DATE_FORMAT(time,'%Y-%m-%d') AS stamp from register where state='${prepare}'`
+        try {
+            const [result] = await pool.query(sql)
+            const response = {
+                result
+            }
+            res.json(response)
+           
+        }
+    
+        catch (e) {
+            console.log(e.message)
+            const response = {
+                errormsg: e.message,
+                errno: 1
+            }
+            
+            res.json(response)  
+        }
+    }
+    
+
+
+    
+} 
+
+)
+
+
+router.post('/store/confirm/:register_id',async (req,res)=>{
+
     const sql = `select * from register where idx = ? `
     const prepare = [req.params.register_id]
-    console.log(prepare)
+
     try {
         const [result] = await pool.execute(sql,prepare)
      
@@ -223,7 +250,7 @@ router.post('/store/confirm/:register_id',async (req,res)=>{
             result
         }
         res.json(response)
-        console.log(response)
+     
     }
 
     catch (e) {

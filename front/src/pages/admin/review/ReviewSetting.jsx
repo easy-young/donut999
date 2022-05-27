@@ -47,7 +47,7 @@ const ReviewSetting = () => {
                             <Td>Email</Td>
                             <Td>Text</Td>
                             <Td>Flavor</Td>
-                            <Td>Atmosphere</Td>
+                            <Td>Atmos</Td>
                             <Td>Cheap</Td>
                             <Td>Service</Td>
                             <Td>Date</Td>

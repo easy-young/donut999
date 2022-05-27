@@ -5,6 +5,10 @@ export const Div = styled.div`
     justify-content: space-around;
 
 `
+export const Divv = styled.div`
+    width:1200px;
+
+`
 
 export const Ebutton = styled.button`
     display: inline;

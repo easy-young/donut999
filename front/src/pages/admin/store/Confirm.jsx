@@ -1,18 +1,18 @@
 import { Link } from "react-router-dom";
 import {useDispatch, useSelector} from 'react-redux';
-import {admin_store_confirm_request} from '../../../reducers/admin/adminStoreConfirm.js';
 import {admin_confirm_del_request} from '../../../reducers/admin/adminStoreConfirm.js';
 import {admin_confirm_state_request} from '../../../reducers/admin/adminStoreConfirm.js';
 import { useEffect, useState } from 'react';
-import {Div, Dbutton, Table, Tr, Td} from '../../../components/styles/AdminTable';
+import {Divv, Dbutton, Table, Tr, Td} from '../../../components/styles/AdminTable';
 import { AuthButton } from "../../../components/styles/AdminStyles";
 
 const Confirm = () => {
     const dispatch = useDispatch()
     useEffect(()=>{
-        dispatch({type:admin_store_confirm_request.toString()})
+        dispatch(admin_confirm_state_request('전체'))
     },[dispatch])
 
+<<<<<<< HEAD
     const registers = useSelector(state=>state.adminConfirm.register)
     const a = registers.length
 <<<<<<< HEAD
@@ -22,6 +22,11 @@ const Confirm = () => {
     const check = Array(a).fill(false)
     // console.log(check)
 =======
+=======
+
+    const sort = useSelector(state=>state.adminConfirm.sort)
+    const a = sort.length
+>>>>>>> 08a052211f187f0a9702d2cb7fd4c37649fdd676
   
     const check = Array(a).fill(false)
 >>>>>>> 5ac98087e6447b36b71c5d1dc76a341fa0dd5dfa
@@ -50,8 +55,7 @@ const Confirm = () => {
     
     const sortHandler = (e) => {
         e.preventDefault()
-        let target = e.target.value
-        console.log('sort',target)
+        const target = e.target.value
         dispatch(admin_confirm_state_request(target))
     }
     
@@ -59,30 +63,33 @@ const Confirm = () => {
     return(
         <>
             <h2 style={{textAlign:'center', marginTop:'4%'}}>Confirm New Store</h2>
-                <Div style={{marginTop:'3%'}}>
+                <Divv style={{marginTop:'3%', margin:'0 auto'}}>
                     <form method="post" name="delform" onSubmit={onDelete}> 
                         <Table style={{width:'100%'}}>
                             <thead>
-                                <Tr>
-                                    <Td>Idx</Td>
-                                    <Td>Email</Td>
-                                    <Td>Store</Td>
-                                    <Td>Menu</Td>
-                                    <Td>Address</Td>
-                                    <Td>Contact</Td>
-                                    <Td>SNS or Web</Td>
-                                    <Td>Application Date</Td>
-                                    <Td><select name="sort" onChange={sortHandler}>
-                                            <option value="false">대기</option>
-                                            <option value="true">승인</option>
-                                        </select></Td>
-                                    <Td>
+                                <Tr >
+                                    <Td style={{width: '3%'}}>Idx</Td>
+                                    <Td style={{width: '17%'}}>Email</Td>
+                                    <Td style={{width: '10%'}}>Store</Td>
+                                    <Td style={{width: '10%'}}>Menu</Td>
+                                    <Td style={{width: '15%'}}>Address</Td>
+                                    <Td style={{width: '15%'}}>Contact</Td>
+                                    <Td style={{width: '10%'}}>SNS</Td>
+                                    <Td style={{width: '10%'}}> Date</Td>
+                                    <Td style={{width: '5%'}}>
+                                        <select name="sort" onChange={sortHandler}>
+                                            <option value="전체">전체</option>
+                                            <option value="대기">대기</option>
+                                            <option value="승인">승인</option>
+                                        </select>
+                                    </Td>
+                                    <Td style={{width: '5%'}}>
                                         <Dbutton type="submit">삭제</Dbutton>
                                     </Td>
                                 </Tr>
                             </thead>
                             <tbody>
-                                {registers && registers.map ((x,i) => {
+                                {sort && sort.map ((x,i) => {
                                     return(
                                         
                                             <Tr key={i}>
@@ -107,7 +114,7 @@ const Confirm = () => {
                             </tbody>
                         </Table>
                     </form>
-                </Div>
+                </Divv>
                 <Link to="/dt/admin/menu">
                     <div style={{textAlign:"center"}}>
                         <AuthButton>Admin Menu</AuthButton>

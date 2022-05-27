@@ -95,7 +95,7 @@ const DefaultHeader = () => {
     }
 
     const menuMouseOver = (e)=>{
-        console.log(e.target.style)
+       
         e.target.src = "http://localhost:3000/img/donut_set_hover.png"
     }
 
