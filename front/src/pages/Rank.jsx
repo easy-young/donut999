@@ -93,8 +93,16 @@ const SmallDiv = styled.div`
     width: 94%;
     height: 15%;
     margin-bottom: 3%;
+    display: flex;
     border: 2px solid rgb(126, 126, 126);
     border-radius: 8px;
+`;
+
+const StyledLink2 = styled(Link)`
+    color: black;
+    :hover {
+        color: pink;
+    }
 `;
 
 const Rank = () => {
@@ -132,9 +140,18 @@ const Rank = () => {
                         topFive && topFive.map((v, i) => 
                         (
                             <SmallDiv key={i}>
-                                <div>{i+1}위 : {topFive[i].name}</div>
-                                <div>주소 : {topFive[i].address}</div>
-                                <div>운영 시간 : {topFive[i].operhour}</div>
+                                <span>
+                                    <img 
+                                        src={require(`../../public/img/donut_store/${topFive[i].idx}_1.jpg`)}
+                                        style={{ borderRadius: '6px' }}
+                                        width={80}
+                                        height={'100%'}/>
+                                </span>
+                                <span style={{ marginLeft: '20px'}}>
+                                    <div>{i+1}위 : <StyledLink2 to={'/shop/'+topFive[i].idx}>{topFive[i].name}</StyledLink2></div>
+                                    <div>주소 : {topFive[i].address}</div>
+                                    <div>운영 시간 : {topFive[i].operhour}</div>
+                                </span>
                             </SmallDiv>
                         ))
                     }
