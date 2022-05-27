@@ -12,24 +12,10 @@ const Confirm = () => {
         dispatch(admin_confirm_state_request('전체'))
     },[dispatch])
 
-<<<<<<< HEAD
-    const registers = useSelector(state=>state.adminConfirm.register)
-    const a = registers.length
-<<<<<<< HEAD
-    // console.log('-----------------',registers)
-    // console.log('----------------->',registers.length)
-    
-    const check = Array(a).fill(false)
-    // console.log(check)
-=======
-=======
-
     const sort = useSelector(state=>state.adminConfirm.sort)
     const a = sort.length
->>>>>>> 08a052211f187f0a9702d2cb7fd4c37649fdd676
   
     const check = Array(a).fill(false)
->>>>>>> 5ac98087e6447b36b71c5d1dc76a341fa0dd5dfa
     let checkArr = []
     const checkHandler = (e) => {
         const idx = e.target.value
@@ -40,10 +26,6 @@ const Confirm = () => {
             check[idx-1]=false
             checkArr = checkArr.filter(v => v !== idx)
         }
-<<<<<<< HEAD
-        // console.log(checkArr)
-=======
->>>>>>> 5ac98087e6447b36b71c5d1dc76a341fa0dd5dfa
     }
 
     const onDelete = (e) => {
