@@ -269,6 +269,18 @@ router.post('/store/confirm/:register_id',async (req,res)=>{
 
 
 const addstore = async (req, res) => {
+    console.log('qweqe')
+    let image = []
+    for ( let i = 0; i < 3; i++) {
+        try {
+            const [img] = req.files[`img`+i]
+            image.push(img.filename)
+        }catch (e) {
+            image.push('N/A')
+        }
+    }
+    console.log(image)
+
     const prepare2 = [req.body.regi_id]
     const { name, station, line, address, parking , protein, photo, special,operhour , website , menu , beverage , tel , intro  } = req.body
     const sql = `INSERT INTO shop (name, stationKor, station, line, address, parking, operhour, website, menu, beverage, tel, protein, photo, special, intro, more) VALUES (?,?,'hello',?,?,?,?,?,?,?,?,?,?,?,?,'hi')`

@@ -162,7 +162,7 @@ const ConfirmSet = (defaultValue) => {
     const regi = useSelector(state=>state.confirmSet)
     // console.log('regi',regi)
 
-    const handleSubmit = (e) => {
+    const handleSubmit =   async(e) => {
         e.preventDefault()
         const {menu_donut, menu_beverage,address,subway,line,tel,openhour,parking,protein,photozone,special,sns,intro} = e.target
         const payload = {
@@ -185,20 +185,21 @@ const ConfirmSet = (defaultValue) => {
        // console.log(payload)
 
 
-        dispatch(admin_confirm_store_request(payload))
+        await dispatch(admin_confirm_store_request(payload))
         //
+        await imgUp()
+    }
 
+    const imgUp = async () => {
         const formData = new FormData()
-        formData.append("img1", img1.files[0])
-        formData.append("img2", img2.files[0])
-        formData.append("img3", img3.files[0])
+        formData.append('img1', 'img1'.files[0])
     }
 
     
 
     return (
         <Background>
-            <Form onSubmit={handleSubmit} method='post' enctype='multipart/form-data' >
+            <Form onSubmit={handleSubmit} method='post' encType='multipart/form-data' >
                 <H1>{regi.name}</H1>
                 <H3>Menu-donut</H3>
                 <TextArea  defaultValue={regi.menu} value={values.menu_donut} type='textarea' style={{ marginRight: '16px' }} name='menu_donut' onChange ={handleChangeInput} />
@@ -261,12 +262,12 @@ const ConfirmSet = (defaultValue) => {
                 <div style={{width: '100%', height: '300px', border : '2px solid black' }}>
                     <span id="pic_up"><h3> 사진 업로드 </h3></span>
                     <span>
-                        <span><label for="img1">파일 선택</label></span>
-                        <input type="file" name="img1" id="img1"/><br/>
-                        <span><label for="img2">파일 선택</label></span>
-                        <input type="file" name="img2" id="img2"/><br/>
-                        <span><label for="img3">파일 선택</label></span>
-                        <input type="file" name="img3" id="img3"/>
+                        <span><label htmlFor="img1">파일 선택</label></span>
+                        <input type="file" name="img1" /><br/>
+                        <span><label htmlFor="img2">파일 선택</label></span>
+                        <input type="file" name="img2" /><br/>
+                        <span><label htmlFor="img3">파일 선택</label></span>
+                        <input type="file" name="img3" />
                     </span>
                 </div>
                 
