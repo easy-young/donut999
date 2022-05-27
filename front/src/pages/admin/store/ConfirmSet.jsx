@@ -4,6 +4,7 @@ import {admin_confirm_set_request} from '../../../reducers/admin/confirmSet.js';
 import {admin_confirm_store_request} from '../../../reducers/admin/confirmStore.js';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 
 const Background = styled.div`
     display: flex;
@@ -182,8 +183,10 @@ const ConfirmSet = (defaultValue) => {
             tel:tel.value,
             intro:intro.value,
         }
-       // console.log(payload)
 
+        const data = { storename: regi.name}
+       // console.log(payload)
+        const result = await axios.post(`http://localhost:4000/register/request`, data)
 
         await dispatch(admin_confirm_store_request(payload))
         //
