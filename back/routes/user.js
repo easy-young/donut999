@@ -70,13 +70,16 @@ const klogout = (req, res) => {
 const getReview = async (req, res) => {
     const { email } = req.body
     const sql = `select * from review where email=?`
+    const sql2 = `select * from register where email=?`;
     const param = [email]
     try {
-        const [ result ] = await pool.execute(sql,param)
+        const [ result ] = await pool.execute(sql, param)
+        const [ result2 ] = await pool.execute(sql2, param)
 
         const response = {
             errno:0,
-            result
+            result,
+            result2
         }
         res.json(response)
     }
@@ -92,6 +95,6 @@ const getReview = async (req, res) => {
 router.use('/klogin', klogin)
 router.use('/oauth/kakao', kauth)
 router.use('/klogout', klogout)
-router.use('/getReview',getReview)
+router.use('/getReview', getReview)
 
 module.exports = router

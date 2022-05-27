@@ -24,7 +24,7 @@ function* review(action) {
     try {
         const result = yield call(reviewAPI, action)
         yield put({
-            type:review_success.toString(), payload: result.result
+            type:review_success.toString(), payload: result
         })
     }
     catch (e) {
