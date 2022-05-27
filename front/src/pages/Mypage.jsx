@@ -366,7 +366,7 @@ const Mypage = () => {
         return (
             stores.review.update !== v.idx ?
                 <ReviewOne key={v.idx}>
-                    <StyledLink to={'/shop/'+ v.sidx}>🥨{v.storename}</StyledLink>
+                    <StyledLink to={'/shop/'+ v.sidx}>🥨 {v.storename} 🍴</StyledLink>
                     <div class="review_box">
                         <li class="star_box"> 맛 : {
                             v.flavor === 1 ? <StarSpan>⭐</StarSpan> : v.flavor === 2 ? <StarSpan>⭐⭐</StarSpan> 
@@ -403,7 +403,7 @@ const Mypage = () => {
                 </ReviewOne>
             :
             <div style={{ padding: '10px' }}>
-                <StyledLink to={'/shop/'+ v.sidx}>🥨{v.storename}</StyledLink>
+                <StyledLink to={'/shop/'+ v.sidx}>🥨 {v.storename} 🍴</StyledLink>
                 <StarForm onSubmit = {submitHandler(v.idx)}>
                     <ul>
                         <li>
