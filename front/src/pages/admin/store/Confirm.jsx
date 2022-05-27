@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import {useDispatch, useSelector} from 'react-redux';
-import {admin_store_confirm_request} from '../../../reducers/admin/adminStoreConfirm.js';
 import {admin_confirm_del_request} from '../../../reducers/admin/adminStoreConfirm.js';
 import {admin_confirm_state_request} from '../../../reducers/admin/adminStoreConfirm.js';
 import { useEffect, useState } from 'react';
@@ -10,11 +9,12 @@ import { AuthButton } from "../../../components/styles/AdminStyles";
 const Confirm = () => {
     const dispatch = useDispatch()
     useEffect(()=>{
-        dispatch({type:admin_store_confirm_request.toString()})
+        dispatch(admin_confirm_state_request('전체'))
     },[dispatch])
 
-    const registers = useSelector(state=>state.adminConfirm.register)
-    const a = registers.length
+
+    const sort = useSelector(state=>state.adminConfirm.sort)
+    const a = sort.length
   
     const check = Array(a).fill(false)
     let checkArr = []
@@ -59,17 +59,20 @@ const Confirm = () => {
                                     <Td style={{width: '15%'}}>Contact</Td>
                                     <Td style={{width: '10%'}}>SNS</Td>
                                     <Td style={{width: '10%'}}> Date</Td>
-                                    <Td style={{width: '5%'}}><select name="sort" onChange={sortHandler}>
-                                            <option value="false">대기</option>
-                                            <option value="true">승인</option>
-                                        </select></Td>
+                                    <Td style={{width: '5%'}}>
+                                        <select name="sort" onChange={sortHandler}>
+                                            <option value="전체">전체</option>
+                                            <option value="대기">대기</option>
+                                            <option value="승인">승인</option>
+                                        </select>
+                                    </Td>
                                     <Td style={{width: '5%'}}>
                                         <Dbutton type="submit">삭제</Dbutton>
                                     </Td>
                                 </Tr>
                             </thead>
                             <tbody>
-                                {registers && registers.map ((x,i) => {
+                                {sort && sort.map ((x,i) => {
                                     return(
                                         
                                             <Tr key={i}>
