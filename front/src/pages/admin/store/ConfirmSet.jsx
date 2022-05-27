@@ -183,14 +183,22 @@ const ConfirmSet = (defaultValue) => {
             intro:intro.value,
         }
        // console.log(payload)
+
+
         dispatch(admin_confirm_store_request(payload))
+        //
+
+        const formData = new FormData()
+        formData.append("img1", img1.files[0])
+        formData.append("img2", img2.files[0])
+        formData.append("img3", img3.files[0])
     }
 
     
 
     return (
         <Background>
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit} method='post' enctype='multipart/form-data' >
                 <H1>{regi.name}</H1>
                 <H3>Menu-donut</H3>
                 <TextArea  defaultValue={regi.menu} value={values.menu_donut} type='textarea' style={{ marginRight: '16px' }} name='menu_donut' onChange ={handleChangeInput} />
