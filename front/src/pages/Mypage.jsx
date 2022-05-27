@@ -7,7 +7,7 @@ import { review_request, review_delete_request,
 review_update_start, review_update_proceed, review_update_request } from "../reducers/review.js";
 //import { review_flavor, review_atmosphere, review_cheap, review_service } from '.././reducers/writeReview.js'
 import { BrowserView, MobileView,isMobile } from "react-device-detect";
-
+import { useNavigate } from 'react-router-dom';
 const Background = styled.div`
     display: flex;
     position: fixed;
@@ -256,6 +256,47 @@ const StarSpan = styled.span`
     
 `
 
+const NoLogin = styled.div`
+
+    width:100%;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    .please_kakao{
+        display:block;
+        width:100%;
+        height:10%;
+        text-align:center;
+        font-size:20px;
+    }
+
+    .go_kakao{
+        display:block;
+        width:15%;
+        height:100%;
+        text-align:center;
+    }
+
+    .goback_box{
+        width:100%;
+        height:10%;
+        display:flex;
+        justify-content:center;
+    }
+
+    .back_btn{
+        width:15%;
+        height:100%;
+        cursor: pointer;
+        text-align:center;
+    }
+
+    .back_btn:hover{
+        color:#1890ff;
+        transition: all 1s;
+    }
+`
 
 const Mypage = () => {
     const stores = useSelector(state => state)
@@ -310,7 +351,6 @@ const Mypage = () => {
         dispatch({type: review_update_request.toString(), payload : {text: updateText.value, idx: k, flavor: e.target.flavor.value,
         service: e.target.service.value, atmosphere: e.target.atmosphere.value, cheap: e.target.cheap.value }})
     }
-
 
     const reviewList = stores.review.data.map((v)=> {
         return (
@@ -427,13 +467,17 @@ const Mypage = () => {
         getReview()
     },[dispatch])
 
+    let history = useNavigate()
+    
+
     return (
+        
         <Background>
             <Container>
                 { stores.user.me.email !== null
                 ?
                 <div class="mypage">
-                    <a href='/' class="close">x</a>
+                    <a onClick={()=>{history(-1)}} class="close">x</a>
                     <div class="mypage_box">
                         <h1 class="welcome"> 🍩 {decodeURI(stores.user.me.nickname)} 님! 환영합니다! 🍩 </h1>
                         <h2 class="email"> 📧 내 이메일(ID): {stores.user.me.email} </h2>
@@ -444,11 +488,13 @@ const Mypage = () => {
                     </div>
                 </div>
                 :
-                    <>
-                    <a href='/'>x</a>
-                    <span>login please!</span>
-                    <a href='http://localhost:4000/user/klogin'> kakao login </a>
-                    </>
+                    <NoLogin>
+                        <div className="please_kakao">카카오 로그인을 해주세요.</div>
+                        <div className="goback_box">
+                            <a href="http://localhost:4000/user/klogin" className="go_kakao"> 카카오 로그인 </a>
+                            <div className="back_btn" onClick={()=>{history(-1)}}> 뒤로 가기 </div>
+                        </div>
+                    </NoLogin>
                 }
              
             </Container>
