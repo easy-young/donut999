@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const {pool} = require('../db.js')
+const upload = require('../utils/upload.js')
 
 router.post('/store/setting',async (req,res)=>{
         const sql = `select * from shop`
@@ -197,14 +198,17 @@ router.post('/store/confirm/:register_id',async (req,res)=>{
 
 )
 
-router.post('/store/confirm/addstore/:register_id',async (req,res)=>{
+router.post('/store/confirm/addstore/:register_id', upload.fields([{name:'img1'},{name:'img2'},
+{name:'img3'}]) ,async (req,res)=>{
     const { name, station, line, address, parking , protein, photo, special,operhour , website , menu , beverage , tel , intro  } = req.body
-    const sql = `INSERT INTO shop (name, stationKor, station, line, address, parking, operhour, website, menu, beverage, tel, protein, photo, special, intro, more) VALUES (?,?,'hello',?,?,?,?,?,?,?,?,?,?,?,?,'hi')`
-    const prepare = [ name, station, line, address, parking , operhour , website , menu , beverage , tel ,  protein, photo, special,intro]
-    console.log(prepare)
+    const sql = `INSERT INTO shop (name, stationKor, station, line, address, parking, operhour, website, menu, beverage, tel, protein, photo, special, intro, more) 
+    VALUES (?,?,'hello',?,?,?,?,?,?,?,?,?,?,?,?,'hi')`
+    const prepare = [ name, station, line, address, parking , operhour , website , menu , beverage , tel ,
+        protein, photo, special,intro]
+    // console.log(prepare)
     try {
         const [result] = await pool.execute(sql,prepare)
-        console.log(result)
+        // console.log(result)
         const response = {
             result
         }
@@ -325,8 +329,6 @@ router.post('/user/setting/checkblack/:email',async (req,res)=>{
 } 
 
 )
-
-
 
 router.post('/review/setting',async (req,res)=>{
     const sql = `SELECT *, DATE_FORMAT(date,'%Y-%m-%d %h:%i:%s') AS stamp FROM review ORDER BY idx ASC`

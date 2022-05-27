@@ -28,10 +28,6 @@ export const admin_confirm_store_request = createAction(ADMIN_CONFIRM_STORE.REQU
 export const admin_confirm_store_success = createAction(ADMIN_CONFIRM_STORE.SUCCESS)
 export const admin_confirm_store_failure = createAction(ADMIN_CONFIRM_STORE.FAILURE)
 
-
-
-
-
 const confirmStore = (state=initialState,action) => {
     switch(action.type){
         case ADMIN_CONFIRM_STORE.REQUEST:
