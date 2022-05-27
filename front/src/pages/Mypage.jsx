@@ -363,6 +363,7 @@ const Mypage = () => {
             stores.review.update !== v.idx ?
                 <ReviewOne key={v.idx}>
                     <div class="review_box">
+                        <li> {v.sidx}</li>
                         <li class="star_box"> 맛 : {
 
                             v.flavor === 1 ? <StarSpan>⭐</StarSpan> : v.flavor === 2 ? <StarSpan>⭐⭐</StarSpan> 

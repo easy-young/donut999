@@ -59,3 +59,5 @@ values(1,'619049@naver.com', 5, 5, 5, 5, '와 정말 맛있어요!', false);
 insert into review(sidx, email, flavor, atmosphere, cheap, service, text, updateFlag ) 
 values(2,'619049@naver.com', 5, 5, 5, 5, '와 정말 비싸요!', false);
 
+insert into register( email, store, menu, address, contact, sns) 
+values('a','a','a','a','a','a');
