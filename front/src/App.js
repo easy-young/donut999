@@ -98,12 +98,11 @@ const App = () => {
       <Fork/>
       <BrowserRouter>
         <DefaultHeader />
+        <Index/>
         <Routes>
-          <Route path="/" index element={<Index />} />
+          {/* <Route path="/" index element={<Index />} /> */}
           <Route path="/mypage" element={<Mypage />} />
           <Route path='/login' element={<Login />}/>
-          
-          
           <Route path='/write/:idx' element={<Write/>} />
           <Route path="/shop/:idx" element={<Shop />}/>
           <Route path="/rank" element={<Rank />} />
@@ -122,8 +121,6 @@ const App = () => {
           <Route path="/dt/admin/menu/user/setting" element={<UserSetting/>} />
           <Route path="/dt/admin/menu/user/setting/checkblack/:email" element={<CheckReview />} />
           <Route path="/dt/admin/menu/review/setting" element={<ReviewSetting />} />
-
-          
         </Routes>
         <GlobalStyle/>
       </BrowserRouter>
