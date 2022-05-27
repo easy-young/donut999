@@ -25,6 +25,7 @@ const Container = styled.div`
 `;
 
 const StoreName = styled.div`
+    display: flex;
     margin-top: 20px;
     font-size: 24px;
 `;
@@ -38,7 +39,13 @@ const ContentBox = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    font-size: 18px;
 `;
+
+const Td = styled.td`
+    width: 10%;
+
+`
 
 const Img = styled.img`
     display: inline-block;
@@ -83,6 +90,7 @@ const Btn = styled.button`
 const StarBox = styled.span`
     display: inline-block;
     position: relative;
+    top: 5px;
     margin-left: 16px;
 `;
 
@@ -133,34 +141,58 @@ const Shop = () => {
                         <ContentBox>
                             <div>
                                 <StoreName>
-                                    {info.name}
+                                    <div>
+                                        {info.name} 
+                                    </div>
                                     <StarBox>
                                         <StarImg src='/img/star/star0.png'/>
                                         <StarSpan></StarSpan>
                                     </StarBox>
                                 </StoreName>
-                                <div>(지하철) {info.line}호선 {info.stationKor}역</div>
-                                <div>(주소) {info.address}</div>
-                                <div>(도넛) {info.menu}</div>
-                                <div>(음료) {info.beverage}</div>
-                                <div>(운영 시간) {info.operhour}</div>
-                                <div>(연락처) {info.tel}</div>
+                                <tr>
+                                    <Td>지하철</Td>
+                                    <td> {info.line}호선 {info.stationKor}역 </td>
+                                </tr>
+                                <tr>
+                                    <Td>주소</Td>
+                                    <td> {info.address}역 </td>
+                                </tr>
+                                <tr>
+                                    <Td>도넛</Td>
+                                    <td> {info.menu}</td>
+                                </tr>
+                                <tr>
+                                    <Td>음료</Td>
+                                    <td> {info.beverage} </td>
+                                </tr>
+                                <tr>
+                                    <Td>운영시간 </Td>
+                                    <td> {info.operhour} </td>
+                                </tr>
+                                <tr>
+                                    <Td>연락처</Td>
+                                    <td> {info.tel} </td>
+                                </tr>
                                 {
                                     info.website &&
-                                    <div>(SNS) {info.website}</div>
+                                    <tr>
+                                        <Td>SNS</Td>
+                                        <td>{info.website}</td>
+                                    </tr>
+        
                                 }
                                 {
                                     info.intro &&
-                                    <div>(소개) {info.intro}</div>
+                                    <tr>
+                                        <Td>소개</Td>
+                                        <td>{info.intro}</td>
+                                    </tr>
                                 }
                             </div>
-                            <div>
-                                <StoreName>
-                                    리뷰
+                            <div style={{marginTop:'20px'}}>
+                               <div style={{fontSize: '24px', display:'inline'}}>리뷰</div>
                                     <ReviewBtn>
-                                        <Link to={`/write/`+info.idx}>
-                                            리뷰 작성
-                                        </Link>
+                                        <Link to={`/write/`+info.idx}>리뷰 작성</Link>
                                     </ReviewBtn>
                                     {
                                         review && review.map(v =>
@@ -195,7 +227,7 @@ const Shop = () => {
                                             </ReviewDiv>
                                         )
                                     }
-                                </StoreName>
+                                
                             </div>
                         </ContentBox>
                         <div style={{ display: 'flex', justifyContent:'center' }}>
