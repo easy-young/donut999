@@ -45,6 +45,7 @@ const Tab = styled.div`
     margin-right: 2%;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+    outline: 2px solid #E16A93;
 
 
     :hover {
