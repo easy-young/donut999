@@ -25,7 +25,7 @@ const Container = styled.div`
     height: 95%;
     background-color: #FFFFE9;
     border-radius: 30px;
-    @media (max-width: 400px) {
+    @media (max-width: 600px) {
             /* width: 340px; */
             width:100%;
             height:100%;
@@ -59,7 +59,7 @@ const Container = styled.div`
     .welcome{
         text-align:center;
 
-        @media (max-width: 400px){
+        @media (max-width: 600px){
             font-size:20px;
         }
     }
@@ -68,7 +68,7 @@ const Container = styled.div`
     }
 
     .email{
-        @media (max-width: 400px){
+        @media (max-width: 600px){
             font-size:12px;
             margin-top:10px;
             text-align:center;
@@ -87,7 +87,7 @@ const Container = styled.div`
         flex-wrap:nowrap;
         overflow:scroll;
         position:relative;
-        @media (max-width: 400px){
+        @media (max-width: 600px){
             /* height:80%; */
             height:80%;
         }
@@ -105,7 +105,7 @@ const ReviewOne = styled.ul`
     margin-top:10px;
     border-top: 1px solid grey;
     border-bottom : 1px solid grey;
-    @media (max-width: 400px){
+    @media (max-width: 600px){
             min-height:80%;
             height:auto;
     }
@@ -126,7 +126,7 @@ const ReviewOne = styled.ul`
         display:flex;
         justify-content:space-between;
         align-items:flex-start;
-        @media (max-width: 400px){
+        @media (max-width: 600px){
             align-items:center;
             font-size:20px;
             flex-wrap:wrap;
@@ -146,7 +146,7 @@ const ReviewOne = styled.ul`
         height:30px;
         margin-bottom:10px;
         border-bottom: 0.5px solid #DCDCDC;
-        @media (max-width: 400px){
+        @media (max-width: 600px){
             font-size:14px;
             width:50%;
             height:10%;
@@ -158,7 +158,7 @@ const ReviewOne = styled.ul`
         width:100%;
         min-height:45%;
         height:auto;
-        @media (max-width: 400px){
+        @media (max-width: 600px){
             min-height:60%;
             height:auto;
 
@@ -189,7 +189,7 @@ const ReviewOne = styled.ul`
         border-right: 3px solid ;
         text-transform: inherit;
         cursor:pointer;
-        @media (max-width: 400px){
+        @media (max-width: 600px){
 
         }
 
@@ -249,10 +249,10 @@ const Textli = styled.li`
 
 const StarSpan = styled.span`
     font-size: 1rem;
-    @media (max-width: 400px){
+    @media (max-width: 600px){
             font-size:12px;
 
-        }
+    }
     
 `
 
@@ -276,6 +276,9 @@ const NoLogin = styled.div`
         width:15%;
         height:100%;
         text-align:center;
+        @media (max-width: 600px){
+            width:35%;
+        }
     }
 
     .goback_box{
@@ -290,6 +293,9 @@ const NoLogin = styled.div`
         height:100%;
         cursor: pointer;
         text-align:center;
+        @media (max-width: 600px){
+            width:35%;
+        }
     }
 
     .back_btn:hover{
@@ -491,7 +497,7 @@ const Mypage = () => {
                     <NoLogin>
                         <div className="please_kakao">카카오 로그인을 해주세요.</div>
                         <div className="goback_box">
-                            <a href="http://localhost:4000/user/klogin" className="go_kakao"> 카카오 로그인 </a>
+                            <a href="http://localhost:4000/user/klogin" className="go_kakao"> 로그인 하러가기</a>
                             <div className="back_btn" onClick={()=>{history(-1)}}> 뒤로 가기 </div>
                         </div>
                     </NoLogin>
