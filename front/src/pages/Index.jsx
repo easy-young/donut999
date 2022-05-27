@@ -146,8 +146,6 @@ const Index = () => {
         position: absolute;
         z-index:5;
         cursor:pointer;
-        /* top:-50%;
-        left:-50%; */
 
         @media (max-width: 600px) {
             width: 422%;
@@ -165,6 +163,8 @@ const Index = () => {
             width: 422%;
             height: auto;
         }
+        top:-40%;
+        left:-40%;
     `
 
     const twinkle = keyframes`
