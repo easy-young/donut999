@@ -22,6 +22,7 @@ const Container = styled.div`
     padding: 30px;
     border-radius: 30px;
     background-color: #ffd3bb;
+    overflow: scroll;
 `;
 
 const StoreName = styled.div`
@@ -42,8 +43,21 @@ const ContentBox = styled.div`
     font-size: 18px;
 `;
 
-const Td = styled.td`
-    width: 10%;
+const Ul = styled.ul`
+    list-style: none;
+
+`
+
+const Li = styled.li`
+    margin-top:1%;
+`
+
+const Span1 = styled.span`
+    color:#ff6825;
+`
+
+const Span = styled.span`
+    margin-left: 5%;
 
 `
 
@@ -65,7 +79,8 @@ const ReviewBtn = styled.button`
     margin-left: 20px;
     width: 90px;
     height: 30px;
-    font-size: 14px;
+    font-size: 16px;
+    padding: 3px 7px;
     border: none;
     border-radius: 10px;
     background-color: #f2b6ff;
@@ -76,12 +91,13 @@ const ReviewBtn = styled.button`
 `;
 
 const Btn = styled.button`
+    margin-top: 20px;
     padding: 6px;
     height: 34px;
     border: none;
     border-radius: 10px;
     background-color: blanchedalmond;
-
+    font-size: 16px;
     :hover {
         cursor: pointer;
     }
@@ -106,12 +122,27 @@ const StarSpan = styled.span`
 `;
 
 const ReviewDiv = styled.div`
-    font-size: 14px;
+    width: 85vw;
+    margin-Top:0.5%;
+    font-size: 18px;
+    border: 3px solid #FFFCDD;
+    padding: 1%;
 `;
 
 const StarSpan2 = styled.span`
     font-size: 1.25rem;
 `
+
+const Ebutton = styled.button`
+    border:none;
+    background-color: #ffff;
+    padding: 5px 7px;
+    font-size:16px;
+    &>a{
+        color:black;
+    }
+`
+
 
 const Shop = () => {
     const dispatch = useDispatch();
@@ -149,45 +180,48 @@ const Shop = () => {
                                         <StarSpan></StarSpan>
                                     </StarBox>
                                 </StoreName>
-                                <tr>
-                                    <Td>지하철</Td>
-                                    <td> {info.line}호선 {info.stationKor}역 </td>
-                                </tr>
-                                <tr>
-                                    <Td>주소</Td>
-                                    <td> {info.address}역 </td>
-                                </tr>
-                                <tr>
-                                    <Td>도넛</Td>
-                                    <td> {info.menu}</td>
-                                </tr>
-                                <tr>
-                                    <Td>음료</Td>
-                                    <td> {info.beverage} </td>
-                                </tr>
-                                <tr>
-                                    <Td>운영시간 </Td>
-                                    <td> {info.operhour} </td>
-                                </tr>
-                                <tr>
-                                    <Td>연락처</Td>
-                                    <td> {info.tel} </td>
-                                </tr>
+                                <Ul>
+                                <Li>
+                                    <Span1>지하철 🚃</Span1>
+                                    <Span> {info.line}호선 {info.stationKor}역 </Span>
+                                </Li>
+                                
+                                <Li>
+                                    <Span1>주소 🏡</Span1>
+                                    <Span> {info.address}역 </Span>
+                                </Li>
+                                <Li>
+                                    <Span1>도넛 🍩</Span1>
+                                    <Span> {info.menu}</Span>
+                                </Li>
+                                <Li>
+                                    <Span1>음료🥤</Span1>
+                                    <Span> {info.beverage} </Span>
+                                </Li>
+                                <Li>
+                                    <Span1>운영시간 ⏰ </Span1>
+                                    <Span> {info.operhour} </Span>
+                                </Li>
+                                <Li>
+                                    <Span1>연락처 ☎️</Span1>
+                                    <Span> {info.tel} </Span>
+                                </Li>
                                 {
                                     info.website &&
-                                    <tr>
-                                        <Td>SNS</Td>
-                                        <td>{info.website}</td>
-                                    </tr>
+                                    <Li>
+                                        <Span1>SNS 📱</Span1>
+                                        <Span>{info.website}</Span>
+                                    </Li>
         
                                 }
                                 {
                                     info.intro &&
-                                    <tr>
-                                        <Td>소개</Td>
-                                        <td>{info.intro}</td>
-                                    </tr>
+                                    <Li>
+                                        <Span1>소개 🔔</Span1>
+                                        <Span>{info.intro}</Span>
+                                    </Li>
                                 }
+                             </Ul>
                             </div>
                             <div style={{marginTop:'20px'}}>
                                <div style={{fontSize: '24px', display:'inline'}}>리뷰</div>
@@ -197,40 +231,42 @@ const Shop = () => {
                                     {
                                         review && review.map(v =>
                                             <ReviewDiv>                                            
-                                                <>
-                                                ID : {v.email} <br/>
+                                                <div>
+
+                                                작성자 : {v.email} <br/>
 
                                                 맛 : {
                                                     v.flavor === 1 ? <StarSpan2>⭐</StarSpan2> : v.flavor === 2 ? <StarSpan2>⭐⭐</StarSpan2> 
                                                     : v.flavor === 3 ? <StarSpan2>⭐⭐⭐</StarSpan2> 
                                                     : v.flavor === 4 ? <StarSpan2>⭐⭐⭐⭐</StarSpan2> : v.flavor === 5 ? <StarSpan2>⭐⭐⭐⭐⭐ </StarSpan2> : '평가 정보 없음'
-                                                    } <br/>
+                                                    } &nbsp;
                                                 분위기 : {
                                                     v.atmosphere === 1 ? <StarSpan2>⭐</StarSpan2> : v.atmosphere === 2 ? <StarSpan2>⭐⭐</StarSpan2> 
                                                     : v.atmosphere === 3 ? <StarSpan2>⭐⭐⭐</StarSpan2> 
                                                     : v.atmosphere === 4 ? <StarSpan2>⭐⭐⭐⭐</StarSpan2> : v.atmosphere === 5 ? <StarSpan2>⭐⭐⭐⭐⭐</StarSpan2> : '평가 정보 없음'
-                                                    } <br/>
+                                                    } &nbsp;
                                                 가성비 : {
                                                     v.cheap === 1 ? <StarSpan2>⭐</StarSpan2> : v.cheap === 2 ? <StarSpan2>⭐⭐</StarSpan2> 
                                                     : v.cheap === 3 ? <StarSpan2>⭐⭐⭐</StarSpan2> 
                                                     : v.cheap === 4 ? <StarSpan2>⭐⭐⭐⭐</StarSpan2> : v.cheap === 5 ? <StarSpan2>⭐⭐⭐⭐⭐</StarSpan2> : '평가 정보 없음'
-                                                } <br/>
+                                                } &nbsp;
                                                 서비스 : {
                                                     v.service === 1 ? <StarSpan2>⭐</StarSpan2> : v.service === 2 ? <StarSpan2>⭐⭐</StarSpan2> 
                                                     : v.service === 3 ? <StarSpan2>⭐⭐⭐</StarSpan2> 
                                                     : v.service === 4 ? <StarSpan2>⭐⭐⭐⭐</StarSpan2> : v.service === 5 ? <StarSpan2>⭐⭐⭐⭐⭐</StarSpan2> : '평가 정보 없음'
                                                     } <br/>
-                                                내용 : {v.text} <br/>
-                                                { email === v.email ? <button><a href='/mypage'>수정하기</a></button> : null}
-                                                <hr/>
-                                                </>
+                                                TXT : {v.text} 
+                                                </div>
+                                                <div>
+                                                    { email === v.email ? <Ebutton><a href='/mypage'>수정하기</a></Ebutton> : null}
+                                                </div>
                                             </ReviewDiv>
                                         )
                                     }
                                 
                             </div>
                         </ContentBox>
-                        <div style={{ display: 'flex', justifyContent:'center' }}>
+                        <div style={{ textAlign:'center' }}>
                             <Btn><Link to="/">뒤로 가기</Link></Btn>
                         </div>
                     </>
