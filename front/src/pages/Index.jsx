@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 
 const Background = styled.div`
     display: flex;
+    margin:0 auto;
     position: fixed;
     z-index: 2000;
     width: 100%;
@@ -24,26 +25,41 @@ const Container = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 1100px;
-    height: 700px;
+    width: 60%;
+    height: 80%;
     border-radius: 30px;
     background-color: rgb(255, 255, 255);
+    overflow: scroll;
+
+    &>div{
+        display:flex;
+        justify-content: space-between;
+        width:100%;
+        
+
+    }
+    @media (max-width: 600px) {
+        width: 80%;
+        }
 `;
 
 const StationName = styled.div`
-    position: absolute;
+    /* position: absolute;
     top: 38px;
-    left: 240px;
+    left: 240px; */
+    display:inline-block;
+    width:100px;
     font-size: 24px;
     font-weight: bolder;
 `;
 
 const CloseBtn = styled.button`
-    position: absolute;
+    /* position: absolute;
     width: 36px;
     height: 36px;
     top: 38px;
-    right: 240px;
+    right: 240px; */
+    width:36px;
     font-size: 16px;
     border: none;
     border-radius: 8px;
@@ -55,9 +71,10 @@ const CloseBtn = styled.button`
 `;
 
 const StoreBox = styled.div`
-    width: 1040px;
-    height: 280px;
-    padding: 20px;
+    margin-top: 2%;
+    width: 90%;
+    height: 35%;
+    padding: 3%;
     border-radius: 20px;
     background: #ffeddf;
 `;
@@ -867,21 +884,25 @@ const Index = () => {
                 name &&
                 <Background>
                     <Container>
-                        <StationName>{ store.length > 0 && name+"역 맛집" }</StationName>
-                        <CloseBtn onClick={Close}>X</CloseBtn>
+                        <div>
+                            <StationName>{ store.length > 0 && name+"역 맛집" }</StationName>
+                            <CloseBtn onClick={Close}>X</CloseBtn>
+                        </div>
+                        
                         {
                             store.length > 0 && store.map((v, i) => {
                                 return(
                                     <>
-                                        <div style={{ height: '20px' }}></div>
+                                        {/* <div style={{ height: '20px' }}></div> */}
                                         <StoreBox key={i}>
                                             { store[i] &&
                                                 <div>
                                                     <img 
                                                         src={require(`../../public/img/donut_store/${store[i].idx}_1.jpg`)}
-                                                        style={{ borderRadius: '30px' }}
+                                                        style={{ borderRadius: '30px', }}
                                                         width={240}
                                                         height={240}
+
                                                     />
                                                     <StoreName>
                                                         <Link 
