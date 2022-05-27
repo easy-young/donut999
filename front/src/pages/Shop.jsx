@@ -58,10 +58,6 @@ const Span1 = styled.span`
     color:#ff6825;
 `
 
-const Span = styled.span`
-    margin-left: 5%;
-
-`
 
 const Img = styled.img`
     display: inline-block;
@@ -124,8 +120,8 @@ const StarSpan = styled.span`
 `;
 
 const ReviewDiv = styled.div`
-    width: 85vw;
-    margin-Top:0.5%;
+    width: 100%;
+    margin-Top:1%;
     font-size: 18px;
     border: 3px solid #FFFCDD;
     padding: 1%;
@@ -221,7 +217,7 @@ const Shop = () => {
                                     <Li>
                                         <Span1>SNS 📱</Span1>
                                     </Li>
-                                    <a>{info.website}</a>
+                                    <a href={`http://`+info.website}>홈페이지바로가기</a>
                                     </>
                                 }
                                 {
