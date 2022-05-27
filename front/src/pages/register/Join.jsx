@@ -1,9 +1,10 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { register_failure, register_request } from '../../reducers/register';
+import { register_request, register_gohome, register_name, register_email } from '../../reducers/register';
 import SFLemon from '../../font/fonts';
+
 const Background = styled.div`
     display: flex;
     position: fixed;
@@ -42,8 +43,9 @@ const Form = styled.form`
 `;
 
 const Input = styled.input`
-    width: 162px;
+    width: 158px;
     height: 30px;
+    padding: 4px;
     border: none;
     border-bottom: 1px solid black;
 
@@ -102,38 +104,61 @@ const MainLink = styled(Link)`
     color: black;
     background-color: #ff9ec1;
     border-radius: 10px;
+    :hover {
+        color: red;
+    }
 `;
 
 const Join = () => {
     const dispatch = useDispatch();
-    const store = useSelector((state) => state.register);
+    const store = useSelector(state => state.register);
+    const { name, email } = useSelector(state => state.register);
     const onRegister = useCallback((e) => {
         e.preventDefault();
-        const { name, menu1, menu2, menu3, address, call1, call2, sns } = e.target;
+        const { name, menu1, menu2, menu3, address, email, sns } = e.target;
+        if (name.value === '') {
+            dispatch(register_name());
+            return;
+        }
+        if (email.value === '') {
+            dispatch(register_email());
+            return;
+        }
         const payload = {
             name: name.value, 
             menu: [menu1.value, menu2.value, menu3.value], 
             address: address.value, 
-            call: [call1.value, call2.value], 
+            email: email.value, 
             sns: sns.value
         };
         dispatch(register_request(payload));
     }, [dispatch]);
+    const goMain = () => {
+        dispatch(register_gohome());
+    };
     return (
         <>
             <Background>
                 <Form method='post' onSubmit={onRegister}>
                     <H1>맛집 등록 신청</H1>
                     <H3>가게명</H3>
-                    <Input type='text' style={{ width: '100%' }} name='name' />
+                    <Input type='text' style={{ width: '100%' }} name='name'/>
+                    {
+                        name &&
+                        <span>가게명을 입력해 주세요.</span>
+                    }
                     <H3>대표 도넛 (최대 3개)</H3>
                     <Input type='text' style={{ marginRight: '16px' }} name='menu1' />
                     <Input type='text' style={{ marginRight: '16px' }} name='menu2' />
                     <Input type='text' name='menu3' />
                     <H3>주소</H3>
                     <Input type='text' style={{ width: '100%' }} name='address' placeholder='서울 지역만 가능합니다.'/>
-                    <H3>연락처</H3>
-                    <Span>02</Span> - <Input type='text' name='call1'/> - <Input type='text' name='call2'/>
+                    <H3>신청자 이메일</H3>
+                    <Input type='text' style={{ width: '100%' }} name='email' placeholder='등록 승인 결과를 이메일로 알려드립니다.'/>
+                    {
+                        email &&
+                        <span>이메일을 입력해 주세요.</span>
+                    }
                     <H3>SNS 계정 (선택)</H3>
                     <Input type='text' style={{ width: '100%' }} name='sns' />
                     <BottomDiv>
@@ -151,7 +176,9 @@ const Join = () => {
                         <Div>
                             승인 절차는 최대 7일 정도 소요될 수 있습니다.
                         </Div>
-                        <MainLink to='/'>메인으로</MainLink>
+                        <MainLink to='/' onClick={goMain}>
+                            메인으로
+                        </MainLink>
                     </SuccessDiv>
                 }
             </Background>
