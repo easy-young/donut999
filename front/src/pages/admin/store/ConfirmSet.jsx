@@ -154,13 +154,13 @@ const ConfirmSet = (defaultValue) => {
     
     let params = useParams()
     let regi_id = params.register_id;
-    console.log('id',regi_id)
+    // console.log('id',regi_id)
     useEffect(()=>{
         dispatch(admin_confirm_set_request({payload:regi_id}))
     },[dispatch])
 
     const regi = useSelector(state=>state.confirmSet)
-    console.log('regi',regi)
+    // console.log('regi',regi)
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -182,7 +182,7 @@ const ConfirmSet = (defaultValue) => {
             tel:tel.value,
             intro:intro.value,
         }
-       console.log(payload)
+       // console.log(payload)
         dispatch(admin_confirm_store_request(payload))
     }
 
@@ -249,6 +249,18 @@ const ConfirmSet = (defaultValue) => {
                 
                 <H3>소개</H3>
                 <TextArea defaultValue={regi.intro} value={values.intro} type='textarea' style={{ marginRight: '16px' }} name='intro' />
+                
+                <div style={{width: '100%', height: '300px', border : '2px solid black' }}>
+                    <span id="pic_up"><h3> 사진 업로드 </h3></span>
+                    <span>
+                        <span><label for="img1">파일 선택</label></span>
+                        <input type="file" name="img1" id="img1"/><br/>
+                        <span><label for="img2">파일 선택</label></span>
+                        <input type="file" name="img2" id="img2"/><br/>
+                        <span><label for="img3">파일 선택</label></span>
+                        <input type="file" name="img3" id="img3"/>
+                    </span>
+                </div>
                 
                 <BottomDiv>
                     <Submit type='submit' value='등록' />

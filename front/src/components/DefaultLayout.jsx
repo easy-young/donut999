@@ -8,6 +8,7 @@ import { keyframes } from 'styled-components';
 import Sider from 'antd/lib/layout/Sider';
 import SFLemon from '../font/fonts';
 import '../App.css';
+import { user_logout_success } from '../reducers/user.js'
 
 const Header = styled.header`
     width:100%;
@@ -84,14 +85,25 @@ const DefaultHeader = () => {
     const header = useSelector((state) => state.display);
     const onShow = useCallback(() => { dispatch(show()) }, [dispatch]);
     const onHidden = useCallback(() => { dispatch(hidden()) }, [dispatch]);
+    const stores = useSelector(state => state)
+
+    const logoutHandler = () => {
+        localStorage.setItem('persist:user', `{\"me\":{\"email\":\"null\",\"nickname\":\"null\",\"isLogin\":false},\"error\":null,\"loading\":false}`)
+        dispatch({type: user_logout_success.toString()})
+        alert('로그아웃 되었습니다')
+        window.location.href='http://localhost:3000'
+    }
+
     const menuMouseOver = (e)=>{
-        console.log(e.target.style)
+       
         e.target.src = "http://localhost:3000/img/donut_set_hover.png"
     }
 
     const menuMouseOut = (e)=>{
         e.target.src = "http://localhost:3000/img/donut_set.png"
     }
+
+    
 
     return (
         <>
@@ -112,7 +124,13 @@ const DefaultHeader = () => {
                         >
                             <StyledButton onClick={onHidden}>X</StyledButton>
                             <StyledMenu.Item key='0' style={{}}><Link to="/mypage">슿 마이 페이지</Link></StyledMenu.Item>
-                            <StyledMenu.Item key='1'><Link to="/login">쳌 로그인</Link></StyledMenu.Item>
+                            {
+                                stores.user.me.email === null 
+                                ?
+                                <StyledMenu.Item key='1'><a href="http://localhost:4000/user/klogin">쳌 로그인</a></StyledMenu.Item>
+                                :
+                                <StyledMenu.Item key='1'><span onClick={logoutHandler} >쳌 로그아웃</span></StyledMenu.Item>
+                            }
                             <StyledMenu.Item key='2'><Link to="/rank"> 👑 랭킹</Link></StyledMenu.Item>
                             <StyledMenu.SubMenu key='3' title='슾 테마'>
                                 <StyledMenu.Item key='protein' style={{fontSize:"16px"}}><Link to="/theme/protein">프로틴 도넛</Link></StyledMenu.Item>

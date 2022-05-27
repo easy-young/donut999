@@ -29,9 +29,10 @@ import ConfirmSet from './pages/admin/store/ConfirmSet';
 import Join from './pages/register/Join.jsx';
 
 import { useEffect } from 'react'
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import { user_login_failure, user_login_request, user_login_success, 
   user_logout_request, user_logout_success } from './reducers/user';
+import { Link } from "react-router-dom";
 
 import Write from './pages/Write.jsx'
 import GlobalStyle from '../src/style/global'
@@ -83,6 +84,7 @@ const Wrap = styled.div`
 
 const App = () => {
   const dispatch = useDispatch()
+  const stores = useSelector(state => state)
   useEffect(() => {
     const query = document.location.href
     if(query.split('?')[1]) {
@@ -98,7 +100,9 @@ const App = () => {
         <Routes>
           <Route path="/" index element={<Index />} />
           <Route path="/mypage" element={<Mypage />} />
-          <Route path="/login" element={<Login />} />
+          <Route path='/login' element={<Login />}/>
+          
+          
           <Route path='/write/:idx' element={<Write/>} />
           <Route path="/shop/:idx" element={<Shop />}/>
           <Route path="/rank" element={<Rank />} />

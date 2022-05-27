@@ -73,7 +73,7 @@ export const BigButton = styled.button`
     padding:7px;
     border:1px solid #fff;
     border-radius: 50px;
-    background: transparent;
+    background: #fff;
     font-weight: bold;
     font-size:1.5rem;
     cursor: pointer;
