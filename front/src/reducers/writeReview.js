@@ -112,7 +112,7 @@ const createReview = (state = initialState, action) => {
             return {
                 ...state,
                 number : { ...state.number},
-                name:action.payload.name,
+                name: action.payload.name,
                 sidx: action.payload.sidx,
                 text : action.payload.text,
                 email: action.payload.email,

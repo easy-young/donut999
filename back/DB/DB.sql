@@ -33,7 +33,6 @@ CREATE TABLE register (
     store VARCHAR(30) NOT NULL,
     menu VARCHAR(30) NOT NULL,
     address VARCHAR(60) NOT NULL,
-    contact VARCHAR(10) NOT NULL,
     sns VARCHAR(100) NOT NULL,
     time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     state VARCHAR(30) NOT NULl DEFAULT 'FALSE'
@@ -59,3 +58,5 @@ values(1,'619049@naver.com', 5, 5, 5, 5, '와 정말 맛있어요!', false);
 insert into review(sidx, email, flavor, atmosphere, cheap, service, text, updateFlag ) 
 values(2,'619049@naver.com', 5, 5, 5, 5, '와 정말 비싸요!', false);
 
+insert into register( email, store, menu, address, contact, sns) 
+values('a','a','a','a','a','a');

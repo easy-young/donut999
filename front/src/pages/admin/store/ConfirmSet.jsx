@@ -268,10 +268,7 @@ const ConfirmSet = (defaultValue) => {
                 </BottomDiv>
             </Form >
 
-            
         </Background>
-
-        
     )
 };
 
