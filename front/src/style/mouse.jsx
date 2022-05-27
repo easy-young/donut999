@@ -7,7 +7,7 @@ const Fork = styled.img`
     width: 30px; 
     height: 120px;
     transform: translate(100%, 0%) rotate(-35deg);
-    z-index:2000;
+    z-index:3000;
 
 `
 document.addEventListener("mousemove", (e) => {
@@ -18,7 +18,6 @@ document.addEventListener("mousemove", (e) => {
     const mouseY = e.pageY;
     fork.style.left = mouseX + 'px';
     fork.style.top = mouseY + 'px';
-
 });
 
 
