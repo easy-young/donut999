@@ -5,6 +5,13 @@
   src: url("font/YdestreetB.woff") format('woff')
 }
 
+@font-face {
+  font-family: 'LABdigital';
+  font-style: normal;
+  font-weight: normal;
+  src: url("font/LABdigital.woff") format('woff')
+}
+
 *{
   font-family: 'YdestreetB';
 }
