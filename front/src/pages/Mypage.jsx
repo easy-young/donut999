@@ -358,12 +358,16 @@ const Mypage = () => {
         service: e.target.service.value, atmosphere: e.target.atmosphere.value, cheap: e.target.cheap.value }})
     }
 
+    const getStore = (k) => {
+
+    }
+
     const reviewList = stores.review.data.map((v)=> {
         return (
             stores.review.update !== v.idx ?
                 <ReviewOne key={v.idx}>
                     <div class="review_box">
-                        <li> {v.sidx}</li>
+                        <li> {v.storename}</li>
                         <li class="star_box"> 맛 : {
 
                             v.flavor === 1 ? <StarSpan>⭐</StarSpan> : v.flavor === 2 ? <StarSpan>⭐⭐</StarSpan> 
