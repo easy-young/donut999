@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {takeLatest,call,put} from 'redux-saga/effects';
-import {admin_new_black_request,admin_new_black_success,admin_new_black_failure} from '../../reducers/admin/adminNewBlack';
+import {admin_new_black_request,admin_new_black_success,admin_new_black_failure} from '../../reducers/admin/adminBlack';
 
 
 async function newBlackAPI({payload}){

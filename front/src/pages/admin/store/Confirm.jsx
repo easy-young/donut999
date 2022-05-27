@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import {useDispatch, useSelector} from 'react-redux';
 import {admin_store_confirm_request} from '../../../reducers/admin/adminStoreConfirm.js';
 import {admin_confirm_del_request} from '../../../reducers/admin/adminStoreConfirm.js';
+import {admin_confirm_state_request} from '../../../reducers/admin/adminStoreConfirm.js';
 import { useEffect, useState } from 'react';
 import {Div, Dbutton, Table, Tr, Td} from '../../../components/styles/AdminTable';
 import { AuthButton } from "../../../components/styles/AdminStyles";
@@ -14,15 +15,19 @@ const Confirm = () => {
 
     const registers = useSelector(state=>state.adminConfirm.register)
     const a = registers.length
+<<<<<<< HEAD
     // console.log('-----------------',registers)
     // console.log('----------------->',registers.length)
     
     const check = Array(a).fill(false)
     // console.log(check)
+=======
+  
+    const check = Array(a).fill(false)
+>>>>>>> 5ac98087e6447b36b71c5d1dc76a341fa0dd5dfa
     let checkArr = []
     const checkHandler = (e) => {
         const idx = e.target.value
-        console.log(idx)
         if(!check[idx-1]){
             check[idx-1]=true
             checkArr.push(idx)
@@ -30,7 +35,10 @@ const Confirm = () => {
             check[idx-1]=false
             checkArr = checkArr.filter(v => v !== idx)
         }
+<<<<<<< HEAD
         // console.log(checkArr)
+=======
+>>>>>>> 5ac98087e6447b36b71c5d1dc76a341fa0dd5dfa
     }
 
     const onDelete = (e) => {
@@ -38,16 +46,15 @@ const Confirm = () => {
         dispatch(admin_confirm_del_request(checkArr))
          
     }
+
     
     const sortHandler = (e) => {
         e.preventDefault()
         let target = e.target.value
-        if(target == true){
-            dispatch()
-        }else if(target == false){
-            dispatch()
-        }
+        console.log('sort',target)
+        dispatch(admin_confirm_state_request(target))
     }
+    
 
     return(
         <>
@@ -66,7 +73,7 @@ const Confirm = () => {
                                     <Td>SNS or Web</Td>
                                     <Td>Application Date</Td>
                                     <Td><select name="sort" onChange={sortHandler}>
-                                            <option value="false">반려</option>
+                                            <option value="false">대기</option>
                                             <option value="true">승인</option>
                                         </select></Td>
                                     <Td>
@@ -88,11 +95,7 @@ const Confirm = () => {
                                                 <Td>{x.sns}</Td>
                                                 <Td>{x.stamp}</Td>
                                                 <Td>
-                                                    <label htmlFor="cancel">반려</label>
-                                                    <input type="radio" name="cancel" id="cancel1" />
-                                         
-                                                    <label htmlFor="cancel">승인</label>
-                                                    <input type="radio" name="access" id="access1" />
+                                                    {x.state}
                                                 </Td>
                                                 <Td>
                                                     <input type="checkbox" name = {"registerDel"+x.idx}  value={x.idx} onChange={checkHandler}/>

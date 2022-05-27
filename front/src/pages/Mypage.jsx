@@ -6,8 +6,8 @@ import { useEffect } from 'react';
 import { review_request, review_delete_request,
 review_update_start, review_update_proceed, review_update_request } from "../reducers/review.js";
 //import { review_flavor, review_atmosphere, review_cheap, review_service } from '.././reducers/writeReview.js'
-
-
+import { BrowserView, MobileView,isMobile } from "react-device-detect";
+import { useNavigate } from 'react-router-dom';
 const Background = styled.div`
     display: flex;
     position: fixed;
@@ -21,13 +21,182 @@ const Background = styled.div`
 `;
 
 const Container = styled.div`
-    width: 1000px;
-    height: 600px;
-    background-color: white;
+    width: 70%;
+    height: 95%;
+    background-color: #FFFFE9;
     border-radius: 30px;
-    padding: 100px;
+    @media (max-width: 600px) {
+            /* width: 340px; */
+            width:100%;
+            height:100%;
+            /* height: 200px; */
+            border-radius:0px;
+        }
 
-`;
+    .mypage{
+        width:95%;
+        height:90%;
+        margin: 0 auto;
+    }
+
+    .close{
+        display:block;
+        width:30px;
+        height:30px;
+        text-align:center;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        font-size:20px;
+        margin-top:20px;}
+
+    .mypage_box{
+        width:90%;
+        height:90%;
+        margin: 0 auto;
+        /* background:yellow; */
+    }
+    .welcome{
+        text-align:center;
+
+        @media (max-width: 600px){
+            font-size:20px;
+        }
+    }
+    .email,.review{
+        margin-top:40px;
+    }
+
+    .email{
+        @media (max-width: 600px){
+            font-size:12px;
+            margin-top:10px;
+            text-align:center;
+        }
+    }
+    *{
+        list-style:none;
+    }
+    .review_list{
+        width:100%;
+        height:60%;
+        background:#FFFFFA;
+        border-radius:10px;
+        display:flex;
+        flex-direction:column;
+        flex-wrap:nowrap;
+        overflow:scroll;
+        position:relative;
+        @media (max-width: 600px){
+            /* height:80%; */
+            height:80%;
+        }
+
+    }
+
+`
+
+const ReviewOne = styled.ul`
+    width:95%;
+    /* background:red; */
+    min-height:80%;
+    height:auto;
+    margin: 0 auto;
+    margin-top:10px;
+    border-top: 1px solid grey;
+    border-bottom : 1px solid grey;
+    @media (max-width: 600px){
+            min-height:80%;
+            height:auto;
+    }
+    /* 여기가 문제임 자식 div가 늘어나도 크기가 증가하지 않음. */
+    .close2{
+        width:4%;
+        height:100%;
+        display:block;
+        text-align:center;
+        font-size:20px;
+        /* align-items:flex-start; */
+
+    }
+    .review_box{
+        /* background:purple; */
+        width:100%;
+        height:30%;
+        display:flex;
+        justify-content:space-between;
+        align-items:flex-start;
+        @media (max-width: 600px){
+            align-items:center;
+            font-size:20px;
+            flex-wrap:wrap;
+            min-height:40px;
+            height:auto;
+            border-bottom: 1px solid #efefef;
+
+        }
+
+
+    }
+   
+
+
+    .star_box{
+        width:24%;
+        height:30px;
+        margin-bottom:10px;
+        border-bottom: 0.5px solid #DCDCDC;
+        @media (max-width: 600px){
+            font-size:14px;
+            width:50%;
+            height:10%;
+            border:none;
+        }
+    }
+
+    .evaluate{
+        width:100%;
+        min-height:45%;
+        height:auto;
+        @media (max-width: 600px){
+            min-height:60%;
+            height:auto;
+
+        }
+    }
+
+    
+    .button_box{
+        width:100%;
+        min-height:20%;
+        height:auto;
+        display:flex;
+        justify-content:space-between;
+    }
+
+    .update_button, .delete_button{
+        width:70px;
+        height:20px;
+        margin-right:5px;
+        margin-bottom:10px;
+        font-size:14px;
+        line-height:7px;
+        background: none;
+        border: 1.5px solid;
+        color:#FFD5A9;
+        letter-spacing: inherit;
+        border-bottom: 3px solid ;
+        border-right: 3px solid ;
+        text-transform: inherit;
+        cursor:pointer;
+        @media (max-width: 600px){
+
+        }
+
+    }
+
+
+`
 
 const StarForm = styled.form`
     // border : 2px solid #000;
@@ -79,7 +248,60 @@ const Textli = styled.li`
 `
 
 const StarSpan = styled.span`
-    font-size: 1.25rem;
+    font-size: 1rem;
+    @media (max-width: 600px){
+            font-size:12px;
+
+    }
+    
+`
+
+const NoLogin = styled.div`
+
+    width:100%;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    .please_kakao{
+        display:block;
+        width:100%;
+        height:10%;
+        text-align:center;
+        font-size:20px;
+    }
+
+    .go_kakao{
+        display:block;
+        width:15%;
+        height:100%;
+        text-align:center;
+        @media (max-width: 600px){
+            width:35%;
+        }
+    }
+
+    .goback_box{
+        width:100%;
+        height:10%;
+        display:flex;
+        justify-content:center;
+    }
+
+    .back_btn{
+        width:15%;
+        height:100%;
+        cursor: pointer;
+        text-align:center;
+        @media (max-width: 600px){
+            width:35%;
+        }
+    }
+
+    .back_btn:hover{
+        color:#1890ff;
+        transition: all 1s;
+    }
 `
 
 const Mypage = () => {
@@ -136,55 +358,46 @@ const Mypage = () => {
         service: e.target.service.value, atmosphere: e.target.atmosphere.value, cheap: e.target.cheap.value }})
     }
 
-
     const reviewList = stores.review.data.map((v)=> {
         return (
             stores.review.update !== v.idx ?
-            <Starul>
-                
-                <li onClick={() => deleteHandler(v.idx)}> x </li>
-                <li> <Link to={ '/shop/'+ v.sidx }> { v.storename } </Link> </li>
-                
-                <Starli> 맛 : {
-                    v.flavor === 1 ? <StarSpan>⭐</StarSpan> 
-                    : v.flavor === 2 ? <StarSpan>⭐⭐</StarSpan> 
-                    : v.flavor === 3 ? <StarSpan>⭐⭐⭐</StarSpan> 
-                    : v.flavor === 4 ? <StarSpan>⭐⭐⭐⭐</StarSpan> 
-                    : v.flavor === 5 ? <StarSpan>⭐⭐⭐⭐⭐ </StarSpan> 
-                    : '평가 정보 없음'
-                    }
-                </Starli>
-                <Starli> 분위기 : {
-                    v.atmosphere === 1 ? <StarSpan>⭐</StarSpan> 
-                    : v.atmosphere === 2 ? <StarSpan>⭐⭐</StarSpan> 
-                    : v.atmosphere === 3 ? <StarSpan>⭐⭐⭐</StarSpan> 
-                    : v.atmosphere === 4 ? <StarSpan>⭐⭐⭐⭐</StarSpan> 
-                    : v.atmosphere === 5 ? <StarSpan>⭐⭐⭐⭐⭐</StarSpan> 
-                    : '평가 정보 없음'
-                    }
-                </Starli>
-                <Starli> 가격 : {
-                    v.cheap === 1 ? <StarSpan>⭐</StarSpan> 
-                    : v.cheap === 2 ? <StarSpan>⭐⭐</StarSpan> 
-                    : v.cheap === 3 ? <StarSpan>⭐⭐⭐</StarSpan> 
-                    : v.cheap === 4 ? <StarSpan>⭐⭐⭐⭐</StarSpan> 
-                    : v.cheap === 5 ? <StarSpan>⭐⭐⭐⭐⭐</StarSpan> 
-                    : '평가 정보 없음'
-                }
-                </Starli>
-                <Starli> 서비스 : {
-                    v.service === 1 ? <StarSpan>⭐</StarSpan> 
-                    : v.service === 2 ? <StarSpan>⭐⭐</StarSpan> 
-                    : v.service === 3 ? <StarSpan>⭐⭐⭐</StarSpan> 
-                    : v.service === 4 ? <StarSpan>⭐⭐⭐⭐</StarSpan> 
-                    : v.service === 5 ? <StarSpan>⭐⭐⭐⭐⭐</StarSpan> 
-                    : '평가 정보 없음'
-                    }
-                </Starli>
-                <Textli> 평가 : {v.text === null ? '평가 정보 없음' : v.text}</Textli>
-                <li onClick={() => updateBoot(v.idx)}> 수정 </li>
-                
-            </Starul>
+                <ReviewOne key={v.idx}>
+                    <div class="review_box">
+                        <li class="star_box"> 맛 : {
+
+                            v.flavor === 1 ? <StarSpan>⭐</StarSpan> : v.flavor === 2 ? <StarSpan>⭐⭐</StarSpan> 
+                            : v.flavor === 3 ? <StarSpan>⭐⭐⭐</StarSpan> 
+                            : v.flavor === 4 ? <StarSpan>⭐⭐⭐⭐</StarSpan> : v.flavor === 5 ? <StarSpan>⭐⭐⭐⭐⭐ </StarSpan> : '평가 정보 없음'
+                            }
+                        </li>
+                        <li class="star_box"> 분위기 : {
+                            v.atmosphere === 1 ? <StarSpan>⭐</StarSpan> : v.atmosphere === 2 ? <StarSpan>⭐⭐</StarSpan> 
+                            : v.atmosphere === 3 ? <StarSpan>⭐⭐⭐</StarSpan> 
+                            : v.atmosphere === 4 ? <StarSpan>⭐⭐⭐⭐</StarSpan> : v.atmosphere === 5 ? <StarSpan>⭐⭐⭐⭐⭐</StarSpan> : '평가 정보 없음'
+                            }
+                        </li>
+                        <li class="star_box"> 가격 : {
+                            v.cheap === 1 ? <StarSpan>⭐</StarSpan> : v.cheap === 2 ? <StarSpan>⭐⭐</StarSpan> 
+                            : v.cheap === 3 ? <StarSpan>⭐⭐⭐</StarSpan> 
+                            : v.cheap === 4 ? <StarSpan>⭐⭐⭐⭐</StarSpan> : v.cheap === 5 ? <StarSpan>⭐⭐⭐⭐⭐</StarSpan> : '평가 정보 없음'
+                        }
+                        </li>
+                        <li class="star_box"> 서비스 : {
+                            v.service === 1 ? <StarSpan>⭐</StarSpan> : v.service === 2 ? <StarSpan>⭐⭐</StarSpan> 
+                            : v.service === 3 ? <StarSpan>⭐⭐⭐</StarSpan> 
+                            : v.service === 4 ? <StarSpan>⭐⭐⭐⭐</StarSpan> : v.service === 5 ? <StarSpan>⭐⭐⭐⭐⭐</StarSpan> : '평가 정보 없음'
+                            }
+                        </li>
+                        {(isMobile==false)&&<span onClick={() => deleteHandler(v.idx)} class="close2"> x </span>}
+                        
+                    </div>
+                    <div class="evaluate"> 총평 : {v.text === null ? '평가 정보 없음' : v.text}</div>
+                    <div class="button_box">
+                        <button class="update_button"onClick={() => updateBoot(v.idx)}> 수정하기 </button>
+                        {(isMobile)&&<button class="delete_button" onClick={() => deleteHandler(v.idx)}> 삭제하기 </button>}
+                    </div>
+                    
+                </ReviewOne>
             :
             <StarForm onSubmit = {submitHandler(v.idx)}>
                 <ul>
@@ -260,30 +473,34 @@ const Mypage = () => {
         getReview()
     },[dispatch])
 
+    let history = useNavigate()
+    
+
     return (
+        
         <Background>
             <Container>
                 { stores.user.me.email !== null
                 ?
-                    <>
-                        <a href='/'>x</a>
-                        <hr/>
-                        <span> {decodeURI(stores.user.me.nickname)} 님! 환영합니다! </span>
-                        <br/>
-                        <span> 이메일: {stores.user.me.email} </span>
-                        <br/>
-                        <hr/>
-                        <span> review zone </span>
-                        <div>
+                <div class="mypage">
+                    <a onClick={()=>{history(-1)}} class="close">x</a>
+                    <div class="mypage_box">
+                        <h1 class="welcome"> 🍩 {decodeURI(stores.user.me.nickname)} 님! 환영합니다! 🍩 </h1>
+                        <h2 class="email"> 📧 내 이메일(ID): {stores.user.me.email} </h2>
+                        <h2 class="review"> ✏️ 내가 쓴 리뷰 </h2>
+                        <div class="review_list">
                             {reviewList}
                         </div>
-                    </>
+                    </div>
+                </div>
                 :
-                    <>
-                    <a href='/'>x</a>
-                    <span>login please!</span>
-                    <a href='http://localhost:4000/user/klogin'> kakao login </a>
-                    </>
+                    <NoLogin>
+                        <div className="please_kakao">카카오 로그인을 해주세요.</div>
+                        <div className="goback_box">
+                            <a href="http://localhost:4000/user/klogin" className="go_kakao"> 로그인 하러가기</a>
+                            <div className="back_btn" onClick={()=>{history(-1)}}> 뒤로 가기 </div>
+                        </div>
+                    </NoLogin>
                 }
              
             </Container>

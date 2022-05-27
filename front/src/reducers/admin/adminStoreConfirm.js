@@ -25,6 +25,16 @@ export const admin_confirm_del_request = createAction(ADMIN_CONFIRM_DEL.REQUEST)
 export const admin_confirm_del_success = createAction(ADMIN_CONFIRM_DEL.SUCCESS)
 export const admin_confirm_del_failure = createAction(ADMIN_CONFIRM_DEL.FAILURE)
 
+const ADMIN_CONFIRM_STATE = {
+    REQUEST:'ADMIN/CONFIRM_STATE_REQUEST',
+    SUCCESS:'ADMIN/CONFIRM_STATE_SUCCESS',
+    FAILURE:'ADMIN/CONFIRM_STATE_FAILURE',
+}
+
+export const admin_confirm_state_request = createAction(ADMIN_CONFIRM_STATE.REQUEST) 
+export const admin_confirm_state_success = createAction(ADMIN_CONFIRM_STATE.SUCCESS)
+export const admin_confirm_state_failure = createAction(ADMIN_CONFIRM_STATE.FAILURE)
+
 
 
 
@@ -35,7 +45,7 @@ const adminConfirm = (state=initialState,action) => {
                 ...state,
             }
         case ADMIN_STORE_CONFIRM.SUCCESS:
-            console.log('확인',action.payload)
+            
             return {
                 ...state,
                register:action.payload
@@ -45,18 +55,32 @@ const adminConfirm = (state=initialState,action) => {
                 ...state
             }
         case ADMIN_CONFIRM_DEL.REQUEST:
-            console.log('reducer req',action.payload)
+          
             return {
                 ...state,
             }
         case ADMIN_CONFIRM_DEL.SUCCESS:
-            console.log('reducer suc',action.payload)
-            const idx = action.payload.idx
+          
             return {
                 ...state,
                 register:action.payload
             }
         case ADMIN_CONFIRM_DEL.FAILURE:
+            return {
+                ...state
+            }
+        case ADMIN_CONFIRM_STATE.REQUEST:
+        
+            return {
+                ...state,
+            }
+        case ADMIN_CONFIRM_STATE.SUCCESS:
+            
+            return {
+                ...state,
+                register:action.payload
+            }
+        case ADMIN_CONFIRM_STATE.FAILURE:
             return {
                 ...state
             }
