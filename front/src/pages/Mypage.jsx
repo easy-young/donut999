@@ -7,7 +7,7 @@ import { review_request, review_delete_request,
 review_update_start, review_update_proceed, review_update_request } from "../reducers/review.js";
 //import { review_flavor, review_atmosphere, review_cheap, review_service } from '.././reducers/writeReview.js'
 import { BrowserView, MobileView,isMobile } from "react-device-detect";
-
+import { useNavigate } from 'react-router-dom';
 const Background = styled.div`
     display: flex;
     position: fixed;
@@ -25,7 +25,7 @@ const Container = styled.div`
     height: 95%;
     background-color: #FFFFE9;
     border-radius: 30px;
-    @media (max-width: 400px) {
+    @media (max-width: 600px) {
             /* width: 340px; */
             width:100%;
             height:100%;
@@ -59,7 +59,7 @@ const Container = styled.div`
     .welcome{
         text-align:center;
 
-        @media (max-width: 400px){
+        @media (max-width: 600px){
             font-size:20px;
         }
     }
@@ -68,7 +68,7 @@ const Container = styled.div`
     }
 
     .email{
-        @media (max-width: 400px){
+        @media (max-width: 600px){
             font-size:12px;
             margin-top:10px;
             text-align:center;
@@ -87,7 +87,7 @@ const Container = styled.div`
         flex-wrap:nowrap;
         overflow:scroll;
         position:relative;
-        @media (max-width: 400px){
+        @media (max-width: 600px){
             /* height:80%; */
             height:80%;
         }
@@ -105,7 +105,7 @@ const ReviewOne = styled.ul`
     margin-top:10px;
     border-top: 1px solid grey;
     border-bottom : 1px solid grey;
-    @media (max-width: 400px){
+    @media (max-width: 600px){
             min-height:80%;
             height:auto;
     }
@@ -126,7 +126,7 @@ const ReviewOne = styled.ul`
         display:flex;
         justify-content:space-between;
         align-items:flex-start;
-        @media (max-width: 400px){
+        @media (max-width: 600px){
             align-items:center;
             font-size:20px;
             flex-wrap:wrap;
@@ -146,7 +146,7 @@ const ReviewOne = styled.ul`
         height:30px;
         margin-bottom:10px;
         border-bottom: 0.5px solid #DCDCDC;
-        @media (max-width: 400px){
+        @media (max-width: 600px){
             font-size:14px;
             width:50%;
             height:10%;
@@ -158,7 +158,7 @@ const ReviewOne = styled.ul`
         width:100%;
         min-height:45%;
         height:auto;
-        @media (max-width: 400px){
+        @media (max-width: 600px){
             min-height:60%;
             height:auto;
 
@@ -189,7 +189,7 @@ const ReviewOne = styled.ul`
         border-right: 3px solid ;
         text-transform: inherit;
         cursor:pointer;
-        @media (max-width: 400px){
+        @media (max-width: 600px){
 
         }
 
@@ -249,13 +249,60 @@ const Textli = styled.li`
 
 const StarSpan = styled.span`
     font-size: 1rem;
-    @media (max-width: 400px){
+    @media (max-width: 600px){
             font-size:12px;
 
-        }
+    }
     
 `
 
+const NoLogin = styled.div`
+
+    width:100%;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    .please_kakao{
+        display:block;
+        width:100%;
+        height:10%;
+        text-align:center;
+        font-size:20px;
+    }
+
+    .go_kakao{
+        display:block;
+        width:15%;
+        height:100%;
+        text-align:center;
+        @media (max-width: 600px){
+            width:35%;
+        }
+    }
+
+    .goback_box{
+        width:100%;
+        height:10%;
+        display:flex;
+        justify-content:center;
+    }
+
+    .back_btn{
+        width:15%;
+        height:100%;
+        cursor: pointer;
+        text-align:center;
+        @media (max-width: 600px){
+            width:35%;
+        }
+    }
+
+    .back_btn:hover{
+        color:#1890ff;
+        transition: all 1s;
+    }
+`
 
 const Mypage = () => {
     const stores = useSelector(state => state)
@@ -310,7 +357,6 @@ const Mypage = () => {
         dispatch({type: review_update_request.toString(), payload : {text: updateText.value, idx: k, flavor: e.target.flavor.value,
         service: e.target.service.value, atmosphere: e.target.atmosphere.value, cheap: e.target.cheap.value }})
     }
-
 
     const reviewList = stores.review.data.map((v)=> {
         return (
@@ -427,13 +473,17 @@ const Mypage = () => {
         getReview()
     },[dispatch])
 
+    let history = useNavigate()
+    
+
     return (
+        
         <Background>
             <Container>
                 { stores.user.me.email !== null
                 ?
                 <div class="mypage">
-                    <a href='/' class="close">x</a>
+                    <a onClick={()=>{history(-1)}} class="close">x</a>
                     <div class="mypage_box">
                         <h1 class="welcome"> 🍩 {decodeURI(stores.user.me.nickname)} 님! 환영합니다! 🍩 </h1>
                         <h2 class="email"> 📧 내 이메일(ID): {stores.user.me.email} </h2>
@@ -444,11 +494,13 @@ const Mypage = () => {
                     </div>
                 </div>
                 :
-                    <>
-                    <a href='/'>x</a>
-                    <span>login please!</span>
-                    <a href='http://localhost:4000/user/klogin'> kakao login </a>
-                    </>
+                    <NoLogin>
+                        <div className="please_kakao">카카오 로그인을 해주세요.</div>
+                        <div className="goback_box">
+                            <a href="http://localhost:4000/user/klogin" className="go_kakao"> 로그인 하러가기</a>
+                            <div className="back_btn" onClick={()=>{history(-1)}}> 뒤로 가기 </div>
+                        </div>
+                    </NoLogin>
                 }
              
             </Container>
