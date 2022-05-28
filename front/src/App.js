@@ -37,6 +37,9 @@ import { Link } from "react-router-dom";
 import Write from './pages/Write.jsx'
 import GlobalStyle from '../src/style/global'
 
+import Ttest from './pages/Ttest.jsx'
+
+import Qwe from './pages/qwe.jsx'
 
 const snow = keyframes`
 
@@ -103,6 +106,7 @@ const App = () => {
           {/* <Route path="/" index element={<Index />} /> */}
           <Route path="/mypage" element={<Mypage />} />
           <Route path='/login' element={<Login />}/>
+          <Route path='/ttest' element= {<Ttest/>}/>
           <Route path='/write/:idx' element={<Write/>} />
           <Route path="/shop/:idx" element={<Shop />}/>
           <Route path="/rank" element={<Rank />} />
@@ -111,6 +115,7 @@ const App = () => {
           <Route path="/theme/unique" element={<Unique />} />
           <Route path="/theme/parking" element={<Parking />} />
           <Route path='/register/join' element={<Join/>} />
+          <Route path='/register/check' element={<Qwe/>} />
           <Route path="/dt/admin" element={<Admin />} />
           <Route path="/dt/admin/menu" element={<AdminMenu />} />
           <Route path="/dt/admin/menu/store/confirm" element={<Confirm />} />

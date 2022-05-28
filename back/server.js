@@ -1,7 +1,9 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const path = require('path');
+const upload = require('./utils/upload.js')
 const cors = require('cors');
+const multer = require('multer')
 const app = express();
 
 const PORT = process.env.PORT || 4000;
