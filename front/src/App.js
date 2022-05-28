@@ -76,7 +76,8 @@ const snow = keyframes`
 const Wrap = styled.div`
   width:100%;
   height:100%;
-
+  overflow: hidden; 
+  position:relative;
   background-color: #FFFCDD;
   background-image: url("/img/background.png"),url("/img/snow.png"),url("/img/snow2.png"),url("/img/snow3.png");
   background-repeat: no repeat;
@@ -100,8 +101,9 @@ const App = () => {
       <Fork/>
       <BrowserRouter>
         <DefaultHeader />
+        <Index/>
         <Routes>
-          <Route path="/" index element={<Index />} />
+          {/* <Route path="/" index element={<Index />} /> */}
           <Route path="/mypage" element={<Mypage />} />
           <Route path='/login' element={<Login />}/>
           <Route path='/ttest' element= {<Ttest/>}/>
@@ -124,8 +126,6 @@ const App = () => {
           <Route path="/dt/admin/menu/user/setting" element={<UserSetting/>} />
           <Route path="/dt/admin/menu/user/setting/checkblack/:email" element={<CheckReview />} />
           <Route path="/dt/admin/menu/review/setting" element={<ReviewSetting />} />
-
-          
         </Routes>
         <GlobalStyle/>
       </BrowserRouter>

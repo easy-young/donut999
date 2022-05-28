@@ -1,7 +1,11 @@
 import { createAction } from "redux-actions"
 
-const initialState = { metadata : { loading : false, error : null }, 
-    data: [], update:null }
+const initialState = { 
+    metadata : { loading : false, error : null }, 
+    data: [],
+    data2: [],
+    update:null
+}
 
 /* get review */
 const review_REQUEST = 'REVIEW/REQUEST'
@@ -53,10 +57,8 @@ const review = (state=initialState, action) => {
         case review_SUCCESS :
             return {
                 ...initialState,
-                data : [
-                    ...state.data,
-                    ...action.payload
-                ],
+                data: action.payload.result,
+                data2: action.payload.result2,
                 metadata : {
                     ...state.metadata,
                     loading:false,
@@ -65,7 +67,6 @@ const review = (state=initialState, action) => {
                 test:'test'
             }
         case review_FAILURE :
-            console.log('req failed')
             return {
                 ...state,
                 metadata : {
@@ -86,10 +87,8 @@ const review = (state=initialState, action) => {
                 }
             }
         case review_delete_SUCCESS :
-            const idx = action.payload.idx
-            //console.log(idx)
+            const { idx } = action.payload
             const newData = [...state.data.filter(v => v.idx !== idx)]
-            //console.log(newData)
             return {
                 ...state,
                 data: [...newData],
@@ -137,7 +136,6 @@ const review = (state=initialState, action) => {
                 }
             }
         case review_update_SUCCESS :
-            console.log(action.payload)
             for (let i =0; i < state.data.length; i++) {
                 if (state.data[i].idx === state.update) {
                     state.data[i].text = action.payload.text

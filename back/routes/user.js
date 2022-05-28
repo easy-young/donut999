@@ -1,10 +1,7 @@
 const express = require('express')
 const router = express.Router()
-const app = express()
+const { pool } = require('../db.js')
 const qs = require('qs')
-
-const pool = require('../db.js').pool
-const { default: axios } = require('axios')
 
 const client_id = 'bcc6575307f03520e0cd6a242a769d2f' // REST API
 const host = 'https://kauth.kakao.com'
@@ -70,13 +67,16 @@ const klogout = (req, res) => {
 const getReview = async (req, res) => {
     const { email } = req.body
     const sql = `select * from review where email=?`
+    const sql2 = `select * from register where email=?`;
     const param = [email]
     try {
-        const [ result ] = await pool.execute(sql,param)
+        const [ result ] = await pool.execute(sql, param)
+        const [ result2 ] = await pool.execute(sql2, param)
 
         const response = {
             errno:0,
-            result
+            result,
+            result2
         }
         res.json(response)
     }
@@ -92,6 +92,6 @@ const getReview = async (req, res) => {
 router.use('/klogin', klogin)
 router.use('/oauth/kakao', kauth)
 router.use('/klogout', klogout)
-router.use('/getReview',getReview)
+router.use('/getReview', getReview)
 
 module.exports = router

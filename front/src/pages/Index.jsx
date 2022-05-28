@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 
 const Background = styled.div`
     display: flex;
+    margin:0 auto;
     position: fixed;
     z-index: 2000;
     width: 100%;
@@ -20,30 +21,26 @@ const Background = styled.div`
 `;
 
 const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 1100px;
-    height: 700px;
+    width: 60%;
+    height: 80%;
     border-radius: 30px;
     background-color: rgb(255, 255, 255);
+    overflow: scroll;
+
+    @media (max-width: 600px) {
+        width: 80%;
+        }
 `;
 
 const StationName = styled.div`
-    position: absolute;
-    top: 38px;
-    left: 240px;
+    display:inline-block;
+    width:60%;
     font-size: 24px;
     font-weight: bolder;
 `;
 
 const CloseBtn = styled.button`
-    position: absolute;
-    width: 36px;
-    height: 36px;
-    top: 38px;
-    right: 240px;
+    width:36px;
     font-size: 16px;
     border: none;
     border-radius: 8px;
@@ -55,36 +52,40 @@ const CloseBtn = styled.button`
 `;
 
 const StoreBox = styled.div`
-    width: 1040px;
-    height: 280px;
-    padding: 20px;
+    margin-top: 2%;
+    width: 95%;
+    margin:0 auto;
+    /* height: 52%; */
+    padding: 3%;
     border-radius: 20px;
     background: #ffeddf;
+    display:flex;
+
+    
 `;
 
 const StoreName = styled.div`
-    position: relative;
-    bottom: 220px;
-    left: 300px;
     font-size: 22px;
 `;
 
 const StoreAddress = styled.div`
-    position: relative;
-    bottom: 210px;
-    left: 300px;
+
+    margin-top:3%;
+    font-size: 18px;
 `;
 
 const StoreScore = styled(StoreAddress)`
-    bottom: 200px;
+    
 `;
 
 const NoBox = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: 20px;
-`;
+    font-size: 25px;
+    justify-content: center;
+`
+
 
 const Index = () => {
     
@@ -146,8 +147,6 @@ const Index = () => {
         position: absolute;
         z-index:5;
         cursor:pointer;
-        /* top:-50%;
-        left:-50%; */
 
         @media (max-width: 600px) {
             width: 422%;
@@ -165,6 +164,8 @@ const Index = () => {
             width: 422%;
             height: auto;
         }
+        top:-40%;
+        left:-40%;
     `
 
     const twinkle = keyframes`
@@ -629,7 +630,7 @@ const Index = () => {
             <MobileView>
                 <MapBox>
                     <StationBox id='img_box'style={{height, width}}>
-                        <RouteMap alt="route_map" src="img/route_map.png" id="map_img" ref={imgRef}
+                        <RouteMap alt="route_map" src="img/route_map_2.png" id="map_img" ref={imgRef}
                         style={{width}}
                             onLoad={ handleReSize }
                             onTouchStart={touchStartHandler}
@@ -867,35 +868,42 @@ const Index = () => {
                 name &&
                 <Background>
                     <Container>
-                        <StationName>{ store.length > 0 && name+"역 맛집" }</StationName>
-                        <CloseBtn onClick={Close}>X</CloseBtn>
+                        <div style={{display:'flex',justifyContent:'space-between',width:'100%',padding:'2%'}}>
+                            <StationName>{ store.length > 0 && name+"역 맛집" }</StationName>
+                            <CloseBtn onClick={Close}>X</CloseBtn>
+                        </div>
+                        
                         {
                             store.length > 0 && store.map((v, i) => {
                                 return(
                                     <>
-                                        <div style={{ height: '20px' }}></div>
+                                        {/* <div style={{ height: '20px' }}></div> */}
                                         <StoreBox key={i}>
                                             { store[i] &&
-                                                <div>
+                                                <>
                                                     <img 
                                                         src={require(`../../public/img/donut_store/${store[i].idx}_1.jpg`)}
-                                                        style={{ borderRadius: '30px' }}
+                                                        style={{ borderRadius: '30px'}}
                                                         width={240}
                                                         height={240}
+
                                                     />
-                                                    <StoreName>
-                                                        <Link 
-                                                            to={`/shop/${store[i].idx}`}
-                                                            style={{ color: 'black' }}
-                                                        >
-                                                            {store[i].name}
-                                                        </Link>
-                                                    </StoreName>
-                                                    <StoreAddress>
-                                                        주소 : {store[i].address}
-                                                    </StoreAddress>
-                                                    <StoreScore>평점 : 5</StoreScore>
-                                                </div>
+                                                    <div style={{marginLeft:'3%'}}>
+                                                        <StoreName>
+                                                            <Link 
+                                                                to={`/shop/${store[i].idx}`}
+                                                                style={{ color: 'black' }}
+                                                            >
+                                                                {store[i].name}
+                                                            </Link>
+                                                        </StoreName>
+                                                        <StoreAddress>
+                                                            주소 : {store[i].address}
+                                                        </StoreAddress>
+                                                        <StoreScore>평점 : 5</StoreScore>
+                                                    </div>
+
+                                                </>
                                             }
                                         </StoreBox>
                                     </>
