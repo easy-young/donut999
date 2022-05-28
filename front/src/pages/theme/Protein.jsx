@@ -79,7 +79,6 @@ const StoreScore = styled(StoreAddress)`
 
 const Protein = () => {
     const { result } = useSelector(state => state.theme.protein)
-    console.log(result);
     const dispatch = useDispatch()
     useEffect( () => {  
         dispatch({type: protein_request.toString()})
