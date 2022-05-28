@@ -179,7 +179,7 @@ const SmallDiv = styled.div`
         height:100%;
         display:flex;
         text-align:center;
-        @media (max-width: 380px) {
+        @media (max-width: 420px) {
             display:block;
         }
     }
@@ -196,7 +196,6 @@ const SmallDiv = styled.div`
         @media (max-width: 420px) {
         border-left:none;
         font-size:10px;
-        display:block;
         width:100%;
         height:20%;
         text-align:left;
@@ -220,7 +219,8 @@ const SmallDiv = styled.div`
         @media (max-width: 420px) {
             border-top: 0.5px solid #dcdcdc;
             border-left:none;
-            font-size:4px;
+            font-size:3px;
+            letter-spacing:-2px;
             width:100%;
             height:70%;
             text-align:left;
@@ -346,7 +346,7 @@ const Rank = () => {
                                             <img 
                                                 src={require(`../../public/img/donut_store/${topFive[i].idx}_3.jpg`)}
                                                 style={{ borderRadius: '6px' }}
-                                                width={50}
+                                                width={70}
                                                 height={'100%'}/> : 
                                                 <img 
                                                 src={require(`../../public/img/donut_store/${topFive[i].idx}_3.jpg`)}
@@ -367,8 +367,12 @@ const Rank = () => {
                                             </div>
                                         </div>
                                         <div className="rank_info">
-                                            <div>주소 : {topFive[i].address}</div>
-                                            <div>운영 시간 : {topFive[i].operhour}</div>
+                                            <div>
+                                                🚇 지하철 역: 
+                                                <span>{topFive[i].line}</span>
+                                                <span> {topFive[i].stationKor}</span>
+                                            </div>
+                                            <div>⏰ 운영 시간 : {topFive[i].operhour}</div>
                                         </div>
                                     </div>
                                 </SmallDiv>
