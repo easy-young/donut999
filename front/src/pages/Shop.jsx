@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { shop_request } from '../reducers/shop.js';
+import { isMobile } from "react-device-detect";
 
 const Background = styled.div`
     display: flex;
@@ -22,9 +23,11 @@ const Container = styled.div`
     padding: 30px;
     border-radius: 30px;
     background-color: #ffd3bb;
+    overflow: scroll;
 `;
 
 const StoreName = styled.div`
+    display: flex;
     margin-top: 20px;
     font-size: 24px;
 `;
@@ -38,7 +41,23 @@ const ContentBox = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    font-size: 18px;
 `;
+
+const Ul = styled.ul`
+    list-style: none;
+
+`
+
+const Li = styled.li`
+    width:100%;
+    margin-top:1%;
+`
+
+const Span1 = styled.span`
+    color:#ff6825;
+`
+
 
 const Img = styled.img`
     display: inline-block;
@@ -58,7 +77,8 @@ const ReviewBtn = styled.button`
     margin-left: 20px;
     width: 90px;
     height: 30px;
-    font-size: 14px;
+    font-size: 16px;
+    padding: 3px 7px;
     border: none;
     border-radius: 10px;
     background-color: #f2b6ff;
@@ -69,12 +89,13 @@ const ReviewBtn = styled.button`
 `;
 
 const Btn = styled.button`
+    margin-top: 20px;
     padding: 6px;
     height: 34px;
     border: none;
     border-radius: 10px;
     background-color: blanchedalmond;
-
+    font-size: 16px;
     :hover {
         cursor: pointer;
     }
@@ -83,7 +104,14 @@ const Btn = styled.button`
 const StarBox = styled.span`
     display: inline-block;
     position: relative;
+    top: 5px;
     margin-left: 16px;
+    @media (max-width: 600px) {
+        display: block;
+        position: relative;
+        top: 5px;
+        margin-left: 16px;
+    }
 `;
 
 const StarSpan = styled.span`
@@ -98,12 +126,27 @@ const StarSpan = styled.span`
 `;
 
 const ReviewDiv = styled.div`
-    font-size: 14px;
+    width: 100%;
+    margin-Top:1%;
+    font-size: 18px;
+    border: 3px solid #FFFCDD;
+    padding: 1%;
 `;
 
 const StarSpan2 = styled.span`
     font-size: 1.25rem;
 `
+
+const Ebutton = styled.button`
+    border:none;
+    background-color: #ffff;
+    padding: 5px 7px;
+    font-size:16px;
+    &>a{
+        color:black;
+    }
+`
+
 
 const Shop = () => {
     const dispatch = useDispatch();
@@ -125,80 +168,119 @@ const Shop = () => {
                 {
                     info &&
                     <>
-                        <ImgBox>
+                        {isMobile 
+                        ? 
+                        <ImgBox>  
+                            <Img src={require(`../../public/img/donut_store/${info.idx}_3.jpg`)}/>
+                        </ImgBox>
+                        : 
+                        <ImgBox>  
                             <Img src={require(`../../public/img/donut_store/${info.idx}_1.jpg`)}/>
                             <Img src={require(`../../public/img/donut_store/${info.idx}_2.jpg`)}/>
                             <Img src={require(`../../public/img/donut_store/${info.idx}_3.jpg`)}/>
                         </ImgBox>
+                        }
                         <ContentBox>
                             <div>
                                 <StoreName>
-                                    {info.name}
+                                    <div>
+                                        {info.name} 
+                                    </div>
                                     <StarBox>
                                         <StarImg src='/img/star/star0.png'/>
                                         <StarSpan></StarSpan>
                                     </StarBox>
                                 </StoreName>
-                                <div>(지하철) {info.line}호선 {info.stationKor}역</div>
-                                <div>(주소) {info.address}</div>
-                                <div>(도넛) {info.menu}</div>
-                                <div>(음료) {info.beverage}</div>
-                                <div>(운영 시간) {info.operhour}</div>
-                                <div>(연락처) {info.tel}</div>
+                                <Ul>
+                                <Li>
+                                    <Span1>지하철 🚃</Span1>
+                                </Li>
+                                <p> {info.line}호선 {info.stationKor}역 </p>
+                                
+                                <Li>
+                                    <Span1>주소 🏡</Span1>
+                                </Li>
+                                <p>{info.address}</p>
+                                <Li>
+                                    <Span1>도넛 🍩</Span1>
+                                </Li>
+                                <p>{info.menu}</p>
+                                <Li>
+                                    <Span1>음료🥤</Span1>
+                                </Li>
+                                <p>{info.beverage}</p>
+                                <Li>
+                                    <Span1>운영시간 ⏰ </Span1>
+                                </Li>
+                                <p>{info.operhour}</p>
+                                <Li>
+                                    <Span1>연락처 ☎️</Span1>
+                                </Li>
+                                <p>{info.tel}</p>
                                 {
                                     info.website &&
-                                    <div>(SNS) {info.website}</div>
+                                    <>
+                                    <Li>
+                                        <Span1>SNS 📱</Span1>
+                                    </Li>
+                                    <a href={`http://`+info.website}>홈페이지바로가기</a>
+                                    </>
                                 }
                                 {
                                     info.intro &&
-                                    <div>(소개) {info.intro}</div>
+                                    <>
+                                    <Li>
+                                        <Span1>소개 🔔</Span1>
+                                    </Li>
+                                    <p>{info.intro}</p>
+                                    </>
                                 }
+                             </Ul>
                             </div>
-                            <div>
-                                <StoreName>
-                                    리뷰
+                            <div style={{marginTop:'20px'}}>
+                               <div style={{fontSize: '24px', display:'inline'}}>리뷰</div>
                                     <ReviewBtn>
-                                        <Link to={`/write/`+info.idx}>
-                                            리뷰 작성
-                                        </Link>
+                                        <Link to={`/write/`+info.idx}>리뷰 작성</Link>
                                     </ReviewBtn>
                                     {
                                         review && review.map(v =>
                                             <ReviewDiv>                                            
-                                                <>
-                                                ID : {v.email} <br/>
+                                                <div>
+
+                                                작성자 : {v.email} <br/>
 
                                                 맛 : {
                                                     v.flavor === 1 ? <StarSpan2>⭐</StarSpan2> : v.flavor === 2 ? <StarSpan2>⭐⭐</StarSpan2> 
                                                     : v.flavor === 3 ? <StarSpan2>⭐⭐⭐</StarSpan2> 
                                                     : v.flavor === 4 ? <StarSpan2>⭐⭐⭐⭐</StarSpan2> : v.flavor === 5 ? <StarSpan2>⭐⭐⭐⭐⭐ </StarSpan2> : '평가 정보 없음'
-                                                    } <br/>
+                                                    } &nbsp;
                                                 분위기 : {
                                                     v.atmosphere === 1 ? <StarSpan2>⭐</StarSpan2> : v.atmosphere === 2 ? <StarSpan2>⭐⭐</StarSpan2> 
                                                     : v.atmosphere === 3 ? <StarSpan2>⭐⭐⭐</StarSpan2> 
                                                     : v.atmosphere === 4 ? <StarSpan2>⭐⭐⭐⭐</StarSpan2> : v.atmosphere === 5 ? <StarSpan2>⭐⭐⭐⭐⭐</StarSpan2> : '평가 정보 없음'
-                                                    } <br/>
+                                                    } &nbsp;
                                                 가성비 : {
                                                     v.cheap === 1 ? <StarSpan2>⭐</StarSpan2> : v.cheap === 2 ? <StarSpan2>⭐⭐</StarSpan2> 
                                                     : v.cheap === 3 ? <StarSpan2>⭐⭐⭐</StarSpan2> 
                                                     : v.cheap === 4 ? <StarSpan2>⭐⭐⭐⭐</StarSpan2> : v.cheap === 5 ? <StarSpan2>⭐⭐⭐⭐⭐</StarSpan2> : '평가 정보 없음'
-                                                } <br/>
+                                                } &nbsp;
                                                 서비스 : {
                                                     v.service === 1 ? <StarSpan2>⭐</StarSpan2> : v.service === 2 ? <StarSpan2>⭐⭐</StarSpan2> 
                                                     : v.service === 3 ? <StarSpan2>⭐⭐⭐</StarSpan2> 
                                                     : v.service === 4 ? <StarSpan2>⭐⭐⭐⭐</StarSpan2> : v.service === 5 ? <StarSpan2>⭐⭐⭐⭐⭐</StarSpan2> : '평가 정보 없음'
                                                     } <br/>
-                                                내용 : {v.text} <br/>
-                                                { email === v.email ? <button><a href='/mypage'>수정하기</a></button> : null}
-                                                <hr/>
-                                                </>
+                                                TXT : {v.text} 
+                                                </div>
+                                                <div>
+                                                    { email === v.email ? <Ebutton><a href='/mypage'>수정하기</a></Ebutton> : null}
+                                                </div>
                                             </ReviewDiv>
                                         )
                                     }
-                                </StoreName>
+                                
                             </div>
                         </ContentBox>
-                        <div style={{ display: 'flex', justifyContent:'center' }}>
+                        <div style={{ textAlign:'center' }}>
                             <Btn><Link to="/">뒤로 가기</Link></Btn>
                         </div>
                     </>

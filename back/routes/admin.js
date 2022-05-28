@@ -266,8 +266,21 @@ router.post('/store/confirm/:register_id',async (req,res)=>{
 
 )
 
-router.post('/store/confirm/addstore/:register_id', upload.fields([{name:'img1'},{name:'img2'},
-{name:'img3'}]) ,async (req,res)=>{
+
+
+const addstore = async (req, res) => {
+    console.log('qweqe')
+    let image = []
+    for ( let i = 0; i < 3; i++) {
+        try {
+            const [img] = req.files[`img`+i]
+            image.push(img.filename)
+        }catch (e) {
+            image.push('N/A')
+        }
+    }
+    console.log(image)
+
     const prepare2 = [req.body.regi_id]
     const { name, station, line, address, parking , protein, photo, special,operhour , website , menu , beverage , tel , intro  } = req.body
     const sql = `INSERT INTO shop (name, stationKor, station, line, address, parking, operhour, website, menu, beverage, tel, protein, photo, special, intro, more) VALUES (?,?,'hello',?,?,?,?,?,?,?,?,?,?,?,?,'hi')`
@@ -280,7 +293,6 @@ router.post('/store/confirm/addstore/:register_id', upload.fields([{name:'img1'}
             result
         }
         res.json(response)
-        
     }
 
     catch (e) {
@@ -289,12 +301,13 @@ router.post('/store/confirm/addstore/:register_id', upload.fields([{name:'img1'}
             errormsg: e.message,
             errno: 1
         }
-        
         res.json(response)  
     }
 } 
 
-)
+router.use('/store/confirm/addstore/:register_id', 
+upload.fields([{name:'img1'},{name:'img2'},
+{name:'img3'}]) , addstore )
 
 router.post('/user/setting',async (req,res)=>{
     const sql = `SELECT email, DATE_FORMAT(date,'%Y-%m-%d %h:%i:%s') AS stamp FROM black ORDER BY date DESC`

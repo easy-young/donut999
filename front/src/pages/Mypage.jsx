@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-//import Store, { store } from '.././store/useStore.jsx'
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { review_request, review_delete_request,
 review_update_start, review_update_proceed, review_update_request } from "../reducers/review.js";
 //import { review_flavor, review_atmosphere, review_cheap, review_service } from '.././reducers/writeReview.js'
-import { BrowserView, MobileView,isMobile } from "react-device-detect";
+import { BrowserView, MobileView, isMobile } from "react-device-detect";
 import { useNavigate } from 'react-router-dom';
+
 const Background = styled.div`
     display: flex;
     position: fixed;
@@ -43,32 +43,34 @@ const Container = styled.div`
         display:block;
         width:30px;
         height:30px;
-        text-align:center;
-        display:flex;
-        flex-direction:column;
-        justify-content:center;
+        right: 0;
+        float: right;
         font-size:20px;
-        margin-top:20px;}
+        color: black;
+        :hover {
+            color: red;
+        }
+    }
 
     .mypage_box{
         width:90%;
         height:90%;
-        margin: 0 auto;
+        margin: 2% auto 0;
         /* background:yellow; */
     }
     .welcome{
+        margin-top: 40px;
         text-align:center;
-
-        @media (max-width: 600px){
+        @media (max-width: 600px) {
             font-size:20px;
         }
     }
     .email,.review{
-        margin-top:40px;
+        margin-top:20px;
     }
 
     .email{
-        @media (max-width: 600px){
+        @media (max-width: 600px) {
             font-size:12px;
             margin-top:10px;
             text-align:center;
@@ -87,13 +89,11 @@ const Container = styled.div`
         flex-wrap:nowrap;
         overflow:scroll;
         position:relative;
-        @media (max-width: 600px){
+        @media (max-width: 600px) {
             /* height:80%; */
             height:80%;
         }
-
     }
-
 `
 
 const ReviewOne = styled.ul`
@@ -117,8 +117,11 @@ const ReviewOne = styled.ul`
         text-align:center;
         font-size:20px;
         /* align-items:flex-start; */
-
+        :hover{
+            cursor: pointer;
+        }
     }
+
     .review_box{
         /* background:purple; */
         width:100%;
@@ -133,13 +136,8 @@ const ReviewOne = styled.ul`
             min-height:40px;
             height:auto;
             border-bottom: 1px solid #efefef;
-
         }
-
-
     }
-   
-
 
     .star_box{
         width:24%;
@@ -161,10 +159,8 @@ const ReviewOne = styled.ul`
         @media (max-width: 600px){
             min-height:60%;
             height:auto;
-
         }
     }
-
     
     .button_box{
         width:100%;
@@ -192,10 +188,7 @@ const ReviewOne = styled.ul`
         @media (max-width: 600px){
 
         }
-
     }
-
-
 `
 
 const StarForm = styled.form`
@@ -251,7 +244,6 @@ const StarSpan = styled.span`
     font-size: 1rem;
     @media (max-width: 600px){
             font-size:12px;
-
     }
     
 `
@@ -304,10 +296,23 @@ const NoLogin = styled.div`
     }
 `
 
+const StyledLink = styled(Link)`
+    color: #a32aff;
+    font-size: 20px;
+    font-family: 'LABdigital';
+    :hover {
+        color: #ff20a2;
+    }
+`;
+
+const RegisterDiv = styled.div`
+    background-color: white;
+    padding: 0 20px;
+`;
+
 const Mypage = () => {
     const stores = useSelector(state => state)
     const dispatch = useDispatch()
-
     const body = { email : stores.user.me.email }
 
     const deleteHandler = (k) => {
@@ -347,7 +352,6 @@ const Mypage = () => {
     }
 
     const changeHandler = (e) => {
-        // console.log(e.target.value)
         dispatch({type: review_update_proceed.toString(), payload: e.target.value } )
     }
 
@@ -362,10 +366,9 @@ const Mypage = () => {
         return (
             stores.review.update !== v.idx ?
                 <ReviewOne key={v.idx}>
+                    <StyledLink to={'/shop/'+ v.sidx}>🥨 {v.storename} 🍴</StyledLink>
                     <div class="review_box">
-                        <li><Link to={'/shop/'+ v.sidx}> {v.storename}</Link></li>
                         <li class="star_box"> 맛 : {
-
                             v.flavor === 1 ? <StarSpan>⭐</StarSpan> : v.flavor === 2 ? <StarSpan>⭐⭐</StarSpan> 
                             : v.flavor === 3 ? <StarSpan>⭐⭐⭐</StarSpan> 
                             : v.flavor === 4 ? <StarSpan>⭐⭐⭐⭐</StarSpan> : v.flavor === 5 ? <StarSpan>⭐⭐⭐⭐⭐ </StarSpan> : '평가 정보 없음'
@@ -397,78 +400,89 @@ const Mypage = () => {
                         <button class="update_button"onClick={() => updateBoot(v.idx)}> 수정하기 </button>
                         {(isMobile)&&<button class="delete_button" onClick={() => deleteHandler(v.idx)}> 삭제하기 </button>}
                     </div>
-                    
                 </ReviewOne>
             :
-            <StarForm onSubmit = {submitHandler(v.idx)}>
-                <ul>
-                    <li>
-                        <span>맛</span>
-                        <MyFieldSet>
-                            <Radioinput type='radio' value='5' id='flavor1' name='flavor'/>
-                            <Starlabel for='flavor1'>⭐</Starlabel>
-                            <Radioinput type='radio' value='4' id='flavor2' name='flavor'/>
-                            <Starlabel for='flavor2'>⭐</Starlabel>
-                            <Radioinput type='radio' value='3' id='flavor3' name='flavor'/>
-                            <Starlabel for='flavor3'>⭐</Starlabel>
-                            <Radioinput type='radio' value='2' id='flavor4' name='flavor'/>
-                            <Starlabel for='flavor4'>⭐</Starlabel>
-                            <Radioinput type='radio' value='1' id='flavor5' name='flavor'/>
-                            <Starlabel for='flavor5'>⭐</Starlabel>
-                        </MyFieldSet>
-                    </li>
-                    <li>
-                        <span>분위기</span>
-                        <MyFieldSet>
-                            <Radioinput type='radio' value='5' id='atmosphere1' name='atmosphere'/>
-                            <Starlabel for='atmosphere1'>⭐</Starlabel>
-                            <Radioinput type='radio' value='4' id='atmosphere2' name='atmosphere'/>
-                            <Starlabel for='atmosphere2'>⭐</Starlabel>
-                            <Radioinput type='radio' value='3' id='atmosphere3' name='atmosphere'/>
-                            <Starlabel for='atmosphere3'>⭐</Starlabel>
-                            <Radioinput type='radio' value='2' id='atmosphere4' name='atmosphere'/>
-                            <Starlabel for='atmosphere4'>⭐</Starlabel>
-                            <Radioinput type='radio' value='1' id='atmosphere5' name='atmosphere'/>
-                            <Starlabel for='atmosphere5'>⭐</Starlabel>
-                        </MyFieldSet>
-                    </li>
-                    <li>
-                        <span>가격</span>
-                        <MyFieldSet>
-                            <Radioinput type='radio' value='5' id='cheap1' name='cheap'/>
-                            <Starlabel for='cheap1'>⭐</Starlabel>
-                            <Radioinput type='radio' value='4' id='cheap2' name='cheap'/>
-                            <Starlabel for='cheap2'>⭐</Starlabel>
-                            <Radioinput type='radio' value='3' id='cheap3' name='cheap'/>
-                            <Starlabel for='cheap3'>⭐</Starlabel>
-                            <Radioinput type='radio' value='2' id='cheap4' name='cheap'/>
-                            <Starlabel for='cheap4'>⭐</Starlabel>
-                            <Radioinput type='radio' value='1' id='cheap5' name='cheap'/>
-                            <Starlabel for='cheap5'>⭐</Starlabel>
-                        </MyFieldSet>
-                    </li>
-                    <li>
-                        <span>서비스</span>
-                        <MyFieldSet>
-                            <Radioinput type='radio' value='5' id='service1' name='service'/>
-                            <Starlabel for='service1'>⭐</Starlabel>
-                            <Radioinput type='radio' value='4' id='service2' name='service'/>
-                            <Starlabel for='service2'>⭐</Starlabel>
-                            <Radioinput type='radio' value='3' id='service3' name='service'/>
-                            <Starlabel for='service3'>⭐</Starlabel>
-                            <Radioinput type='radio' value='2' id='service4' name='service'/>
-                            <Starlabel for='service4'>⭐</Starlabel>
-                            <Radioinput type='radio' value='1' id='service5' name='service'/>
-                            <Starlabel for='service5'>⭐</Starlabel>
-                        </MyFieldSet>
-                    </li>
-                </ul>
+            <div style={{ padding: '10px' }}>
+                <StyledLink to={'/shop/'+ v.sidx}>🥨 {v.storename} 🍴</StyledLink>
+                <StarForm onSubmit = {submitHandler(v.idx)}>
+                    <ul>
+                        <li>
+                            <span>맛</span>
+                            <MyFieldSet>
+                                <Radioinput type='radio' value='5' id='flavor1' name='flavor'/>
+                                <Starlabel for='flavor1'>⭐</Starlabel>
+                                <Radioinput type='radio' value='4' id='flavor2' name='flavor'/>
+                                <Starlabel for='flavor2'>⭐</Starlabel>
+                                <Radioinput type='radio' value='3' id='flavor3' name='flavor'/>
+                                <Starlabel for='flavor3'>⭐</Starlabel>
+                                <Radioinput type='radio' value='2' id='flavor4' name='flavor'/>
+                                <Starlabel for='flavor4'>⭐</Starlabel>
+                                <Radioinput type='radio' value='1' id='flavor5' name='flavor'/>
+                                <Starlabel for='flavor5'>⭐</Starlabel>
+                            </MyFieldSet>
+                        </li>
+                        <li>
+                            <span>분위기</span>
+                            <MyFieldSet>
+                                <Radioinput type='radio' value='5' id='atmosphere1' name='atmosphere'/>
+                                <Starlabel for='atmosphere1'>⭐</Starlabel>
+                                <Radioinput type='radio' value='4' id='atmosphere2' name='atmosphere'/>
+                                <Starlabel for='atmosphere2'>⭐</Starlabel>
+                                <Radioinput type='radio' value='3' id='atmosphere3' name='atmosphere'/>
+                                <Starlabel for='atmosphere3'>⭐</Starlabel>
+                                <Radioinput type='radio' value='2' id='atmosphere4' name='atmosphere'/>
+                                <Starlabel for='atmosphere4'>⭐</Starlabel>
+                                <Radioinput type='radio' value='1' id='atmosphere5' name='atmosphere'/>
+                                <Starlabel for='atmosphere5'>⭐</Starlabel>
+                            </MyFieldSet>
+                        </li>
+                        <li>
+                            <span>가격</span>
+                            <MyFieldSet>
+                                <Radioinput type='radio' value='5' id='cheap1' name='cheap'/>
+                                <Starlabel for='cheap1'>⭐</Starlabel>
+                                <Radioinput type='radio' value='4' id='cheap2' name='cheap'/>
+                                <Starlabel for='cheap2'>⭐</Starlabel>
+                                <Radioinput type='radio' value='3' id='cheap3' name='cheap'/>
+                                <Starlabel for='cheap3'>⭐</Starlabel>
+                                <Radioinput type='radio' value='2' id='cheap4' name='cheap'/>
+                                <Starlabel for='cheap4'>⭐</Starlabel>
+                                <Radioinput type='radio' value='1' id='cheap5' name='cheap'/>
+                                <Starlabel for='cheap5'>⭐</Starlabel>
+                            </MyFieldSet>
+                        </li>
+                        <li>
+                            <span>서비스</span>
+                            <MyFieldSet>
+                                <Radioinput type='radio' value='5' id='service1' name='service'/>
+                                <Starlabel for='service1'>⭐</Starlabel>
+                                <Radioinput type='radio' value='4' id='service2' name='service'/>
+                                <Starlabel for='service2'>⭐</Starlabel>
+                                <Radioinput type='radio' value='3' id='service3' name='service'/>
+                                <Starlabel for='service3'>⭐</Starlabel>
+                                <Radioinput type='radio' value='2' id='service4' name='service'/>
+                                <Starlabel for='service4'>⭐</Starlabel>
+                                <Radioinput type='radio' value='1' id='service5' name='service'/>
+                                <Starlabel for='service5'>⭐</Starlabel>
+                            </MyFieldSet>
+                        </li>
+                    </ul>
 
-                <input type='text' onChange= {changeHandler} id='updateText' defaultValue={v.text} />
-                <input type='submit'/>
-            </StarForm>
+                    <input type='text' onChange={changeHandler} id='updateText' defaultValue={v.text} />
+                    <input type='submit'/>
+                </StarForm>
+            </div>
         )
     })
+
+    const registerList = stores.review.data2.map((v, i) => {
+        return(
+            <>
+                <span>{i !== 0 && ', '}</span>
+                <span>{v.store} ({v.state === 'TRUE' ? '승인 완료' : '대기 중'})</span>
+            </>
+        )
+    });
 
     useEffect(() => {  
         getReview()
@@ -491,6 +505,10 @@ const Mypage = () => {
                         <h2 class="review"> ✏️ 내가 쓴 리뷰 </h2>
                         <div class="review_list">
                             {reviewList}
+                        </div>
+                        <div>
+                            <div style={{ fontSize: '20px', margin: '20px 0' }}>📍맛집 등록 신청 현황</div>
+                            <RegisterDiv>{registerList}</RegisterDiv>
                         </div>
                     </div>
                 </div>

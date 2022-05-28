@@ -35,12 +35,12 @@ export const admin_confirm_set_failure = createAction(ADMIN_CONFIRM_SET.FAILURE)
 const confirmSet = (state=initialState,action) => {
     switch(action.type){
         case ADMIN_CONFIRM_SET.REQUEST:
-            console.log('reducer req',action.payload)
+            // console.log('reducer req',action.payload)
             return {
                 ...state,
             }
         case ADMIN_CONFIRM_SET.SUCCESS:
-            console.log('reducer suc',action.payload)
+            // console.log('reducer suc',action.payload)
             return {
                 ...state,
                 name:action.payload[0].store,

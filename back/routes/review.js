@@ -1,9 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const app = express()
-
-const pool = require('../db.js').pool
-const { default: axios } = require('axios')
+const { pool } = require('../db.js')
 
 const createReview = async (req, res) => {
     const { email, text, number, sidx, name } = req.body

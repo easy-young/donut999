@@ -1,6 +1,37 @@
+require('dotenv').config()
 const express = require('express');
 const router = express.Router();
 const { pool } = require('../db.js');
+const nodeMailer = require('nodemailer')
+
+
+const mailPoster = nodeMailer.createTransport({
+    service: 'gmail',
+    host: 'smtp.gmail.com',
+    auth : {
+        user : 'dountzzangzzang123@gmail.com',
+        pass : 'dount1994!'
+    }
+})
+
+const mailOpt = (user_data, title, contents) => {
+    const mailOptions = {
+        from: 'dountzzangzzang123@gmail.com',
+        to : 'loerain111@gmail.com',
+        subject : title,
+        text : `요청하신 상점 : ${contents}가 등록되었습니다.`
+    }
+    return mailOptions;
+}
+
+const sendMail = (mailOption) => {
+    mailPoster.sendMail(mailOption, function(error, info) {
+        if(error) { console.log(error) }
+        else {
+            console.log('전송 완료' + info.response)
+        }
+    })
+}
 
 router.post('/join', async (req, res) => {
     const { name, address, email, sns } = req.body.payload;
@@ -21,5 +52,12 @@ router.post('/join', async (req, res) => {
         res.json({response});
     }
 });
+
+router.use('/request', async (req,res) => {
+    const { storename } = req.body
+    // console.log(storename)
+    const mailOption = mailOpt('a','new request', storename)
+    sendMail(mailOption)
+})
 
 module.exports = router;
