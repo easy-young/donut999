@@ -61,8 +61,23 @@ const StoreBox = styled.div`
     background: #ffeddf;
     display:flex;
 
+    @media (max-width: 600px) {
+        display:block;
+    }
     
 `;
+
+const Img = styled.img`
+    width:240px;
+    height:240px;
+    border-radius: 30px;
+
+    @media (max-width: 600px) {
+        width: 100%;
+        
+
+    }
+`
 
 const StoreName = styled.div`
     font-size: 22px;
@@ -881,14 +896,14 @@ const Index = () => {
                                         <StoreBox key={i}>
                                             { store[i] &&
                                                 <>
-                                                    <img 
+                                                    <Img
                                                         src={require(`../../public/img/donut_store/${store[i].idx}_1.jpg`)}
-                                                        style={{ borderRadius: '30px'}}
-                                                        width={240}
-                                                        height={240}
+                                                        // style={{ borderRadius: '30px'}}
+                                                        // width={240}
+                                                        // height={240}
 
                                                     />
-                                                    <div style={{marginLeft:'3%'}}>
+                                                    <div style={{marginLeft:'3%', marginTop:'3%'}}>
                                                         <StoreName>
                                                             <Link 
                                                                 to={`/shop/${store[i].idx}`}

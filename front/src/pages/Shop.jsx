@@ -42,6 +42,7 @@ const ContentBox = styled.div`
     flex-direction: column;
     justify-content: center;
     font-size: 18px;
+    
 `;
 
 const Ul = styled.ul`
@@ -63,6 +64,11 @@ const Img = styled.img`
     display: inline-block;
     width: 400px;
     height: 300px;
+
+    @media (max-width: 600px) {
+       width:100%;
+       height: auto;
+    }
 `;
 
 const StarImg = styled.img`

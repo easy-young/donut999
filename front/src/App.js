@@ -122,7 +122,6 @@ const App = () => {
           <Route path="/dt/admin/menu/store/confirm/:register_id" element={<ConfirmSet />}/>
           <Route path="/dt/admin/menu/store/setting" element={<StoreSetting />} />
           <Route path="/dt/admin/menu/store/setting/:store_id" element={<Edit />}/>
-          {/* <Route path="/dt/admin/menu/store/setting/update/:store_id" element={<Edit />} /> */}
           <Route path="/dt/admin/menu/user/setting" element={<UserSetting/>} />
           <Route path="/dt/admin/menu/user/setting/checkblack/:email" element={<CheckReview />} />
           <Route path="/dt/admin/menu/review/setting" element={<ReviewSetting />} />
