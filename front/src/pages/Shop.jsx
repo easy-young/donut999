@@ -87,16 +87,20 @@ const ReviewBtn = styled.button`
     padding: 3px 7px;
     border: none;
     border-radius: 10px;
-    background-color: #f2b6ff;
-
+    background-color: #EE82EE;
+    
     :hover {
         cursor: pointer;
+    }
+
+    &>a{
+        color:#Fff;
     }
 `;
 
 const Btn = styled.button`
     margin-top: 20px;
-    padding: 6px;
+    padding: 5px 7px;
     height: 34px;
     border: none;
     border-radius: 10px;
@@ -104,6 +108,10 @@ const Btn = styled.button`
     font-size: 16px;
     :hover {
         cursor: pointer;
+    }
+
+    &>a{
+        color:#282828;
     }
 `;
 
@@ -229,7 +237,7 @@ const Shop = () => {
                                     <Li>
                                         <Span1>SNS 📱</Span1>
                                     </Li>
-                                    <a href={info.website}>홈페이지바로가기</a>
+                                    <a href={info.website} style={{color:'#EE82EE'}}>홈페이지바로가기</a>
                                     </>
                                 }
                                 {

@@ -115,7 +115,6 @@ const App = () => {
           <Route path="/theme/unique" element={<Unique />} />
           <Route path="/theme/parking" element={<Parking />} />
           <Route path='/register/join' element={<Join/>} />
-          <Route path='/register/check' element={<Qwe/>} />
           <Route path="/dt/admin" element={<Admin />} />
           <Route path="/dt/admin/menu" element={<AdminMenu />} />
           <Route path="/dt/admin/menu/store/confirm" element={<Confirm />} />
