@@ -223,7 +223,7 @@ const Shop = () => {
                                     <Li>
                                         <Span1>SNS 📱</Span1>
                                     </Li>
-                                    <a href={`http://`+info.website}>홈페이지바로가기</a>
+                                    <a href={info.website}>홈페이지바로가기</a>
                                     </>
                                 }
                                 {
