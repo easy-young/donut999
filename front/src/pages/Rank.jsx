@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { rank_total_request, rank_flavor_request, rank_atmosphere_request, rank_cheap_request, rank_service_request } from "../reducers/rank";
-
+import { isMobile } from "react-device-detect";
 const Background = styled.body`
     display: flex;
     position: fixed;
@@ -19,18 +19,41 @@ const Background = styled.body`
 const Container = styled.div`
     width: 1100px;
     height: 660px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
 
     @media (max-width: 1100px) {
         width: 96%;
     }
 
-    @media (max-height: 800px) {
+    @media (max-height: 900px) {
         height: 86%;
     }
 
-    @media (max-width: 400px) {
+    @media (max-width: 420px) {
         height: 94%;
     }
+
+    > .tab_box{
+        width:100%;
+        height:16%;
+
+        @media (max-height: 950px) {
+        height: 4%;
+        }
+
+        @media (max-height: 750px) {
+        height: 8%;
+        }
+
+        @media (max-width: 420px) {
+        height:5%;
+        }
+
+
+    }
+
 
     .total{
         outline: 2px solid rgb(225, 106, 147);
@@ -51,8 +74,8 @@ const Container = styled.div`
 
 const Tab = styled.div`
     display: inline-block;
-    width: 78px;
-    height: 40px;
+    width: 8%;
+    height: 100%;
     padding: 1% 0.8%;
     text-align: center;
     color: #ffffff;
@@ -61,6 +84,20 @@ const Tab = styled.div`
     margin-right: 2%;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+
+    @media (max-width: 720px) {
+        width:12%;
+        font-size:14px;
+        line-height:30px;
+
+    }
+
+    @media (max-width: 420px) {
+        width: 14%;
+        font-size:10px;
+        line-height:25px;
+    }
+
 
 
     :hover {
@@ -94,15 +131,16 @@ const BigDiv = styled.div`
     background:#FFFFE6;
     border-radius: 20px;
     @media (max-width: 1100px) {
-        height: 100%;
+        height: 96%;
     }
 
-    @media (max-height: 800px) {
-        height: 90%;
+    @media (max-height: 920px) {
+        height: 80%;
+
     }
 
-    @media (max-width: 400px) {
-        height: 86%;
+    @media (max-height: 700px) {
+        height: 94%;
     }
 
     .visible{
@@ -131,11 +169,19 @@ const SmallDiv = styled.div`
     justify-content:space-around;
     background: #FFFFED;
 
+    @media (max-width: 420px) {
+        height:20%;
+    }
+
+
     .ranking_txt{
         width:80%;
         height:100%;
         display:flex;
         text-align:center;
+        @media (max-width: 380px) {
+            display:block;
+        }
     }
 
     .rank_name{
@@ -146,6 +192,19 @@ const SmallDiv = styled.div`
         flex-direction:column;
         justify-content:center;
         font-size:18px;
+
+        @media (max-width: 420px) {
+        border-left:none;
+        font-size:10px;
+        display:block;
+        width:100%;
+        height:20%;
+        text-align:left;
+        margin-bottom:5px;
+        }
+        @media (max-width: 280px) {
+            font-size:8px;
+        }
     }
 
     .rank_info{
@@ -156,9 +215,24 @@ const SmallDiv = styled.div`
         justify-content:center;
         border-left: 1px solid #dcdcdc;
         font-size:16px;
+
+
+        @media (max-width: 420px) {
+            border-top: 0.5px solid #dcdcdc;
+            border-left:none;
+            font-size:4px;
+            width:100%;
+            height:70%;
+            text-align:left;
+        }
+        @media (max-width: 280px) {
+            font-size:2px;
+            letter-spacing:-2px;
+        }
         
     }
 `;
+
 
 const StyledLink2 = styled(Link)`
     color: black;
@@ -170,7 +244,7 @@ const StyledLink2 = styled(Link)`
 
 
 const Rank = () => {
-    const total_rank = document.querySelectorAll(".classify > div") //tab 리스트
+    const total_rank = document.querySelectorAll(".classify > .tab_box > div") //tab 리스트
     const dispatch = useDispatch();
     const { topFive } = useSelector(state => state.rank);
     useEffect(() => {
@@ -184,6 +258,12 @@ const Rank = () => {
         total_rank[3].style.outline ="none"
         total_rank[4].style.outline ="none"
 
+        total_rank[0].style.color = "#464646"
+        total_rank[1].style.color = "#ffffff"
+        total_rank[2].style.color = "#ffffff"
+        total_rank[3].style.color = "#ffffff"
+        total_rank[4].style.color = "#ffffff"
+
     };
     const flavor = () => {
         dispatch(rank_flavor_request());
@@ -192,6 +272,12 @@ const Rank = () => {
         total_rank[2].style.outline ="none"
         total_rank[3].style.outline ="none"
         total_rank[4].style.outline ="none"
+
+        total_rank[0].style.color = "#ffffff"
+        total_rank[1].style.color = "#464646"
+        total_rank[2].style.color = "#ffffff"
+        total_rank[3].style.color = "#ffffff"
+        total_rank[4].style.color = "#ffffff"
     };
     const atmosphere = () => {
         dispatch(rank_atmosphere_request());
@@ -200,6 +286,12 @@ const Rank = () => {
         total_rank[2].style.outline ="2px solid #FFD732"
         total_rank[3].style.outline ="none"
         total_rank[4].style.outline ="none"
+
+        total_rank[0].style.color = "#ffffff"
+        total_rank[1].style.color = "#ffffff"
+        total_rank[2].style.color = "#464646"
+        total_rank[3].style.color = "#ffffff"
+        total_rank[4].style.color = "#ffffff"
     };
     const cheap = () => {
         dispatch(rank_cheap_request());
@@ -208,6 +300,12 @@ const Rank = () => {
         total_rank[2].style.outline ="none"
         total_rank[3].style.outline ="2px solid #4AB34A"
         total_rank[4].style.outline ="none"
+
+        total_rank[0].style.color = "#ffffff"
+        total_rank[1].style.color = "#ffffff"
+        total_rank[2].style.color = "#ffffff"
+        total_rank[3].style.color = "#464646"
+        total_rank[4].style.color = "#ffffff"
     };
     const service = () => {
         dispatch(rank_service_request());
@@ -216,18 +314,27 @@ const Rank = () => {
         total_rank[2].style.outline ="none"
         total_rank[3].style.outline ="none"
         total_rank[4].style.outline ="2px solid #50BEBE"
+
+        total_rank[0].style.color = "#ffffff"
+        total_rank[1].style.color = "#ffffff"
+        total_rank[2].style.color = "#ffffff"
+        total_rank[3].style.color = "#ffffff"
+        total_rank[4].style.color = "#464646"
+        
     };
 
 
     return (
         <Background>
             <Container className="classify">
-                <Tab style={{ marginLeft: '2%', outline:"2px solid #FF6A89" }} onClick={total}name="total">전체</Tab>
-                <Tab onClick={flavor} style={{background:"#FFB788"}} name="favor" >맛</Tab>
-                <Tab onClick={atmosphere} style={{background:"#FFFF8C"}} name="atmosphere" >분위기</Tab>
-                <Tab onClick={cheap}  style={{background:"#98FB98"}} name="cheap" >가성비</Tab>
-                <Tab onClick={service} style={{background:"#87F5F5"}} name="service">서비스</Tab>
-                <Tab style={{ float: 'right', background: '#CE69E7' }}><StyledLink to='/'>뒤로 가기</StyledLink></Tab>
+                <div class="tab_box">
+                    <Tab style={{ marginLeft: '2%', outline:"2px solid #FF6A89",color:"#464646"}} onClick={total}name="total">전체</Tab>
+                    <Tab onClick={flavor} style={{background:"#FFB788"}} name="favor" >맛</Tab>
+                    <Tab onClick={atmosphere} style={{background:"#FFFF8C"}} name="atmosphere" >분위기</Tab>
+                    <Tab onClick={cheap}  style={{background:"#98FB98"}} name="cheap" >가성비</Tab>
+                    <Tab onClick={service} style={{background:"#87F5F5"}} name="service">서비스</Tab>
+                    <Tab style={{ float: 'right', background: '#CE69E7' }}><StyledLink to='/'>뒤로 가기</StyledLink></Tab>
+                </div>
                 <BigDiv>
                     <div className="visible">
                         {
@@ -235,11 +342,19 @@ const Rank = () => {
                             (
                                 <SmallDiv key={i}>
                                     <span>
-                                        <img 
-                                            src={require(`../../public/img/donut_store/${topFive[i].idx}_3.jpg`)}
-                                            style={{ borderRadius: '6px' }}
-                                            width={80}
-                                            height={'100%'}/>
+                                        {isMobile ?
+                                            <img 
+                                                src={require(`../../public/img/donut_store/${topFive[i].idx}_3.jpg`)}
+                                                style={{ borderRadius: '6px' }}
+                                                width={50}
+                                                height={'100%'}/> : 
+                                                <img 
+                                                src={require(`../../public/img/donut_store/${topFive[i].idx}_3.jpg`)}
+                                                style={{ borderRadius: '6px' }}
+                                                width={80}
+                                                height={'100%'}/>
+                                        }
+
                                     </span>
                                     <div className="ranking_txt"style={{ marginLeft: '20px'}}>
                                         <div className="rank_name">
@@ -247,6 +362,7 @@ const Rank = () => {
                                                 {i==0 && <span>🥇 </span>}
                                                 {i==1 && <span>🥈 </span>}
                                                 {i==2 && <span>🥉 </span>}
+                                                {i>2 && <span>💞</span>}
                                                 {i+1}위 : <StyledLink2 to={'/shop/'+topFive[i].idx}>{topFive[i].name}</StyledLink2>
                                             </div>
                                         </div>
