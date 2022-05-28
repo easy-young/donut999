@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { station_exit, station_request } from '../reducers/station';
 import { Link } from 'react-router-dom';
 
-const Background = styled.div`
+export const Background = styled.div`
     display: flex;
     margin:0 auto;
     position: fixed;
@@ -20,7 +20,7 @@ const Background = styled.div`
     background: rgba(0, 0, 0, 0.4);
 `;
 
-const Container = styled.div`
+export const Container = styled.div`
     width: 60%;
     height: 80%;
     border-radius: 30px;
@@ -32,14 +32,14 @@ const Container = styled.div`
         }
 `;
 
-const StationName = styled.div`
+export const StationName = styled.div`
     display:inline-block;
     width:60%;
     font-size: 24px;
     font-weight: bolder;
 `;
 
-const CloseBtn = styled.button`
+export const CloseBtn = styled.button`
     width:36px;
     font-size: 16px;
     border: none;
@@ -51,7 +51,7 @@ const CloseBtn = styled.button`
     }
 `;
 
-const StoreBox = styled.div`
+export const StoreBox = styled.div`
     margin-top: 2%;
     width: 95%;
     margin:0 auto;
@@ -79,17 +79,16 @@ const Img = styled.img`
     }
 `
 
-const StoreName = styled.div`
+export const StoreName = styled.div`
     font-size: 22px;
 `;
 
-const StoreAddress = styled.div`
-
+export const StoreAddress = styled.div`
     margin-top:3%;
     font-size: 18px;
 `;
 
-const StoreScore = styled(StoreAddress)`
+export const StoreScore = styled(StoreAddress)`
     width: 10%;
     height: auto;
 `
@@ -102,10 +101,7 @@ const NoBox = styled.div`
     justify-content: center;
 `
 
-
 const Index = () => {
-    
-
     const Body = styled.body`
         margin: 0;
         padding: 0;
@@ -120,13 +116,9 @@ const Index = () => {
             /* height: 200px; */
         }
 
-
         /* -webkit-animation: snow 10s linear infinite;
-
         -moz-animation: snow 10s linear infinite;
-
         -ms-animation: snow 10s linear infinite; */
-
     `
 
     const MapBox = styled.div `
