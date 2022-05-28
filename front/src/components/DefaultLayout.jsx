@@ -138,10 +138,7 @@ const DefaultHeader = () => {
                                 <StyledMenu.Item key='unique' style={{fontSize:"16px"}}><Link to="/theme/unique">이색 도넛</Link></StyledMenu.Item>
                                 <StyledMenu.Item key='parking' style={{fontSize:"16px"}}><Link to="/theme/parking">주차 가능</Link></StyledMenu.Item>
                             </StyledMenu.SubMenu>
-                            <StyledMenu.SubMenu key='4' title='늇 맛집 등록'>
-                                <StyledMenu.Item key='join' style={{fontSize:"16px"}}><Link to="/register/join">등록 신청</Link></StyledMenu.Item>
-                                <StyledMenu.Item key='check' style={{fontSize:"16px"}}><Link to="/register/check">등록 확인</Link></StyledMenu.Item>
-                            </StyledMenu.SubMenu>
+                            <StyledMenu.Item key='join'><Link to="/register/join">늇 스토어 등록 신청</Link></StyledMenu.Item>
                         </StyledMenu>
                     </StyledSider>
                     <SFLemon/>

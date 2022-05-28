@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const { pool } = require('../db.js')
 const qs = require('qs')
+const axios = require('axios')
 
 const client_id = 'bcc6575307f03520e0cd6a242a769d2f' // REST API
 const host = 'https://kauth.kakao.com'

@@ -14,7 +14,7 @@ const Parking = () => {
         <Background>
             <Container>
                 <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', padding: '2%' }}>
-                    <StationName>주차 가능 맛집</StationName>
+                    <StationName>🚘 주차 가능</StationName>
                     <CloseBtn><Link to='/' style={{ color: 'black' }}>X</Link></CloseBtn>
                 </div>
                 {

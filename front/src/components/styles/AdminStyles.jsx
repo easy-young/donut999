@@ -24,6 +24,7 @@ export const AuthInputBox = styled.input`
 `
 
 export const AuthForm = styled.form`
+    
     width: 300px;
     margin:0 auto;
     margin-top: 15%;
