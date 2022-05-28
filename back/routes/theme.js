@@ -5,7 +5,7 @@ const { pool } = require('../db.js');
 router.post('/protein', async (req, res) => {
     const sql = `SELECT * FROM shop WHERE protein='Y'`;
     try {
-        const result = await pool.execute(sql);
+        const [result] = await pool.execute(sql);
         res.json({result});
     } catch (e) {
         console.log(e.message);
@@ -16,7 +16,7 @@ router.post('/protein', async (req, res) => {
 router.post('/photo', async (req, res) => {
     const sql = `SELECT * FROM shop WHERE photo='Y'`;
     try {
-        const result = await pool.execute(sql);
+        const [result] = await pool.execute(sql);
         res.json({result});
     } catch (e) {
         console.log(e.message);
@@ -25,9 +25,9 @@ router.post('/photo', async (req, res) => {
 });
 
 router.post('/unique', async (req, res) => {
-    const sql = `SELECT * FROM shop WHERE unique='Y'`;
+    const sql = `SELECT * FROM shop WHERE special='Y'`;
     try {
-        const result = await pool.execute(sql);
+        const [result] = await pool.execute(sql);
         res.json({result});
     } catch (e) {
         console.log(e.message);
@@ -38,7 +38,7 @@ router.post('/unique', async (req, res) => {
 router.post('/parking', async (req, res) => {
     const sql = `SELECT * FROM shop WHERE parking='Y'`;
     try {
-        const result = await pool.execute(sql);
+        const [result] = await pool.execute(sql);
         res.json({result});
     } catch (e) {
         console.log(e.message);
