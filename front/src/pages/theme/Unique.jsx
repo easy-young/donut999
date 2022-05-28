@@ -15,7 +15,7 @@ const Unique = () => {
         <Background>
             <Container>
                 <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', padding: '2%' }}>
-                    <StationName>이색 도넛 맛집</StationName>
+                    <StationName>🧑🏻‍🍳 이색 도넛</StationName>
                     <CloseBtn><Link to='/' style={{ color: 'black' }}>X</Link></CloseBtn>
                 </div>
                 {

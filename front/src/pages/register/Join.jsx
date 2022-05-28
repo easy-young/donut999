@@ -36,6 +36,7 @@ const Form = styled.form`
     padding: 40px;
     border-radius: 40px;
     background: #FFF0F5;
+    overflow: scroll;
 
     @media (max-width: 600px) {
         width: 96%;
@@ -166,10 +167,12 @@ const MainLink = styled(Link)`
 const Join = () => {
     const dispatch = useDispatch();
     const store = useSelector(state => state.register);
+    
     const { name, email } = useSelector(state => state.register);
     const onRegister = useCallback((e) => {
         e.preventDefault();
         const { name, menu1, menu2, menu3, address, email, sns } = e.target;
+        console.log(e.target)
         if (name.value === '') {
             dispatch(register_name());
             return;
