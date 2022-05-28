@@ -13,7 +13,7 @@ const upload = multer({
             done(null,filename)
         }
     }),
-    limits : {filesSize : 5 * 1024 * 1024}
+    limits : {filesSize : 10 * 1024 * 1024}
 })
 
 module.exports = upload

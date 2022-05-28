@@ -3,6 +3,9 @@ import display from './display.js';
 import shop from './shop.js';
 import rank from './rank.js';
 // import review from './review.js';
+
+import adminLogin from './admin/adminLogin.js'
+
 import admin from './admin/admin.js';
 import adminStore from './admin/adminStore.js';
 import adminEditStore from "./admin/editStore.js";
@@ -30,7 +33,7 @@ import theme from './theme.js'
 const persist = {
     key:'user',
     storage, // 저장 방법 
-    whitelist:['user'], // localstorage 에 저장할 내용
+    whitelist:['user', 'adminLogin'], // localstorage 에 저장할 내용
 };
 
 // const persistKey = 'user'
@@ -43,6 +46,7 @@ const rootReducer = combineReducers({
     review,
     display,
     admin,
+    adminLogin,
     adminStore,
     adminEditStore,
     adminDeleteStore,
