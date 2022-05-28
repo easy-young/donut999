@@ -53,10 +53,10 @@ CREATE TABLE review (
 );
 
 
-insert into review(sidx, email, flavor, atmosphere, cheap, service, text ) 
-values(1,'619049@naver.com', 5, 5, 5, 5, '와 정말 맛있어요!');
-insert into review(sidx, email, flavor, atmosphere, cheap, service, text ) 
-values(2,'619049@naver.com', 5, 5, 5, 5, '와 정말 비싸요!');
+insert into review(sidx, storename,email, flavor, atmosphere, cheap, service, text ) 
+values(1,'도넛스토리', '619049@naver.com', 5, 5, 5, 5, '와 정말 맛있어요!');
+insert into review(sidx,storename, email, flavor, atmosphere, cheap, service, text ) 
+values(2,'서울페이스트리','619049@naver.com', 5, 5, 5, 5, '와 정말 비싸요!');
 
 insert into register( email, store, menu, address, contact, sns) 
 values('a','a','a','a','a','a');

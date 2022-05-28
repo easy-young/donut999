@@ -10,23 +10,28 @@ const Fork = styled.img`
     z-index:3000;
 
 `
-document.addEventListener("mousemove", (e) => {
-    const fork = document.querySelector(".fork")
-    // console.log(fork)
+if (isMobile==false){
+    document.addEventListener("mousemove", (e) => {
+        const fork = document.querySelector(".fork")
+        // console.log(fork)
 
-    const mouseX = e.clientX;
-    const mouseY = e.pageY;
-    fork.style.left = mouseX + 'px';
-    fork.style.top = mouseY + 'px';
-});
+        const mouseX = e.clientX;
+        const mouseY = e.pageY;
+        if(fork !==null){
+            fork.style.left = mouseX + 'px';
+            fork.style.top = mouseY + 'px';
+        }
+        // fork.style.left = mouseX + 'px';
+        // fork.style.top = mouseY + 'px';
+    });
+}
 
 
 
 const forkComponent = () => {
     return(
         <>
-            {isMobile ? <Fork style={{display:"none"}}/> :
-
+            {isMobile==false &&
             <Fork src="http://localhost:3000/img/fork.png" className="fork"/>
             }
         </>
