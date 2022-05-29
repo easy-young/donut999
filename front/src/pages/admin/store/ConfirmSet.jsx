@@ -5,6 +5,7 @@ import {admin_confirm_store_request} from '../../../reducers/admin/confirmStore.
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+// import { post } from '../../../../../back/routes/admin.js';
 
 const Background = styled.div`
     display: flex;
@@ -163,7 +164,7 @@ const ConfirmSet = (defaultValue) => {
     const regi = useSelector(state=>state.confirmSet)
     // console.log('regi',regi)
 
-    const handleSubmit =   async(e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         const {menu_donut, menu_beverage,address,subway,line,tel,openhour,parking,protein,photozone,special,sns,intro} = e.target
         const payload = {
@@ -185,20 +186,31 @@ const ConfirmSet = (defaultValue) => {
         }
 
         const data = { storename: regi.name}
-       // console.log(payload)
-        const result = await axios.post(`http://localhost:4000/register/request`, data)
+
+
+        // const result = await axios.post(`http://localhost:4000/register/request`, data)
+        // 메일 보내는 라우터 << 일단 파일 업로드 기능 구현을 위해 잠시 주석 처리
 
         await dispatch(admin_confirm_store_request(payload))
-        //
-        await imgUp()
-    }
 
-    const imgUp = async () => {
         const formData = new FormData()
-        formData.append('img1', 'img1'.files[0])
+        let fileInput1 = document.querySelector('#img1')
+        let fileInput2 = document.querySelector('#img2')
+        let fileInput3 = document.querySelector('#img3')
+        // console.log(fileInput1.files)
+        formData.append('img1', fileInput1.files[0])
+        formData.append('img2', fileInput2.files[0])
+        formData.append('img3', fileInput3.files[0])
+
+        const config = {
+            Headers : {
+                'content-type' : 'multipart/form-data'
+            }
+        }
+
+        const result = await axios.post(`http://localhost:4000/dt/admin/menu/store/confirm/addstore/:${regi_id}`, formData, config)
     }
 
-    
 
     return (
         <Background>
@@ -266,11 +278,13 @@ const ConfirmSet = (defaultValue) => {
                     <span id="pic_up"><h3> 사진 업로드 </h3></span>
                     <span>
                         <span><label htmlFor="img1">파일 선택</label></span>
-                        <input type="file" name="img1" /><br/>
+                        <input type="file" name="img1" id='img1'/><br/>
+
                         <span><label htmlFor="img2">파일 선택</label></span>
-                        <input type="file" name="img2" /><br/>
+                        <input type="file" name="img2" id='img2'/><br/>
+
                         <span><label htmlFor="img3">파일 선택</label></span>
-                        <input type="file" name="img3" />
+                        <input type="file" name="img3" id='img3'/>
                     </span>
                 </div>
                 
