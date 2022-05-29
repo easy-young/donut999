@@ -197,7 +197,7 @@ const ConfirmSet = (defaultValue) => {
         let fileInput1 = document.querySelector('#img1')
         let fileInput2 = document.querySelector('#img2')
         let fileInput3 = document.querySelector('#img3')
-        // console.log(fileInput1.files)
+
         formData.append('img1', fileInput1.files[0])
         formData.append('img2', fileInput2.files[0])
         formData.append('img3', fileInput3.files[0])
