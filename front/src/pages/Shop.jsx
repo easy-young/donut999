@@ -131,7 +131,6 @@ const StarBox = styled.span`
 const StarSpan = styled.span`
     display: inline-block;
     position: absolute;
-    width: 50px;
     height: 20px;
     background: url('/img/star/star5.png');
     background-size: 100px 20px;
@@ -160,11 +159,16 @@ const Ebutton = styled.button`
         color:black;
     }
 `
-
+const Review = styled.span`
+    position: relative;
+    margin-top: 4px;
+    margin-left: 110px;
+    font-size: 18px;
+`;
 
 const Shop = () => {
     const dispatch = useDispatch();
-    const { info, review } = useSelector((state) => state.shop);
+    const { info, review, avg } = useSelector((state) => state.shop);
 
     const stores = useSelector(state=>state)
     const email = stores.user.me.email
@@ -202,8 +206,12 @@ const Shop = () => {
                                     </div>
                                     <StarBox>
                                         <StarImg src='/img/star/star0.png'/>
-                                        <StarSpan></StarSpan>
+                                        <StarSpan style={{ width: `calc(20*${avg.average}px)` }}></StarSpan>
                                     </StarBox>
+                                    <Review>{avg.average}</Review>
+                                    <Review style={{ marginLeft: '10px', marginTop: '6px', color: 'gray', fontSize: '16px' }}>
+                                        ({review.length})
+                                    </Review>
                                 </StoreName>
                                 <Ul>
                                 <Li>
