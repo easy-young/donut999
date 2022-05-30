@@ -7,13 +7,7 @@ async function adminStoreAPI({payload}){
 
     try{
         const result = await axios.post(`http://localhost:4000/dt/admin/menu/store/setting/`+payload,null)
-        /*
-            let str = '111111'
-            let name = 'ingoo'
 
-            str = '11111'+name
-            console.log(str) // 11111ingoo
-        */
         return result
     }catch(e){
         console.log(e)
@@ -25,6 +19,7 @@ async function adminStoreAPI({payload}){
 function* store(action){
     try{
         const result = yield call(adminStoreAPI,action.payload)
+      
         yield put({
             type:admin_store_edit_success.toString(),payload:result.data.result
         })
