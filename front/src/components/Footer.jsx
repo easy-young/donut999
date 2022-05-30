@@ -41,6 +41,7 @@ const CircleDiv = styled.div`
 
 const TextBox = styled.div`
     font-family: sans-serif;
+    color:#505050;
 `;
 
 const Footer = () => {
