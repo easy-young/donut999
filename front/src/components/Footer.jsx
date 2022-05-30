@@ -61,7 +61,6 @@ const Footer = () => {
                 <TextBox>근무 시간 : 월 ~ 금 9 AM ~ 6 PM</TextBox>
                 <TextBox>문의 : donutdonut@gmail.com</TextBox>
             </BigDiv>
-
         </>
     )
 };

@@ -20,34 +20,28 @@ const Parking = () => {
                 {
                     result.length > 0 && result.map((v, i) => {
                         return (
-                            result.length > 0 &&
-                            <>
-                                {/* <div style={{ height: '20px' }}></div> */}
-                                <StoreBox key={i}>
-                                    <>
-                                        <img
-                                            src={require(`../../../public/img/donut_store/${v.idx}_1.jpg`)}
-                                            style={{ borderRadius: '30px' }}
-                                            width={240}
-                                            height={240}
-                                        />
-                                        <div style={{ marginLeft: '3%' }}>
-                                            <StoreName>
-                                                <Link
-                                                    to={`/shop/${v.idx}`}
-                                                    style={{ color: 'black' }}
-                                                >
-                                                    {v.name}
-                                                </Link>
-                                            </StoreName>
-                                            <StoreAddress>
-                                                주소 : {v.address}
-                                            </StoreAddress>
-                                            <StoreScore>평점 : 5</StoreScore>
-                                        </div>
-                                    </>
-                                </StoreBox>
-                            </>
+                            <StoreBox key={i}>
+                                <img
+                                    src={require(`../../../public/img/donut_store/${v.idx}_1.jpg`)}
+                                    style={{ borderRadius: '30px' }}
+                                    width={240}
+                                    height={240}
+                                />
+                                <div style={{ marginLeft: '3%' }}>
+                                    <StoreName>
+                                        <Link
+                                            to={`/shop/${v.idx}`}
+                                            style={{ color: 'black' }}
+                                        >
+                                            {v.name}
+                                        </Link>
+                                    </StoreName>
+                                    <StoreAddress>
+                                        주소 : {v.address}
+                                    </StoreAddress>
+                                    <StoreScore>🌟 : {v.average === null ? '리뷰 없음' : v.average}</StoreScore>
+                                </div>
+                            </StoreBox>
                         )
                     })
                 }
