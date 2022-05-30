@@ -74,9 +74,10 @@ router.post(`/store/setting/:store_id`,async (req,res)=>{
     const sql = `select * from shop where idx = ? `
     const prepare = [req.params.store_id]
 
+
         try {
             const [result] = await pool.execute(sql,prepare)
-            
+        
             const response = {
                 result
             }
@@ -98,14 +99,13 @@ router.post(`/store/setting/:store_id`,async (req,res)=>{
 )
 
 router.post(`/store/setting/update/:store_id`,async (req,res)=>{
-    const { station, line, address, parking , protein, photo, special,operhour , website , menu , beverage , tel , intro  } = req.body
+    const { stationKor, line, address, parking , protein, photo, special,operhour , website , menu , beverage , tel , more, intro  } = req.body
     const params = [req.params.store_id]
-    const sql = `UPDATE shop SET  station = ?, line = ?, address = ?, parking = ? , protein = ?, photo = ?, special = ?, operhour = ?, website = ?, menu = ?, beverage = ?, tel = ?, intro = ? where idx = ? `
-    const prepare = [ station, line, address, parking , protein, photo, special, operhour , website , menu , beverage , tel , intro,params]
+    const sql = `UPDATE shop SET  station = ?, line = ?, address = ?, parking = ? , protein = ?, photo = ?, special = ?, operhour = ?, website = ?, menu = ?, beverage = ?, tel = ?, more =? , intro = ? where idx = ? `
+    const prepare = [ stationKor, line, address, parking , protein, photo, special, operhour , website , menu , beverage , tel , more, intro,params]
 
         try {
             const [result] = await pool.query(sql,prepare)
-            
             const response = {
                 result
             }
@@ -304,7 +304,6 @@ const addstore = async (req, res, next ) => {
 
 const addImg =  async (req, res) => {
     const { name, station } = req.body
-    console.log(name, station)
     let image = []
     for ( let i = 1; i < 4; i++) {
         try {
@@ -315,11 +314,10 @@ const addImg =  async (req, res) => {
             image.push('N/A')
         }
     }
-    console.log(image)
 
     const sql = `update shop set img1=?, img2=?, img3=? where name=? and station=?`
     const param = [image[0], image[1], image[2], req.body.name, req.body.station]
-    console.log(param)
+
     try {
         const result = await pool.execute(sql, param)
     }
@@ -446,7 +444,7 @@ router.post('/review/setting',async (req,res)=>{
 
     try {
         const [result] = await pool.execute(sql)
-        console.log(result)
+  
         const response = {
             result
         }
@@ -475,7 +473,7 @@ router.post('/review/setting/deletereview/:reviewidx',async (req,res)=>{
     try {
         const [result1] = await pool.execute(sql,prepare)
         const [result] = await pool.execute(sql2)
-        console.log(result)
+  
         const response = {
             result
         }
