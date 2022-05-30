@@ -45,7 +45,7 @@ const Confirm = () => {
     return(
         <>
         <Back>
-            <h2 style={{textAlign:'center', marginTop:'4%'}}>Confirm New Store</h2>
+            <h2 style={{width:'30%',textAlign:'center', margin:'4% auto', fontWeight:'bold', background:'#fff', fontSize:'25px'}}>Confirm New Store</h2>
                 <Divv style={{marginTop:'3%', margin:'0 auto'}}>
                     <form method="post" name="delform" onSubmit={onDelete}> 
                         <Table style={{width:'100%'}}>
