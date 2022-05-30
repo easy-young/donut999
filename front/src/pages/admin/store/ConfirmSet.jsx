@@ -5,6 +5,7 @@ import {admin_confirm_store_request} from '../../../reducers/admin/confirmStore.
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import translate from '../../../utils/translator.js';
 // import { post } from '../../../../../back/routes/admin.js';
 
 const Background = styled.div`
@@ -166,11 +167,14 @@ const ConfirmSet = (defaultValue) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const {menu_donut, menu_beverage,address,subway,line,tel,openhour,parking,protein,photozone,special,sns,intro} = e.target
+
+        const {menu_donut, menu_beverage,address,subway,line,tel,openhour,parking,protein,photozone,special,sns,intro} = e.target    
+        const stationEng = translate(subway.value);
         const payload = {
             regi_id,
             name:regi.name,
             station:subway.value,
+            stationEng,
             line:line.value,
             address:address.value,
             parking:parking.value,
@@ -183,10 +187,8 @@ const ConfirmSet = (defaultValue) => {
             beverage:menu_beverage.value,
             tel:tel.value,
             intro:intro.value,
+
         }
-
-        const data = { storename: regi.name}
-
 
         // const result = await axios.post(`http://localhost:4000/register/request`, data)
         // 메일 보내는 라우터 << 일단 파일 업로드 기능 구현을 위해 잠시 주석 처리
@@ -194,10 +196,13 @@ const ConfirmSet = (defaultValue) => {
         await dispatch(admin_confirm_store_request(payload))
 
         const formData = new FormData()
+
         let fileInput1 = document.querySelector('#img1')
         let fileInput2 = document.querySelector('#img2')
         let fileInput3 = document.querySelector('#img3')
 
+        formData.append('name', regi.name)
+        formData.append('station', subway.value)
         formData.append('img1', fileInput1.files[0])
         formData.append('img2', fileInput2.files[0])
         formData.append('img3', fileInput3.files[0])
@@ -208,7 +213,8 @@ const ConfirmSet = (defaultValue) => {
             }
         }
 
-        const result = await axios.post(`http://localhost:4000/dt/admin/menu/store/confirm/addstore/:${regi_id}`, formData, config)
+        const result = await axios.post(`http://localhost:4000/dt/admin/menu/store/confirm/addImg`, formData, config)
+        console.log(result)
     }
 
 
