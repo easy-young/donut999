@@ -101,7 +101,7 @@ const NoBox = styled.div`
     justify-content: center;
 `
 
-const Body = styled.div`
+const Body = styled.body`
         margin: 0;
         padding: 0;
         width:100%;
