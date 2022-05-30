@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const {pool} = require('../db.js')
 const upload = require('../utils/upload.js')
+const {translate} = require('../utils/translator.js')
 
 router.post('/search/black', async (req,res)=>{
     const prepare = [req.body.payload]
@@ -269,6 +270,7 @@ router.post('/store/confirm/:register_id',async (req,res)=>{
 
 
 const addstore = async (req, res) => {
+    if( req.body.name === null ) return 
     let image = []
     for ( let i = 1; i < 4; i++) {
         try {
@@ -283,8 +285,11 @@ const addstore = async (req, res) => {
 
     const prepare2 = [req.body.regi_id]
     const { name, station, line, address, parking , protein, photo, special,operhour , website , menu , beverage , tel , intro  } = req.body
-    const sql = `INSERT INTO shop (name, stationKor, station, line, address, parking, operhour, website, menu, beverage, tel, protein, photo, special, intro, more) VALUES (?,?,'hello',?,?,?,?,?,?,?,?,?,?,?,?,'hi')`
-    const prepare = [ name, station, line, address, parking , operhour , website , menu , beverage , tel ,  protein, photo, special,intro]
+    const stationEng = translate(station)
+    const sql = `INSERT INTO shop 
+    (name, stationKor, station, line, address, parking, operhour, website, menu, beverage, tel, protein, photo, special, intro, more) 
+    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,'hi')`
+    const prepare = [ name, station, stationEng, line, address, parking , operhour , website , menu , beverage , tel ,  protein, photo, special,intro]
     const sql2 = `UPDATE register SET state = '승인' WHERE idx = ${prepare2}`
     try {
         const [result2] = await pool.execute(sql2)
