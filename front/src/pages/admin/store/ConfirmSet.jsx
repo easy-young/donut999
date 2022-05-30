@@ -194,15 +194,15 @@ const ConfirmSet = (defaultValue) => {
         let fileInput2 = document.querySelector('#img2')
         let fileInput3 = document.querySelector('#img3')
 
-        formData.append('name', regi.name)
-        formData.append('station', subway.value)
         formData.append('img1', fileInput1.files[0])
         formData.append('img2', fileInput2.files[0])
         formData.append('img3', fileInput3.files[0])
 
         dispatch(admin_confirm_store_request(formData))
+
+        const data = { storename : regi.name}
         
-        // const result = await axios.post(`http://localhost:4000/register/request`, data)
+        const result = await axios.post(`http://localhost:4000/register/request`, data)
         // 메일 보내는 라우터 << 일단 파일 업로드 기능 구현을 위해 잠시 주석 처리
 
         alert('등록 승인 되었습니다.')

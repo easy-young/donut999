@@ -9,15 +9,14 @@ const Admin = () => {
     const some_secret_key = 'some_secret_key'
 
 
-    const submitHandler = (e) => {
+    const submitHandler = async (e) => {
         e.preventDefault()
-        console.log(e.target.email.value, e.target.password.value)
         if( e.target.email.value === 'admin' && e.target.password.value === 'admin') {
             dispatch({type: adminLogin_success.toString() })
             alert('관리자 권한 로그인 되었습니다.')
+            // localStorage.setItem('persist:user',{"adminLogin":"{\"admin\":some_secret_key,\"isLogin\":true}","user":"{\"me\":{\"isLogin\":true,\"nickname\":\"null\",\"email\":\"null\"},\"error\":null,\"loading\":false}",
+            // "_persist":"{\"version\":-1,\"rehydrated\":true}"})
             window.location.href='http://localhost:3000/dt/admin/menu'
-            localStorage.setItem('persist:user',{"adminLogin":"{\"admin\":some_secret_key,\"isLogin\":true}","user":"{\"me\":{\"isLogin\":true,\"nickname\":\"null\",\"email\":\"null\"},\"error\":null,\"loading\":false}",
-            "_persist":"{\"version\":-1,\"rehydrated\":true}"})
         }
         else {
             alert('email/pw를 확인해주세요.')
