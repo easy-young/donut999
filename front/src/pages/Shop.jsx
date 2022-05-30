@@ -4,6 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { shop_request } from '../reducers/shop.js';
 import { isMobile } from "react-device-detect";
+import { useNavigate } from "react-router-dom";
+import {ReviewOne} from './Mypage'
+
+
 
 const Background = styled.div`
     display: flex;
@@ -42,8 +46,22 @@ const ContentBox = styled.div`
     flex-direction: column;
     justify-content: center;
     font-size: 18px;
+    min-height:250%;
+
+    .shop_review_box{
+        margin-top:5%;
+        /* background:red; */
+    }
     
 `;
+
+const ReviewBox = styled.div`
+    width:100%;
+    height:150%;
+    overflow:scroll;
+    position:relative;
+    /* background:pink; */
+`
 
 const Ul = styled.ul`
     list-style: none;
@@ -128,23 +146,26 @@ const StarBox = styled.span`
     }
 `;
 
+// 
 const StarSpan = styled.span`
-    display: inline-block;
-    position: absolute;
-    width: 50px;
-    height: 20px;
-    background: url('/img/star/star5.png');
-    background-size: 100px 20px;
-    overflow: hidden;
-    z-index: 20;
-`;
+    font-size: 1rem;
+    @media (max-width: 600px){
+            font-size:12px;
+    }
+    
+`
 
 const ReviewDiv = styled.div`
     width: 100%;
     margin-Top:1%;
     font-size: 18px;
-    border: 3px solid #FFFCDD;
+    background: #FFEFFC;
+    border-radius:18px;
     padding: 1%;
+    
+    *{
+        list-style:none;
+    }
 `;
 
 const StarSpan2 = styled.span`
@@ -162,10 +183,10 @@ const Ebutton = styled.button`
 `
 
 
+
 const Shop = () => {
     const dispatch = useDispatch();
     const { info, review } = useSelector((state) => state.shop);
-
     const stores = useSelector(state=>state)
     const email = stores.user.me.email
 
@@ -251,46 +272,56 @@ const Shop = () => {
                                 }
                              </Ul>
                             </div>
-                            <div style={{marginTop:'20px'}}>
+                            <div class="shop_review_box" >
                                <div style={{fontSize: '24px', display:'inline'}}>리뷰</div>
                                     <ReviewBtn>
                                         <Link to={`/write/`+info.idx}>리뷰 작성</Link>
                                     </ReviewBtn>
-                                    {
-                                        review && review.map(v =>
-                                            <ReviewDiv>                                            
-                                                <div>
+                                    <ReviewBox>
+                                        {  
+                                            review && review.map(v =>
+                    
+                                                <ReviewDiv>
+                                                    <ReviewOne>
 
-                                                작성자 : {v.email} <br/>
+                                                        <div class="review_box">
+                                                            <li class="star_box"> 맛 : {
+                                                                v.flavor === 1 ? <StarSpan>⭐</StarSpan> : v.flavor === 2 ? <StarSpan>⭐⭐</StarSpan> 
+                                                                : v.flavor === 3 ? <StarSpan>⭐⭐⭐</StarSpan> 
+                                                                : v.flavor === 4 ? <StarSpan>⭐⭐⭐⭐</StarSpan> : v.flavor === 5 ? <StarSpan>⭐⭐⭐⭐⭐ </StarSpan> : '평가 정보 없음'
+                                                                }
+                                                            </li>
+                                                            <li class="star_box"> 분위기 : {
+                                                                v.atmosphere === 1 ? <StarSpan>⭐</StarSpan> : v.atmosphere === 2 ? <StarSpan>⭐⭐</StarSpan> 
+                                                                : v.atmosphere === 3 ? <StarSpan>⭐⭐⭐</StarSpan> 
+                                                                : v.atmosphere === 4 ? <StarSpan>⭐⭐⭐⭐</StarSpan> : v.atmosphere === 5 ? <StarSpan>⭐⭐⭐⭐⭐</StarSpan> : '평가 정보 없음'
+                                                                }
+                                                            </li>
+                                                            <li class="star_box"> 가격 : {
+                                                                v.cheap === 1 ? <StarSpan>⭐</StarSpan> : v.cheap === 2 ? <StarSpan>⭐⭐</StarSpan> 
+                                                                : v.cheap === 3 ? <StarSpan>⭐⭐⭐</StarSpan> 
+                                                                : v.cheap === 4 ? <StarSpan>⭐⭐⭐⭐</StarSpan> : v.cheap === 5 ? <StarSpan>⭐⭐⭐⭐⭐</StarSpan> : '평가 정보 없음'
+                                                            }
+                                                            </li>
+                                                            <li class="star_box"> 서비스 : {
+                                                                v.service === 1 ? <StarSpan>⭐</StarSpan> : v.service === 2 ? <StarSpan>⭐⭐</StarSpan> 
+                                                                : v.service === 3 ? <StarSpan>⭐⭐⭐</StarSpan> 
+                                                                : v.service === 4 ? <StarSpan>⭐⭐⭐⭐</StarSpan> : v.service === 5 ? <StarSpan>⭐⭐⭐⭐⭐</StarSpan> : '평가 정보 없음'
+                                                                }
+                                                            </li>
+                                                            
+                                                        </div>
+                                                        <div class="evaluate"> 총평 : {v.text === null ? '평가 정보 없음' : v.text}</div>
+                                                        {/* <div class="button_box">
+                                                            <button class="update_button"onClick={() => updateBoot(v.idx)}> 수정하기 </button>
+                                                            {(isMobile)&&<button class="delete_button" onClick={() => deleteHandler(v.idx)}> 삭제하기 </button>}
+                                                        </div> */}
+                                                    </ReviewOne>
 
-                                                맛 : {
-                                                    v.flavor === 1 ? <StarSpan2>⭐</StarSpan2> : v.flavor === 2 ? <StarSpan2>⭐⭐</StarSpan2> 
-                                                    : v.flavor === 3 ? <StarSpan2>⭐⭐⭐</StarSpan2> 
-                                                    : v.flavor === 4 ? <StarSpan2>⭐⭐⭐⭐</StarSpan2> : v.flavor === 5 ? <StarSpan2>⭐⭐⭐⭐⭐ </StarSpan2> : '평가 정보 없음'
-                                                    } &nbsp;
-                                                분위기 : {
-                                                    v.atmosphere === 1 ? <StarSpan2>⭐</StarSpan2> : v.atmosphere === 2 ? <StarSpan2>⭐⭐</StarSpan2> 
-                                                    : v.atmosphere === 3 ? <StarSpan2>⭐⭐⭐</StarSpan2> 
-                                                    : v.atmosphere === 4 ? <StarSpan2>⭐⭐⭐⭐</StarSpan2> : v.atmosphere === 5 ? <StarSpan2>⭐⭐⭐⭐⭐</StarSpan2> : '평가 정보 없음'
-                                                    } &nbsp;
-                                                가성비 : {
-                                                    v.cheap === 1 ? <StarSpan2>⭐</StarSpan2> : v.cheap === 2 ? <StarSpan2>⭐⭐</StarSpan2> 
-                                                    : v.cheap === 3 ? <StarSpan2>⭐⭐⭐</StarSpan2> 
-                                                    : v.cheap === 4 ? <StarSpan2>⭐⭐⭐⭐</StarSpan2> : v.cheap === 5 ? <StarSpan2>⭐⭐⭐⭐⭐</StarSpan2> : '평가 정보 없음'
-                                                } &nbsp;
-                                                서비스 : {
-                                                    v.service === 1 ? <StarSpan2>⭐</StarSpan2> : v.service === 2 ? <StarSpan2>⭐⭐</StarSpan2> 
-                                                    : v.service === 3 ? <StarSpan2>⭐⭐⭐</StarSpan2> 
-                                                    : v.service === 4 ? <StarSpan2>⭐⭐⭐⭐</StarSpan2> : v.service === 5 ? <StarSpan2>⭐⭐⭐⭐⭐</StarSpan2> : '평가 정보 없음'
-                                                    } <br/>
-                                                TXT : {v.text} 
-                                                </div>
-                                                <div>
-                                                    { email === v.email ? <Ebutton><a href='/mypage'>수정하기</a></Ebutton> : null}
-                                                </div>
-                                            </ReviewDiv>
-                                        )
-                                    }
+                                                </ReviewDiv>
+                                            )
+                                        }
+                                    </ReviewBox>
                                 
                             </div>
                         </ContentBox>
