@@ -11,8 +11,10 @@ import '../App.css';
 import { user_logout_success } from '../reducers/user.js'
 
 const Header = styled.header`
+    display: flex;
     width:100%;
     height:15vh;
+    justify-content: space-between;
 
     
 `
@@ -108,7 +110,7 @@ const DefaultHeader = () => {
     return (
         <>
             <Header>
-                <Link to="/">도넛철도 999</Link>
+                <Link to="/"><img  width={180} height={130} src="http://localhost:3000/img/logo1.png"></img></Link>
                 <Img onClick={onShow} src="http://localhost:3000/img/donut_set.png" width={100} height={80} alt=''
                 onMouseOver={menuMouseOver} onMouseOut={menuMouseOut}/>
             </Header>
