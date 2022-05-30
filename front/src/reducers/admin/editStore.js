@@ -3,7 +3,7 @@ import { createAction } from "redux-actions";
 
 const initialState = {
     name:null,
-    station:null,
+    stationKor:null,
     line:null,
     address:null,
     parking:null,
@@ -15,15 +15,12 @@ const initialState = {
     menu:null,
     beverage:null,
     tel:null,
+    more:null,
     intro:null,
 
 }
 
-// const initialState = {
-//     result: null,
-//     error: null
 
-// }
 
 const ADMIN_EDIT_STORE = {
     REQUEST:'ADMIN/EDIT_STORE_REQUEST',
@@ -43,16 +40,16 @@ const adminEditStore = (state=initialState,action) => {
   
     switch(action.type){
         case ADMIN_EDIT_STORE.REQUEST:
-            console.log('reducer R ', action)
+        
             return {
                 ...state,
             }
         case ADMIN_EDIT_STORE.SUCCESS:
-            console.log('reducer s ', action)
+
             return {
                 ...state,
                 name:action.payload.name,
-                station:action.payload.station,
+                stationKor:action.payload.stationKor,
                 line:action.payload.line,
                 address:action.payload.address,
                 parking:action.payload.parking,
@@ -64,6 +61,7 @@ const adminEditStore = (state=initialState,action) => {
                 menu:action.payload.menu,
                 beverage:action.payload.beverage,
                 tel:action.payload.tel,
+                more:action.payload.more,
                 intro:action.payload.intro,
 
                 // result:true
