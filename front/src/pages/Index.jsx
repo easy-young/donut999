@@ -89,7 +89,7 @@ export const StoreAddress = styled.div`
 `;
 
 export const StoreScore = styled(StoreAddress)`
-    width: 10%;
+    width: 30%;
     height: auto;
 `
 
