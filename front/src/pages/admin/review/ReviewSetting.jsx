@@ -4,7 +4,7 @@ import {admin_review_request} from '../../../reducers/admin/adminReview.js';
 import {admin_del_review_request, admin_search_request} from '../../../reducers/admin/adminReview.js';
 import { useEffect } from 'react';
 import {Div, Dbutton, Sbutton, Table, Tr, Td} from '../../../components/styles/AdminTable';
-import { AuthButton } from "../../../components/styles/AdminStyles";
+import { AuthButton, Back } from "../../../components/styles/AdminStyles";
 
 
 const ReviewSetting = () => {
@@ -34,6 +34,7 @@ const ReviewSetting = () => {
 
     return(
         <>
+        <Back>
             <h2 style={{textAlign:'center', marginTop:'4%'}}>Review</h2>
             <form style={{width:'70%', margin:' 0 auto', textAlign:"center"}} onSubmit={schSubmit}>
                 <input style={{marginTop:'7%', fontSize:'20px'}} type="text" placeholder="내용 검색만 가능합니다." name="searchInput"/>
@@ -111,7 +112,7 @@ const ReviewSetting = () => {
                     <AuthButton>Admin Menu</AuthButton>
                 </div>
             </Link>
-
+        </Back>
         </>
     )
 }
