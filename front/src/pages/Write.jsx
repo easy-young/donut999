@@ -5,22 +5,116 @@ import {useDispatch, useSelector} from 'react-redux';
 import { useEffect } from 'react';
 import {getStore_request, review_create_request, review_write
 , review_flavor, review_atmosphere, review_cheap, review_service} from '../reducers/writeReview.js'
+import { useNavigate } from 'react-router-dom';
 
 
 const Background = styled.div`
-    background:#fffcdd;
+    background:#FAEBD7;
     z-index:2000;
     width:100%;
-    height:100%;
-    position: absolute;
+    height:100vh;
+    position: fixed;
     top:0;
+    *{
+        list-style:none;
+    }
+
 `
 const StarForm = styled.form`
 
     .review_container{
-        border : 2px solid #000;
-        background:red;
+        border : 1px solid #dcdcdc;
+        background:#fffcdd;
+        width:60%;
+        height:100vh;
+        margin: 0 auto;
+        border-radius: 10px;
+
+        .store_name{
+            text-align:center;
+            width:50%;
+            margin: 0 auto;
+        }
+
+
+        .review_box{
+            width:100%;
+            height:40%;
+            display:flex;
+            flex-wrap:wrap;
+            justify-content:space-around;
+        }
+
+        .star_box{
+            width:50%;
+            height:50%;
+            display:flex;
+            justify-content:center;
+            margin: 0 auto;
+            
+
+            >span{
+                
+                display:flex;
+                flex-direction:column;
+                justify-content:center;
+                padding-left:15px;
+                box-sizing:border-box;
+            }
+        }
+
+        .review_txt_box{
+            display:block;
+            width:100%;
+            height: 40%;
+            display:flex;
+            justify-content:center;
+
+            #reviewText{
+                width:80%;
+                height:90%;
+
+
+            }
+
+
+        }
+        .button_box{
+            width:30%;
+            height:10%;
+            display:flex;
+            justify-content:space-around;
+            margin: 0 auto;
+
+            .review_btn, .back_button{
+                width:100px;
+                height: 30px;
+                width:70px;
+                margin-right:5px;
+                margin-bottom:10px;
+                font-size:14px;
+                line-height:7px;
+                background: none;
+                border: 1.5px solid;
+                color:#FF7F50;
+                letter-spacing: inherit;
+                border-bottom: 3px solid ;
+                border-right: 3px solid ;
+                text-transform: inherit;
+                cursor:pointer;
+                text-align:center;
+            }
+
+            .back_button{
+                display:flex;
+                flex-direction:column;
+                justify-content:center;
+            }
+        }
     }
+
+
+
 
 `
 
@@ -28,6 +122,8 @@ const MyFieldSet = styled.fieldset`
     display:inline-block;
     direction: rtl;
     border : 0;
+    margin: 0 auto;
+    align-self:center;
 `
 const Radioinput = styled.input`
     display:none;
@@ -100,14 +196,16 @@ const Write = () => {
         getStore()
     },[dispatch])
 
+    let history = useNavigate()
+
     return(
         <Background>  
             
             <StarForm onSubmit = {submitHandler}>
                 <div className="review_container">
-                    <span> {stores.createReview.name} </span>
-                    <ul>
-                        <li>
+                    <h1 className="store_name"> 🍩 {stores.createReview.name} 🍴 </h1>
+                    <ul class="review_box">
+                        <li class="star_box">
                             <span>맛</span>
                             <MyFieldSet onChange = {changeFlavor}>
                                 <Radioinput type='radio' value='5' id='flavor1' name='flavor'/><Starlabel for='flavor1'>⭐</Starlabel>
@@ -117,7 +215,7 @@ const Write = () => {
                                 <Radioinput type='radio' value='1' id='flavor5' name='flavor'/><Starlabel for='flavor5'>⭐</Starlabel>
                             </MyFieldSet>
                         </li>
-                        <li>
+                        <li class="star_box">
                             <span>분위기</span>
                             <MyFieldSet onChange = {changeAtmosphere}>
                                 <Radioinput type='radio' value='5' id='atmosphere1' name='atmosphere'/><Starlabel for='atmosphere1'>⭐</Starlabel>
@@ -127,7 +225,7 @@ const Write = () => {
                                 <Radioinput type='radio' value='1' id='atmosphere5' name='atmosphere'/><Starlabel for='atmosphere5'>⭐</Starlabel>
                             </MyFieldSet>
                         </li>
-                        <li>
+                        <li class="star_box">
                             <span>가격</span>
                             <MyFieldSet onChange = {changeCheap}>
                                 <Radioinput type='radio' value='5' id='cheap1' name='cheap'/><Starlabel for='cheap1'>⭐</Starlabel>
@@ -137,7 +235,7 @@ const Write = () => {
                                 <Radioinput type='radio' value='1' id='cheap5' name='cheap'/><Starlabel for='cheap5'>⭐</Starlabel>
                             </MyFieldSet>
                         </li>
-                        <li>
+                        <li class="star_box">
                             <span>서비스</span>
                             <MyFieldSet onChange = {changeService}>
                                 <Radioinput type='radio' value='5' id='service1' name='service'/><Starlabel for='service1'>⭐</Starlabel>
@@ -148,10 +246,16 @@ const Write = () => {
                             </MyFieldSet>
                         </li>
                     </ul>
-
-                    <input type='text' onChange= {changeHandler} id='reviewText' />
-                    <input type='submit' className="review_btn"/>
+                
+                    <div className="review_txt_box">
+                        <textarea onChange= {changeHandler} id='reviewText' />
+                    </div>
+                    <div className="button_box">
+                        <input type='submit' className="review_btn"/>
+                        <div className="back_button" onClick={()=>{history(-1)}}>뒤로 가기</div>
+                    </div>
                 </div>
+                
             </StarForm>
         </Background>
     )
