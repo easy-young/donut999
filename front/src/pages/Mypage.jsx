@@ -31,7 +31,7 @@ const Container = styled.div`
             height:100%;
             /* height: 200px; */
             border-radius:0px;
-        }
+    }
 
     .mypage{
         width:95%;
