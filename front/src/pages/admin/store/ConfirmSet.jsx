@@ -166,34 +166,29 @@ const ConfirmSet = (defaultValue) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const {menu_donut, menu_beverage,address,subway,line,tel,openhour,parking,protein,photozone,special,sns,intro} = e.target
-        const payload = {
-            regi_id,
-            name:regi.name,
-            station:subway.value,
-            line:line.value,
-            address:address.value,
-            parking:parking.value,
-            protein:protein.value,
-            photo:photozone.value,
-            special:special.value,
-            operhour:openhour.value,
-            website:sns.value,
-            menu:menu_donut.value,
-            beverage:menu_beverage.value,
-            tel:tel.value,
-            intro:intro.value,
-        }
 
-        const data = { storename: regi.name}
-
-
-        // const result = await axios.post(`http://localhost:4000/register/request`, data)
-        // 메일 보내는 라우터 << 일단 파일 업로드 기능 구현을 위해 잠시 주석 처리
-
-        await dispatch(admin_confirm_store_request(payload))
+        const {menu_donut, menu_beverage,address,subway,line,tel,
+            openhour,parking,protein,photozone,special,sns,intro} = e.target
 
         const formData = new FormData()
+
+        formData.append('regi_id', regi_id)
+        formData.append('name', regi.name)
+        formData.append('station', subway.value)
+        formData.append('line', line.value)
+        formData.append('address', address.value)
+        formData.append('parking', parking.value)
+        formData.append('protein', protein.value)
+        formData.append('photo', photozone.value)
+        formData.append('special', special.value)
+        formData.append('operhour', openhour.value)
+        formData.append('website', sns.value)
+        formData.append('menu', menu_donut.value)
+        formData.append('beverage', menu_beverage.value)
+        formData.append('tel', tel.value)
+        formData.append('intro', intro.value)
+
+
         let fileInput1 = document.querySelector('#img1')
         let fileInput2 = document.querySelector('#img2')
         let fileInput3 = document.querySelector('#img3')
@@ -202,14 +197,14 @@ const ConfirmSet = (defaultValue) => {
         formData.append('img2', fileInput2.files[0])
         formData.append('img3', fileInput3.files[0])
 
-        const config = {
-            Headers : {
-                'content-type' : 'multipart/form-data'
-            }
-        }
+        dispatch(admin_confirm_store_request(formData))
 
-        const result = await axios.post(`http://localhost:4000/dt/admin/menu/store/confirm/addstore/:${regi_id}`, formData, config)
+        //const result = await axios.post(`http://localhost:4000/dt/admin/menu/store/confirm/addstore/imgUp`, formData, config)
+        
+        // const result = await axios.post(`http://localhost:4000/register/request`, data)
+        // 메일 보내는 라우터 << 일단 파일 업로드 기능 구현을 위해 잠시 주석 처리
     }
+
 
 
     return (

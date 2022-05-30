@@ -270,7 +270,7 @@ router.post('/store/confirm/:register_id',async (req,res)=>{
 
 
 const addstore = async (req, res) => {
-    if( req.body.name === null ) return 
+
     let image = []
     for ( let i = 1; i < 4; i++) {
         try {
@@ -282,24 +282,24 @@ const addstore = async (req, res) => {
         }
     }
     console.log(image)
-
-    const prepare2 = [req.body.regi_id]
+    
     const { name, station, line, address, parking , protein, photo, special,operhour , website , menu , beverage , tel , intro  } = req.body
     const stationEng = translate(station)
+    const prepare = [ name, station, stationEng, line, address, parking , operhour , website , menu , beverage , 
+        tel ,  protein, photo, special,intro, image[0], image[1], image[2]]
+
+    const prepare2 = [req.body.regi_id]    
     const sql = `INSERT INTO shop 
-    (name, stationKor, station, line, address, parking, operhour, website, menu, beverage, tel, protein, photo, special, intro, more) 
-    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,'hi')`
-    const prepare = [ name, station, stationEng, line, address, parking , operhour , website , menu , beverage , tel ,  protein, photo, special,intro]
+    (name, stationKor, station, line, address, parking, operhour, website, menu, beverage, tel, protein, photo, special, intro, more,img1, img2, img3) 
+    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,'hi', ?, ?, ?)`
+
     const sql2 = `UPDATE register SET state = '승인' WHERE idx = ${prepare2}`
+    if ( name == undefined ) { return }
     try {
         const [result2] = await pool.execute(sql2)
+        console.log(prepare)
         const [result] = await pool.execute(sql,prepare)
-        const response = {
-            result
-        }
-        res.json(response)
     }
-
     catch (e) {
         console.log(e.message)
         const response = {
@@ -310,7 +310,7 @@ const addstore = async (req, res) => {
     }
 } 
 
-router.use('/store/confirm/addstore/:register_id', 
+router.use('/store/confirm/addstore/:register_id',
 upload.fields([{name:'img1'},{name:'img2'},
 {name:'img3'}]) , addstore )
 

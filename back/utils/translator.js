@@ -92,7 +92,7 @@ const translate = (station) => {
         case '발산' :
             return 'Balsan'
         default :
-            return 'N/A'
+            return '정보없음'
     }
 }
 
