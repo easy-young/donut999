@@ -269,8 +269,48 @@ router.post('/store/confirm/:register_id',async (req,res)=>{
 
 
 
+<<<<<<< HEAD
 const addstore = async (req, res) => {
 
+=======
+const addstore = async (req, res, next ) => {
+    let { name, station, stationEng, line, address, parking , protein, photo, special,operhour , website , menu , beverage , tel , intro  } = req.body
+    if ( name == undefined )  return
+    const sql = `INSERT INTO shop 
+    (name, stationKor, station, line, address, parking, operhour, website, menu, beverage, tel, protein, photo, special, intro, more) 
+    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,'hi')`
+    let prepare = [ name, station, stationEng, line, address, parking , operhour , website , menu , beverage , tel ,  protein, photo, special,intro]
+    let prepare2 = [req.body.regi_id]
+    const sql2 = `UPDATE register SET state = '승인' WHERE idx = ${prepare2}`
+
+    try {
+        const [result2] = await pool.execute(sql2)
+        if(prepare == [undefined, undefined, undefined, undefined, undefined,undefined, undefined, undefined
+        , undefined, undefined, undefined, undefined, undefined, undefined, undefined]) {
+            return
+        }
+        const [result] = await pool.execute(sql,prepare)
+        const response = {
+            result
+        }
+        res.json(response)
+    }
+
+    catch (e) {
+        console.log(e.message + '<< this')
+        const response = {
+            errormsg: e.message,
+            errno: 1
+        }
+        res.json(response)  
+    }
+    next()
+}
+
+const addImg =  async (req, res) => {
+    const { name, station } = req.body
+    console.log(name, station)
+>>>>>>> 821f017b1a7edad20ae07abfa9835ef5bdb48e15
     let image = []
     for ( let i = 1; i < 4; i++) {
         try {
@@ -282,6 +322,7 @@ const addstore = async (req, res) => {
         }
     }
     console.log(image)
+<<<<<<< HEAD
     
     const { name, station, line, address, parking , protein, photo, special,operhour , website , menu , beverage , tel , intro  } = req.body
     const stationEng = translate(station)
@@ -307,12 +348,31 @@ const addstore = async (req, res) => {
             errno: 1
         }
         res.json(response)  
-    }
-} 
+=======
 
+    const sql = `update shop set img1=?, img2=?, img3=? where name=? and station=?`
+    const param = [image[0], image[1], image[2], req.body.name, req.body.station]
+    console.log(param)
+    try {
+        const result = await pool.execute(sql, param)
+    }
+    catch(e) {
+        console.log(e)
+>>>>>>> 821f017b1a7edad20ae07abfa9835ef5bdb48e15
+    }
+}
+
+router.use('/store/confirm/addstore/:register_id', addstore)
+    
+router.use('/store/confirm/addImg',upload.fields([{name:'img1'},{name:'img2'},
+{name:'img3'}]), addImg )
+
+<<<<<<< HEAD
 router.use('/store/confirm/addstore/:register_id',
 upload.fields([{name:'img1'},{name:'img2'},
 {name:'img3'}]) , addstore )
+=======
+>>>>>>> 821f017b1a7edad20ae07abfa9835ef5bdb48e15
 
 router.post('/user/setting',async (req,res)=>{
     const sql = `SELECT email, DATE_FORMAT(date,'%Y-%m-%d %h:%i:%s') AS stamp FROM black ORDER BY date DESC`

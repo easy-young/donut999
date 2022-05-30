@@ -15,6 +15,7 @@ export const Back = styled.div`
 
 export const Li = styled.li`
     color:#ff1eb2;
+    margin-top:30%;
     font-weight:bold;
 `
 
@@ -72,6 +73,7 @@ export const AdminMenuDiv = styled.div`
     display: flex;
    
     width:90%;
+    height: 30%;
     font-size:1rem;
     justify-content: space-around;
     position:relative;
@@ -101,7 +103,7 @@ export const BigButton = styled.button`
 
 export const Ol = styled.ol`
     margin-top: 30%;
-
+    font-size: 20px;
     &>li{
         margin-top:10%;
     } 

@@ -5,6 +5,7 @@ import {admin_confirm_store_request} from '../../../reducers/admin/confirmStore.
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import translate from '../../../utils/translator.js';
 // import { post } from '../../../../../back/routes/admin.js';
 
 const Background = styled.div`
@@ -193,6 +194,8 @@ const ConfirmSet = (defaultValue) => {
         let fileInput2 = document.querySelector('#img2')
         let fileInput3 = document.querySelector('#img3')
 
+        formData.append('name', regi.name)
+        formData.append('station', subway.value)
         formData.append('img1', fileInput1.files[0])
         formData.append('img2', fileInput2.files[0])
         formData.append('img3', fileInput3.files[0])

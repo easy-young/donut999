@@ -159,15 +159,15 @@ const SmallDiv = styled.div`
     margin: 0 auto;
     margin-bottom: 3%;
     display: flex;
-    border-left:0.5px solid #e3e3c4;
-    border-top:0.5px solid #e3e3c4;
-    border-right: 3px solid #c7c793;
-    border-bottom: 3px solid #c7c793;
+    border-left:0.5px solid #FFEBC6;
+    border-top:0.5px solid #FFEBC6;
+    border-right: 3px solid #FFF2D8;
+    border-bottom: 3px solid #FFF2D8;
     border-radius:5px;
     padding:10px;
     display:flex;
     justify-content:space-around;
-    background: #FFFFED;
+    background: #FFFDF9;
 
     @media (max-width: 420px) {
         height:20%;
@@ -363,7 +363,7 @@ const Rank = () => {
                                                 {i==1 && <span>🥈 </span>}
                                                 {i==2 && <span>🥉 </span>}
                                                 {i>2 && <span>💞</span>}
-                                                {i+1}위 : <StyledLink2 to={'/shop/'+topFive[i].idx}>{topFive[i].name}</StyledLink2>
+                                                {i+1}위 | <StyledLink2 to={'/shop/'+topFive[i].idx}>{topFive[i].name}</StyledLink2>
                                             </div>
                                         </div>
                                         <div className="rank_info">
