@@ -38,10 +38,6 @@ import { Link } from "react-router-dom";
 import Write from './pages/Write.jsx'
 import GlobalStyle from '../src/style/global'
 
-import Ttest from './pages/Ttest.jsx'
-
-import Qwe from './pages/qwe.jsx'
-
 const snow = keyframes`
 
     0% {background-position: 0px 0px, 0px 0px, 0px 0px;}

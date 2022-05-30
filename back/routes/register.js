@@ -56,8 +56,21 @@ router.post('/join', async (req, res) => {
 router.use('/request', async (req,res) => {
     const { storename } = req.body
     // console.log(storename)
-    const mailOption = mailOpt('a','new request', storename)
-    sendMail(mailOption)
+    try {
+        const mailOption = mailOpt('a','new request', storename)
+        sendMail(mailOption)
+        const response = {
+            status: 'success'
+        }
+        res.json(response)
+    }
+    catch (e) {
+        console.log(e)
+        const response = {
+            status : 'failed'
+        }
+        res.json(response)
+    }
 })
 
 module.exports = router;

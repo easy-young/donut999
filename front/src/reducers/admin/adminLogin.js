@@ -20,6 +20,8 @@ const adminLogin = (state = initialState, action) => {
                 ...state,
             }
         case adminLogin_SUCCESS :
+            localStorage.setItem('persist:user',{"adminLogin":"{\"admin\":some_secret_key,\"isLogin\":true}","user":"{\"me\":{\"isLogin\":true,\"nickname\":\"null\",\"email\":\"null\"},\"error\":null,\"loading\":false}",
+            "_persist":"{\"version\":-1,\"rehydrated\":true}"})
             return {
                 ...state,
                 admin: 'some_secret_key',
@@ -29,7 +31,7 @@ const adminLogin = (state = initialState, action) => {
             return {
                 ...state,
             }
-            default :
+        default :
             return state
     }
 }

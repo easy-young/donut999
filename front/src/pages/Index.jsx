@@ -351,6 +351,8 @@ const Index = () => {
         dispatch({type: station_exit.toString()});
     };
 
+    // const img = `http://localhost:3000/public/img/dount_store/${v.idx}` || {v.img1}
+
     return (
         <Body>
             <BrowserView>
@@ -836,7 +838,18 @@ const Index = () => {
                                         { store[i] &&
                                             <>
                                                 <Img
-                                                    src={require(`../../public/img/donut_store/${v.idx}_1.jpg`)}
+                                                //     src={`http://localhost:3000/img/donut_store/${v.idx}_1.jpg` !== undefined
+                                                //     ?
+                                                //     `http://localhost:3000/img/donut_store/${v.idx}_1.jpg`
+                                                //     : 
+                                                //     `http://localhost:4000/public/uploads/${v.img1}`
+                                                // }
+                                                src = {
+                                                    v.img1 !== null ?
+                                                    `http://localhost:4000/uploads/${v.img1}`
+                                                    :
+                                                    `http://localhost:3000/img/donut_store/${v.idx}_1.jpg`
+                                                }
 
                                                 />
                                                 <div style={{marginLeft:'3%', marginTop:'3%'}}>

@@ -60,3 +60,7 @@ values(2,'서울페이스트리','619049@naver.com', 5, 5, 5, 5, '와 정말 비
 
 insert into register( email, store, menu, address, contact, sns) 
 values('a','a','a','a','a','a');
+
+alter table shop add img1 varchar(100);
+alter table shop add img2 varchar(100);
+alter table shop add img3 varchar(100);
