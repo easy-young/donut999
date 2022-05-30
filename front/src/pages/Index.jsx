@@ -101,7 +101,9 @@ const NoBox = styled.div`
     justify-content: center;
 `
 
-const Body = styled.body`
+
+const Index = () => {
+    const Body = styled.body`
         margin: 0;
         padding: 0;
         width:100%;
@@ -109,38 +111,30 @@ const Body = styled.body`
         background:transparent;
 
         @media (max-height: 700px) {
-            /* width: 340px; */
+            
             width:100vw;
             height:100vh;
-            /* height: 200px; */
+        
         }
 
-        /* -webkit-animation: snow 10s linear infinite;
-        -moz-animation: snow 10s linear infinite;
-        -ms-animation: snow 10s linear infinite; */
     `
 
 const MapBox = styled.div `
     /* 보이는 영역입니다. */
-    /* width:1000px; */
+
     width:80%;
-    /* height:500px; */
     height:70vh;
     position:relative;
     margin:0 auto;
     box-sizing:border-box;
     z-index:6;
     overflow:hidden;
-    /* top: 50%;
-    right: 10%; */
     border-radius:30px;
     margin-top:5vh;
     box-shadow: 0px 0px 20px 1px grey;
     @media (max-width: 600px) {
-        /* width: 340px; */
         width:80vw;
         height:70vh;
-        /* height: 200px; */
     }
 
     `
@@ -150,7 +144,6 @@ const MapBox = styled.div `
 const RouteMap = styled.img`
     /* 이미지 영역입니다. */
     width:150%;
-    /* margin: 0 auto; */
     position: absolute;
     z-index:5;
     cursor:pointer;
@@ -198,14 +191,7 @@ const Station = styled.div `
     position:absolute;
     width:1%;
     background: #FFFCDD;
-        /* radial-gradient(
-            circle at 30% 30%,
-            #FFFCDD,
-            orange
-        ); */
     z-index:5;
-    /* top:14.2%;
-    left:110%; */
     border:7px double pink;
     border-radius:50%;
     box-sizing: border-box;
@@ -233,8 +219,6 @@ const Station = styled.div `
 
 `
 
-const Index = () => {
-    
 
 
     let isdragging = null
