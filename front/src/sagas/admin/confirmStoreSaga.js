@@ -4,8 +4,8 @@ import { admin_confirm_store_request, admin_confirm_store_success, admin_confirm
 
 async function confirmStoreAPI({payload}){
     // console.log('api',payload)
-    const idx = payload.payload
-    // console.log('sagaidx',idx)
+    const idx = payload.regi_id
+
     try{
         const result = await axios.post(`http://localhost:4000/dt/admin/menu/store/confirm/addstore/`+idx,payload)
         // console.log(result.data)
