@@ -101,7 +101,10 @@ const NoBox = styled.div`
     justify-content: center;
 `
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
 const Index = () => {
     const Body = styled.body`
         margin: 0;
@@ -303,6 +306,7 @@ const Station = styled.div `
     }
 
     useEffect(()=>{
+        console.log('바뀜')
 
         window.addEventListener('resize', handleReSize)
         return () => {
