@@ -14,7 +14,7 @@ const Background = styled.div`
     justify-content: center;
     top: 0px;
     align-items: center;
-    background: rgba(0, 0, 0, 0.4);
+    background: #FFFCDD;
 `;
 
 const H1 = styled.h1`
@@ -173,7 +173,7 @@ const Edit = (defaultValue) => {
         const {menu_donut, menu_beverage,address,subway,line,tel,openhour,parking,protein,photozone,special,sns,intro} = e.target
         const payload = {
             store_id,
-            station:subway.value,
+            stationKor:subway.value,
             line:line.value,
             address:address.value,
             parking:parking.value,
@@ -208,11 +208,11 @@ const Edit = (defaultValue) => {
                         <div style={{display:'flex', width:'100%'}} >
                             <div style={{width:'50%'}} >
                                 <H3 style={{display:'inline'}}>지하철</H3>
-                                <InputP style={{width:'70%'}} defaultValue={stores.station} value={values.station} type="text" name="subway" />
+                                <InputP style={{width:'50%'}} defaultValue={stores.station} value={values.station} type="text" name="subway" />
                             </div>
                             <div style={{width:'50%'}}>
                                 <H3 style={{display:'inline'}}>지하철노선</H3>
-                                <InputP style={{width:'57.5%'}} defaultValue={stores.line} value={values.line} type="text" name="line" />
+                                <InputP style={{width:'50%'}} defaultValue={stores.line} value={values.line} type="text" name="line" />
                             </div>
                         </div>
                         <H3>연락처</H3>
