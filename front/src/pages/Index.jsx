@@ -58,9 +58,26 @@ export const StoreBox = styled.div`
     /* height: 52%; */
     padding: 3%;
     border-radius: 20px;
-    background: #ffeddf;
+    background: #FFFCDD;
     display:flex;
+
+    @media (max-width: 600px) {
+        display:block;
+    }
+    
 `;
+
+const Img = styled.img`
+    width:240px;
+    height:240px;
+    border-radius: 30px;
+
+    @media (max-width: 600px) {
+        width: 100%;
+        
+
+    }
+`
 
 export const StoreName = styled.div`
     font-size: 22px;
@@ -72,7 +89,9 @@ export const StoreAddress = styled.div`
 `;
 
 export const StoreScore = styled(StoreAddress)`
-`;
+    width: 10%;
+    height: auto;
+`
 
 const NoBox = styled.div`
     display: flex;
@@ -218,43 +237,26 @@ const Index = () => {
     const [width, setWidth] = useState(0)
 
     const mouseDownHandler = (e) => {
-        // console.log('여기는 웹', isMobile)
         isdragging = true
         originX = e.clientX
         originY = e.clientY
-        // console.log(originX, originY)//브라우저 좌표
         originLeft = e.target.parentNode.offsetLeft
         originTop = e.target.parentNode.offsetTop
-        // console.log("부모기준현재위치", originLeft, originTop) // 부모 div기준 좌표
-        // console.log("현재위치", originX, originY)
 
     }
 
     const mouseMoveHandler = (e) => {
         if (isdragging) {
-            // console.log("현재 이벤트 엘리먼트", e.target.parentNode)
-            // console.log('현재마우스좌표', originLeft, originTop)
-            // console.log("이동위치",e.clientX, e.clientY)
             const diffX = e.clientX - originX
             const diffY = e.clientY - originY
-            // console.log("얼마나 이동했나요?", diffX, diffY)
-            // e.target.parentNode.style = originLeft + diffX + "px"
-            // e.target.parentNode.style = originTop + diffY + "px"
             const containerWidth = e.target.parentNode.parentNode.offsetWidth
             const containerHeigt = e.target.parentNode.parentNode.offsetHeight
             const imgBoxWidth = e.target.offsetWidth
             const imgBoxHeight = e.target.offsetHeight
-            // console.log("길이들", containerWidth, containerHeigt, imgBoxWidth, imgBoxHeight)
             const endOfXPoint = containerWidth - imgBoxWidth //200px
             const endOfYPoint = containerHeigt - imgBoxHeight //444px
-            // console.log("최대", endOfXPoint, endOfYPoint)
-            
-            // e.target.style.left = `${Math.max(Math.min(0, originLeft + diffX),endOfXPoint)}px`
-            // e.target.style.top = `${Math.max(Math.min(0, originTop+ diffY),endOfYPoint)}px`
             e.target.parentNode.style.left = `${Math.max(Math.min(0, originLeft + diffX),endOfXPoint)}px`
             e.target.parentNode.style.top = `${Math.max(Math.min(0, originTop+ diffY),endOfYPoint)}px`
-            // console.log(" asdfasdf", e.target.style.left)
-            // console.log("스타일...",e.target.style.left,e.target.style.top)
         }
     }
 
@@ -264,40 +266,26 @@ const Index = () => {
 
     //모바일
     const touchStartHandler = (e) =>{
-        // console.log('여기는 모바일', isMobile)
         isdragging = true   
         originX = e.touches[0].clientX
         originY = e.touches[0].clientY
-        // console.log(originX, originY)//브라우저 좌표
         originLeft = e.target.parentNode.offsetLeft
         originTop = e.target.parentNode.offsetTop
-        // console.log("부모기준", originLeft, originTop) // 부모 div기준 좌표
-        // console.log("시작위치", originX, originY)
     }
 
     const touchMoveHandler = (e) =>{
-        // console.log('되긴하니?')
         if (isdragging) {
-            // console.log('현재마우스좌표', originLeft,originTop)
-            // console.log("이동위치",e.touches[0].clientX, e.touches[0].clientY)
             const diffX = e.touches[0].clientX - originX
             const diffY = e.touches[0].clientY - originY
-            // console.log("얼마나 이동했나요?",diffX, diffY)
-            // e.target.parentNode.style = originLeft + diffX + "px"
-            // e.target.parentNode.style = originTop + diffY + "px"
             const containerWidth = e.target.parentNode.parentNode.offsetWidth
             const containerHeigt = e.target.parentNode.parentNode.offsetHeight
             const imgBoxWidth = e.target.offsetWidth
             const imgBoxHeight = e.target.offsetHeight
-            // console.log("길이들d", containerWidth, containerHeigt, imgBoxWidth, imgBoxHeight)
             const endOfXPoint = containerWidth - imgBoxWidth //200px
             const endOfYPoint = containerHeigt - imgBoxHeight //444px
-            // console.log("최대", endOfXPoint, endOfYPoint)
 
             e.target.parentNode.style.left = `${Math.max(Math.min(0, originLeft + diffX),endOfXPoint)}px`
             e.target.parentNode.style.top = `${Math.max(Math.min(0, originTop+ diffY),endOfYPoint)}px`
-            // console.log(" asdfasdf", e.target.style.left)
-            // console.log("스타일...",e.target.style.left,e.target.style.top)
         }
     }
 
@@ -306,7 +294,6 @@ const Index = () => {
     }
 
     const imgRef = useRef(0)
-    // const imgParent = useRef()
 
     const dispatch = useDispatch()
 
@@ -319,66 +306,38 @@ const Index = () => {
         }
 
         //웹, 모바일 나누기
-        // localStorage.setItem('height',imgRef.current.height)
-        // console.log('됐음', localStorage.getItem('height'))
     }
 
     useEffect(()=>{
         console.log('바뀜')
-        // if ( imgRef.current.height === 0 ){
-        //     let localheight =  localStorage.getItem('height')
-        //     console.log('새로고침을 진행함 height:',height,'ref height :',imgRef.current.height ,'localstroe : ', localheight)
-        // } else {
-        //     localStorage.setItem('height',imgRef.current.height === null ? parseInt(localStorage.getItem('height')) : imgRef.current.height)
-        //     console.log('componentDidMount : ', imgRef.current.height , parseInt(localStorage.getItem('height')))
-        //     setHeight(1)
-        // }
 
         window.addEventListener('resize', handleReSize)
         return () => {
             window.removeEventListener('resize',handleReSize)
         }
-        // dispatch({type:check_map_success.toString()})
-        
-        // const map_img = document.querySelector('#map_img')
-        // const imgHeight = map_img.offsetHeight //이미지 높이
-        // console.log("이미지dsf",imgHeight)
-        // const imgParentBox = document.querySelector('#map_img').parentNode//이미지박스
-        // console.log(imgParentBox.style.height)
-        // imgParentBox.style.height = imgHeight+"px;"
-        // console.log("높이ds",imgParentBox.style.height)
         
     }, [width, height])
 
     const img_box = document.querySelector('#img_box')
-    // console.log("내 화면의 너비:",window.outerWidth,"내 화면의 높이", window.innerHeight) //리사이징마다 갱신
 
     const { name, store, no } = useSelector((state) => state.station);
     const clickStation = (e) => {
         dispatch(station_request(e.target.id));
     }
     const mouseOver =  (e) => {
-        // console.log("마우스 오버", e.target)
         const donut_top = e.target.style.top //원래 좌표
         const donut_left = e.target.style.left
-        // console.log("원래좌표:", donut_top, donut_left)
         e.target.style.top = donut_top.replace("%","")-0.9 + "%"
         e.target.style.left = donut_left.replace("%","")-0.6 + "%"
-        // console.log("바뀐 좌표", e.target.style.left)
     }
     const mouseOut = (e) => {
-        // console.log("마우스 아웃", e.target)
         const donut_top = e.target.style.top
         const donut_left = e.target.style.left
-        // console.log('아웃 전 좌표:', e.target.style.top, donut_top)
         const before_change_top = donut_top.replace("%","") * 1
         const before_change_left = donut_left.replace("%","") * 1
-        // console.log("계산값은?:", before_change_left + 0.6 + "%")
         e.target.style.top = before_change_top + 0.9 + "%"
         e.target.style.left = before_change_left + 0.6 + "%"
-        // console.log('원상태로 좌표:', e.target.style.left)
     }
-    // const top =window.innerHeight * 14.2 + "%"
 
     const Close = () => {
         dispatch({type: station_exit.toString()});
@@ -858,7 +817,7 @@ const Index = () => {
                 <Background>
                     <Container>
                         <div style={{display:'flex',justifyContent:'space-between',width:'100%',padding:'2%'}}>
-                            <StationName>{ store.length > 0 && name+"역 맛집" }</StationName>
+                            <StationName>{ store.length > 0 && "🚂" + " "+name+"역" }</StationName>
                             <CloseBtn onClick={Close}>X</CloseBtn>
                         </div>
                         
@@ -866,18 +825,14 @@ const Index = () => {
                             store.length > 0 && store.map((v, i) => {
                                 return(
                                     <>
-                                        {/* <div style={{ height: '20px' }}></div> */}
                                         <StoreBox key={i}>
                                             { store[i] &&
                                                 <>
-                                                    <img 
+                                                    <Img
                                                         src={require(`../../public/img/donut_store/${store[i].idx}_1.jpg`)}
-                                                        style={{ borderRadius: '30px'}}
-                                                        width={240}
-                                                        height={240}
 
                                                     />
-                                                    <div style={{marginLeft:'3%'}}>
+                                                    <div style={{marginLeft:'3%', marginTop:'3%'}}>
                                                         <StoreName>
                                                             <Link 
                                                                 to={`/shop/${store[i].idx}`}
@@ -889,7 +844,7 @@ const Index = () => {
                                                         <StoreAddress>
                                                             주소 : {store[i].address}
                                                         </StoreAddress>
-                                                        <StoreScore>평점 : 5</StoreScore>
+                                                        <StoreScore><span>🌟</span>: 5</StoreScore>
                                                     </div>
 
                                                 </>

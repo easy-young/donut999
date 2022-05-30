@@ -1,5 +1,18 @@
 import styled from 'styled-components'
 
+export const Back = styled.div`
+    position:fixed;
+    z-index: 2000;
+    width:100%;
+    height:100%;
+    justify-content:center;
+    align-items: center;
+    top:0px;
+    background: #FFFCDD;
+    overflow: scroll;
+
+`
+
 export const Li = styled.li`
     color:#ff1eb2;
     font-weight:bold;
@@ -24,9 +37,12 @@ export const AuthInputBox = styled.input`
 `
 
 export const AuthForm = styled.form`
+    
     width: 300px;
-    margin:0 auto;
-    margin-top: 15%;
+    position:relative;
+    left:50%;
+    top:50%;
+    transform: translate(-50%,-50%);
 `
 
 export const AuthTable = styled.div`
@@ -41,23 +57,27 @@ export const AuthDiv = styled.div`
 `
 
 export const AuthButton = styled.button`
-    width: 100px;
-    height: 30px;
+    width: 150px;
+    height: 35px;
+    padding: 5px 7px;
     margin: 0 auto;
     margin-top:7%;
-    background-color: #fff;
-    border:none;
+    background-color: pink;
+    /* border:none; */
     color:#000;
     font-weight:bolder;
 `
 
 export const AdminMenuDiv = styled.div`
     display: flex;
-    margin:0 auto;
+   
     width:90%;
     font-size:1rem;
     justify-content: space-around;
-    margin-top:10%;
+    position:relative;
+    left:50%;
+    top:50%;
+    transform: translate(-50%,-50%);
 `
 
 export const AdminInput = styled.input`

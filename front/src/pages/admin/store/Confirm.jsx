@@ -4,7 +4,7 @@ import {admin_confirm_del_request} from '../../../reducers/admin/adminStoreConfi
 import {admin_confirm_state_request} from '../../../reducers/admin/adminStoreConfirm.js';
 import { useEffect, useState } from 'react';
 import {Divv, Dbutton, Table, Tr, Td} from '../../../components/styles/AdminTable';
-import { AuthButton } from "../../../components/styles/AdminStyles";
+import { AuthButton,Back } from "../../../components/styles/AdminStyles";
 
 const Confirm = () => {
     const dispatch = useDispatch()
@@ -44,6 +44,7 @@ const Confirm = () => {
 
     return(
         <>
+        <Back>
             <h2 style={{textAlign:'center', marginTop:'4%'}}>Confirm New Store</h2>
                 <Divv style={{marginTop:'3%', margin:'0 auto'}}>
                     <form method="post" name="delform" onSubmit={onDelete}> 
@@ -102,7 +103,7 @@ const Confirm = () => {
                         <AuthButton>Admin Menu</AuthButton>
                     </div>
                 </Link>
-
+        </Back>
         </>
     )
 }

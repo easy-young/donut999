@@ -116,14 +116,12 @@ const App = () => {
           <Route path="/theme/unique" element={<Unique />} />
           <Route path="/theme/parking" element={<Parking />} />
           <Route path='/register/join' element={<Join/>} />
-          <Route path='/register/check' element={<Qwe/>} />
           <Route path="/dt/admin" element={<Admin />} />
           <Route path="/dt/admin/menu" element={<AdminMenu />} />
           <Route path="/dt/admin/menu/store/confirm" element={<Confirm />} />
           <Route path="/dt/admin/menu/store/confirm/:register_id" element={<ConfirmSet />}/>
           <Route path="/dt/admin/menu/store/setting" element={<StoreSetting />} />
           <Route path="/dt/admin/menu/store/setting/:store_id" element={<Edit />}/>
-          {/* <Route path="/dt/admin/menu/store/setting/update/:store_id" element={<Edit />} /> */}
           <Route path="/dt/admin/menu/user/setting" element={<UserSetting/>} />
           <Route path="/dt/admin/menu/user/setting/checkblack/:email" element={<CheckReview />} />
           <Route path="/dt/admin/menu/review/setting" element={<ReviewSetting />} />

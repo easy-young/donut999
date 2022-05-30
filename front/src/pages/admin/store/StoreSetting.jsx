@@ -4,7 +4,7 @@ import {admin_store_request} from '../../../reducers/admin/admin.js';
 import {admin_delete_store_request} from '../../../reducers/admin/deleteStore'
 import { useEffect } from 'react';
 import {Div, Ebutton, Dbutton, Table, Tr, Td} from '../../../components/styles/AdminTable';
-import { AuthButton } from "../../../components/styles/AdminStyles";
+import { AuthButton,Back } from "../../../components/styles/AdminStyles";
 
 
 const StoreSetting = () => {
@@ -24,7 +24,7 @@ const StoreSetting = () => {
 
     return(
         <> 
-        
+        <Back>
             <h2 style={{textAlign:'center', marginTop:"3%"}}>STORE</h2>
             <Div>
             <Table>
@@ -123,7 +123,7 @@ const StoreSetting = () => {
                 </div>
             </Link>
 
-            
+        </Back>
         </>
     )
 }

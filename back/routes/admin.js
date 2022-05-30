@@ -269,13 +269,13 @@ router.post('/store/confirm/:register_id',async (req,res)=>{
 
 
 const addstore = async (req, res) => {
-    console.log('qweqe')
     let image = []
-    for ( let i = 0; i < 3; i++) {
+    for ( let i = 1; i < 4; i++) {
         try {
             const [img] = req.files[`img`+i]
             image.push(img.filename)
-        }catch (e) {
+        }
+        catch (e) {
             image.push('N/A')
         }
     }

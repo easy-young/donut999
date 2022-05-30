@@ -1,5 +1,5 @@
 import { Link  } from "react-router-dom";
-import { AuthButton,AdminInput,BigButton } from "../../../components/styles/AdminStyles";
+import { AuthButton,AdminInput,BigButton,Back } from "../../../components/styles/AdminStyles";
 import { Rbutton, Dbutton, Sbutton } from "../../../components/styles/AdminTable";
 import {useDispatch, useSelector} from 'react-redux';
 import {admin_black_request} from '../../../reducers/admin/adminBlack.js';
@@ -47,6 +47,7 @@ const UserSetting = () => {
 
     return(
         <>
+        <Back>
             <div>
                 <h2 style={{width:'30%',textAlign:'center', margin:'4% auto', fontWeight:'bold', background:'#fff', fontSize:'25px'}}>~ Black List ~</h2>
                 <form method="post" style={{textAlign:'center', marginTop:'3%' }} onSubmit={blackSubmit}>
@@ -113,6 +114,7 @@ const UserSetting = () => {
                     <AuthButton >Admin Menu</AuthButton>
                 </div>
             </Link>
+        </Back>
         </>
     )
 }
