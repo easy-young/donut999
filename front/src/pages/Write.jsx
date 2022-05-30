@@ -6,8 +6,22 @@ import { useEffect } from 'react';
 import {getStore_request, review_create_request, review_write
 , review_flavor, review_atmosphere, review_cheap, review_service} from '../reducers/writeReview.js'
 
+
+const Background = styled.div`
+    background:#fffcdd;
+    z-index:2000;
+    width:100%;
+    height:100%;
+    position: absolute;
+    top:0;
+`
 const StarForm = styled.form`
-    border : 2px solid #000;
+
+    .review_container{
+        border : 2px solid #000;
+        background:red;
+    }
+
 `
 
 const MyFieldSet = styled.fieldset`
@@ -87,57 +101,59 @@ const Write = () => {
     },[dispatch])
 
     return(
-        <>  
+        <Background>  
             
             <StarForm onSubmit = {submitHandler}>
-                <span> Store : {stores.createReview.name} </span>
-                <ul>
-                    <li>
-                        <span>맛</span>
-                        <MyFieldSet onChange = {changeFlavor}>
-                            <Radioinput type='radio' value='5' id='flavor1' name='flavor'/><Starlabel for='flavor1'>⭐</Starlabel>
-                            <Radioinput type='radio' value='4' id='flavor2' name='flavor'/><Starlabel for='flavor2'>⭐</Starlabel>
-                            <Radioinput type='radio' value='3' id='flavor3' name='flavor'/><Starlabel for='flavor3'>⭐</Starlabel>
-                            <Radioinput type='radio' value='2' id='flavor4' name='flavor'/><Starlabel for='flavor4'>⭐</Starlabel>
-                            <Radioinput type='radio' value='1' id='flavor5' name='flavor'/><Starlabel for='flavor5'>⭐</Starlabel>
-                        </MyFieldSet>
-                    </li>
-                    <li>
-                        <span>분위기</span>
-                        <MyFieldSet onChange = {changeAtmosphere}>
-                            <Radioinput type='radio' value='5' id='atmosphere1' name='atmosphere'/><Starlabel for='atmosphere1'>⭐</Starlabel>
-                            <Radioinput type='radio' value='4' id='atmosphere2' name='atmosphere'/><Starlabel for='atmosphere2'>⭐</Starlabel>
-                            <Radioinput type='radio' value='3' id='atmosphere3' name='atmosphere'/><Starlabel for='atmosphere3'>⭐</Starlabel>
-                            <Radioinput type='radio' value='2' id='atmosphere4' name='atmosphere'/><Starlabel for='atmosphere4'>⭐</Starlabel>
-                            <Radioinput type='radio' value='1' id='atmosphere5' name='atmosphere'/><Starlabel for='atmosphere5'>⭐</Starlabel>
-                        </MyFieldSet>
-                    </li>
-                    <li>
-                        <span>가격</span>
-                        <MyFieldSet onChange = {changeCheap}>
-                            <Radioinput type='radio' value='5' id='cheap1' name='cheap'/><Starlabel for='cheap1'>⭐</Starlabel>
-                            <Radioinput type='radio' value='4' id='cheap2' name='cheap'/><Starlabel for='cheap2'>⭐</Starlabel>
-                            <Radioinput type='radio' value='3' id='cheap3' name='cheap'/><Starlabel for='cheap3'>⭐</Starlabel>
-                            <Radioinput type='radio' value='2' id='cheap4' name='cheap'/><Starlabel for='cheap4'>⭐</Starlabel>
-                            <Radioinput type='radio' value='1' id='cheap5' name='cheap'/><Starlabel for='cheap5'>⭐</Starlabel>
-                        </MyFieldSet>
-                    </li>
-                    <li>
-                        <span>서비스</span>
-                        <MyFieldSet onChange = {changeService}>
-                            <Radioinput type='radio' value='5' id='service1' name='service'/><Starlabel for='service1'>⭐</Starlabel>
-                            <Radioinput type='radio' value='4' id='service2' name='service'/><Starlabel for='service2'>⭐</Starlabel>
-                            <Radioinput type='radio' value='3' id='service3' name='service'/><Starlabel for='service3'>⭐</Starlabel>
-                            <Radioinput type='radio' value='2' id='service4' name='service'/><Starlabel for='service4'>⭐</Starlabel>
-                            <Radioinput type='radio' value='1' id='service5' name='service'/><Starlabel for='service5'>⭐</Starlabel>
-                        </MyFieldSet>
-                    </li>
-                </ul>
+                <div className="review_container">
+                    <span> {stores.createReview.name} </span>
+                    <ul>
+                        <li>
+                            <span>맛</span>
+                            <MyFieldSet onChange = {changeFlavor}>
+                                <Radioinput type='radio' value='5' id='flavor1' name='flavor'/><Starlabel for='flavor1'>⭐</Starlabel>
+                                <Radioinput type='radio' value='4' id='flavor2' name='flavor'/><Starlabel for='flavor2'>⭐</Starlabel>
+                                <Radioinput type='radio' value='3' id='flavor3' name='flavor'/><Starlabel for='flavor3'>⭐</Starlabel>
+                                <Radioinput type='radio' value='2' id='flavor4' name='flavor'/><Starlabel for='flavor4'>⭐</Starlabel>
+                                <Radioinput type='radio' value='1' id='flavor5' name='flavor'/><Starlabel for='flavor5'>⭐</Starlabel>
+                            </MyFieldSet>
+                        </li>
+                        <li>
+                            <span>분위기</span>
+                            <MyFieldSet onChange = {changeAtmosphere}>
+                                <Radioinput type='radio' value='5' id='atmosphere1' name='atmosphere'/><Starlabel for='atmosphere1'>⭐</Starlabel>
+                                <Radioinput type='radio' value='4' id='atmosphere2' name='atmosphere'/><Starlabel for='atmosphere2'>⭐</Starlabel>
+                                <Radioinput type='radio' value='3' id='atmosphere3' name='atmosphere'/><Starlabel for='atmosphere3'>⭐</Starlabel>
+                                <Radioinput type='radio' value='2' id='atmosphere4' name='atmosphere'/><Starlabel for='atmosphere4'>⭐</Starlabel>
+                                <Radioinput type='radio' value='1' id='atmosphere5' name='atmosphere'/><Starlabel for='atmosphere5'>⭐</Starlabel>
+                            </MyFieldSet>
+                        </li>
+                        <li>
+                            <span>가격</span>
+                            <MyFieldSet onChange = {changeCheap}>
+                                <Radioinput type='radio' value='5' id='cheap1' name='cheap'/><Starlabel for='cheap1'>⭐</Starlabel>
+                                <Radioinput type='radio' value='4' id='cheap2' name='cheap'/><Starlabel for='cheap2'>⭐</Starlabel>
+                                <Radioinput type='radio' value='3' id='cheap3' name='cheap'/><Starlabel for='cheap3'>⭐</Starlabel>
+                                <Radioinput type='radio' value='2' id='cheap4' name='cheap'/><Starlabel for='cheap4'>⭐</Starlabel>
+                                <Radioinput type='radio' value='1' id='cheap5' name='cheap'/><Starlabel for='cheap5'>⭐</Starlabel>
+                            </MyFieldSet>
+                        </li>
+                        <li>
+                            <span>서비스</span>
+                            <MyFieldSet onChange = {changeService}>
+                                <Radioinput type='radio' value='5' id='service1' name='service'/><Starlabel for='service1'>⭐</Starlabel>
+                                <Radioinput type='radio' value='4' id='service2' name='service'/><Starlabel for='service2'>⭐</Starlabel>
+                                <Radioinput type='radio' value='3' id='service3' name='service'/><Starlabel for='service3'>⭐</Starlabel>
+                                <Radioinput type='radio' value='2' id='service4' name='service'/><Starlabel for='service4'>⭐</Starlabel>
+                                <Radioinput type='radio' value='1' id='service5' name='service'/><Starlabel for='service5'>⭐</Starlabel>
+                            </MyFieldSet>
+                        </li>
+                    </ul>
 
-                <input type='text' onChange= {changeHandler} id='reviewText' />
-                <input type='submit'/>
+                    <input type='text' onChange= {changeHandler} id='reviewText' />
+                    <input type='submit' className="review_btn"/>
+                </div>
             </StarForm>
-        </>
+        </Background>
     )
 }
 

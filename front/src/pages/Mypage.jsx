@@ -96,7 +96,7 @@ const Container = styled.div`
     }
 `
 
-const ReviewOne = styled.ul`
+export const ReviewOne = styled.ul`
     width:95%;
     /* background:red; */
     min-height:80%;
@@ -189,11 +189,44 @@ const ReviewOne = styled.ul`
 
         }
     }
+
+    #updateText{
+        width:80%;
+        height:100%;
+    }
+
+    .update_button_box{
+
+        width:100%;
+        height:26vh;
+        display:flex;
+        justify-content:space-around;
+    }
+
+    .update_button2{
+        width:70px;
+        height:20px;
+        margin-right:5px;
+        margin-bottom:10px;
+        font-size:14px;
+        line-height:7px;
+        background: none;
+        border: 1.5px solid;
+        color:#FFD5A9;
+        letter-spacing: inherit;
+        border-bottom: 3px solid ;
+        border-right: 3px solid ;
+        text-transform: inherit;
+        cursor:pointer;
+        align-self:center;
+        @media (max-width: 600px){
+
+        }
+
+    }
+
 `
 
-const StarForm = styled.form`
-    // border : 2px solid #000;
-`
 
 const MyFieldSet = styled.fieldset`
     display:inline-block;
@@ -402,11 +435,11 @@ const Mypage = () => {
                     </div>
                 </ReviewOne>
             :
-            <div style={{ padding: '10px' }}>
+            <div style={{ padding: '10px', height:"200%" }}>
                 <StyledLink to={'/shop/'+ v.sidx}>🥨 {v.storename} 🍴</StyledLink>
-                <StarForm onSubmit = {submitHandler(v.idx)}>
-                    <ul>
-                        <li>
+                <ReviewOne onSubmit = {submitHandler(v.idx)}>
+                    <ul class="review_box">
+                        <li className="star_box">
                             <span>맛</span>
                             <MyFieldSet>
                                 <Radioinput type='radio' value='5' id='flavor1' name='flavor'/>
@@ -421,7 +454,7 @@ const Mypage = () => {
                                 <Starlabel for='flavor5'>⭐</Starlabel>
                             </MyFieldSet>
                         </li>
-                        <li>
+                        <li className="star_box">
                             <span>분위기</span>
                             <MyFieldSet>
                                 <Radioinput type='radio' value='5' id='atmosphere1' name='atmosphere'/>
@@ -436,7 +469,7 @@ const Mypage = () => {
                                 <Starlabel for='atmosphere5'>⭐</Starlabel>
                             </MyFieldSet>
                         </li>
-                        <li>
+                        <li className="star_box">
                             <span>가격</span>
                             <MyFieldSet>
                                 <Radioinput type='radio' value='5' id='cheap1' name='cheap'/>
@@ -451,7 +484,7 @@ const Mypage = () => {
                                 <Starlabel for='cheap5'>⭐</Starlabel>
                             </MyFieldSet>
                         </li>
-                        <li>
+                        <li className="star_box">
                             <span>서비스</span>
                             <MyFieldSet>
                                 <Radioinput type='radio' value='5' id='service1' name='service'/>
@@ -467,10 +500,11 @@ const Mypage = () => {
                             </MyFieldSet>
                         </li>
                     </ul>
-
-                    <input type='text' onChange={changeHandler} id='updateText' defaultValue={v.text} />
-                    <input type='submit'/>
-                </StarForm>
+                    <div className="update_button_box">
+                        <textarea onChange={changeHandler} id='updateText' defaultValue={v.text} />
+                        <input type='submit' className="update_button2" value="확인"/>
+                    </div>
+                </ReviewOne>
             </div>
         )
     })
