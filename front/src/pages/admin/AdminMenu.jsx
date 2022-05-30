@@ -8,6 +8,13 @@ const AdminMenu = ()=>{
     const stores = useSelector(state => state)
     const some_secret_key = 'some_secret_key'
 
+    const logoutHandler = () => {
+        localStorage.setItem('persist:user',{"adminLogin":"{\"admin\":null,\"isLogin\":false}","user":"{\"me\":{\"isLogin\":true,\"nickname\":\"null\",\"email\":\"null\"},\"error\":null,\"loading\":false}",
+            "_persist":"{\"version\":-1,\"rehydrated\":true}"})
+        alert('로그아웃 되었습니다')
+        window.location.href='http://localhost:3000'
+    }
+
     return (
         <>
         { 
@@ -35,7 +42,10 @@ const AdminMenu = ()=>{
                                 <Link to='/dt/admin/menu/review/setting'><Li>리뷰관리</Li></Link>
                             </Ol>
                         </div>
+
                     </AdminMenuDiv>
+                    <button style={{width:"150px", height:'35px', padding: "5px 7px", background:'pink', position:'relative',left:'50%',top:'50%',transform:'translate(-50%,-50%'}} onClick={logoutHandler}> Logout </button>
+
                     </Back>
                 </>
             : 

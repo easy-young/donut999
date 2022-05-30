@@ -25,7 +25,7 @@ const StoreSetting = () => {
     return(
         <> 
         <Back>
-            <h2 style={{textAlign:'center', marginTop:"3%"}}>STORE</h2>
+            <h2 style={{width:'30%',textAlign:'center', margin:'4% auto', fontWeight:'bold', background:'#fff', fontSize:'25px'}}>STORE</h2>
             <Div>
             <Table>
                 <thead>

@@ -49,7 +49,7 @@ const UserSetting = () => {
         <>
         <Back>
             <div>
-                <h2 style={{width:'30%',textAlign:'center', margin:'4% auto', fontWeight:'bold', background:'#fff', fontSize:'25px'}}>~ Black List ~</h2>
+                <h2 style={{width:'30%',textAlign:'center', margin:'4% auto', fontWeight:'bold', background:'#fff', fontSize:'25px'}}> Black List </h2>
                 <form method="post" style={{textAlign:'center', marginTop:'3%' }} onSubmit={blackSubmit}>
                     <AdminInput type="text" name="kakaoEmail" placeholder="블랙 리스트 회원을 추가해 주세요."/>
                     <BigButton type="submit" style={{marginLeft:"2%", fontSize:'1.3rem'}}>블랙리스트등록</BigButton>
