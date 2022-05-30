@@ -46,7 +46,6 @@ const ContentBox = styled.div`
     flex-direction: column;
     justify-content: center;
     font-size: 18px;
-    min-height:250%;
 
     .shop_review_box{
         margin-top:5%;
