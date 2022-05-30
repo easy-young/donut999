@@ -106,7 +106,7 @@ const Index = () => {
         margin: 0;
         padding: 0;
         width:100%;
-        height:700px;
+        height:100vh;
         background:transparent;
 
         @media (max-height: 700px) {
@@ -126,7 +126,7 @@ const Index = () => {
         /* width:1000px; */
         width:80%;
         /* height:500px; */
-        height:80vh;
+        height:70vh;
         position:relative;
         margin:0 auto;
         box-sizing:border-box;
@@ -140,7 +140,7 @@ const Index = () => {
         @media (max-width: 600px) {
             /* width: 340px; */
             width:80vw;
-            height:80vh;
+            height:70vh;
             /* height: 200px; */
         }
 
@@ -197,12 +197,19 @@ const Index = () => {
 
     const Station = styled.div `
         position:absolute;
-        width:1.0%;
-        background:#f4c704;
+        width:1%;
+        background: #FFFCDD;
+            /* radial-gradient(
+                circle at 30% 30%,
+                #FFFCDD,
+                orange
+            ); */
         z-index:5;
         /* top:14.2%;
         left:110%; */
+        border:7px double pink;
         border-radius:50%;
+        box-sizing: border-box;
         cursor:pointer;
     
     
@@ -217,6 +224,7 @@ const Index = () => {
             background-repeat: no repeat;
             background-size: 120% 120%;
             width:2.0%;
+            border:none;
             border-radius:none;
             background-position: 10% 10%;
             animation: ${twinkle} 1.0s linear infinite;
