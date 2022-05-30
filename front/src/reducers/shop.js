@@ -1,7 +1,9 @@
 import { createAction } from "redux-actions";
 
 const initialState = {
-    info: null
+    info: null,
+    review: null,
+    avg: null
 };
 
 const SHOP = {
@@ -24,7 +26,8 @@ const shop = (state = initialState, action) => {
             return {
                 ...state,
                 info: action.payload.info,
-                review: action.payload.review
+                review: action.payload.review,
+                avg: action.payload.avg
             }
         case SHOP.FAILURE:
             return {

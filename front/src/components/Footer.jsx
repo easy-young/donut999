@@ -39,6 +39,10 @@ const CircleDiv = styled.div`
     background: pink;
 `;
 
+const TextBox = styled.div`
+    font-family: sans-serif;
+`;
+
 const Footer = () => {
     return (
         <>
@@ -53,10 +57,11 @@ const Footer = () => {
                 <CircleDiv></CircleDiv>
             </div>
             <BigDiv>
-                <div>제작 : Gyuri, Haeun, SeungJun, Jiyoung</div>
-                <div>근무 시간 : 월 ~ 금 9 AM ~ 6 PM</div>
-                <div>문의 : donutdonut@gmail.com</div>
+                <TextBox>제작 : Gyuri, Haeun, SeungJun, Jiyoung</TextBox>
+                <TextBox>근무 시간 : 월 ~ 금 9 AM ~ 6 PM</TextBox>
+                <TextBox>문의 : donutdonut@gmail.com</TextBox>
             </BigDiv>
+
         </>
     )
 };

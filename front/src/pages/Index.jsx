@@ -89,7 +89,7 @@ export const StoreAddress = styled.div`
 `;
 
 export const StoreScore = styled(StoreAddress)`
-    width: 30%;
+    width: 50%;
     height: auto;
 `
 
@@ -832,33 +832,31 @@ const Index = () => {
                         {
                             store.length > 0 && store.map((v, i) => {
                                 return(
-                                    <>
-                                        <StoreBox key={i}>
-                                            { store[i] &&
-                                                <>
-                                                    <Img
-                                                        src={require(`../../public/img/donut_store/${store[i].idx}_1.jpg`)}
+                                    <StoreBox key={i}>
+                                        { store[i] &&
+                                            <>
+                                                <Img
+                                                    src={require(`../../public/img/donut_store/${v.idx}_1.jpg`)}
 
-                                                    />
-                                                    <div style={{marginLeft:'3%', marginTop:'3%'}}>
-                                                        <StoreName>
-                                                            <Link 
-                                                                to={`/shop/${store[i].idx}`}
-                                                                style={{ color: 'black' }}
-                                                            >
-                                                                {store[i].name}
-                                                            </Link>
-                                                        </StoreName>
-                                                        <StoreAddress>
-                                                            주소 : {store[i].address}
-                                                        </StoreAddress>
-                                                        <StoreScore><span>🌟</span>: 5</StoreScore>
-                                                    </div>
+                                                />
+                                                <div style={{marginLeft:'3%', marginTop:'3%'}}>
+                                                    <StoreName>
+                                                        <Link 
+                                                            to={`/shop/${v.idx}`}
+                                                            style={{ color: 'black' }}
+                                                        >
+                                                            {v.name}
+                                                        </Link>
+                                                    </StoreName>
+                                                    <StoreAddress>
+                                                        주소 : {v.address}
+                                                    </StoreAddress>
+                                                    <StoreScore>🌟: {v.average === null ? '리뷰 없음' : v.average}</StoreScore>
+                                                </div>
 
-                                                </>
-                                            }
-                                        </StoreBox>
-                                    </>
+                                            </>
+                                        }
+                                    </StoreBox>
                                 )
                             })
                         }
