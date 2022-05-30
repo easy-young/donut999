@@ -1,6 +1,7 @@
 import {AuthForm, AuthTable, AuthDiv, AuthInputBox, AuthButton} from '../../components/styles/AdminStyles'
 import {useDispatch, useSelector} from 'react-redux';
 import { adminLogin_success } from '../../reducers/admin/adminLogin';
+import { Back } from '../../components/styles/AdminStyles';
 
 const Admin = () => {
     const dispatch = useDispatch()
@@ -35,6 +36,7 @@ const Admin = () => {
             { stores.adminLogin.admin !== some_secret_key 
             ?
             <>
+            <Back>
                 <AuthForm onSubmit= { submitHandler }>
                     <AuthTable>
                         <tr>
@@ -51,9 +53,12 @@ const Admin = () => {
                     </AuthDiv>
                     
                 </AuthForm>
+            </Back>
             </>
             :
-            <button onClick={logoutHandler}> Logout </button>
+            <Back>
+                <button style={{width:"150px", height:'35px', padding: "5px 7px", background:'pink', position:'relative',left:'50%',top:'50%',transform:'translate(-50%,-50%'}} onClick={logoutHandler}> Logout </button>
+            </Back>
             }
         </>
     )

@@ -222,11 +222,11 @@ const ConfirmSet = (defaultValue) => {
                         <div style={{display:'flex', width:'100%'}} >
                             <div style={{width:'50%'}} >
                                 <H3 style={{display:'inline'}}>지하철</H3>
-                                <InputP style={{width:'70%'}}  value={values.station} type="text" name="subway" />
+                                <InputP style={{width:'50%'}}  value={values.stationKor} type="text" name="subway" />
                             </div>
                             <div style={{width:'50%'}}>
                                 <H3 style={{display:'inline'}}>지하철노선</H3>
-                                <InputP style={{width:'57.5%'}}  value={values.line} type="text" name="line" />
+                                <InputP style={{width:'50%'}}  value={values.line} type="text" name="line" />
                             </div>
                         </div>
                         <H3>연락처</H3>

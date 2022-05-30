@@ -1,4 +1,5 @@
 import DefaultHeader from './components/DefaultLayout';
+import Footer from './components/Footer';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import 'antd/dist/antd.min.css';
 import styled,{keyframes} from 'styled-components'
@@ -125,6 +126,7 @@ const App = () => {
           <Route path="/dt/admin/menu/user/setting/checkblack/:email" element={<CheckReview />} />
           <Route path="/dt/admin/menu/review/setting" element={<ReviewSetting />} />
         </Routes>
+        <Footer />
         <GlobalStyle/>
       </BrowserRouter>
     </Wrap>

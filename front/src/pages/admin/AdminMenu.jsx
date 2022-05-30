@@ -1,6 +1,7 @@
 import {Ol,AdminMenuDiv} from '../../components/styles/AdminStyles'
 import { Link } from "react-router-dom"
 import {Li} from '../../components/styles/AdminStyles'
+import { Back } from '../../components/styles/AdminStyles';
 import {useDispatch, useSelector} from 'react-redux';
 
 const AdminMenu = ()=>{
@@ -13,6 +14,7 @@ const AdminMenu = ()=>{
             stores.adminLogin.admin === some_secret_key 
             ?
                 <>  
+                <Back>
                     <AdminMenuDiv>
                         <div>
                             <h2 style={{color:'#ff45c3'}}>STORE</h2>
@@ -34,6 +36,7 @@ const AdminMenu = ()=>{
                             </Ol>
                         </div>
                     </AdminMenuDiv>
+                    </Back>
                 </>
             : 
             <> 관리자 권한으로 로그인 해주세요</>
