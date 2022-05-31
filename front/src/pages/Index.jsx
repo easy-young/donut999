@@ -101,22 +101,21 @@ const NoBox = styled.div`
     justify-content: center;
 `
 
-const Index = () => {
-    const Body = styled.body`
-        margin: 0;
-        padding: 0;
-        width:100%;
-        height:100vh;
-        background:transparent;
+const Body = styled.body`
+    margin: 0;
+    padding: 0;
+    width:100%;
+    height:100vh;
+    background:transparent;
 
-        @media (max-height: 700px) {
-            
-            width:100vw;
-            height:100vh;
+    @media (max-height: 700px) {
         
-        }
+        width:100vw;
+        height:100vh;
 
-    `
+    }
+
+`
 
 const MapBox = styled.div `
     /* 보이는 영역입니다. */
@@ -132,11 +131,11 @@ const MapBox = styled.div `
     margin-top:5vh;
     box-shadow: 0px 0px 20px 1px grey;
     @media (max-width: 600px) {
-        width:80vw;
-        height:70vh;
+    width:80vw;
+    height:70vh;
     }
 
-    `
+`
 // 부모
 
 
@@ -148,11 +147,11 @@ const RouteMap = styled.img`
     cursor:pointer;
 
     @media (max-width: 600px) {
-        width: 422%;
-        height: auto;
-    }
-    
-    ` //자식
+    width: 422%;
+    height: auto;
+}
+
+` //자식
 
 const StationBox = styled.div`
     /* 이미지 담은 박스입니다. */
@@ -160,8 +159,8 @@ const StationBox = styled.div`
     background:#ffc7dd;
     position: relative;
     @media (max-width: 600px) {
-        width: 422%;
-        height: auto;
+    width: 422%;
+    height: auto;
     }
     top:-40%;
     left:-40%;
@@ -170,19 +169,19 @@ const StationBox = styled.div`
 const twinkle = keyframes`
     transform-origin:left top;
     0% {
-        transform:rotate(0deg);
+    transform:rotate(0deg);
     }
     25%{
-        transform:rotate(15deg);
+    transform:rotate(15deg);
     }
     50%{
-        transform:rotate(30deg);
+    transform:rotate(30deg);
     }
     75%{
-        transform:rotate(15deg);
+    transform:rotate(15deg);
     }
     100% {
-        transform:rotate(0deg);
+    transform:rotate(0deg);
     }
 `
 
@@ -198,28 +197,29 @@ const Station = styled.div `
 
 
     :after {
-        content: "";
-        display: block;
-        padding-bottom: 100%;
+    content: "";
+    display: block;
+    padding-bottom: 100%;
     }
     :hover {
-        background:none;
-        background-image:url('img/choco_donut.png');
-        background-repeat: no repeat;
-        background-size: 120% 120%;
-        width:2.0%;
-        border:none;
-        border-radius:none;
-        background-position: 10% 10%;
-        animation: ${twinkle} 1.0s linear infinite;
+    background:none;
+    background-image:url('img/choco_donut.png');
+    background-repeat: no repeat;
+    background-size: 120% 120%;
+    width:2.0%;
+    border:none;
+    border-radius:none;
+    background-position: 10% 10%;
+    animation: ${twinkle} 1.0s linear infinite;
 
 
     }
 
 `
 
-
-
+const Index = () => {
+ 
+    let browserWidth = window.innerWidth
     let isdragging = null
     let originX = null
     let originY = null
@@ -227,7 +227,7 @@ const Station = styled.div `
     let originTop = null
 
     const [height, setHeight] = useState(0)
-    const [width, setWidth] = useState(0)
+    const [width, setWidth] = useState(browserWidth*1.5)
 
     const mouseDownHandler = (e) => {
         isdragging = true
@@ -302,12 +302,11 @@ const Station = styled.div `
     }
 
     useEffect(()=>{
-        console.log('바뀜')
 
         window.addEventListener('resize', handleReSize)
-        return () => {
-            window.removeEventListener('resize',handleReSize)
-        }
+        // return () => {
+        //     window.removeEventListener('resize',handleReSize)
+        // }
         
     }, [width, height])
 
@@ -337,7 +336,7 @@ const Station = styled.div `
     // const img = `http://localhost:3000/public/img/dount_store/${v.idx}` || {v.img1}
 
     return (
-        <Body>
+        <Body >
             <BrowserView>
                     <MapBox>
                         <StationBox id='img_box'style={{height, width}}>
