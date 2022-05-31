@@ -101,10 +101,6 @@ const NoBox = styled.div`
     justify-content: center;
 `
 
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/master
 const Index = () => {
     const Body = styled.body`
         margin: 0;
