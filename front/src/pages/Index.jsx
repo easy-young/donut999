@@ -818,17 +818,17 @@ const Index = () => {
                                         { store[i] &&
                                             <>
                                                 <Img
-                                                //     src={`http://localhost:3000/img/donut_store/${v.idx}_1.jpg` !== undefined
-                                                //     ?
-                                                //     `http://localhost:3000/img/donut_store/${v.idx}_1.jpg`
-                                                //     : 
-                                                //     `http://localhost:4000/public/uploads/${v.img1}`
-                                                // }
                                                 src = {
                                                     v.img1 !== null ?
                                                     `http://localhost:4000/uploads/${v.img1}`
                                                     :
-                                                    `http://localhost:3000/img/donut_store/${v.idx}_1.jpg`
+                                                    v.img2 !== null ?
+                                                    `http://localhost:4000/uploads/${v.img2}`
+                                                    :
+                                                    v.img3 !== null ?
+                                                    `http://localhost:4000/uploads/${v.img3}`
+                                                    : 
+                                                    `http://localhost:4000/uploads/defaultImage.jpg`
                                                 }
 
                                                 />

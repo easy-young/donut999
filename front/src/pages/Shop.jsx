@@ -198,6 +198,7 @@ const Review = styled.span`
 const Shop = () => {
     const dispatch = useDispatch();
     const { info, review, avg } = useSelector((state) => state.shop);
+    const { img1, img2, img3 } = useSelector((state) => state.shop.img)
 
     const stores = useSelector(state=>state)
     const email = stores.user.me.email
@@ -218,13 +219,48 @@ const Shop = () => {
                         {isMobile 
                         ? 
                         <ImgBox>  
-                            <Img src={require(`../../public/img/donut_store/${info.idx}_3.jpg`)}/>
+                            <Img 
+                            src = 
+                                {
+                                    img3 !== null ?
+                                    `http://localhost:4000/uploads/${img3}`
+                                    :
+                                    img2 !== null ?
+                                    `http://localhost:4000/uploads/${img2}`
+                                    :
+                                    img1 !== null ?
+                                    `http://localhost:4000/uploads/${img1}`
+                                    :
+                                    `http://localhost:4000/uploads/defaultImage.jpg`
+                                }
+                            />
                         </ImgBox>
                         : 
                         <ImgBox>  
-                            <Img src={require(`../../public/img/donut_store/${info.idx}_1.jpg`)}/>
-                            <Img src={require(`../../public/img/donut_store/${info.idx}_2.jpg`)}/>
-                            <Img src={require(`../../public/img/donut_store/${info.idx}_3.jpg`)}/>
+                            <Img 
+                            src = {
+                                    img1 !== 'N/A' ?
+                                    `http://localhost:4000/uploads/${img1}`
+                                    : 
+                                    `http://localhost:4000/uploads/defaultImage.jpg`
+                                }
+                            />
+                            <Img 
+                            src = {
+                                    img2 !== 'N/A' ?
+                                    `http://localhost:4000/uploads/${img2}`
+                                    : 
+                                    `http://localhost:4000/uploads/defaultImage.jpg`
+                                }
+                            />
+                            <Img 
+                            src = {
+                                    img3 !== 'N/A' ?
+                                    `http://localhost:4000/uploads/${img3}`
+                                    : 
+                                    `http://localhost:4000/uploads/defaultImage.jpg`
+                                }
+                            />
                         </ImgBox>
                         }
                         <ContentBox>
