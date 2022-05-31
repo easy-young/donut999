@@ -12,7 +12,6 @@ async function confirmStoreAPI({payload}){
             'content-type' : 'multipart/form-data'
         }
     }
-
     const idx = qwert[0]
     try{
         const result = await axios.post(`http://localhost:4000/dt/admin/menu/store/confirm/addstore/`+ idx,payload, config)
@@ -26,11 +25,8 @@ async function confirmStoreAPI({payload}){
 
 
 function* confirmStore(action){
-    // console.log('confirmSet',action.payload)
     try{
-
         const result = yield call(confirmStoreAPI,action)
-        
         yield put({
             type:admin_confirm_store_success.toString(),payload:result.data.result
         })

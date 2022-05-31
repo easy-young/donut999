@@ -169,7 +169,6 @@ const Edit = (defaultValue) => {
 
     const dispatch = useDispatch()
 
-    
     let params = useParams()
     let store_id = params.store_id;
     useEffect(()=>{
@@ -178,8 +177,6 @@ const Edit = (defaultValue) => {
     },[dispatch])
 
     const stores = useSelector(state=>state.admin.store)
-
-
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -202,8 +199,6 @@ const Edit = (defaultValue) => {
         }
        
         dispatch(admin_edit_store_request(payload))
-        
-
     }
 
     return (

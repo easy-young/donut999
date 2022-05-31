@@ -7,7 +7,7 @@ const axios = require('axios')
 const client_id = 'bcc6575307f03520e0cd6a242a769d2f' // REST API
 const host = 'https://kauth.kakao.com'
 const redirect_uri = 'http://localhost:4000/user/oauth/kakao'
-const client_secret = 'hzcDi1kFEYYxRpfvJY6bPS9HTGIGkBnA'
+const client_secret = process.env.CLIENT_SECRET
 const redirect_URI = host + `/oauth/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=code`
 const { createToken } = require('../utils/jwt.js')
 
@@ -56,12 +56,10 @@ const kauth = async(req, res) => {
     catch (e) {
         console.log(e.message)
     }
-    // res.redirect('http://localhost:3000')
+
 }
 
 const klogout = (req, res) => {
-    //res.clearCookie('dount', {path : '/'})
-    //res.send(`<script>alert('로그아웃 되었습니다.'); location.href='http://localhost:3000';</script>`)
     res.send(`<script>alert('로그아웃 되었습니다.')</script>`)
 }
 

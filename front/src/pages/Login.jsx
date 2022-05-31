@@ -9,6 +9,10 @@ const Login = () => {
         
         dispatch({type: user_logout_success.toString()})
         window.location.href='http://localhost:3000'
+<<<<<<< HEAD
+
+=======
+>>>>>>> bf44198bab1234f877c1ae23b5cf23214d340286
     }
 
     return (

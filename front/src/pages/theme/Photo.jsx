@@ -22,7 +22,18 @@ const Photo = () => {
                         return (
                             <StoreBox key={i}>
                                 <img
-                                    src={require(`../../../public/img/donut_store/${v.idx}_1.jpg`)}
+                                    src={
+                                        v.img1 !== null ?
+                                        `http://localhost:4000/uploads/${v.img1}`
+                                        :
+                                        v.img2 !== null ?
+                                        `http://localhost:4000/uploads/${v.img2}`
+                                        :
+                                        v.img3 !== null ?
+                                        `http://localhost:4000/uploads/${v.img3}`
+                                        : 
+                                        `http://localhost:4000/uploads/defaultImage.jpg`
+                                    }
                                     style={{ borderRadius: '30px' }}
                                     width={240}
                                     height={240}

@@ -170,13 +170,3 @@ const review = (state=initialState, action) => {
 }
 
 export default review;
-
-/* 
-
-insert into review (sidx, email, flavor, atmosphere, cheap, service, text, updateFlag) values(
-6, '619049@naver.com', 4, 3, 2, 1, '구멍 없는게 도넛이냐?', false );
-
-insert into review (sidx, email, flavor, atmosphere, cheap, service, text, updateFlag) values(
-6, 'loerain111@gmail.com', 4, 3, 2, 1, '구멍 없는게 도넛이냐?', false );
-
-*/

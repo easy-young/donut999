@@ -9,7 +9,6 @@ const initialState = {
         img2 : null,
         img3 : null
     }
-
 };
 
 const SHOP = {
@@ -29,7 +28,6 @@ const shop = (state = initialState, action) => {
                 ...state,
             }
         case SHOP.SUCCESS:
-            console.log(action.payload)
             return {
                 ...state,
                 info: action.payload.info,

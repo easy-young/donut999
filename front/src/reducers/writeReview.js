@@ -1,4 +1,3 @@
-// import { Action } from "history"
 import { createAction } from "redux-actions"
 
 const initialState = { 

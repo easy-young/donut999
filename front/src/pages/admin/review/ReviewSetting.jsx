@@ -15,9 +15,6 @@ const ReviewSetting = () => {
 
     const review = useSelector(state=>state.adminReview.review.result)
     const search = useSelector(state=>state.adminReview.search)
-    console.log(review, search)
-
-    console.log(review,search)
     
     const onDeleteReview = (e) => {
         e.preventDefault()

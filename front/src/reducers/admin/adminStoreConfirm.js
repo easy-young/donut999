@@ -1,6 +1,5 @@
 import { createAction } from "redux-actions";
 
-
 const initialState = {
     sort:[],
 }
@@ -24,9 +23,6 @@ const ADMIN_CONFIRM_STATE = {
 export const admin_confirm_state_request = createAction(ADMIN_CONFIRM_STATE.REQUEST) 
 export const admin_confirm_state_success = createAction(ADMIN_CONFIRM_STATE.SUCCESS)
 export const admin_confirm_state_failure = createAction(ADMIN_CONFIRM_STATE.FAILURE)
-
-
-
 
 const adminConfirm = (state=initialState,action) => {
     switch(action.type){
@@ -65,6 +61,5 @@ const adminConfirm = (state=initialState,action) => {
             return state;
     }
 }
-
 
 export default adminConfirm

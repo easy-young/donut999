@@ -1,6 +1,5 @@
 import { createAction } from "redux-actions";
 
-
 const initialState = {
     name:null,
     station:null,
@@ -28,19 +27,13 @@ export const admin_confirm_set_request = createAction(ADMIN_CONFIRM_SET.REQUEST)
 export const admin_confirm_set_success = createAction(ADMIN_CONFIRM_SET.SUCCESS)
 export const admin_confirm_set_failure = createAction(ADMIN_CONFIRM_SET.FAILURE)
 
-
-
-
-
 const confirmSet = (state=initialState,action) => {
     switch(action.type){
         case ADMIN_CONFIRM_SET.REQUEST:
-            // console.log('reducer req',action.payload)
             return {
                 ...state,
             }
         case ADMIN_CONFIRM_SET.SUCCESS:
-            // console.log('reducer suc',action.payload)
             return {
                 ...state,
                 name:action.payload[0].store,
@@ -67,6 +60,5 @@ const confirmSet = (state=initialState,action) => {
             return state;
     }
 }
-
 
 export default confirmSet

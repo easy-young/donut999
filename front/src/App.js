@@ -70,7 +70,10 @@ const App = () => {
         <DefaultHeader />
         <Index/>
         <Routes>
+<<<<<<< HEAD
+=======
           <Route path="/" index element={<Void />}/>
+>>>>>>> bf44198bab1234f877c1ae23b5cf23214d340286
           <Route path="/mypage" element={<Mypage />} />
           <Route path='/login' element={<Login />}/>
           <Route path='/write/:idx' element={<Write/>} />
