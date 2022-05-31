@@ -1,5 +1,6 @@
 import styled, { keyframes } from 'styled-components';
-import { BrowserView, MobileView } from 'react-device-detect'
+import { BrowserView, MobileView, isMobile, is } from 'react-device-detect'
+import { AutoComplete } from 'antd';
 import { useState, useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { station_exit, station_request } from '../reducers/station';
@@ -137,7 +138,7 @@ const MapBox = styled.div `
 
 const RouteMap = styled.img`
     /* 이미지 영역입니다. */
-    width:150%;
+    width:180%;
     position: absolute;
     z-index:5;
     cursor:pointer;
@@ -145,21 +146,27 @@ const RouteMap = styled.img`
     @media (max-width: 600px) {
     width: 422%;
     height: auto;
-}
+    }
+    
 
 ` //자식
 
 const StationBox = styled.div`
     /* 이미지 담은 박스입니다. */
     z-index:10;
+    width:180%;
     background:#ffc7dd;
     position: relative;
-    @media (max-width: 600px) {
-    width: 422%;
-    height: auto;
-    }
-    top:-40%;
+    top:-20%;
     left:-40%;
+    @media (max-width: 600px) {
+        width: 422%;
+        height: auto;
+        top:-50%;
+        left:-200%;
+    }
+
+
 `
 
 const twinkle = keyframes`
@@ -215,7 +222,13 @@ const Station = styled.div `
 
 const Index = () => {
  
-    let browserWidth = window.innerWidth
+    let browserWidth = null
+    if(isMobile){
+        browserWidth = window.innerWidth *4.22
+    }else {
+        browserWidth = window.innerWidth * 1.8
+    }
+        
     let isdragging = null
     let originX = null
     let originY = null
@@ -223,7 +236,8 @@ const Index = () => {
     let originTop = null
 
     const [height, setHeight] = useState(0)
-    const [width, setWidth] = useState(browserWidth*1.5)
+
+    const [width, setWidth] = useState(browserWidth)
 
     const mouseDownHandler = (e) => {
         isdragging = true
@@ -291,7 +305,7 @@ const Index = () => {
         if (window.innerWidth<600) {
             setWidth( window.innerWidth*4.22)
         } else{
-            setWidth( window.innerWidth*1.5)
+            setWidth( window.innerWidth*1.8)
         }
 
         //웹, 모바일 나누기
