@@ -63,6 +63,7 @@
 
 .ant-menu-title-content{
   color:#646464!important;
+
 }
 .ant-menu-title-content> a{
   color:#646464!important;
@@ -73,9 +74,25 @@
 } */
 
 .ant-menu-title-content:hover{
-  color:#E16A93;
+  color:#E16A93!important;
+  background:#FFF0F5;
 }
 
+.ant-menu-title-content:hover >.ant-menu-submenu-title{
+  background:#FFF0F5;
+}
+
+.ant-menu-sub{
+  background:#fcfbeb!important;
+}
+
+.ant-menu-submenu-active{
+  background:#FFF0F5;
+}
+
+.ant-menu-submenu-title:hover{
+  background:#FFF0F5!important;
+}
 
 .ant-menu-submenu:hover, .ant-menu-submenu-inline:hover {
   background: #fcfbeb;
