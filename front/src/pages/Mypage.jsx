@@ -154,9 +154,11 @@ export const ReviewOne = styled.form`
         width:100%;
         min-height:45%;
         height:auto;
+        color: #464646;
         @media (max-width: 600px){
             min-height:60%;
             height:auto;
+            font-size:0.9rem;
         }
     }
     
