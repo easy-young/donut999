@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import translate from '../../../utils/translator.js';
-// import { post } from '../../../../../back/routes/admin.js';
+
 
 const Background = styled.div`
     display: flex;
@@ -157,13 +157,11 @@ const ConfirmSet = (defaultValue) => {
     
     let params = useParams()
     let regi_id = params.register_id;
-    // console.log('id',regi_id)
     useEffect(()=>{
         dispatch(admin_confirm_set_request({payload:regi_id}))
     },[dispatch])
 
     const regi = useSelector(state=>state.confirmSet)
-    // console.log('regi',regi)
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -203,7 +201,6 @@ const ConfirmSet = (defaultValue) => {
         const data = { storename : regi.name}
         
         const result = await axios.post(`http://localhost:4000/register/request`, data)
-        // 메일 보내는 라우터 << 일단 파일 업로드 기능 구현을 위해 잠시 주석 처리
 
         alert('등록 승인 되었습니다.')
         window.location.href='http://localhost:3000/dt/admin/menu'

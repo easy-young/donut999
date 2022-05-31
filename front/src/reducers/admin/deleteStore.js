@@ -1,11 +1,9 @@
 import { createAction } from "redux-actions";
 
-
 const initialState = {
     display:true
 
 }
-
 
 const ADMIN_DELETE_STORE = {
     REQUEST:'ADMIN/DELETE_STORE_REQUEST',
@@ -16,10 +14,6 @@ const ADMIN_DELETE_STORE = {
 export const admin_delete_store_request = createAction(ADMIN_DELETE_STORE.REQUEST) 
 export const admin_delete_store_success = createAction(ADMIN_DELETE_STORE.SUCCESS)
 export const admin_delete_store_failure = createAction(ADMIN_DELETE_STORE.FAILURE)
-
-
-
-
 
 const adminDeleteStore = (state=initialState,action) => {
   
@@ -44,6 +38,5 @@ const adminDeleteStore = (state=initialState,action) => {
             return state;
     }
 }
-
 
 export default adminDeleteStore

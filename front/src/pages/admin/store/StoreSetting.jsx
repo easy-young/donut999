@@ -12,13 +12,11 @@ const StoreSetting = () => {
     useEffect(()=>{
         dispatch({type:admin_store_request.toString()})
     },[dispatch])
-    //dispatch({type:admin_store_request.toString()})
     const stores = useSelector(state=>state.admin.store)
 
     const onDelete = (e) => {
         e.preventDefault()
         const {value} = e.target.storeidx
-        console.log(value)
         dispatch(admin_delete_store_request(value))
     }
 

@@ -9,7 +9,6 @@ const option = {
 }
 
 async function createReviewAPI (action) {
-    // console.log(action.payload)
     const sidx = {
         ...action.payload
     }

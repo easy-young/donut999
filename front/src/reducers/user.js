@@ -43,7 +43,6 @@ const user = (state = initialState, action) => {
                 error: null,
             };
         case USER_LOGIN.SUCCESS:
-            console.log(action.payload)
             return {
                 ...state,
                 loading: false,
@@ -53,7 +52,6 @@ const user = (state = initialState, action) => {
                     email: action.payload.email,
                     isLogin: true,
                 },
-                // me : {nickname: null, email:''}
                 error: null,
             };
         case USER_LOGIN.FAILURE:

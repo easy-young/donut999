@@ -16,7 +16,6 @@ const CheckReview = () => {
         dispatch(admin_black_review_request(email))
     },[dispatch])
     const blackReviews = useSelector(state=>state.adminBlackReview.review)
-    console.log('blackReview',blackReviews)
     
     return(
         <> 

@@ -1,6 +1,5 @@
 import { createAction } from "redux-actions";
 
-
 const initialState = {
     display:true
 
@@ -15,7 +14,6 @@ const ADMIN_DEL_REGI = {
 export const admin_del_regi_request = createAction(ADMIN_DEL_REGI.REQUEST) 
 export const admin_del_regi_success = createAction(ADMIN_DEL_REGI.SUCCESS)
 export const admin_del_regi_failure = createAction(ADMIN_DEL_REGI.FAILURE)
-
 
 const adminDelRegi = (state=initialState,action) => {
   
@@ -38,7 +36,5 @@ const adminDelRegi = (state=initialState,action) => {
             return state;
     }
 }
-
-
 
 export default adminDelRegi

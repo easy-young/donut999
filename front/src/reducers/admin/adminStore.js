@@ -1,6 +1,5 @@
 import { createAction } from "redux-actions";
 
-
 const initialState = {
     name:null,
     station:null,
@@ -28,10 +27,6 @@ const ADMIN_STORE_EDIT = {
 export const admin_store_edit_request = createAction(ADMIN_STORE_EDIT.REQUEST) 
 export const admin_store_edit_success = createAction(ADMIN_STORE_EDIT.SUCCESS)
 export const admin_store_edit_failure = createAction(ADMIN_STORE_EDIT.FAILURE)
-
-
-
-
 
 const adminStore = (state=initialState,action) => {
     switch(action.type){
@@ -66,6 +61,5 @@ const adminStore = (state=initialState,action) => {
             return state;
     }
 }
-
 
 export default adminStore

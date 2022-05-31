@@ -1,6 +1,5 @@
 import { createAction } from "redux-actions";
 
-
 const initialState = {
    review:[],
    search:[],
@@ -36,8 +35,6 @@ const ADMIN_SEARCH = {
 export const admin_search_request = createAction(ADMIN_SEARCH.REQUEST) 
 export const admin_search_success = createAction(ADMIN_SEARCH.SUCCESS)
 export const admin_search_failure = createAction(ADMIN_SEARCH.FAILURE)
-
-
 
 const adminReview = (state=initialState,action) => {
     switch(action.type){
@@ -87,6 +84,5 @@ const adminReview = (state=initialState,action) => {
             return state;
     }
 }
-
 
 export default adminReview

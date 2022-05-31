@@ -100,10 +100,8 @@ const App = () => {
         <DefaultHeader />
         <Index/>
         <Routes>
-          {/* <Route path="/" index element={<Index />} /> */}
           <Route path="/mypage" element={<Mypage />} />
           <Route path='/login' element={<Login />}/>
-          {/* <Route path='/ttest' element= {<Ttest/>}/> */}
           <Route path='/write/:idx' element={<Write/>} />
           <Route path="/shop/:idx" element={<Shop />}/>
           <Route path="/rank" element={<Rank />} />

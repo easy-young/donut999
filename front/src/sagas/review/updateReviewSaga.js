@@ -24,7 +24,6 @@ async function updateReviewAPI (action) {
 function* updateReview(action) {
     try {
         const result = yield call(updateReviewAPI, action)
-        console.log(result)
         const result2 = {...action.payload}
         yield put({
             type:review_update_success.toString(), payload : result2

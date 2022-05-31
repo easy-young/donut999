@@ -67,7 +67,6 @@ router.post('/store/setting',async (req,res)=>{
             res.json(response)  
         }
     } 
-    
 )
 
 router.post(`/store/setting/:store_id`,async (req,res)=>{
@@ -96,7 +95,6 @@ router.post(`/store/setting/:store_id`,async (req,res)=>{
             res.json(response)  
         }
     } 
-
 )
 
 router.post(`/store/setting/update/:store_id`,async (req,res)=>{
@@ -124,7 +122,6 @@ router.post(`/store/setting/update/:store_id`,async (req,res)=>{
             res.json(response)  
         }
     } 
-
 )
 
 router.post(`/store/setting/delete/:store_id`,async (req,res)=>{
@@ -151,10 +148,7 @@ router.post(`/store/setting/delete/:store_id`,async (req,res)=>{
             res.json(response)  
         }
     } 
-
 )
-
-
 
 router.post(`/store/confirm/delregi/:regi_id`,async (req,res)=>{
     
@@ -183,59 +177,53 @@ router.post(`/store/confirm/delregi/:regi_id`,async (req,res)=>{
             res.json(response)  
         }
     } 
-
 )
 
 router.post('/store/confirm/sort',async (req,res)=>{
     
-    const prepare =[req.body.payload]
-    if(prepare == '전체'){
-        const sql1 = `select *,DATE_FORMAT(time,'%Y-%m-%d') AS stamp from register`
-        try {
-            const [result] = await pool.query(sql1)
-            const response = {
-                result
-            }
-            res.json(response)
-           
-        }
-    
-        catch (e) {
-            console.log(e.message)
-            const response = {
-                errormsg: e.message,
-                errno: 1
-            }
+        const prepare =[req.body.payload]
+        if(prepare == '전체'){
+            const sql1 = `select *,DATE_FORMAT(time,'%Y-%m-%d') AS stamp from register`
+            try {
+                const [result] = await pool.query(sql1)
+                const response = {
+                    result
+                }
+                res.json(response)
             
-            res.json(response)  
-        }
-    } else{
-        const sql = `select *,DATE_FORMAT(time,'%Y-%m-%d') AS stamp from register where state='${prepare}'`
-        try {
-            const [result] = await pool.query(sql)
-            const response = {
-                result
             }
-            res.json(response)
-           
-        }
-    
-        catch (e) {
-            console.log(e.message)
-            const response = {
-                errormsg: e.message,
-                errno: 1
+        
+            catch (e) {
+                console.log(e.message)
+                const response = {
+                    errormsg: e.message,
+                    errno: 1
+                }
+                
+                res.json(response)  
             }
+        } else{
+            const sql = `select *,DATE_FORMAT(time,'%Y-%m-%d') AS stamp from register where state='${prepare}'`
+            try {
+                const [result] = await pool.query(sql)
+                const response = {
+                    result
+                }
+                res.json(response)
             
-            res.json(response)  
-        }
-    }
-    
-
-
-    
-} 
-
+            }
+        
+            catch (e) {
+                console.log(e.message)
+                const response = {
+                    errormsg: e.message,
+                    errno: 1
+                }
+                
+                res.json(response)  
+            }
+        }  
+    } 
 )
 
 
@@ -278,11 +266,10 @@ const addstore = async (req, res) => {
             image.push(img.filename)
         }
         catch (e) {
-            image.push(null)
+            image.push('N/A')
         }
     }
-    console.log(image)
-    
+ 
     const { name, station, line, address, parking , protein, photo, special,operhour , website , menu , beverage , tel , intro  } = req.body
     const stationEng = translate(station)
     const prepare = [ name, station, stationEng, line, address, parking , operhour , website , menu , beverage , 
@@ -297,7 +284,6 @@ const addstore = async (req, res) => {
     if ( name == undefined ) { return }
     try {
         const [result2] = await pool.execute(sql2)
-        console.log(prepare)
         const [result] = await pool.execute(sql,prepare)
 
         const response = {
@@ -344,7 +330,6 @@ router.post('/user/setting',async (req,res)=>{
 } 
 
 )
-
 
 router.post('/user/setting/addblack',async (req,res)=>{
     const sql = `insert into black (email) values (?)`
@@ -419,17 +404,14 @@ router.post('/user/setting/checkblack/:email',async (req,res)=>{
         const response = {
             errormsg: e.message,
             errno: 1
-        }
-        
+        }    
         res.json(response)  
     }
 } 
-
 )
 
 router.post('/review/setting',async (req,res)=>{
     const sql = `SELECT *, DATE_FORMAT(date,'%Y-%m-%d %h:%i:%s') AS stamp FROM review ORDER BY idx ASC`
-
     try {
         const [result] = await pool.execute(sql)
   
