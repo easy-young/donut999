@@ -209,6 +209,22 @@ const Shop = () => {
         dispatch(shop_request(idx));
     }, [dispatch]);
 
+    //이름 바꿔주는 함수
+    let maskingName = function(strName) {
+        if (strName.length > 2) {
+            let originName = strName.split('');
+            originName.forEach(function(name, i) {
+            if (i === 0 || i === originName.length - 1) return;
+            originName[i] = '*';
+            });
+            let joinName = originName.join();
+            return joinName.replace(/,/g, '');
+        } else {
+            let pattern = /.$/; // 정규식
+            return strName.replace(pattern, '*');
+        }
+    };
+
     return (
         <Background>
             <Container>
@@ -334,7 +350,7 @@ const Shop = () => {
                     
                                                 <ReviewDiv>
                                                     <ReviewOne>
-
+                                                        <h5> 👥 {maskingName(v.email.substring(0,v.email.indexOf("@", 0)))}</h5>
                                                         <div class="review_box">
                                                             <li class="star_box"> 맛 : {
                                                                 v.flavor === 1 ? <StarSpan>⭐</StarSpan> : v.flavor === 2 ? <StarSpan>⭐⭐</StarSpan> 
