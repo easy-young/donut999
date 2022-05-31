@@ -1,7 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-import { BrowserView, MobileView, isMobile } from 'react-device-detect'
-import { AutoComplete } from 'antd';
-// import MapImg from '../../public/img/route_map.png'
+import { BrowserView, MobileView } from 'react-device-detect'
 import { useState, useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { station_exit, station_request } from '../reducers/station';
@@ -300,12 +298,7 @@ const Index = () => {
     }
 
     useEffect(()=>{
-
         window.addEventListener('resize', handleReSize)
-        // return () => {
-        //     window.removeEventListener('resize',handleReSize)
-        // }
-        
     }, [width, height])
 
     const { name, store, no } = useSelector((state) => state.station);
@@ -331,243 +324,241 @@ const Index = () => {
         dispatch({type: station_exit.toString()});
     };
 
-    // const img = `http://localhost:3000/public/img/dount_store/${v.idx}` || {v.img1}
-
     return (
         <Body >
             <BrowserView>
-                    <MapBox>
-                        <StationBox id='img_box'style={{height, width}}>
-                            <RouteMap alt="route_map" src="img/route_map_2.png" id="map_img" ref={imgRef}
-                            style={{width}}
-                                onLoad={ handleReSize }
-                                onMouseDown={mouseDownHandler} onMouseMove={mouseMoveHandler}
-                                onMouseUp={mouseUpHandler}>
-                            </RouteMap>
-                            {/* 경의-중앙선 */}
-                            {/* 회기 */}
-                            <Station style={{top:"29.5%", left:"71.8%"}} id="Hoegi"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station>
-                            {/* 용산 */}
-                            <Station style={{top:"55%", left:"44.3%"}} id="Yongsan"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station>
-                            {/* 효창공원앞 */}
-                            <Station style={{top:"48.6%", left:"41.7%"}} id="Hyochanggongwonap"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station>
-                            {/* 공덕 */}
-                            <Station style={{top:"45.8%", left:"40.4%"}} id="Gongdeok"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station>
-                            {/* 홍대입구 */}
-                            <Station style={{top:"39%", left:"32.7%"}} id="Hongdaeipgu"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station>
-                            {/* 가좌 */}
-                            <Station style={{top:"28.5%", left:"31.8%"}} id="Gajwa"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station>                            
-                            {/* 수색 */}
-                            <Station style={{top:"25.5%", left:"26%"}} id="Susaek"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station>
-                            {/* 디지털미디어시티 */}
-                            <Station style={{top:"28.3%", left:"27.8%"}} id="DMC"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station>
-                            {/* 1호선 */}
-                            {/* 종로3가 */}
-                            <Station style={{top:"29.2%", left:"47.9%"}} id="Jongno3ga"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station>     
-                            {/* 종각 */}
-                            <Station style={{top:"30.5%", left:"45.2%"}} id="Jonggak"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station>    
-                            {/* 가산디지털단지 */}
-                            <Station style={{top:"71.3%", left:"28.7%"}} id="Gasan"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station>      
-                            {/* 2호선 */}
-                            {/* 뚝섬 */}
-                            <Station style={{top:"40.9%", left:"68.3%"}} id="Ttukseom"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station>  
-                            {/* 성수 */}
-                            <Station style={{top:"44%", left:"68.5%"}} id="Seongsu"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station>        
-                            {/* 건대 입구 */}
-                            <Station style={{top:"48.3%", left:"68.5%"}} id="Geondaeipgu"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station>         
-                            {/* 구로 디지털 단지 */}
-                            <Station style={{top:"74.6%", left:"33.4%"}} id="Gurodigital"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station>        
-                            {/* 신림 */}
-                            <Station style={{top:"77.2%", left:"38.8%"}} id="Sillim"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station>       
-                            {/* 이대 */}
-                            <Station style={{top:"37%", left:"34%"}} id="Idae"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station>     
-                            {/* 합정 */}
-                            <Station style={{top:"48.6%", left:"31.6%"}} id="Hapjeong"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station>       
-                            {/* 상왕십리 */}
-                            <Station style={{top:"35%", left:"60.4%"}} id="Sangwangsimni"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station>        
-                            {/* 양천구청 */}
-                            <Station style={{top:"63.9%", left:"25.6%"}} id="Yangcheongucheong"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station>   
-                            {/* 신정네거리 */}
-                            <Station style={{top:"63.5%", left:"22%"}} id="Sinjeongnegeori"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station>           
-                            {/* 까치산 */}
-                            <Station style={{top:"59.2%", left:"20%"}} id="Kkachisan"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station>    
-                            {/* 3호선 */}
-                            {/* 경복궁 */}
-                            <Station style={{top:"18.6%", left:"48.1%"}} id="Gyeongbokgung"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station>   
-                            {/* 안국 */}
-                            <Station style={{top:"23.6%", left:"48.1%"}} id="Anguk"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station>                               
-                            {/* 금호 */}
-                            <Station style={{top:"49%", left:"55.9%"}} id="Geumho"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station>    
-                            {/* 압구정 */}
-                            <Station style={{top:"59.3%", left:"56%"}} id="Apgujeong"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station>       
-                            {/* 신사 */}
-                            <Station style={{top:"62.1%", left:"56%"}} id="Sinsa"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station>       
-                            {/* 고속터미널 */}
-                            <Station style={{top:"68.1%", left:"56%"}} id="Gosokterminal"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station>    
-                            {/* 4호선 */}                           
-                            {/* 쌍문 */}
-                            <Station style={{top:"14.2%", left:"73.5%"}} id="Ssangmun"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station> 
-                            {/* 한성대입구 */}
-                            <Station style={{top:"18.8%", left:"52.1%"}} id="HansungUniv"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station>    
-                            {/* 회현 */}
-                            <Station style={{top:"41.1%", left:"45.6%"}} id="Hoehyeon"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station>  
-                            {/* 5호선 */}  
-                            {/* 마장 */}
-                            <Station style={{top:"35.8%", left:"67.9%"}} id="Majang"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station>  
-                            {/* 마포 */}
-                            <Station style={{top:"48.6%", left:"40.4%"}} id="Mapo"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station> 
-                            {/* 영등포 시장 */}
-                            <Station style={{top:"61.7%", left:"35%"}} id="Yeongdeungpo"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station>  
-                            {/* 발산 */}
-                            <Station style={{top:"47.4%", left:"14.2%"}} id="Balsan"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station>           
-                            {/* 마곡 */}
-                            <Station style={{top:"41.4%", left:"14.2%"}} id="Magok"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station>   
-                            {/* 6호선 */}
-                            { /* 마포구청 */}
-                            <Station style={{top:"41%", left:"27.8%"}} id="Mapogucheong"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station>      
-                            { /* 망원 */}
-                            <Station style={{top:"46.1%", left:"28%"}} id="Mangwon"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station>     
-                            {/* 상수 */}
-                            <Station style={{top:"48.6%", left:"34%"}} id="Sangsu"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station>  
-                            {/* 녹사평 */}
-                            <Station style={{top:"48.6%", left:"50.2%"}} id="Noksapyeong"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station>     
-                            {/* 이태원 */}
-                            <Station style={{top:"48.6%", left:"52%"}} id="Itaewon"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station>    
-                            {/* 한강진 */}
-                            <Station style={{top:"48.6%", left:"53.8%"}} id="Hangangjin"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station>     
-                            {/* 창신 */}
-                            <Station style={{top:"24.5%", left:"56.3%"}} id="Changsin"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station>    
-                            {/* 7호선 */}   
-                            {/* 어린이대공원 */}
-                            <Station style={{top:"44.1%", left:"71.3%"}} id="ChildrenPark"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station>   
-                            {/* 용마산 */}
-                            <Station style={{top:"35.8%", left:"76.6%"}} id="Yongmasan"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station>  
-                            {/* 중화 */}
-                            <Station style={{top:"27.1%", left:"82%"}} id="Junghwa"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station>          
-                           {/* 공릉 */}
-                           <Station style={{top:"19.5%", left:"82.35%"}} id="Gongneung"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station>     
-                           {/* 8호선 */}  
-                            {/* 석촌 */}
-                            <Station style={{top:"71.2%", left:"72.1%"}} id="Seokchon"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station>      
-                            {/* 송파 */}
-                            <Station style={{top:"71.2%", left:"76.9%"}} id="Songpa"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station>            
-                            {/* 남위례 */}
-                            <Station style={{top:"85.2%", left:"80.8%"}} id="Namwirye"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station>        
-                            {/* 9호선 */}
-                            {/* 삼성중앙 */}
-                            <Station style={{top:"71.2%", left:"65.3%"}} id="Samseongjungang"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station>          
-                            {/* 송파나루 */}
-                            <Station style={{top:"68.5%", left:"77.2%"}} id="Songpanaru"
-                                onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
-                            </Station>                                                   
-                        </StationBox>
-                    </MapBox>
+                <MapBox>
+                    <StationBox id='img_box'style={{height, width}}>
+                        <RouteMap alt="route_map" src="img/route_map_2.png" id="map_img" ref={imgRef}
+                        style={{width}}
+                            onLoad={ handleReSize }
+                            onMouseDown={mouseDownHandler} onMouseMove={mouseMoveHandler}
+                            onMouseUp={mouseUpHandler}>
+                        </RouteMap>
+                        {/* 경의-중앙선 */}
+                        {/* 회기 */}
+                        <Station style={{top:"29.5%", left:"71.8%"}} id="Hoegi"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station>
+                        {/* 용산 */}
+                        <Station style={{top:"55%", left:"44.3%"}} id="Yongsan"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station>
+                        {/* 효창공원앞 */}
+                        <Station style={{top:"48.6%", left:"41.7%"}} id="Hyochanggongwonap"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station>
+                        {/* 공덕 */}
+                        <Station style={{top:"45.8%", left:"40.4%"}} id="Gongdeok"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station>
+                        {/* 홍대입구 */}
+                        <Station style={{top:"39%", left:"32.7%"}} id="Hongdaeipgu"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station>
+                        {/* 가좌 */}
+                        <Station style={{top:"28.5%", left:"31.8%"}} id="Gajwa"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station>                            
+                        {/* 수색 */}
+                        <Station style={{top:"25.5%", left:"26%"}} id="Susaek"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station>
+                        {/* 디지털미디어시티 */}
+                        <Station style={{top:"28.3%", left:"27.8%"}} id="DMC"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station>
+                        {/* 1호선 */}
+                        {/* 종로3가 */}
+                        <Station style={{top:"29.2%", left:"47.9%"}} id="Jongno3ga"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station>     
+                        {/* 종각 */}
+                        <Station style={{top:"30.5%", left:"45.2%"}} id="Jonggak"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station>    
+                        {/* 가산디지털단지 */}
+                        <Station style={{top:"71.3%", left:"28.7%"}} id="Gasan"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station>      
+                        {/* 2호선 */}
+                        {/* 뚝섬 */}
+                        <Station style={{top:"40.9%", left:"68.3%"}} id="Ttukseom"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station>  
+                        {/* 성수 */}
+                        <Station style={{top:"44%", left:"68.5%"}} id="Seongsu"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station>        
+                        {/* 건대 입구 */}
+                        <Station style={{top:"48.3%", left:"68.5%"}} id="Geondaeipgu"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station>         
+                        {/* 구로 디지털 단지 */}
+                        <Station style={{top:"74.6%", left:"33.4%"}} id="Gurodigital"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station>        
+                        {/* 신림 */}
+                        <Station style={{top:"77.2%", left:"38.8%"}} id="Sillim"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station>       
+                        {/* 이대 */}
+                        <Station style={{top:"37%", left:"34%"}} id="Idae"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station>     
+                        {/* 합정 */}
+                        <Station style={{top:"48.6%", left:"31.6%"}} id="Hapjeong"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station>       
+                        {/* 상왕십리 */}
+                        <Station style={{top:"35%", left:"60.4%"}} id="Sangwangsimni"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station>        
+                        {/* 양천구청 */}
+                        <Station style={{top:"63.9%", left:"25.6%"}} id="Yangcheongucheong"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station>   
+                        {/* 신정네거리 */}
+                        <Station style={{top:"63.5%", left:"22%"}} id="Sinjeongnegeori"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station>           
+                        {/* 까치산 */}
+                        <Station style={{top:"59.2%", left:"20%"}} id="Kkachisan"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station>    
+                        {/* 3호선 */}
+                        {/* 경복궁 */}
+                        <Station style={{top:"18.6%", left:"48.1%"}} id="Gyeongbokgung"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station>   
+                        {/* 안국 */}
+                        <Station style={{top:"23.6%", left:"48.1%"}} id="Anguk"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station>                               
+                        {/* 금호 */}
+                        <Station style={{top:"49%", left:"55.9%"}} id="Geumho"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station>    
+                        {/* 압구정 */}
+                        <Station style={{top:"59.3%", left:"56%"}} id="Apgujeong"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station>       
+                        {/* 신사 */}
+                        <Station style={{top:"62.1%", left:"56%"}} id="Sinsa"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station>       
+                        {/* 고속터미널 */}
+                        <Station style={{top:"68.1%", left:"56%"}} id="Gosokterminal"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station>    
+                        {/* 4호선 */}                           
+                        {/* 쌍문 */}
+                        <Station style={{top:"14.2%", left:"73.5%"}} id="Ssangmun"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station> 
+                        {/* 한성대입구 */}
+                        <Station style={{top:"18.8%", left:"52.1%"}} id="HansungUniv"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station>    
+                        {/* 회현 */}
+                        <Station style={{top:"41.1%", left:"45.6%"}} id="Hoehyeon"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station>  
+                        {/* 5호선 */}  
+                        {/* 마장 */}
+                        <Station style={{top:"35.8%", left:"67.9%"}} id="Majang"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station>  
+                        {/* 마포 */}
+                        <Station style={{top:"48.6%", left:"40.4%"}} id="Mapo"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station> 
+                        {/* 영등포 시장 */}
+                        <Station style={{top:"61.7%", left:"35%"}} id="Yeongdeungpo"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station>  
+                        {/* 발산 */}
+                        <Station style={{top:"47.4%", left:"14.2%"}} id="Balsan"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station>           
+                        {/* 마곡 */}
+                        <Station style={{top:"41.4%", left:"14.2%"}} id="Magok"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station>   
+                        {/* 6호선 */}
+                        { /* 마포구청 */}
+                        <Station style={{top:"41%", left:"27.8%"}} id="Mapogucheong"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station>      
+                        { /* 망원 */}
+                        <Station style={{top:"46.1%", left:"28%"}} id="Mangwon"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station>     
+                        {/* 상수 */}
+                        <Station style={{top:"48.6%", left:"34%"}} id="Sangsu"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station>  
+                        {/* 녹사평 */}
+                        <Station style={{top:"48.6%", left:"50.2%"}} id="Noksapyeong"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station>     
+                        {/* 이태원 */}
+                        <Station style={{top:"48.6%", left:"52%"}} id="Itaewon"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station>    
+                        {/* 한강진 */}
+                        <Station style={{top:"48.6%", left:"53.8%"}} id="Hangangjin"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station>     
+                        {/* 창신 */}
+                        <Station style={{top:"24.5%", left:"56.3%"}} id="Changsin"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station>    
+                        {/* 7호선 */}   
+                        {/* 어린이대공원 */}
+                        <Station style={{top:"44.1%", left:"71.3%"}} id="ChildrenPark"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station>   
+                        {/* 용마산 */}
+                        <Station style={{top:"35.8%", left:"76.6%"}} id="Yongmasan"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station>  
+                        {/* 중화 */}
+                        <Station style={{top:"27.1%", left:"82%"}} id="Junghwa"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station>          
+                        {/* 공릉 */}
+                        <Station style={{top:"19.5%", left:"82.35%"}} id="Gongneung"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station>     
+                        {/* 8호선 */}  
+                        {/* 석촌 */}
+                        <Station style={{top:"71.2%", left:"72.1%"}} id="Seokchon"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station>      
+                        {/* 송파 */}
+                        <Station style={{top:"71.2%", left:"76.9%"}} id="Songpa"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station>            
+                        {/* 남위례 */}
+                        <Station style={{top:"85.2%", left:"80.8%"}} id="Namwirye"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station>        
+                        {/* 9호선 */}
+                        {/* 삼성중앙 */}
+                        <Station style={{top:"71.2%", left:"65.3%"}} id="Samseongjungang"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station>          
+                        {/* 송파나루 */}
+                        <Station style={{top:"68.5%", left:"77.2%"}} id="Songpanaru"
+                            onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
+                        </Station>                                                   
+                    </StationBox>
+                </MapBox>
             </BrowserView>
             <MobileView>
                 <MapBox>
-                    <StationBox id='img_box'style={{height, width}}>
+                    <StationBox id='img_box' style={{height, width}}>
                         <RouteMap alt="route_map" src="img/route_map_2.png" id="map_img" ref={imgRef}
                         style={{width}}
                             onLoad={ handleReSize }
@@ -794,19 +785,13 @@ const Index = () => {
                             onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
                         </Station>                                                   
                     </StationBox>
-                    {/* <RouteMap
-                        onTouchStart={touchStartHandler}
-                        onTouchMove={touchMoveHandler}
-                        onTouchEnd={touchEndHandler}>
-
-                    </RouteMap> */}
                 </MapBox>
             </MobileView>
             {
                 name &&
                 <Background>
                     <Container>
-                        <div style={{display:'flex',justifyContent:'space-between',width:'100%',padding:'2%'}}>
+                        <div style={{ display:'flex', justifyContent:'space-between', width:'100%', padding:'2%'}}>
                             <StationName>{ store.length > 0 && "🚂" + " "+name+"역" }</StationName>
                             <CloseBtn onClick={Close}>X</CloseBtn>
                         </div>
@@ -846,7 +831,6 @@ const Index = () => {
                                                     </StoreAddress>
                                                     <StoreScore>🌟: {v.average === null ? '리뷰 없음' : v.average}</StoreScore>
                                                 </div>
-
                                             </>
                                         }
                                     </StoreBox>
