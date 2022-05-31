@@ -242,6 +242,25 @@ const StyledLink2 = styled(Link)`
     }
 `;
 
+const ImgBox = styled.div`
+    width:10%;
+    position: relative;
+    @media ( max-width: 767px ) {
+        width:25%;
+    }
+    @media ( max-width: 1023px ) {
+        width:22%;
+    }
+
+    &:after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+
+    }
+
+
+`
 
 
 const Rank = () => {
@@ -342,25 +361,24 @@ const Rank = () => {
                             topFive && topFive.map((v, i) => 
                             (
                                 <SmallDiv key={i}>
-                                    <span>
+                                    <ImgBox>
                                         {isMobile ?
                                             <img 
                                                 src={require(`../../public/img/donut_store/${v.idx}_3.jpg`)}
                                                 style={{ borderRadius: '6px' }}
-                                                width={70}
-                                                height={'100%'}
+                                                width={"100%"}
+                                                height={'100%'} position={"absolute"}
                                                 alt=''
                                             /> : 
                                             <img 
                                                 src={require(`../../public/img/donut_store/${v.idx}_3.jpg`)}
-                                                style={{ borderRadius: '6px' }}
-                                                width={80}
+                                                style={{ borderRadius: '6px' }} position={"absolute"}
+                                                width={"100%"}
                                                 height={'100%'}
                                                 alt=''
                                             />
                                         }
-
-                                    </span>
+                                    </ImgBox>
                                     <div className="ranking_txt" style={{ marginLeft: '20px'}}>
                                         <div className="rank_name">
                                             <div>
