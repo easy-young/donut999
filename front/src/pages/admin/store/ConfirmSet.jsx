@@ -139,6 +139,8 @@ const ConfirmSet = (defaultValue) => {
 
     const dispatch = useDispatch()
     const [values, setValues] = useState(defaultValue)
+    const stores = useSelector((state) => (state))
+    const email = stores.confirmSet.user.email
 
     const handleClickRadioButton = (e) => {
         setValues(e.target.value)
@@ -192,7 +194,7 @@ const ConfirmSet = (defaultValue) => {
 
         dispatch(admin_confirm_store_request(formData))
 
-        const data = { storename : regi.name}
+        const data = { storename : regi.name, email: email }
         
         const result = await axios.post(`http://localhost:4000/register/request`, data)
 
