@@ -326,8 +326,6 @@ const Index = () => {
         
     }, [width, height])
 
-    const img_box = document.querySelector('#img_box')
-
     const { name, store, no } = useSelector((state) => state.station);
     const clickStation = (e) => {
         dispatch(station_request(e.target.id));
