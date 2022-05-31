@@ -1,8 +1,13 @@
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { user_login_success } from './reducers/user';
+import styled, { keyframes } from 'styled-components';
+import 'antd/dist/antd.min.css';
+
 import DefaultHeader from './components/DefaultLayout';
 import Footer from './components/Footer';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import 'antd/dist/antd.min.css';
-import styled,{keyframes} from 'styled-components'
+import Void from './components/Void';
 
 import Fork from './style/mouse';
 
@@ -29,46 +34,13 @@ import ConfirmSet from './pages/admin/store/ConfirmSet';
 
 import Join from './pages/register/Join.jsx';
 
-import { useEffect } from 'react'
-import {useDispatch, useSelector} from 'react-redux';
-import { user_login_failure, user_login_request, user_login_success, 
-  user_logout_request, user_logout_success } from './reducers/user';
-import { Link } from "react-router-dom";
-
 import Write from './pages/Write.jsx'
 import GlobalStyle from '../src/style/global'
 
 const snow = keyframes`
-
-    0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
-
-    100% {background-position: 500px 1000px, 300px 1000px, 400px 400px, 300px 300px;}
-    
-
-    /* -webkit-background-position{
-        0% {background-position: 0px 0px;}
-
-        100% {background-position: 500px 1000px;}
-    }
-
-    -moz-background-position{
-        0% {background-position: 0px 0px;}
-
-        100% {background-position: 500px 1000px;}
-    }
-
-    -o-background-position{
-        0% {background-position: 0px 0px;}
-
-        100% {background-position: 500px 1000px;}
-    }
-
-    -ms-background-position{
-        0% {background-position: 0px 0px;}
-
-        100% {background-position: 500px 1000px;}
-    } */
-`
+  0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+  100% {background-position: 500px 1000px, 300px 1000px, 400px 400px, 300px 300px;}
+`;
 
 const Wrap = styled.div`
   width:100%;
@@ -80,19 +52,17 @@ const Wrap = styled.div`
   background-repeat: no repeat;
   background-size: 950px;
   animation: ${snow} 30s linear infinite;
-
-`
+`;
 
 const App = () => {
-  const dispatch = useDispatch()
-  const stores = useSelector(state => state)
+  const dispatch = useDispatch();
   useEffect(() => {
-    const query = document.location.href
-    if(query.split('?')[1]) {
-        const query2 = query.split('?')[1].split('&').map(v => v.split('=')[1])
-        dispatch({type : user_login_success.toString(), payload: {nickname: query2[0], email:query2[1]}})
+    const query = document.location.href;
+    if (query.split('?')[1]) {
+      const query2 = query.split('?')[1].split('&').map(v => v.split('=')[1]);
+      dispatch({type : user_login_success.toString(), payload: {nickname: query2[0], email:query2[1]}});
     }
-  },[])
+  }, []);
   return (
     <Wrap>
       <Fork/>
@@ -100,10 +70,9 @@ const App = () => {
         <DefaultHeader />
         <Index/>
         <Routes>
-          {/* <Route path="/" index element={<Index />} /> */}
+          <Route path="/" index element={<Void />}/>
           <Route path="/mypage" element={<Mypage />} />
           <Route path='/login' element={<Login />}/>
-          {/* <Route path='/ttest' element= {<Ttest/>}/> */}
           <Route path='/write/:idx' element={<Write/>} />
           <Route path="/shop/:idx" element={<Shop />}/>
           <Route path="/rank" element={<Rank />} />

@@ -23,6 +23,7 @@ const StyledSider = styled(Sider)`
     top: 0px;
     right: 0px;
     border-left: solid 3px yellow;
+    background-color: #FFFCDD;
 `;
 
 const StyledMenu = styled(Menu)`
@@ -94,11 +95,11 @@ const DefaultHeader = () => {
     };
 
     const items = [
-        { label: <Link to="/mypage">슿 마이 페이지</Link>, key: 'item-1' },
+        { label: <Link to="/mypage"> 슿 마이 페이지</Link>, key: 'item-1' },
         { 
             label: stores.user.me.email === null 
-            ? <a href="http://localhost:4000/user/klogin">쳌 로그인</a> 
-            : <span onClick={logoutHandler} >쳌 로그아웃</span>,
+            ? <a href="http://localhost:4000/user/klogin"> 쳌 로그인</a> 
+            : <span onClick={logoutHandler} > 쳌 로그아웃</span>,
             key: 'item-2' 
         },
         { label: <Link to="/rank"> 👑 랭킹</Link>, key: 'item-3' },
@@ -106,10 +107,10 @@ const DefaultHeader = () => {
             label: '슾 테마',
             key: 'submenu',
             children: [
-                { label: <Link to="/theme/protein">프로틴 도넛</Link>, key: 'submenu-item-1' },
-                { label: <Link to="/theme/photo">포토존</Link>, key: 'submenu-item-2' },
-                { label: <Link to="/theme/unique">이색 도넛</Link>, key: 'submenu-item-3' },
-                { label: <Link to="/theme/parking">주차 가능</Link>, key: 'submenu-item-4' }
+                { label: <Link to="/theme/protein" style={{ fontSize: '16px' }}>프로틴 도넛</Link>, key: 'submenu-item-1' },
+                { label: <Link to="/theme/photo" style={{ fontSize: '16px' }}>포토존</Link>, key: 'submenu-item-2' },
+                { label: <Link to="/theme/unique" style={{ fontSize: '16px' }}>이색 도넛</Link>, key: 'submenu-item-3' },
+                { label: <Link to="/theme/parking" style={{ fontSize: '16px' }}>주차 가능</Link>, key: 'submenu-item-4' }
             ],
         },
         { label: <Link to="/register/join">늇 스토어 등록 신청</Link>, key: 'item-4' }
@@ -118,7 +119,7 @@ const DefaultHeader = () => {
     return (
         <>
             <Header>
-                <Link to="/"><img  width={180} height={130} src="http://localhost:3000/img/logo1.png"></img></Link>
+                <Link to="/"><img width={180} height={130} src="http://localhost:3000/img/logo1.png"></img></Link>
                 <Img onClick={onShow} src="http://localhost:3000/img/donut_set.png" width={100} height={80} alt=''
                 onMouseOver={menuMouseOver} onMouseOut={menuMouseOut}/>
             </Header>
@@ -127,39 +128,13 @@ const DefaultHeader = () => {
                 <Layout>
                     <StyledSider width={300} collapsedWidth={500}>
                         <StyledButton onClick={onHidden}>X</StyledButton>
-                        <Menu
+                        <StyledMenu
                             mode="inline"
                             defaultSelectedKeys={['1']}
                             defaultOpenKeys={['sub1']}
                             style={{ height: '100vh' }} 
                             items={items} 
-                        >
-                        {/* <StyledButton onClick={onHidden}>X</StyledButton> */}
-                        </Menu>
-                        {/* <StyledMenu
-                            mode="inline"
-                            defaultSelectedKeys={['1']}
-                            defaultOpenKeys={['sub1']}
-                            style={{ height: '100vh' }}
-                        >
-                            <StyledButton onClick={onHidden}>X</StyledButton>
-                            <StyledMenu.Item key='0'><Link to="/mypage">슿 마이 페이지</Link></StyledMenu.Item>
-                            {
-                                stores.user.me.email === null 
-                                ?
-                                <StyledMenu.Item key='1'><a href="http://localhost:4000/user/klogin">쳌 로그인</a></StyledMenu.Item>
-                                :
-                                <StyledMenu.Item key='1'><span onClick={logoutHandler} >쳌 로그아웃</span></StyledMenu.Item>
-                            }
-                            <StyledMenu.Item key='2'><Link to="/rank"> 👑 랭킹</Link></StyledMenu.Item>
-                            <StyledMenu.SubMenu key='3' title='슾 테마'>
-                                <StyledMenu.Item key='protein' style={{fontSize:"16px"}}><Link to="/theme/protein">프로틴 도넛</Link></StyledMenu.Item>
-                                <StyledMenu.Item key='photo' style={{fontSize:"16px"}}><Link to="/theme/photo">포토존</Link></StyledMenu.Item>
-                                <StyledMenu.Item key='unique' style={{fontSize:"16px"}}><Link to="/theme/unique">이색 도넛</Link></StyledMenu.Item>
-                                <StyledMenu.Item key='parking' style={{fontSize:"16px"}}><Link to="/theme/parking">주차 가능</Link></StyledMenu.Item>
-                            </StyledMenu.SubMenu>
-                            <StyledMenu.Item key='join'><Link to="/register/join">늇 스토어 등록 신청</Link></StyledMenu.Item>
-                        </StyledMenu> */}
+                        />
                     </StyledSider>
                     <SFLemon/>
                 </Layout>
