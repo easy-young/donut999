@@ -96,7 +96,7 @@ const Container = styled.div`
     }
 `
 
-export const ReviewOne = styled.ul`
+export const ReviewOne = styled.form`
     width:95%;
     /* background:red; */
     min-height:80%;
@@ -531,7 +531,7 @@ const Mypage = () => {
             <Container>
                 { stores.user.me.email !== null
                 ?
-                <div class="mypage">
+                <div className="mypage">
                     <a onClick={()=>{history(-1)}} class="close">x</a>
                     <div class="mypage_box">
                         <h1 class="welcome"> 🍩 {decodeURI(stores.user.me.nickname)} 님! 환영합니다! 🍩 </h1>
