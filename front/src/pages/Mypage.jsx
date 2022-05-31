@@ -24,10 +24,8 @@ const Container = styled.div`
     background-color: #FFFFE9;
     border-radius: 30px;
     @media (max-width: 600px) {
-            /* width: 340px; */
             width:100%;
             height:100%;
-            /* height: 200px; */
             border-radius:0px;
     }
 
@@ -54,7 +52,6 @@ const Container = styled.div`
         width:90%;
         height:90%;
         margin: 2% auto 0;
-        /* background:yellow; */
     }
     .welcome{
         margin-top: 40px;
@@ -88,7 +85,6 @@ const Container = styled.div`
         overflow:scroll;
         position:relative;
         @media (max-width: 600px) {
-            /* height:80%; */
             height:80%;
         }
     }
@@ -96,7 +92,6 @@ const Container = styled.div`
 
 export const ReviewOne = styled.form`
     width:95%;
-    /* background:red; */
     min-height:80%;
     height:auto;
     margin: 0 auto;
@@ -107,21 +102,18 @@ export const ReviewOne = styled.form`
             min-height:80%;
             height:auto;
     }
-    /* 여기가 문제임 자식 div가 늘어나도 크기가 증가하지 않음. */
     .close2{
         width:4%;
         height:100%;
         display:block;
         text-align:center;
         font-size:20px;
-        /* align-items:flex-start; */
         :hover{
             cursor: pointer;
         }
     }
 
     .review_box{
-        /* background:purple; */
         width:100%;
         height:30%;
         display:flex;
@@ -255,7 +247,7 @@ const Starlabel = styled.label`
     }
 `
 
-// 
+
 
 const StarSpan = styled.span`
     font-size: 1rem;
@@ -497,7 +489,7 @@ const Mypage = () => {
         return(
             <>
                 <span>{i !== 0 && ', '}</span>
-                <span>{v.store} ({v.state === 'TRUE' ? '승인 완료' : '대기 중'})</span>
+                <span>{v.store} ({v.state === '승인' ? '승인 완료' : '대기 중'})</span>
             </>
         )
     });

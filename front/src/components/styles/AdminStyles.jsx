@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, {keyframes} from 'styled-components'
 
 export const Back = styled.div`
     position:fixed;
@@ -12,6 +12,19 @@ export const Back = styled.div`
     overflow: scroll;
 
 `
+
+export const Background = styled.div`
+display: flex;
+position: fixed;
+z-index: 2000;
+width: 100%;
+height: 100%;
+justify-content: center;
+top: 0px;
+align-items: center;
+/* background: #FFFCDD; */
+background: rgba(0, 0, 0, 0.4);
+`;
 
 export const Li = styled.li`
     color:#ff1eb2;
@@ -109,34 +122,168 @@ export const Ol = styled.ol`
     } 
 `
 
+const motion = keyframes`
+ 
+	0% {margin-top: 0px;} 
+	100% {margin-top: 5px;}
+
+`
+
 export const Submit = styled.input`
-width: 10%;
-height: 8%;
-margin-right: 20px;
-padding: 5px 7px;
-background: #EE82EE;
-color:#fff;
-border-color:pink;
+    width: 10%;
+    height: 8%;
+    margin-right: 20px;
+    padding: 5px 7px;
+    background: #EE82EE;
+    color:#fff;
+    border-color:pink;
 
 
-cursor: pointer;
+    cursor: pointer;
+    &:hover{
+            opacity: 0.5;
+            animation: ${motion} 0.3s linear 0s infinite alternate; 
+        }
 
+        @media (max-width: 600px) {
+            width: 15%;
+            animation: ${motion} 0.3s linear 0s infinite alternate; 
+
+        }
 `;
 
 
 export const BackBtn = styled.button`
-width:20%;
-height: 8%;
-padding: 5px 7px;
-background: #fff;
+    width:20%;
+    height: 8%;
+    padding: 5px 7px;
+    background: #fff;
 
-cursor: pointer;
-&:hover{
-    opacity: 0.5;
-}
+    cursor: pointer;
+    &:hover{
+        opacity: 0.5;
+    }
 
-&>a{
-    color:#000;
-}
+    &>a{
+        color:#000;
+    }
+
+    @media (max-width: 600px) {
+            width: 30%;
+        }
 `;
 
+export const H1 = styled.h1`
+    text-align: center;
+`
+
+
+export const H3 = styled.h3`
+    margin-top: 10px;
+`;
+
+export const H3R = styled.h3`
+margin-left: 10px;
+display: inline-block;
+`;
+
+export const Form = styled.form`
+    width: 800px;
+    height: 750px;
+    padding: 20px;
+    border-radius: 40px;
+    background: white;
+    overflow: auto;
+    &::-webkit-scrollbar{
+        border-radius:100px;
+        width:10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 100px;
+        border: 6px solid rgba(0, 0, 0, 0.18);
+        border-left: 0;
+        border-right: 0;
+        background-color: pink;
+    }
+
+    @media (max-width: 600px) {
+        width: 96%;
+    }
+`;
+
+export const TextArea = styled.textarea`
+    width: 100%;
+    height: 18%;
+    border: none;
+    border: 1px solid pink;
+
+    @media (max-width: 600px) {
+        width: 28%;
+    }
+
+    @media (max-width: 300px) {
+        width: 22%;
+    }
+`;
+
+export const Input = styled.input`
+    width: 100%;
+    height: 30px;
+    border: none;
+    border-bottom: 1px solid pink;
+
+    @media (max-width: 600px) {
+        width: 28%;
+    }
+
+    @media (max-width: 300px) {
+        width: 22%;
+    }
+`;
+
+export const InputP = styled.input`
+    width: 39.7%;
+    height: 30px;
+    border: none;
+    border-bottom: 1px solid pink;
+    margin-left: 2%;
+
+    @media (max-width: 600px) {
+        width: 28%;
+    }
+
+    @media (max-width: 300px) {
+        width: 22%;
+    }
+`;
+
+
+export const InputR = styled.input`
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 20px;
+    height: 20px;
+    vertical-align: -4px;
+
+    @media (max-width: 600px) {
+        width: 10%;
+    }
+
+    @media (max-width: 300px) {
+        width: 10%;
+    }
+`;
+
+
+export const BottomDiv = styled.div`
+    display: flex;
+    justify-content: center;
+    margin-top: 26px;
+`;
+
+export const FlexDiv = styled.div`
+    display: flex;
+    width:100%;
+
+`
