@@ -99,9 +99,10 @@ router.post(`/store/setting/:store_id`,async (req,res)=>{
 
 router.post(`/store/setting/update/:store_id`,async (req,res)=>{
     const { stationKor, line, address, parking , protein, photo, special,operhour , website , menu , beverage , tel , more, intro  } = req.body
+    const stationEng = translate(stationKor)
     const params = [req.params.store_id]
-    const sql = `UPDATE shop SET  station = ?, line = ?, address = ?, parking = ? , protein = ?, photo = ?, special = ?, operhour = ?, website = ?, menu = ?, beverage = ?, tel = ?, more =? , intro = ? where idx = ? `
-    const prepare = [ stationKor, line, address, parking , protein, photo, special, operhour , website , menu , beverage , tel , more, intro,params]
+    const sql = `UPDATE shop SET  stationKor = ?, station =?, line = ?, address = ?, parking = ? , protein = ?, photo = ?, special = ?, operhour = ?, website = ?, menu = ?, beverage = ?, tel = ?, more =? , intro = ? where idx = ? `
+    const prepare = [ stationKor, stationEng, line, address, parking , protein, photo, special, operhour , website , menu , beverage , tel , more, intro,params]
 
         try {
             const [result] = await pool.query(sql,prepare)
