@@ -17,7 +17,7 @@ const mailPoster = nodeMailer.createTransport({
 const mailOpt = (user_data, title, contents) => {
     const mailOptions = {
         from: 'dountzzangzzang123@gmail.com',
-        to : 'loerain111@gmail.com',
+        to : user_data,
         subject : title,
         text : `요청하신 상점 : ${contents}가 등록되었습니다.`
     }
@@ -54,10 +54,10 @@ router.post('/join', async (req, res) => {
 });
 
 router.use('/request', async (req,res) => {
-    const { storename } = req.body
+    const { storename, email } = req.body
     // console.log(storename)
     try {
-        const mailOption = mailOpt('a','new request', storename)
+        const mailOption = mailOpt(email,'new request', storename)
         sendMail(mailOption)
         const response = {
             status: 'success'
