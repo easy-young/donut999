@@ -201,7 +201,6 @@ const Shop = () => {
     const { img1, img2, img3 } = useSelector((state) => state.shop.img)
 
     const stores = useSelector(state=>state)
-    const email = stores.user.me.email
 
     const params = useParams();
     const { idx } = params;
