@@ -15,6 +15,7 @@ const initialState = {
     beverage:null,
     tel:null,
     intro:null,
+    user : { email : null}
 }
 
 const ADMIN_CONFIRM_SET = {
@@ -50,6 +51,9 @@ const confirmSet = (state=initialState,action) => {
                 beverage:action.payload[0].beverage,
                 tel:action.payload[0].contact,
                 intro:action.payload[0].intro,
+                user : { ...state.user,
+                    email : action.payload[0].email
+                }
             }
         case ADMIN_CONFIRM_SET.FAILURE:
             return {
