@@ -101,6 +101,10 @@ const NoBox = styled.div`
     justify-content: center;
 `
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> origin/master
 const Index = () => {
     const Body = styled.body`
         margin: 0;
@@ -110,129 +114,114 @@ const Index = () => {
         background:transparent;
 
         @media (max-height: 700px) {
-            /* width: 340px; */
+            
             width:100vw;
             height:100vh;
-            /* height: 200px; */
-        }
-
-        /* -webkit-animation: snow 10s linear infinite;
-        -moz-animation: snow 10s linear infinite;
-        -ms-animation: snow 10s linear infinite; */
-    `
-
-    const MapBox = styled.div `
-        /* 보이는 영역입니다. */
-        /* width:1000px; */
-        width:80%;
-        /* height:500px; */
-        height:70vh;
-        position:relative;
-        margin:0 auto;
-        box-sizing:border-box;
-        z-index:6;
-        overflow:hidden;
-        /* top: 50%;
-        right: 10%; */
-        border-radius:30px;
-        margin-top:5vh;
-        box-shadow: 0px 0px 20px 1px grey;
-        @media (max-width: 600px) {
-            /* width: 340px; */
-            width:80vw;
-            height:70vh;
-            /* height: 200px; */
-        }
-
-        `
- // 부모
-
-
-    const RouteMap = styled.img`
-        /* 이미지 영역입니다. */
-        width:150%;
-        /* margin: 0 auto; */
-        position: absolute;
-        z-index:5;
-        cursor:pointer;
-
-        @media (max-width: 600px) {
-            width: 422%;
-            height: auto;
-        }
         
-        ` //자식
-
-    const StationBox = styled.div`
-        /* 이미지 담은 박스입니다. */
-        z-index:10;
-        background:#ffc7dd;
-        position: relative;
-        @media (max-width: 600px) {
-            width: 422%;
-            height: auto;
-        }
-        top:-40%;
-        left:-40%;
-    `
-
-    const twinkle = keyframes`
-        transform-origin:left top;
-        0% {
-            transform:rotate(0deg);
-        }
-        25%{
-            transform:rotate(15deg);
-        }
-        50%{
-            transform:rotate(30deg);
-        }
-        75%{
-            transform:rotate(15deg);
-        }
-        100% {
-            transform:rotate(0deg);
-        }
-    `
-
-    const Station = styled.div `
-        position:absolute;
-        width:1%;
-        background: #FFFCDD;
-            /* radial-gradient(
-                circle at 30% 30%,
-                #FFFCDD,
-                orange
-            ); */
-        z-index:5;
-        /* top:14.2%;
-        left:110%; */
-        border:7px double pink;
-        border-radius:50%;
-        box-sizing: border-box;
-        cursor:pointer;
-    
-    
-        :after {
-            content: "";
-            display: block;
-            padding-bottom: 100%;
-        }
-        :hover {
-            background:none;
-            background-image:url('img/choco_donut.png');
-            background-repeat: no repeat;
-            background-size: 120% 120%;
-            width:2.0%;
-            border:none;
-            border-radius:none;
-            background-position: 10% 10%;
-            animation: ${twinkle} 1.0s linear infinite;
-    
-
         }
 
     `
+
+const MapBox = styled.div `
+    /* 보이는 영역입니다. */
+
+    width:80%;
+    height:70vh;
+    position:relative;
+    margin:0 auto;
+    box-sizing:border-box;
+    z-index:6;
+    overflow:hidden;
+    border-radius:30px;
+    margin-top:5vh;
+    box-shadow: 0px 0px 20px 1px grey;
+    @media (max-width: 600px) {
+        width:80vw;
+        height:70vh;
+    }
+
+    `
+// 부모
+
+
+const RouteMap = styled.img`
+    /* 이미지 영역입니다. */
+    width:150%;
+    position: absolute;
+    z-index:5;
+    cursor:pointer;
+
+    @media (max-width: 600px) {
+        width: 422%;
+        height: auto;
+    }
+    
+    ` //자식
+
+const StationBox = styled.div`
+    /* 이미지 담은 박스입니다. */
+    z-index:10;
+    background:#ffc7dd;
+    position: relative;
+    @media (max-width: 600px) {
+        width: 422%;
+        height: auto;
+    }
+    top:-40%;
+    left:-40%;
+`
+
+const twinkle = keyframes`
+    transform-origin:left top;
+    0% {
+        transform:rotate(0deg);
+    }
+    25%{
+        transform:rotate(15deg);
+    }
+    50%{
+        transform:rotate(30deg);
+    }
+    75%{
+        transform:rotate(15deg);
+    }
+    100% {
+        transform:rotate(0deg);
+    }
+`
+
+const Station = styled.div `
+    position:absolute;
+    width:1%;
+    background: #FFFCDD;
+    z-index:5;
+    border:7px double pink;
+    border-radius:50%;
+    box-sizing: border-box;
+    cursor:pointer;
+
+
+    :after {
+        content: "";
+        display: block;
+        padding-bottom: 100%;
+    }
+    :hover {
+        background:none;
+        background-image:url('img/choco_donut.png');
+        background-repeat: no repeat;
+        background-size: 120% 120%;
+        width:2.0%;
+        border:none;
+        border-radius:none;
+        background-position: 10% 10%;
+        animation: ${twinkle} 1.0s linear infinite;
+
+
+    }
+
+`
+
 
 
     let isdragging = null
