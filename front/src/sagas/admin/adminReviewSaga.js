@@ -12,7 +12,6 @@ async function adminReviewAPI(){
 }
 
 function* adminReview(action){
-    console.log('saga req', action)
     try{
         const result = yield call(adminReviewAPI,action.payload)
         yield put({

@@ -15,7 +15,6 @@ async function editStoreAPI({payload}){
 
 
 function* editStore(action){
-    console.log('edit action',action.payload)
     try{
         const result = yield call(editStoreAPI,action)
         yield put({

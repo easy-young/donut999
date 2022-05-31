@@ -2,7 +2,7 @@ import {Ol,AdminMenuDiv} from '../../components/styles/AdminStyles'
 import { Link } from "react-router-dom"
 import {Li} from '../../components/styles/AdminStyles'
 import { Back } from '../../components/styles/AdminStyles';
-import {useDispatch, useSelector} from 'react-redux';
+import { useSelector} from 'react-redux';
 
 const AdminMenu = ()=>{
     const stores = useSelector(state => state)

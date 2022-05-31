@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux'
 const Login = () => {
     const dispatch = useDispatch()
     const logoutHandler = () => {
-        console.log(localStorage)
         localStorage.setItem('persist:user', `{\"me\":{\"email\":\"null\",\"nickname\":\"null\",\"isLogin\":false},\"error\":null,\"loading\":false}`)
         
         dispatch({type: user_logout_success.toString()})
