@@ -191,12 +191,13 @@ const twinkle = keyframes`
 const Station = styled.div `
     position:absolute;
     width:1%;
-    background: #FFFCDD;
+    background:#FAFAD2;
     z-index:5;
-    border:7px double pink;
+    border:3px double pink;
     border-radius:50%;
     box-sizing: border-box;
     cursor:pointer;
+    box-shadow: 0px 0px 20px #505050;
 
 
     :after {
@@ -214,6 +215,7 @@ const Station = styled.div `
     border-radius:none;
     background-position: 10% 10%;
     animation: ${twinkle} 1.0s linear infinite;
+    box-shadow: none;
 
 
     }
@@ -351,7 +353,7 @@ const Index = () => {
                         </RouteMap>
                         {/* 경의-중앙선 */}
                         {/* 회기 */}
-                        <Station style={{top:"29.5%", left:"71.8%"}} id="Hoegi"
+                        <Station style={{top:"29.4%", left:"71.8%"}} id="Hoegi"
                             onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
                         </Station>
                         {/* 용산 */}
@@ -375,7 +377,7 @@ const Index = () => {
                             onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
                         </Station>                            
                         {/* 수색 */}
-                        <Station style={{top:"25.5%", left:"26%"}} id="Susaek"
+                        <Station style={{top:"25.2%", left:"26%"}} id="Susaek"
                             onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
                         </Station>
                         {/* 디지털미디어시티 */}
@@ -582,7 +584,7 @@ const Index = () => {
                         </RouteMap>
                         {/* 경의-중앙선 */}
                         {/* 회기 */}
-                        <Station style={{top:"29.5%", left:"71.8%"}} id="Hoegi"
+                        <Station style={{top:"29.4%", left:"71.8%"}} id="Hoegi"
                             onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
                         </Station>
                         {/* 용산 */}
@@ -606,7 +608,7 @@ const Index = () => {
                             onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
                         </Station>                            
                         {/* 수색 */}
-                        <Station style={{top:"25.5%", left:"26%"}} id="Susaek"
+                        <Station style={{top:"25.2%", left:"26%"}} id="Susaek"
                             onClick={clickStation} onMouseOver={mouseOver} onMouseOut={mouseOut}>
                         </Station>
                         {/* 디지털미디어시티 */}
