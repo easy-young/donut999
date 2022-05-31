@@ -3,7 +3,13 @@ import { createAction } from "redux-actions";
 const initialState = {
     info: null,
     review: null,
-    avg: null
+    avg: null,
+    img : {
+        img1 : null,
+        img2 : null,
+        img3 : null
+    }
+
 };
 
 const SHOP = {
@@ -23,11 +29,18 @@ const shop = (state = initialState, action) => {
                 ...state,
             }
         case SHOP.SUCCESS:
+            console.log(action.payload)
             return {
                 ...state,
                 info: action.payload.info,
                 review: action.payload.review,
-                avg: action.payload.avg
+                avg: action.payload.avg,
+                img : {
+                    ...state.img,
+                    img1 : action.payload.info.img1,
+                    img2 : action.payload.info.img2,
+                    img3 : action.payload.info.img3
+                }
             }
         case SHOP.FAILURE:
             return {
