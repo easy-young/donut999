@@ -29,11 +29,30 @@ const StarForm = styled.form`
         height:100vh;
         margin: 0 auto;
         border-radius: 10px;
+        @media (max-width: 767px){
+            width:100%;
+        }
+
+        @media (min-width: 768px) and (max-width: 991px) {
+            width:100%;
+        }
+
 
         .store_name{
             text-align:center;
             width:50%;
             margin: 0 auto;
+            @media (max-width: 767px){
+                width:100%;
+                font-size:1.25rem;
+            }
+
+            @media (min-width: 768px) and (max-width: 991px) {
+                width:100%;
+                font-size: 2rem;
+            }
+
+
         }
 
 
@@ -43,14 +62,35 @@ const StarForm = styled.form`
             display:flex;
             flex-wrap:wrap;
             justify-content:space-around;
+            @media (max-width: 767px){
+                flex-direction:column;
+                justify-content:center;
+                flex-wrap:none;
+                height:auto;
+                margin-top:10%;
+                
+            }
+
+            @media (min-width: 768px) and (max-width: 991px) {
+
+            }
         }
 
         .star_box{
             width:50%;
-            height:50%;
             display:flex;
             justify-content:center;
             margin: 0 auto;
+            @media (max-width: 767px){
+                width:100%;
+                justify-content:space-between;
+                
+            }
+
+            @media (min-width: 768px) and (max-width: 991px) {
+
+                width:100%;
+            }
             
 
             >span{
@@ -60,6 +100,16 @@ const StarForm = styled.form`
                 justify-content:center;
                 padding-left:15px;
                 box-sizing:border-box;
+
+                @media (max-width: 767px){
+                    font-size:1rem;
+                     width:30%;
+                }
+
+                @media (min-width: 768px) and (max-width: 991px) {
+                    width:30%;
+                    font-size: 2rem;
+                }
             }
         }
 
@@ -74,6 +124,12 @@ const StarForm = styled.form`
                 width:80%;
                 height:90%;
 
+                
+            @media (min-width: 768px) and (max-width: 991px) {
+
+                margin-top:10%;
+            }
+
 
             }
 
@@ -85,9 +141,17 @@ const StarForm = styled.form`
             display:flex;
             justify-content:space-around;
             margin: 0 auto;
+            @media (max-width: 767px){
+                width:60%;
+
+            }
+
+            @media (min-width: 768px) and (max-width: 991px) {
+                width:60%;
+                height:20%;
+            }
 
             .review_btn, .back_button{
-                width:100px;
                 height: 30px;
                 width:70px;
                 margin-right:5px;
@@ -103,6 +167,19 @@ const StarForm = styled.form`
                 text-transform: inherit;
                 cursor:pointer;
                 text-align:center;
+                
+                @media (max-width: 767px){
+
+
+                }
+
+                @media (min-width: 768px) and (max-width: 991px) {
+
+                    font-size: 1.5rem;
+                    height: 50px;
+                    width:130px;
+                    align-self:center;
+                }
             }
 
             .back_button{
@@ -124,6 +201,21 @@ const MyFieldSet = styled.fieldset`
     border : 0;
     margin: 0 auto;
     align-self:center;
+    width:80%;
+    height:80%;
+
+    @media (max-width: 767px){
+
+        width:80%;
+        height:80%;
+    }
+
+    @media (min-width: 768px) and (max-width: 991px) {
+
+        width:100%;
+    }
+
+
 `
 const Radioinput = styled.input`
     display:none;
@@ -131,12 +223,21 @@ const Radioinput = styled.input`
     :checked ~ label {
         text-shadow: 0 0 0 #fff36c;
     }
+
+    @media (max-width: 767px){
+        font-size:1rem;
+    }
+
+
 `
 
 const Starlabel = styled.label`
     font-size:3em;
     color:transparent;
     text-shadow: 0 0 0 #f0f0f0;
+    @media (min-width: 768px) and (max-width: 991px) {
+        font-size:5em;
+    }
 
     :hover {
         text-shadow: 0 0 0 #fff36c;

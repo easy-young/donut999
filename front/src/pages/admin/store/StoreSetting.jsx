@@ -36,11 +36,11 @@ const StoreSetting = () => {
                     </Tr>
                 </thead>
                 <tbody>
-                    {stores && stores.map ((x) => {
-                        if(x.idx < 21){
+                    {stores && stores.map ((x,i) => {
+                        if(x.idx < stores.length/3+1){
                             return(
-                                <>
-                                    <Tr>
+                                
+                                    <Tr key={i}>
                                         <Td>{x.idx}</Td>
                                         <Td>{x.name}</Td>
                                         <Td>
@@ -53,7 +53,7 @@ const StoreSetting = () => {
                                         </Td>
                                     </Tr>
                                     
-                                </>
+                                
                             );
                         }
                     })}
@@ -68,10 +68,10 @@ const StoreSetting = () => {
                     </Tr>
                 </thead>
                 <tbody>
-                    {stores && stores.map ((x) => {
-                        if(20 < x.idx && x.idx < 41){
+                    {stores && stores.map ((x,i) => {
+                        if(stores.length/3+1 < x.idx && x.idx < stores.length*2/3+1){
                             return(
-                                <Tr>
+                                <Tr key={i}>
                                     <Td>{x.idx}</Td>
                                     <Td>{x.name}</Td>
                                     <Td>
@@ -97,10 +97,10 @@ const StoreSetting = () => {
                     </Tr>
                 </thead>
                 <tbody>
-                    {stores && stores.map ((x) => {
-                        if(40 < x.idx && x.idx < 61){
+                    {stores && stores.map ((x,i) => {
+                        if( stores.length*2/3+1 < x.idx && x.idx <= stores.length){
                             return(
-                                <Tr>
+                                <Tr key={i}>
                                     <Td>{x.idx}</Td>
                                     <Td>{x.name}</Td>
                                     <Td>
