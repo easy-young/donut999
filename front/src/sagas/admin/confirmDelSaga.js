@@ -3,12 +3,9 @@ import {takeLatest,call,put} from 'redux-saga/effects';
 import { admin_confirm_del_request, admin_confirm_del_success, admin_confirm_del_failure} from '../../reducers/admin/adminStoreConfirm';
 
 async function confirmDelAPI({payload}){
-    console.log('api',payload)
     const idx = payload.payload
-    console.log('sagaidx',idx)
     try{
         const result = await axios.post(`http://localhost:4000/dt/admin/menu/store/confirm/delregi/`+idx,payload)
-        console.log(result.data)
         return result
     }catch(e){
         console.log(e)
@@ -18,10 +15,8 @@ async function confirmDelAPI({payload}){
 
 
 function* confirmDel(action){
-    console.log('confirmSet',action.payload)
     try{
         const result = yield call(confirmDelAPI,action)
-        console.log('su',result)
         yield put({
             type:admin_confirm_del_success.toString(),payload:result.data.result2
         })

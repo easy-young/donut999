@@ -27,6 +27,8 @@ const StarForm = styled.form`
         height:100vh;
         margin: 0 auto;
         border-radius: 10px;
+
+
         @media (max-width: 767px){
             width:100%;
         }
@@ -40,14 +42,23 @@ const StarForm = styled.form`
             text-align:center;
             width:50%;
             margin: 0 auto;
+            font-size: 2rem;
+            margin-top:6%;
+
             @media (max-width: 767px){
                 width:100%;
-                font-size:1.25rem;
+                font-size:1.5rem;
+                margin-top:13%;
             }
 
             @media (min-width: 768px) and (max-width: 991px) {
                 width:100%;
                 font-size: 2rem;
+                margin-top:5%;
+            }
+
+            @media (max-height: 667px){
+                margin-top:8%;
             }
 
 
@@ -56,11 +67,14 @@ const StarForm = styled.form`
 
         .review_box{
             width:100%;
-            height:40%;
+            height:35%;
             display:flex;
             flex-wrap:wrap;
             justify-content:space-around;
+            align-items: center;
+            text-align: center;
             @media (max-width: 767px){
+                height:40%;
                 flex-direction:column;
                 justify-content:center;
                 flex-wrap:none;
@@ -69,16 +83,23 @@ const StarForm = styled.form`
                 
             }
 
-            @media (min-width: 768px) and (max-width: 991px) {
+            @media (max-height: 667px){
+                height:40%;
+                margin-top:2%;
+            }
 
+            @media (min-width: 768px) and (max-width: 991px) {
+                height:40%;
+                margin-top:2%;
             }
         }
 
         .star_box{
             width:50%;
             display:flex;
-            justify-content:center;
             margin: 0 auto;
+            justify-content: space-around;
+            align-items: center;
             @media (max-width: 767px){
                 width:100%;
                 justify-content:space-between;
@@ -91,22 +112,28 @@ const StarForm = styled.form`
             }
             
 
-            >span{
+            &>span{
                 
-                display:flex;
+                width: 30%;
+                font-size: 1.5rem;
+                text-align: center;
+                /* display:flex;
                 flex-direction:column;
                 justify-content:center;
                 padding-left:15px;
-                box-sizing:border-box;
+                box-sizing:border-box; */
 
                 @media (max-width: 767px){
-                    font-size:1rem;
+                    font-size:1.3rem;
                      width:30%;
+                     margin-left:3%;
                 }
 
                 @media (min-width: 768px) and (max-width: 991px) {
                     width:30%;
                     font-size: 2rem;
+                    margin-left:4%;
+                }
                 }
             }
         }
@@ -117,17 +144,29 @@ const StarForm = styled.form`
             height: 40%;
             display:flex;
             justify-content:center;
+            
+
+            @media (min-width: 768px) and (max-width: 991px) {
+                height: 37%;
+                
+            }
 
             #reviewText{
                 width:80%;
                 height:90%;
+                padding:1%;
+                font-size: 1rem;
 
                 
             @media (min-width: 768px) and (max-width: 991px) {
-
-                margin-top:10%;
+                font-size: 1.5rem;
+                margin-top:5%;
+                
             }
 
+            @media (max-height: 667px){
+                margin-top:0;
+            }
 
             }
 
@@ -141,20 +180,26 @@ const StarForm = styled.form`
             margin: 0 auto;
             @media (max-width: 767px){
                 width:60%;
+                margin-top: 0;
 
             }
 
             @media (min-width: 768px) and (max-width: 991px) {
                 width:60%;
                 height:20%;
+                margin-top: -4.5%;
+            } 
+
+            @media (max-height: 667px){
+                
             }
 
             .review_btn, .back_button{
-                height: 30px;
-                width:70px;
+                height: 50px;
+                width:130px;
                 margin-right:5px;
                 margin-bottom:10px;
-                font-size:14px;
+                font-size: 1.5rem;
                 line-height:7px;
                 background: none;
                 border: 1.5px solid;
@@ -167,15 +212,15 @@ const StarForm = styled.form`
                 text-align:center;
                 
                 @media (max-width: 767px){
-
+                    height: 30px;
+                    width:70px;
+                    font-size:14px;
 
                 }
 
                 @media (min-width: 768px) and (max-width: 991px) {
 
-                    font-size: 1.5rem;
-                    height: 50px;
-                    width:130px;
+                    
                     align-self:center;
                 }
             }
@@ -186,11 +231,7 @@ const StarForm = styled.form`
                 justify-content:center;
             }
         }
-    }
-
-
-
-
+    
 `
 
 const MyFieldSet = styled.fieldset`

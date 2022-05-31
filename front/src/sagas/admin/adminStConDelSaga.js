@@ -3,7 +3,6 @@ import {takeLatest,call,put} from 'redux-saga/effects';
 import { admin_del_regi_request, admin_del_regi_success, admin_del_regi_failure} from '../../reducers/admin/adminStConDel.js';
 
 async function delRegisterAPI({payload}){
-    console.log(payload)
     try{
         const result = await axios.post(`http://localhost:4000/dt/admin/menu/store/setting/delregi/`+payload,payload)
         return result

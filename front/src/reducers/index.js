@@ -2,12 +2,10 @@ import { combineReducers } from "redux";
 import display from './display.js';
 import shop from './shop.js';
 import rank from './rank.js';
-// import review from './review.js';
 
 import adminLogin from './admin/adminLogin.js'
 
 import admin from './admin/admin.js';
-import adminStore from './admin/adminStore.js';
 import adminEditStore from "./admin/editStore.js";
 import adminDeleteStore from "./admin/deleteStore.js";
 import adminBlack from './admin/adminBlack.js';
@@ -17,6 +15,7 @@ import adminConfirm from './admin/adminStoreConfirm.js';
 import adminDelRegi from './admin/adminStConDel.js';
 import confirmSet from './admin/confirmSet';
 import confirmStore from './admin/confirmStore';
+import adminStoreSet from './admin/adminStoreSet';
 
 import register from "./register.js";
 import { persistReducer } from 'redux-persist';
@@ -43,7 +42,6 @@ const rootReducer = combineReducers({
     display,
     admin,
     adminLogin,
-    adminStore,
     adminEditStore,
     adminDeleteStore,
     adminBlack,
@@ -59,7 +57,8 @@ const rootReducer = combineReducers({
     review,
     createReview,
     station,
-    theme
+    theme,
+    adminStoreSet
 });
 
 export default persistReducer(persist, rootReducer);

@@ -2,8 +2,8 @@ import { Link, useParams  } from "react-router-dom";
 import {useDispatch, useSelector} from 'react-redux';
 import {admin_black_review_request} from '../../../reducers/admin/adminBlackReview.js';
 import { useEffect } from 'react';
-import {Div, Ebutton, Dbutton, Table, Tr, Td} from '../../../components/styles/AdminTable';
-import { AuthButton } from "../../../components/styles/AdminStyles";
+import {Div, Table, Tr, Td} from '../../../components/styles/AdminTable';
+import { AuthButton,Back } from "../../../components/styles/AdminStyles";
 
 
 const CheckReview = () => {
@@ -19,7 +19,7 @@ const CheckReview = () => {
     
     return(
         <> 
-        
+        <Back>
             <h2 style={{textAlign:'center', marginTop:'4%'}}>Review</h2>
             <Div style={{marginTop:'3%'}}>
             <Table>
@@ -58,7 +58,7 @@ const CheckReview = () => {
                 </div>
             </Link>
 
-            
+        </Back>
         </>
     )
 }

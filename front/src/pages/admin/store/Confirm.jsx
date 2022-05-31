@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import {useDispatch, useSelector} from 'react-redux';
 import {admin_confirm_del_request} from '../../../reducers/admin/adminStoreConfirm.js';
 import {admin_confirm_state_request} from '../../../reducers/admin/adminStoreConfirm.js';
-import { useEffect, useState } from 'react';
+import { useEffect} from 'react';
 import {Divv, Dbutton, Table, Tr, Td} from '../../../components/styles/AdminTable';
 import { AuthButton,Back } from "../../../components/styles/AdminStyles";
 

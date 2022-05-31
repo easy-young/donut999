@@ -108,3 +108,35 @@ export const Ol = styled.ol`
         margin-top:10%;
     } 
 `
+
+export const Submit = styled.input`
+width: 10%;
+height: 8%;
+margin-right: 20px;
+padding: 5px 7px;
+background: #EE82EE;
+color:#fff;
+border-color:pink;
+
+
+cursor: pointer;
+
+`;
+
+
+export const BackBtn = styled.button`
+width:20%;
+height: 8%;
+padding: 5px 7px;
+background: #fff;
+
+cursor: pointer;
+&:hover{
+    opacity: 0.5;
+}
+
+&>a{
+    color:#000;
+}
+`;
+

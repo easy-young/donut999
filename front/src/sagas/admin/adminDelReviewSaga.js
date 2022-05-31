@@ -4,7 +4,6 @@ import { admin_del_review_request, admin_del_review_success, admin_del_review_fa
 
 async function deleteReviewAPI({payload}){
     try{
-        console.log('saga',payload)
         const result = await axios.post(`http://localhost:4000/dt/admin/menu/review/setting/deletereview/`+payload,payload)
         return result
     }catch(e){
@@ -15,10 +14,8 @@ async function deleteReviewAPI({payload}){
 
 
 function* deleteReview(action){
-   console.log('dele',action)
     try{
         const result = yield call(deleteReviewAPI,action)
-        console.log('saga1',result)
         yield put({
             type:admin_del_review_success.toString(),payload:result.data
         })

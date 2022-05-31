@@ -3,9 +3,9 @@ import {useDispatch, useSelector} from 'react-redux';
 import {admin_confirm_set_request} from '../../../reducers/admin/confirmSet.js';
 import {admin_confirm_store_request} from '../../../reducers/admin/confirmStore.js';
 import { useEffect, useState } from 'react';
+import { Submit, BackBtn} from '../../../components/styles/AdminStyles';
 import styled from 'styled-components';
 import axios from 'axios';
-import translate from '../../../utils/translator.js';
 
 
 const Background = styled.div`
@@ -121,12 +121,6 @@ const InputR = styled.input`
     }
 `;
 
-const Submit = styled.input`
-    margin-right: 20px;
-`;
-
-const Back = styled.button`
-`;
 
 const BottomDiv = styled.div`
     display: flex;
@@ -213,7 +207,7 @@ const ConfirmSet = (defaultValue) => {
             <Form onSubmit={handleSubmit} method='post' encType='multipart/form-data' >
                 <H1>{regi.name}</H1>
                 <H3>Menu-donut</H3>
-                <TextArea  defaultValue={regi.menu} value={values.menu_donut} type='textarea' style={{ marginRight: '16px' }} name='menu_donut' onChange ={handleChangeInput} />
+                <TextArea  defaultValue={regi.menu}  type='textarea' style={{ marginRight: '16px' }} name='menu_donut'  />
                 <H3>Menu-beverage</H3>
                 <Input  value={values.menu_beverage} type='textarea' style={{ marginRight: '16px' }} name='menu_beverage' onChange ={handleChangeInput}/>
                 <H3>주소</H3>
@@ -241,26 +235,26 @@ const ConfirmSet = (defaultValue) => {
                         <div>
                             <H3R>주차여부</H3R>
                             <span style={{marginLeft:'7px'}}>Y</span>
-                            <InputR type="radio" name="parking" value="Y" checked = {regi.parking === "Y" }onChange={handleClickRadioButton} />
+                            <InputR type="radio" name="parking" value="Y" defaultChecked = {regi.parking === "Y" }/>
                             <span style={{marginLeft:'7px'}}>N</span>
-                            <InputR type="radio" name="parking" value="N" checked = {regi.parking !== "Y" }onChange={handleClickRadioButton} />
+                            <InputR type="radio" name="parking" value="N" defaultChecked = {regi.parking !== "Y" } />
                             <H3R>프로틴</H3R>
                             <span style={{marginLeft:'7px'}}>Y</span>
-                            <InputR type="radio" name="protein" value="Y" checked = {regi.parking === "Y" }onChange={handleClickRadioButton} />
+                            <InputR type="radio" name="protein" value="Y" defaultChecked = {regi.protein === "Y" } />
                             <span style={{marginLeft:'7px'}}>N</span>
-                            <InputR type="radio" name="protein" value="N" checked = {regi.parking !== "Y" } onChange={handleClickRadioButton} />
+                            <InputR type="radio" name="protein" value="N" defaultChecked = {regi.protein !== "Y" }  />
                         </div>
                         <div style={{marginTop:'5%'}}>
                             <H3R>포토존</H3R>
                             <span style={{marginLeft:'7px'}}>Y</span>
-                            <InputR type="radio" name="photozone" value="Y" checked = {regi.parking === "Y" }onChange={handleClickRadioButton} />
+                            <InputR type="radio" name="photozone" value="Y" defaultChecked = {regi.photo === "Y" }/>
                             <span style={{marginLeft:'7px'}}>N</span>
-                            <InputR type="radio" name="photozone" value="N" checked = {regi.parking !== "Y" }onChange={handleClickRadioButton} />
+                            <InputR type="radio" name="photozone" value="N" defaultChecked = {regi.photo !== "Y" } />
                             <H3R>이색 도넛</H3R>
                             <span style={{marginLeft:'7px'}}>Y</span
-                            ><InputR type="radio" name="special" value="Y" checked = {regi.parking === "Y" }onChange={handleClickRadioButton} />
+                            ><InputR type="radio" name="special" value="Y" defaultChecked = {regi.special === "Y" } />
                             <span style={{marginLeft:'7px'}}>N</span>
-                            <InputR type="radio" name="special" value="N" checked = {regi.parking !== "Y" }onChange={handleClickRadioButton} />
+                            <InputR type="radio" name="special" value="N" defaultChecked = {regi.special !== "Y" }/>
                         </div>
                         <H3 style={{marginTop:'6%'}}>SNS 계정</H3>
                         <Input defaultValue={regi.website}  type='text' style={{ width: '100%' }} name='sns' />
@@ -286,7 +280,7 @@ const ConfirmSet = (defaultValue) => {
                 
                 <BottomDiv>
                     <Submit type='submit' value='등록' />
-                    <Back><Link to='/dt/admin/menu/store/confirm'>뒤로 가기</Link></Back>
+                    <BackBtn><Link to='/dt/admin/menu/store/confirm'>뒤로 가기</Link></BackBtn>
                 </BottomDiv>
             </Form >
 
