@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { rank_total_request, rank_flavor_request, rank_atmosphere_request, rank_cheap_request, rank_service_request } from "../reducers/rank";
 import { isMobile } from "react-device-detect";
-const Background = styled.body`
+
+const Background = styled.div`
     display: flex;
     position: fixed;
     z-index: 2000;
@@ -241,6 +242,25 @@ const StyledLink2 = styled(Link)`
     }
 `;
 
+const ImgBox = styled.div`
+    width:10%;
+    position: relative;
+    @media ( max-width: 767px ) {
+        width:25%;
+    }
+    @media ( max-width: 1023px ) {
+        width:22%;
+    }
+
+    &:after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+
+    }
+
+
+`
 
 
 const Rank = () => {
@@ -327,8 +347,8 @@ const Rank = () => {
     return (
         <Background>
             <Container className="classify">
-                <div class="tab_box">
-                    <Tab style={{ marginLeft: '2%', outline:"2px solid #FF6A89",color:"#464646"}} onClick={total}name="total">전체</Tab>
+                <div className="tab_box">
+                    <Tab style={{ marginLeft: '2%', outline:"2px solid #FF6A89", color:"#464646"}} onClick={total} name="total">전체</Tab>
                     <Tab onClick={flavor} style={{background:"#FFB788"}} name="favor" >맛</Tab>
                     <Tab onClick={atmosphere} style={{background:"#FFFF8C"}} name="atmosphere" >분위기</Tab>
                     <Tab onClick={cheap}  style={{background:"#98FB98"}} name="cheap" >가성비</Tab>
@@ -341,38 +361,41 @@ const Rank = () => {
                             topFive && topFive.map((v, i) => 
                             (
                                 <SmallDiv key={i}>
-                                    <span>
+                                    <ImgBox>
                                         {isMobile ?
                                             <img 
-                                                src={require(`../../public/img/donut_store/${topFive[i].idx}_3.jpg`)}
+                                                src={require(`../../public/img/donut_store/${v.idx}_3.jpg`)}
                                                 style={{ borderRadius: '6px' }}
-                                                width={70}
-                                                height={'100%'}/> : 
-                                                <img 
-                                                src={require(`../../public/img/donut_store/${topFive[i].idx}_3.jpg`)}
-                                                style={{ borderRadius: '6px' }}
-                                                width={80}
-                                                height={'100%'}/>
+                                                width={"100%"}
+                                                height={'100%'} position={"absolute"}
+                                                alt=''
+                                            /> : 
+                                            <img 
+                                                src={require(`../../public/img/donut_store/${v.idx}_3.jpg`)}
+                                                style={{ borderRadius: '6px' }} position={"absolute"}
+                                                width={"100%"}
+                                                height={'100%'}
+                                                alt=''
+                                            />
                                         }
-
-                                    </span>
-                                    <div className="ranking_txt"style={{ marginLeft: '20px'}}>
+                                    </ImgBox>
+                                    <div className="ranking_txt" style={{ marginLeft: '20px'}}>
                                         <div className="rank_name">
                                             <div>
-                                                {i==0 && <span>🥇 </span>}
-                                                {i==1 && <span>🥈 </span>}
-                                                {i==2 && <span>🥉 </span>}
-                                                {i>2 && <span>💞</span>}
-                                                {i+1}위 | <StyledLink2 to={'/shop/'+topFive[i].idx}>{topFive[i].name}</StyledLink2>
+                                                { i === 0 && <span>🥇 </span>}
+                                                { i === 1 && <span>🥈 </span>}
+                                                { i === 2 && <span>🥉 </span>}
+                                                { i > 2 && <span>💞</span>}
+                                                { i + 1 }위 | <StyledLink2 to={'/shop/'+v.idx}>{v.name}</StyledLink2>
                                             </div>
                                         </div>
                                         <div className="rank_info">
                                             <div>
                                                 🚇 지하철 역: 
-                                                <span>{topFive[i].line}</span>
-                                                <span> {topFive[i].stationKor}</span>
+                                                <span>{v.line}</span>
+                                                <span> {v.stationKor}</span>
                                             </div>
-                                            <div>⏰ 운영 시간 : {topFive[i].operhour}</div>
+                                            <div>⏰ 운영 시간 : {v.operhour}</div>
                                         </div>
                                     </div>
                                 </SmallDiv>

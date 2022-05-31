@@ -1,12 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import { isMobile } from "react-device-detect";
 import { review_request, review_delete_request,
-review_update_start, review_update_proceed, review_update_request } from "../reducers/review.js";
-//import { review_flavor, review_atmosphere, review_cheap, review_service } from '.././reducers/writeReview.js'
-import { BrowserView, MobileView, isMobile } from "react-device-detect";
-import { useNavigate } from 'react-router-dom';
+    review_update_start, review_update_proceed, review_update_request } from "../reducers/review.js";
 
 const Background = styled.div`
     display: flex;
@@ -156,9 +154,11 @@ export const ReviewOne = styled.form`
         width:100%;
         min-height:45%;
         height:auto;
+        color: #464646;
         @media (max-width: 600px){
             min-height:60%;
             height:auto;
+            font-size:0.9rem;
         }
     }
     
@@ -256,22 +256,6 @@ const Starlabel = styled.label`
 `
 
 // 
-
-const Starul = styled.ul`
-    list-style : none;
-    border : 1px solid black;
-    padding: 0 auto;
-`
-
-const Starli = styled.li`
-    display: inline-block;
-`
-
-const Textli = styled.li`
-    width: 500px;
-    height: 200px;
-    border : 1px solid black;
-`
 
 const StarSpan = styled.span`
     font-size: 1rem;
@@ -425,7 +409,7 @@ const Mypage = () => {
                             : v.service === 4 ? <StarSpan>⭐⭐⭐⭐</StarSpan> : v.service === 5 ? <StarSpan>⭐⭐⭐⭐⭐</StarSpan> : '평가 정보 없음'
                             }
                         </li>
-                        {(isMobile==false)&&<span onClick={() => deleteHandler(v.idx)} class="close2"> x </span>}
+                        {(isMobile === false)&&<span onClick={() => deleteHandler(v.idx)} class="close2"> x </span>}
                         
                     </div>
                     <div class="evaluate"> 총평 : {v.text === null ? '평가 정보 없음' : v.text}</div>
@@ -524,7 +508,6 @@ const Mypage = () => {
 
     let history = useNavigate()
     
-
     return (
         
         <Background>
@@ -532,7 +515,7 @@ const Mypage = () => {
                 { stores.user.me.email !== null
                 ?
                 <div className="mypage">
-                    <a onClick={()=>{history(-1)}} class="close">x</a>
+                    <a onClick={()=>{history(-1)}} className="close">x</a>
                     <div class="mypage_box">
                         <h1 class="welcome"> 🍩 {decodeURI(stores.user.me.nickname)} 님! 환영합니다! 🍩 </h1>
                         <h2 class="email"> 📧 내 이메일(ID): {stores.user.me.email} </h2>

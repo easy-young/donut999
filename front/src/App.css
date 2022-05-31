@@ -54,22 +54,57 @@
   }
 }
 
+.ant-layout-sider, .ant-layout-sider-dark{
+  border-left: 2px solid #FFF0F5!important;
+}
+.ant-layout-sider-children > button:hover{
+  color:#C71585!important;
+}
 
+.ant-menu-title-content{
+  color:#646464!important;
 
+}
+.ant-menu-title-content> a{
+  color:#646464!important;
+}
 
+/* {
+  background: #fcfbeb!important;
+} */
 
+.ant-menu-title-content:hover{
+  color:#E16A93!important;
+  background:#FFF0F5;
+}
+
+.ant-menu-title-content:hover >.ant-menu-submenu-title{
+  background:#FFF0F5;
+}
+
+.ant-menu-sub{
+  background:#fcfbeb!important;
+}
+
+.ant-menu-submenu-active{
+  background:#FFF0F5;
+}
+
+.ant-menu-submenu-title:hover{
+  background:#FFF0F5!important;
+}
 
 .ant-menu-submenu:hover, .ant-menu-submenu-inline:hover {
-  background: #e5e4c6;
+  background: #fcfbeb;
 }
 .ant-menu-item:hover, .ant-menu-item-only-child:hover{
-  background: #e5e4c6;
+  background: #fcfbeb;
 }
 
 
 .ant-menu-submenu:hover>.ant-menu-item, .ant-menu-submenu-inline:hover>.ant-menu-item {
-  background: #e5e4c6;
-  color:red;
+  background: #fcfbeb;
+  color:#FFD2D7;
 }
 
 .ant-menu-submenu-title{
@@ -80,29 +115,33 @@
 }
 /* 메뉴 박스 호버시 배경색 */
 .ant-menu-item:hover, .ant-menu-item-selected:hover, .ant-menu-item-only-child:hover{
-  background: #e5e4c6;
+  background: #FFF0F5;
 }
 /* 메뉴 호버시 글자색 */
 .ant-menu-item a:hover{
-  color:red !important;
+  color:#E16A93 !important;
+}
+
+.ant-menu-submenu .ant-menu-submenu-inline .ant-menu-submenu-open:hover{
+  background: #FFF0F5;
 }
 /* 서브메뉴 호버시 글자색 */
 .ant-menu-submenu-title:hover{
-  color:red!important;
+  color:#C71585!important;
 }
 
   /* 클릭시 배경색 정하기 */
 .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
-  background-color: violet!important; 
+  background-color: #FEE8FF!important; 
 
 }
 /* 클릭시 글자색 */
 .ant-menu-item-selected, .ant-menu-item-selected a, .ant-menu-item-selected a:hover{
-  color:red!important;
+  color:#E16A93!important;
 }
 /* 클릭시 서브메뉴 글자색 */
 .ant-menu-submenu-selected {
-  color: red !important; 
+  color: #C71585 !important; 
 }
 /* 메뉴 색 */
 /* .ant-menu{
@@ -110,9 +149,9 @@
 
 /* div 끝에 색처리 */
 .ant-menu-inline .ant-menu-item:after{
-  border: #ccc9ab!important;
+  border: #FF5675!important;
 }
 /* 화살표 색 */
 .ant-menu-submenu:hover >.ant-menu-submenu-title>.ant-menu-submenu-arrow{
-  color: red!important;
+  color: #FFB0D9!important;
 }

@@ -1,6 +1,4 @@
-//import { Link } from "react-router-dom";
 import styled from "styled-components";
-// import Store, { store } from '.././store/useStore.jsx'
 import {useDispatch, useSelector} from 'react-redux';
 import { useEffect } from 'react';
 import {getStore_request, review_create_request, review_write
