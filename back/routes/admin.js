@@ -303,9 +303,10 @@ const addstore = async (req, res) => {
 }
 
 
-router.use('/store/confirm/addstore/:register_id',
-upload.fields([{name:'img1'},{name:'img2'},
-{name:'img3'}]) , addstore )
+router.use('/store/confirm/addstore/:register_id', 
+    upload.fields([ {name:'img1'}, {name:'img2'}, {name:'img3'} ]), 
+    addstore 
+)
 
 router.post('/user/setting',async (req,res)=>{
     const sql = `SELECT email, DATE_FORMAT(date,'%Y-%m-%d %h:%i:%s') AS stamp FROM black ORDER BY date DESC`

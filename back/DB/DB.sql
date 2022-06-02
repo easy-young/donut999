@@ -24,7 +24,10 @@ CREATE TABLE shop (
     photo CHAR(1) DEFAULT 'N',
     special CHAR(1) DEFAULT 'N',
     more VARCHAR(50),
-    intro VARCHAR(500)
+    intro VARCHAR(500),
+    img1 VARCHAR(100),
+    img2 VARCHAR(100),
+    img3 VARCHAR(100)
 );
 
 CREATE TABLE register (
@@ -51,19 +54,6 @@ CREATE TABLE review (
     date DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (sidx) REFERENCES shop (idx)
 );
-
-
-insert into review(sidx, storename,email, flavor, atmosphere, cheap, service, text ) 
-values(1,'도넛스토리', '619049@naver.com', 5, 5, 5, 5, '와 정말 맛있어요!');
-insert into review(sidx,storename, email, flavor, atmosphere, cheap, service, text ) 
-values(2,'서울페이스트리','619049@naver.com', 5, 5, 5, 5, '와 정말 비싸요!');
-
-insert into register( email, store, menu, address, contact, sns) 
-values('a','a','a','a','a','a');
-
-alter table shop add img1 varchar(100);
-alter table shop add img2 varchar(100);
-alter table shop add img3 varchar(100);
 
 update shop set img1='1_1.jpg', img2='1_2.jpg', img3='1_3.jpg' where idx=1;
 update shop set img1='2_1.jpg', img2='2_2.jpg', img3='2_3.jpg' where idx=2;

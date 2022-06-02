@@ -55,7 +55,6 @@ router.post('/join', async (req, res) => {
 
 router.use('/request', async (req,res) => {
     const { storename, email } = req.body
-    // console.log(storename)
     try {
         const mailOption = mailOpt(email,'new request', storename)
         sendMail(mailOption)
