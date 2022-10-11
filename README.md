@@ -76,7 +76,7 @@ DB_DATABASE = 'your_database_name'
 
 
 ## Step 3
-**DB스키마 파일 위치: back/cd/etc/DB.sql
+**DB스키마 파일 위치: back/DB/DB.sql
 
 - 스키마 DB에 등록 해준 뒤, back/donut_list.csv 파일을 shop이라는 table에 import 해준다.
 
