@@ -13,7 +13,7 @@
   
 </div>
 
-#### Project nickname : 도넛🍩 철도🚂 999
+#### Project nickname : 🍩도넛 철도999🚂 
 #### Project execution period : 2022.05.16 ~ 22.05.31
 
 ## Description
