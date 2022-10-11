@@ -74,27 +74,11 @@ DB_DATABASE = 'your_database_name'
 를 입력 후 저장해준다.
 
 
-**DB스키마 파일 위치: back/cd/etc/DB.sql
 
 ## Step 3
+**DB스키마 파일 위치: back/cd/etc/DB.sql
 
-- 사진이 저장 되는 디렉토리 생성하기
-
-```
-cd back
-```
-
-```
-mkdir public
-```
-
-```
-cd public
-```
-
-```
-mkdir uploads
-```
+- 스키마 DB에 등록 해준 뒤, back/donut_list.csv 파일을 shop이라는 table에 import 해준다.
 
 ## Step 4
 
