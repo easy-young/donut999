@@ -1,4 +1,4 @@
-# donut999 [도넛 철도 999]
+# 지하철 노선도로 볼 수 있는 수도권 도넛 맛집
   
 <div align=center>
   <h1>
@@ -13,7 +13,7 @@
   
 </div>
 
-#### Project nickname : 경일 커뮤니티
+#### Project nickname : 도넛🍩 철도🚂 999
 #### Project execution period : 2022.05.16 ~ 22.05.31
 
 ## Description
